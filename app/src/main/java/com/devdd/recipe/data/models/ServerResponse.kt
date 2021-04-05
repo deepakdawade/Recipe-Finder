@@ -9,7 +9,7 @@ data class ServerResponse<T>(
     @Expose
     var status: Int = 0,
 
-    @SerializedName("msg")
+    @SerializedName("message")
     @Expose
     var message: String = "",
 
