@@ -1,4 +1,4 @@
-package com.devdd.recipe.data.models
+package com.devdd.recipe.data.remote.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

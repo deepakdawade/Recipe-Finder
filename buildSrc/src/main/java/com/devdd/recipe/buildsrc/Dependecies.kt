@@ -49,7 +49,7 @@ object Dependencies {
                 const val browser: String = "androidx.browser:browser:$version"
             }
             object FragmentKTX {
-                private const val version = "1.3.0-beta02"
+                private const val version = "1.3.1"
                 const val fragmentKtx: String = "androidx.fragment:fragment-ktx:$version"
             }
             object ActivityKTX {
@@ -69,7 +69,7 @@ object Dependencies {
             }
 
             object Lifecycle{
-                private const val version = "2.2.0"
+                private const val version = "2.3.0"
                 const val viewmodelKtx: String = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
                 const val livedataKtx: String = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
                 const val process: String = "androidx.lifecycle:lifecycle-process:$version"

@@ -112,6 +112,7 @@ dependencies {
 
     // Dagger
     implementation(Libraries.Google.DaggerHilt.daggerHilt)
+    implementation(Libraries.Google.DaggerHilt.daggerHiltViewModel)
     kapt(Libraries.Google.DaggerHilt.hiltKapt)
 
     // Retrofit
@@ -131,6 +132,20 @@ dependencies {
 
     // Timber
     implementation(Libraries.Timber.timber)
+
+    //Room
+    implementation(Libraries.AndroidX.Room.room)
+    implementation(Libraries.AndroidX.Room.roomRunTime)
+    kapt(Libraries.AndroidX.Room.roomKapt)
+
+    // LiveData
+    implementation(Libraries.AndroidX.Lifecycle.livedataKtx)
+
+    // viewModel
+    implementation(Libraries.AndroidX.Lifecycle.viewmodelKtx)
+
+    // Fragment
+    implementation(Libraries.AndroidX.FragmentKTX.fragmentKtx)
 
     // Coil
     implementation(Libraries.Coil.coil)
