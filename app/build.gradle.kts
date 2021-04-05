@@ -55,6 +55,12 @@ android {
 
         }
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
@@ -91,6 +97,7 @@ dependencies {
     implementation(Libraries.AndroidX.appCompat)
     implementation(Libraries.Google.materialDesign)
     implementation(Libraries.AndroidX.ConstraintLayout.constraintLayout)
+    implementation(Libraries.AndroidX.SwipeRefreshLayout.swiperefreshlayout)
 
     // Navigation
     implementation(Libraries.AndroidX.Navigation.navigationFragment)
@@ -100,19 +107,22 @@ dependencies {
     implementation(Libraries.Coroutines.coroutineAndroid)
     implementation(Libraries.Coroutines.coroutineCore)
 
+    //Lottie
+    implementation(Libraries.AirBnb.lottie)
+
     // Dagger
     implementation(Libraries.Google.DaggerHilt.daggerHilt)
     kapt(Libraries.Google.DaggerHilt.hiltKapt)
 
     // Retrofit
-    api(Libraries.Retrofit.retrofit)
+    implementation(Libraries.Retrofit.retrofit)
 
     // Retrofit Converters
     implementation(Libraries.Retrofit.gsonConverter)
     implementation(Libraries.Retrofit.kotlinConverter)
 
     // Gson
-    api(Libraries.Google.gson)
+    implementation(Libraries.Google.gson)
 
     // Ok-Http
     implementation(Libraries.OkHttp.okhttp)

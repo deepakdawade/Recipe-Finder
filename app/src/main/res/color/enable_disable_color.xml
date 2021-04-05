@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Color when the row is selected -->
+    <item android:color="#167ffc" android:state_enabled="true" />
+    <!-- Standard background color -->
+    <item android:color="#d9d9d9" />
+</selector>
