@@ -10,7 +10,7 @@ import retrofit2.Response
 import java.io.IOException
 
 fun <T> ServerResponse<T>.dataOrThrowException(executeOnSuccess: T.() -> Unit = {}): T {
-    return if (status == 0) data.also { executeOnSuccess(it) }
+    return if (status == 1) data.also { executeOnSuccess(it) }
     else throw ServerException(errCode, message)
 }
 
