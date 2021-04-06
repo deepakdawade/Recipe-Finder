@@ -8,14 +8,12 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.ConnectionPool
 import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.LoggingEventListener
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -31,9 +29,12 @@ object NetworkModule {
     @Singleton
     fun provideNetworkServiceApi(
         retrofitBuilder: Retrofit.Builder,
+        okHttpClient: OkHttpClient,
         appBuildConfig: AppBuildConfig
     ): RetrofitNetworkServiceApi = retrofitBuilder
-        .baseUrl(appBuildConfig.BASE_URL + "/").build()
+        .client(okHttpClient)
+        .baseUrl(appBuildConfig.BASE_URL)
+        .build()
         .create(RetrofitNetworkServiceApi::class.java)
 
 
@@ -52,9 +53,9 @@ object NetworkModule {
                     eventListenerFactory(loggingEventListener)
                 }
             }
-            .connectionPool(ConnectionPool(10, 2, TimeUnit.MINUTES))
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(30, TimeUnit.SECONDS)
+//            .connectionPool(ConnectionPool(10, 2, TimeUnit.MINUTES))
+//            .readTimeout(30, TimeUnit.SECONDS)
+//            .writeTimeout(30, TimeUnit.SECONDS)
             .dispatcher(
                 Dispatcher().apply {
                     maxRequestsPerHost = 25
