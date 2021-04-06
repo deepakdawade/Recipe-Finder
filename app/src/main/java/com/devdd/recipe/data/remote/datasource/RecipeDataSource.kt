@@ -18,8 +18,8 @@ class RecipeDataSourceImpl @Inject constructor(
     override suspend fun getAllRecipes(): List<Recipe> {
         val response = networkServiceApi.getAllRecipes()
         val fetchedRecipes = response.dataOrThrowException()
-        return fetchedRecipes.map {
+        return fetchedRecipes.recipes?.map {
             recipeResponseToRecipeEntity.map(it)
-        }
+        } ?: emptyList()
     }
 }
