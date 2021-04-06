@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.devdd.recipe.data.db.entities.Recipe
 import com.devdd.recipe.domain.executers.FetchAllRecipes
 import com.devdd.recipe.domain.observers.ObserveAllRecipes
+import com.devdd.recipe.domain.result.InvokeStarted
 import com.devdd.recipe.ui.home.viewstate.RecipeViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -22,6 +22,10 @@ class HomeViewModel @Inject constructor(
     private val mRecipes: MutableLiveData<List<RecipeViewState>> = MutableLiveData()
     val recipes: LiveData<List<RecipeViewState>>
         get() = mRecipes
+
+    private val mLoading: MutableLiveData<Boolean> = MutableLiveData()
+    val loading: LiveData<Boolean>
+        get() = mLoading
 
     init {
         fetchRecipes()
@@ -43,10 +47,12 @@ class HomeViewModel @Inject constructor(
         observeAllRecipes(Unit)
     }
 
-    private fun fetchRecipes() {
+    fun fetchRecipes() {
         viewModelScope.launch {
             fetchAllRecipes(Unit).collect {
-
+                if (it is InvokeStarted)
+                    mLoading.postValue(true)
+                else mLoading.postValue(false)
             }
         }
     }

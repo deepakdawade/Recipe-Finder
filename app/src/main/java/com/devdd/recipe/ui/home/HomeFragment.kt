@@ -15,8 +15,16 @@ class HomeFragment : MyFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private var recipeAdapter: RecipeAdapter? = null
     override fun onViewCreated(binding: FragmentHomeBinding, savedInstanceState: Bundle?) {
+        binding.homeViewModel = homeViewModel
         setupRecyclerViewAdapter()
         setObserver()
+        setListeners()
+    }
+
+    private fun setListeners(){
+        binding?.homeFragmentSwipeToRefresh?.setOnRefreshListener {
+            homeViewModel.fetchRecipes()
+        }
     }
 
     private fun setObserver() {
