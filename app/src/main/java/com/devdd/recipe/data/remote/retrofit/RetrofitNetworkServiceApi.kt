@@ -1,5 +1,10 @@
 package com.devdd.recipe.data.remote.retrofit
 
+import com.devdd.recipe.data.db.entities.Recipe
+import com.devdd.recipe.data.remote.models.ServerResponse
+import com.devdd.recipe.data.remote.models.response.RecipeResponse
+import retrofit2.http.POST
+
 
 /**
  * Created by @author Deepak Dawade on 4/6/2021 at 12:53 AM.
@@ -7,4 +12,6 @@ package com.devdd.recipe.data.remote.retrofit
  *
  */
 interface RetrofitNetworkServiceApi {
+    @POST(EndPoints.GET_ALL_RECIPES)
+    suspend fun getAllRecipes():ServerResponse<List<RecipeResponse>>
 }

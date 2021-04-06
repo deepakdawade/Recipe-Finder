@@ -1,33 +1,42 @@
 package com.devdd.recipe.domain.result
 
-/**
- * Created by @author Deepak Dawade on 4/4/2021 at 12:57 AM.
- * Copyright (c) 2021 deepak.dawade.dd1@gmail.com All rights reserved.
- *
- */
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 
-sealed class InvokeStatus
-object InvokeStarted : InvokeStatus()
-object InvokeSuccess : InvokeStatus()
-data class InvokeError(val throwable: Throwable) : InvokeStatus()
+sealed class InvokeStatus<out T>
+object InvokeStarted : InvokeStatus<Nothing>()
+data class InvokeSuccess<T>(val data: T) : InvokeStatus<T>()
+data class InvokeError(val throwable: Throwable) : InvokeStatus<Nothing>()
 
-inline fun InvokeStatus.onSuccess(perform: () -> Unit): InvokeStatus {
-    if (this is InvokeSuccess) {
-        perform()
+inline fun <T> InvokeStatus<T>.onSuccess(perform: (T) -> Unit): InvokeStatus<T> {
+    if (this is InvokeSuccess<T>) {
+        perform(this.data)
     }
     return this
 }
 
-inline fun InvokeStatus.onError(perform: () -> Unit): InvokeStatus {
+inline fun <T> InvokeStatus<T>.onError(perform: (Throwable) -> Unit): InvokeStatus<T> {
     if (this is InvokeError) {
-        perform()
+        perform(this.throwable)
     }
     return this
 }
 
-inline fun InvokeStatus.onStarted(perform: () -> Unit): InvokeStatus {
+inline fun <T> InvokeStatus<T>.onStarted(perform: () -> Unit): InvokeStatus<T> {
     if (this is InvokeStarted) {
         perform()
     }
     return this
 }
+
+suspend fun <T> Flow<InvokeStatus<T>>.watchStatus(
+        action: InvokeStatus<T>.() -> Unit
+): Unit = collect { action(it) }
+
+
+
+
+
+
+
+

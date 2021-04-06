@@ -10,6 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : MyFragment<FragmentHomeBinding>(R.layout.fragment_home) {
+
     private val homeViewModel by viewModels<HomeViewModel>()
 
     private var recipeAdapter: RecipeAdapter? = null

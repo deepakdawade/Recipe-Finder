@@ -22,6 +22,41 @@ allprojects {
     }
 }
 
+subprojects {
+
+    tasks.withType<JavaCompile> {
+        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+        targetCompatibility = JavaVersion.VERSION_1_8.toString()
+        //enable compilation in a separate daemon process
+        options.isFork = true
+    }
+
+    tasks.withType<Test> {
+        maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 }
+            ?: 1
+    }
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions {
+            // Treat all Kotlin warnings as errors
+            gradle.taskGraph.whenReady {
+                //allWarningsAsErrors = hasTask(":app:assembleDebug").not()
+                allWarningsAsErrors = false
+            }
+
+            // Enable experimental coroutine api
+            freeCompilerArgs = freeCompilerArgs + listOf(
+                "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-Xopt-in=kotlinx.coroutines.FlowPreview",
+                "-Xopt-in=kotlin.Experimental",
+                "-Xallow-jvm-ir-dependencies",
+                "-Xjvm-default=all"
+            )
+
+            jvmTarget = "1.8"
+        }
+    }
+}
 tasks.register("clean",  Delete::class)  {
     delete(rootProject.buildDir)
 }

@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devdd.recipe.R
-import com.devdd.recipe.data.db.entities.Recipe
 import com.devdd.recipe.databinding.ItemViewRecipeBinding
+import com.devdd.recipe.ui.home.viewstate.RecipeViewState
 import com.devdd.recipe.utils.extensions.bindWithLayout
 
 
@@ -15,7 +15,10 @@ import com.devdd.recipe.utils.extensions.bindWithLayout
  * Copyright (c) 2021 deepak.dawade.dd1@gmail.com All rights reserved.
  *
  */
-class RecipeAdapter():ListAdapter<Recipe,RecipeAdapter.RecipeViewHolder>(RecipeDiffItemCallback) {
+class RecipeAdapter() :
+    ListAdapter<RecipeViewState, RecipeAdapter.RecipeViewHolder>(
+        RecipeViewStateDiffItemCallback
+    ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         return RecipeViewHolder.getInstance(parent)
     }
@@ -27,23 +30,30 @@ class RecipeAdapter():ListAdapter<Recipe,RecipeAdapter.RecipeViewHolder>(RecipeD
         }
     }
 
-    class RecipeViewHolder private constructor(private val binding:ItemViewRecipeBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(item:Recipe){
+    class RecipeViewHolder private constructor(private val binding: ItemViewRecipeBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: RecipeViewState) {
 
         }
-        companion object{
-            fun getInstance(parent:ViewGroup):RecipeViewHolder{
-                val binding = bindWithLayout<ItemViewRecipeBinding>(R.layout.item_view_recipe,parent)
+
+        companion object {
+            fun getInstance(parent: ViewGroup): RecipeViewHolder {
+                val binding =
+                    bindWithLayout<ItemViewRecipeBinding>(R.layout.item_view_recipe, parent)
                 return RecipeViewHolder(binding)
             }
         }
     }
-    private object RecipeDiffItemCallback:DiffUtil.ItemCallback<Recipe>(){
-        override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
+
+    private object RecipeViewStateDiffItemCallback : DiffUtil.ItemCallback<RecipeViewState>() {
+        override fun areItemsTheSame(oldItem: RecipeViewState, newItem: RecipeViewState): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
+        override fun areContentsTheSame(
+            oldItem: RecipeViewState,
+            newItem: RecipeViewState
+        ): Boolean {
             return oldItem == newItem
         }
     }

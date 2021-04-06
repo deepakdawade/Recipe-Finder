@@ -1,4 +1,4 @@
-package com.devdd.recipe.domain
+package com.devdd.recipe.domain.result
 
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withTimeout
