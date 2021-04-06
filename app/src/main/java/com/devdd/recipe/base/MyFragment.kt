@@ -4,18 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.devdd.recipe.utils.extensions.bindingWithLifecycleOwner
 import com.google.android.material.snackbar.Snackbar
 
-abstract class MyFragment<V : ViewDataBinding> : Fragment() {
+abstract class MyFragment<V : ViewDataBinding>(@LayoutRes private val layoutId: Int) : Fragment(layoutId) {
 
     var binding: V? = null
 
     private var snackbar: Snackbar? = null
-
-    @Suppress("PropertyName")
-    val TAG: String = this::class.java.simpleName
 
     fun requireBinding(): V = requireNotNull(binding)
 
@@ -36,15 +35,23 @@ abstract class MyFragment<V : ViewDataBinding> : Fragment() {
 
     abstract fun onViewCreated(binding: V, savedInstanceState: Bundle?)
 
-    protected abstract fun createBinding(
+    private fun createBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
-    ): V
+    ): V {
+        return bindingWithLifecycleOwner(inflater, layoutId, container) {
+            this.lifecycleOwner = this@MyFragment
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
         if (snackbar?.isShown == true) snackbar?.dismiss()
         snackbar = null
+    }
+
+    companion object {
+        val TAG: String = this::class.java.simpleName
     }
 }
