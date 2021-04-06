@@ -33,7 +33,8 @@ class RecipeAdapter() :
     class RecipeViewHolder private constructor(private val binding: ItemViewRecipeBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: RecipeViewState) {
-
+            binding.recipe = item
+            binding.executePendingBindings()
         }
 
         companion object {
