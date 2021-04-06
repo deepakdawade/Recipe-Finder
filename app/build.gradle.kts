@@ -51,7 +51,7 @@ android {
             buildConfigField(
                     type = "String",
                     name = "BASE_URL",
-                    value = formatUrl(url = "")
+                value = formatUrl(url = "https://receipe-bool.herokuapp.com/api/v1/")
             )
 
         }
