@@ -3,4 +3,7 @@
     <string name="empty_string" />
     <string name="no_internet_connection">No connection</string>
     <string name="no_internet_connection_action_retry">retry</string>
+    <string name="categories">Categories</string>
+    <string name="recipes">Recipes</string>
+    <string name="no_recipes">No recipes</string>
 </resources>

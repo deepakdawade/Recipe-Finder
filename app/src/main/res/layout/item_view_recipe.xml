@@ -40,8 +40,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Recipe"
-            tools:textColor="?colorPrimary" />
+            tools:text="Recipe" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,7 +37,6 @@
             android:text="@{category.name}"
             android:textAlignment="center"
             android:textColor="?colorOnPrimary"
-            tools:textColor="?colorPrimary"
             android:textAppearance="?textAppearanceListItem"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
