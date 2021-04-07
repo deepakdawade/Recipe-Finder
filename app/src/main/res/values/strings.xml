@@ -6,4 +6,5 @@
     <string name="categories">Categories</string>
     <string name="recipes">Recipes</string>
     <string name="no_recipes">No recipes</string>
+    <string name="recipe_details_author_name">Author:%1$s</string>
 </resources>
