@@ -43,7 +43,7 @@
     <!--on which they appear.-->
     <color name="colorOnPrimary">#FF000000</color>
     <color name="colorOnSecondary">#000000</color>
-    <color name="colorOnBackground">#FFFFFF</color>
+    <color name="colorOnBackground">#FF000000</color>
     <color name="colorOnSurface">#000000</color>
     <color name="colorOnError">#ffffff</color>
 

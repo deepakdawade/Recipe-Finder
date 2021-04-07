@@ -35,7 +35,7 @@
     <!--background. colorSurface is mapped to the surface of components such as cards, sheets-->
     <!--and menus. colorError is used to indicate an error state for components such as-->
     <!--text fields.-->
-    <color name="colorBackground">#FAFAFA</color>
+    <color name="colorBackground">#FF000000</color>
     <color name="colorSurface">#ffffff</color>
     <color name="colorError">#EF4C4C</color>
 
@@ -43,7 +43,7 @@
     <!--on which they appear.-->
     <color name="colorOnPrimary">#FFFFFF</color>
     <color name="colorOnSecondary">#000000</color>
-    <color name="colorOnBackground">#FF000000</color>
+    <color name="colorOnBackground">#FFFFFF</color>
     <color name="colorOnSurface">#000000</color>
     <color name="colorOnError">#ffffff</color>
 
