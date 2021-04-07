@@ -19,12 +19,16 @@
             android:id="@+id/recipe_detail_fragment_toolbar"
             android:layout_width="0dp"
             android:layout_height="?actionBarSize"
+            android:background="?android:colorBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:title="@{recipe.title}"
-            tools:title="Recipe detail" />
+            app:titleTextColor="?colorOnPrimary"
+            tools:title="Recipe detail"
+            app:navigationIconTint="?colorOnPrimary"
+            />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/recipe_detail_fragment_image"
@@ -64,6 +68,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/recipe_detail_fragment_author"
+            stringVisibility="@{recipe.authorName}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="8dp"

@@ -58,6 +58,13 @@ fun View.toggleVisibility(shouldShow: Boolean) {
     isVisible = shouldShow
 }
 
+@BindingAdapter("stringVisibility")
+fun View.stringVisibility(string: String?) {
+    isVisible = !string.isNullOrBlank()
+}
+
+
+
 @BindingAdapter("textColorTint")
 fun textColor(view: MaterialTextView, color: Int) {
     view.apply { setTextColor(ContextCompat.getColor(context, color)) }
