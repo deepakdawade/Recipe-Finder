@@ -9,11 +9,16 @@
             name="recipe"
             type="com.devdd.recipe.ui.home.viewstate.RecipeViewState" />
 
+        <variable
+            name="clickListener"
+            type="com.devdd.recipe.ui.home.adapter.RecipeAdapter.RecipeClickListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{()->clickListener.onRecipeClick(recipe)}">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/recipe_item_view_image"
@@ -21,19 +26,19 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="2:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@mipmap/ic_launcher" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/recipe_item_view_author_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:text="@{recipe.title}"
+            android:textAlignment="center"
             android:textAppearance="?textAppearanceHeadline5"
             android:textColor="?colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"

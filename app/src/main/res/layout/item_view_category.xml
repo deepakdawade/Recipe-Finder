@@ -36,7 +36,6 @@
             android:layout_marginTop="8dp"
             android:text="@{category.name}"
             android:textAlignment="center"
-            android:textColor="?colorOnPrimary"
             android:textAppearance="?textAppearanceListItem"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

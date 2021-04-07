@@ -9,12 +9,12 @@ import com.devdd.recipe.databinding.ItemViewRecipeBinding
 import com.devdd.recipe.ui.home.viewstate.RecipeViewState
 import com.devdd.recipe.utils.extensions.bindWithLayout
 
-class RecipeAdapter() :
+class RecipeAdapter(private val recipeClickListener: RecipeClickListener) :
     ListAdapter<RecipeViewState, RecipeAdapter.RecipeViewHolder>(
         RecipeDiffItemCallback
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
-        return RecipeViewHolder.getInstance(parent)
+        return RecipeViewHolder.getInstance(parent, recipeClickListener)
     }
 
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
@@ -24,18 +24,25 @@ class RecipeAdapter() :
         }
     }
 
-    class RecipeViewHolder private constructor(private val binding: ItemViewRecipeBinding) :
+    class RecipeViewHolder private constructor(
+        private val binding: ItemViewRecipeBinding,
+        private val recipeClickListener: RecipeClickListener
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: RecipeViewState) {
             binding.recipe = item
+            binding.clickListener = recipeClickListener
             binding.executePendingBindings()
         }
 
         companion object {
-            fun getInstance(parent: ViewGroup): RecipeViewHolder {
+            fun getInstance(
+                parent: ViewGroup,
+                recipeClickListener: RecipeClickListener
+            ): RecipeViewHolder {
                 val binding =
                     bindWithLayout<ItemViewRecipeBinding>(R.layout.item_view_recipe, parent)
-                return RecipeViewHolder(binding)
+                return RecipeViewHolder(binding, recipeClickListener)
             }
         }
     }
@@ -51,5 +58,9 @@ class RecipeAdapter() :
         ): Boolean {
             return oldItem == newItem
         }
+    }
+
+    fun interface RecipeClickListener {
+        fun onRecipeClick(viewState: RecipeViewState)
     }
 }

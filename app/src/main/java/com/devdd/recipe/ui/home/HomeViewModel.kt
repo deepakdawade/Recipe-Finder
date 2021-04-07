@@ -4,13 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavDirections
 import com.devdd.recipe.domain.executers.FetchAllCategories
 import com.devdd.recipe.domain.executers.FetchAllRecipes
 import com.devdd.recipe.domain.observers.ObserveAllCategories
 import com.devdd.recipe.domain.observers.ObserveAllRecipes
+import com.devdd.recipe.domain.result.Event
 import com.devdd.recipe.domain.result.InvokeStarted
 import com.devdd.recipe.ui.home.viewstate.CategoryViewState
 import com.devdd.recipe.ui.home.viewstate.RecipeViewState
+import com.devdd.recipe.utils.extensions.toJsonString
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -35,6 +38,10 @@ class HomeViewModel @Inject constructor(
     private val mLoading: MutableLiveData<Boolean> = MutableLiveData()
     val loading: LiveData<Boolean>
         get() = mLoading
+
+    private val mNavigation: MutableLiveData<Event<NavDirections>> = MutableLiveData()
+    val navigation: LiveData<Event<NavDirections>>
+        get() = mNavigation
 
     init {
         fetchRecipes()
@@ -81,5 +88,11 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             fetchAllCategories(Unit).collect {}
         }
+    }
+
+    fun navigateToRecipeDetails(viewState: RecipeViewState) {
+        val recipe = viewState.toJsonString()
+        val navDirection = HomeFragmentDirections.actionToRecipeDetailFragment(recipe)
+        mNavigation.value = Event(navDirection)
     }
 }
