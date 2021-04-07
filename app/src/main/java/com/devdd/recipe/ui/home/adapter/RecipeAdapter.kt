@@ -9,15 +9,9 @@ import com.devdd.recipe.databinding.ItemViewRecipeBinding
 import com.devdd.recipe.ui.home.viewstate.RecipeViewState
 import com.devdd.recipe.utils.extensions.bindWithLayout
 
-
-/**
- * Created by @author Deepak Dawade on 4/6/2021 at 10:08 AM.
- * Copyright (c) 2021 deepak.dawade.dd1@gmail.com All rights reserved.
- *
- */
 class RecipeAdapter() :
     ListAdapter<RecipeViewState, RecipeAdapter.RecipeViewHolder>(
-        RecipeViewStateDiffItemCallback
+        RecipeDiffItemCallback
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         return RecipeViewHolder.getInstance(parent)
@@ -46,7 +40,7 @@ class RecipeAdapter() :
         }
     }
 
-    private object RecipeViewStateDiffItemCallback : DiffUtil.ItemCallback<RecipeViewState>() {
+    private object RecipeDiffItemCallback : DiffUtil.ItemCallback<RecipeViewState>() {
         override fun areItemsTheSame(oldItem: RecipeViewState, newItem: RecipeViewState): Boolean {
             return oldItem.id == newItem.id
         }

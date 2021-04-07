@@ -4,14 +4,14 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.devdd.recipe.data.db.entities.Recipe
+import com.devdd.recipe.data.db.entities.Category
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface RecipeDao {
-    @Query("SELECT * FROM recipes")
-    fun allRecipes(): Flow<List<Recipe>>
+interface CategoryDao {
+    @Query("SELECT * FROM categories")
+    fun allCategories(): Flow<List<Category>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRecipe(vararg recipe: Recipe)
+    suspend fun insertCategory(vararg category: Category)
 }

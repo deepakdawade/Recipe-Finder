@@ -12,7 +12,7 @@ class ObserveAllRecipes @Inject constructor(
     private val repository: RecipeRepository
 ) : SubjectUseCase<Unit, List<RecipeViewState>>() {
     override fun createObservable(params: Unit): Flow<List<RecipeViewState>> {
-        return repository.observeAllRecipes().map { recipes ->
+        return repository.observeRecipes().map { recipes ->
             recipes.map { recipe -> recipe.toRecipeViewState() }
         }
     }

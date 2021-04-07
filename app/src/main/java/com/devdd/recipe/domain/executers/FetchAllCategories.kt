@@ -6,13 +6,13 @@ import com.devdd.recipe.utils.AppCoroutineDispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class FetchAllRecipes @Inject constructor(
+class FetchAllCategories @Inject constructor(
     private val appCoroutineDispatchers: AppCoroutineDispatchers,
     private val repository: RecipeRepository
 ) : InvokeUseCase<Unit>() {
     override suspend fun doWork(params: Unit) {
         return withContext(appCoroutineDispatchers.io) {
-            repository.getRecipes()
+            repository.getCategories()
         }
     }
 }
