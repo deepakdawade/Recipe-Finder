@@ -223,7 +223,7 @@ fun isDataValid(
     view.isEnabled = false
     if (isLoading == true) return
     dataToCheck?.let {
-        val shouldEnable: Boolean = isValid(it, dataCheckType, optional)
+        val shouldEnable: Boolean = isValid(it, dataCheckType)
         if (view.isEnabled != shouldEnable) view.isEnabled = shouldEnable
     }
 }
@@ -287,7 +287,7 @@ fun setImeActions(
         when (actionId) {
             imeActionId -> {
                 val shouldPerformAction = inputToCheck?.let {
-                    isValid(it.value ?: "", inputCheckType ?: "", isInputOptional)
+                    isValid(it.value ?: "", inputCheckType ?: "")
                 } ?: onValidInput?.value == true
 
                 (shouldPerformAction || skipValidation).also {
@@ -341,7 +341,7 @@ fun isValidName(
 ) {
     view.isErrorEnabled = true
     view.editText?.doOnTextChanged { text, _, _, _ ->
-        if (isValid(text.toString(), type, optional).not()) view.error = errorMessage
+        if (isValid(text.toString(), type).not()) view.error = errorMessage
         else {
             view.isErrorEnabled = false
             view.error = null
@@ -376,9 +376,9 @@ fun animateAVD(view: AppCompatImageView, loop: Boolean) {
 }
 
 
-private fun isValid(text: String, type: String, optional: Boolean) = when (type) {
-//    DIGIT_ONLY -> text.isDigitsOnly(optional)
+private fun isValid(text: String, type: String) = when (type) {
+    DIGIT_ONLY -> text.isBlank()
     else -> false
 }
 
-//private const val DIGIT_ONLY = "digitOnly"
+private const val DIGIT_ONLY = "digitOnly"

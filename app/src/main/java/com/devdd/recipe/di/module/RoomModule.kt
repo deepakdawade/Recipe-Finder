@@ -31,7 +31,8 @@ object RoomModule {
             appContext,
             RecipeDatabase::class.java,
             DB_NAME
-        ).build()
+        ).fallbackToDestructiveMigrationOnDowngrade()
+            .build()
     }
 
 }
