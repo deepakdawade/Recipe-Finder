@@ -7,7 +7,7 @@
 
         <variable
             name="recipe"
-            type="com.devdd.recipe.data.viewstate.RecipeViewState" />
+            type="com.devdd.recipe.domain.viewstate.RecipeViewState" />
 
         <variable
             name="clickListener"

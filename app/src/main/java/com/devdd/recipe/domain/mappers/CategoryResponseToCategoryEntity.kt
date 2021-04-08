@@ -1,7 +1,6 @@
 package com.devdd.recipe.domain.mappers
 
 import com.devdd.recipe.data.db.entities.Category
-import com.devdd.recipe.data.mappers.Mapper
 import com.devdd.recipe.data.remote.models.response.CategoryListResponse.CategoryResponse
 import javax.inject.Inject
 

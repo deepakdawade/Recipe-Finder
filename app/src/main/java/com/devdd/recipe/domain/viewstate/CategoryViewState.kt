@@ -1,4 +1,4 @@
-package com.devdd.recipe.data.viewstate
+package com.devdd.recipe.domain.viewstate
 
 data class CategoryViewState(
     val id: Int = 0,

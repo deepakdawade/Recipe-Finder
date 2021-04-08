@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package com.devdd.recipe.data.mappers
+package com.devdd.recipe.domain.mappers
 
 interface Mapper<F, T> {
     suspend fun map(from: F): T

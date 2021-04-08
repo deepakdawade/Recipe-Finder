@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devdd.recipe.R
-import com.devdd.recipe.data.viewstate.RecipeViewState
+import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.databinding.ItemViewRecipeBinding
 import com.devdd.recipe.utils.extensions.bindWithLayout
 

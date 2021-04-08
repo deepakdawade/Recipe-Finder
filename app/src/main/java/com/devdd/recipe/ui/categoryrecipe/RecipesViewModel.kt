@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.devdd.recipe.data.remote.models.request.RecipesByCategoryRequest
-import com.devdd.recipe.data.viewstate.RecipeViewState
+import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.domain.executers.FetchRecipesByCategory
 import com.devdd.recipe.domain.result.Event
 import com.devdd.recipe.domain.result.onError

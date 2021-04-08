@@ -11,7 +11,7 @@
 
         <variable
             name="category"
-            type="com.devdd.recipe.data.viewstate.CategoryViewState" />
+            type="com.devdd.recipe.domain.viewstate.CategoryViewState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
