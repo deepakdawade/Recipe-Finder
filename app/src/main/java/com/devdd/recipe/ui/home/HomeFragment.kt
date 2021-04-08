@@ -5,7 +5,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.R
-import com.devdd.recipe.base.MyFragment
+import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentHomeBinding
 import com.devdd.recipe.ui.home.adapter.CategoryAdapter
 import com.devdd.recipe.ui.home.adapter.RecipeAdapter
@@ -13,7 +13,7 @@ import com.devdd.recipe.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : MyFragment<FragmentHomeBinding>(R.layout.fragment_home) {
+class HomeFragment : DevFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val viewModel by viewModels<HomeViewModel>()
 

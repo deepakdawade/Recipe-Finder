@@ -9,7 +9,7 @@ import androidx.databinding.ViewDataBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import javax.inject.Inject
 
-abstract class MyBottomSheet<V : ViewDataBinding> : BottomSheetDialogFragment() {
+abstract class DevBottomSheet<V : ViewDataBinding> : BottomSheetDialogFragment() {
 
     var binding: V? = null
 

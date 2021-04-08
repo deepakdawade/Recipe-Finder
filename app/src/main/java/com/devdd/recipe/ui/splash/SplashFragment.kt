@@ -6,13 +6,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.R
-import com.devdd.recipe.base.MyFragment
+import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SplashFragment : MyFragment<FragmentSplashBinding>(R.layout.fragment_splash) {
+class SplashFragment : DevFragment<FragmentSplashBinding>(R.layout.fragment_splash) {
     companion object {
         val TAG: String = this::class.java.simpleName
     }

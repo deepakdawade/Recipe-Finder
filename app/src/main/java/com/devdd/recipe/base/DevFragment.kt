@@ -10,13 +10,13 @@ import androidx.fragment.app.Fragment
 import com.devdd.recipe.utils.extensions.bindingWithLifecycleOwner
 import com.google.android.material.snackbar.Snackbar
 
-abstract class MyFragment<V : ViewDataBinding>(@LayoutRes private val layoutId: Int) : Fragment(layoutId) {
+abstract class DevFragment<V : ViewDataBinding>(@LayoutRes private val layoutId: Int) : Fragment(layoutId) {
 
     var binding: V? = null
 
     private var snackbar: Snackbar? = null
 
-    fun requireBinding(): V = requireNotNull(binding)
+    protected fun requireBinding(): V = requireNotNull(binding)
 
     final override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +40,7 @@ abstract class MyFragment<V : ViewDataBinding>(@LayoutRes private val layoutId: 
         container: ViewGroup?
     ): V {
         return bindingWithLifecycleOwner(inflater, layoutId, container) {
-            this.lifecycleOwner = this@MyFragment
+            this.lifecycleOwner = this@DevFragment
         }
     }
 

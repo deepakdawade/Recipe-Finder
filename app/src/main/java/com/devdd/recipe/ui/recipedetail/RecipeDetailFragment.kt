@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.devdd.recipe.R
-import com.devdd.recipe.base.MyFragment
+import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentRecipeDetailBinding
 import com.devdd.recipe.data.viewstate.RecipeViewState
 import com.devdd.recipe.utils.extensions.toDataClass
@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RecipeDetailFragment :
-    MyFragment<FragmentRecipeDetailBinding>(R.layout.fragment_recipe_detail) {
+    DevFragment<FragmentRecipeDetailBinding>(R.layout.fragment_recipe_detail) {
 
     companion object {
         val TAG: String = this::class.java.simpleName
