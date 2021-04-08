@@ -8,8 +8,9 @@ import com.devdd.recipe.base.MyFragment
 import com.devdd.recipe.databinding.FragmentRecipeDetailBinding
 import com.devdd.recipe.ui.home.viewstate.RecipeViewState
 import com.devdd.recipe.utils.extensions.toDataClass
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class RecipeDetailFragment :
     MyFragment<FragmentRecipeDetailBinding>(R.layout.fragment_recipe_detail) {
 
