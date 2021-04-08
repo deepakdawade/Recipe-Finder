@@ -2,6 +2,7 @@ package com.devdd.recipe.utils.extensions
 
 import androidx.lifecycle.MutableLiveData
 import com.devdd.recipe.domain.result.Result
+import com.devdd.recipe.domain.result.data
 
 /**
  * Transform and Updates value of [liveData] if [Result] is of type [Success]
@@ -50,6 +51,6 @@ inline fun <reified T, P> Result<T>.resetOnError(
 }
 
 inline fun <reified T> Result<T>.updateNetworkState(liveData: MutableLiveData<Boolean>): Result<T> {
-//    liveData.postValue(data is Result.Loading)
+    liveData.postValue(data is Result.Loading)
     return this
 }
