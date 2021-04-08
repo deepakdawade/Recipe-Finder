@@ -1,6 +1,8 @@
 package com.devdd.recipe.di.module
 
 import com.devdd.recipe.BuildConfig
+import com.devdd.recipe.data.prefs.RecipeDataStore
+import com.devdd.recipe.data.prefs.RecipeDataStoreImpl
 import com.devdd.recipe.utils.AppBuildConfig
 import com.devdd.recipe.utils.AppCoroutineDispatchers
 import com.devdd.recipe.utils.extensions.buildType
@@ -14,6 +16,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
+    @Singleton
+    @Provides
+    fun providesRecipeDataStore(dataStore: RecipeDataStoreImpl): RecipeDataStore = dataStore
 
     @Singleton
     @Provides

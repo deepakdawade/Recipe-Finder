@@ -139,6 +139,9 @@ dependencies {
     implementation(Libraries.AndroidX.Room.roomRunTime)
     kapt(Libraries.AndroidX.Room.roomKapt)
 
+    //DataStore
+    implementation(Libraries.AndroidX.DataStore.dataStore)
+
     // LiveData
     implementation(Libraries.AndroidX.Lifecycle.livedataKtx)
 

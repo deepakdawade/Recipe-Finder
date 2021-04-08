@@ -91,6 +91,11 @@ object Dependencies {
                 const val roomKapt = "androidx.room:room-compiler:$version"
             }
 
+            object DataStore{
+                private const val version = "1.0.0-alpha08"
+                const val dataStore = "androidx.datastore:datastore-preferences:$version"
+            }
+
             object Paging3 {
                 private const val version = "2.1.2"
                 const val paging: String = "androidx.paging:paging-runtime-ktx:$version"
