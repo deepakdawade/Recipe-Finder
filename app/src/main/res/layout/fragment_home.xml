@@ -87,6 +87,19 @@
                 tools:itemCount="4"
                 tools:listitem="@layout/item_view_recipe" />
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/home_fragment_lottie_no_recipes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                toggleVisibility="@{homeViewModel.recipes.empty}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_fragment_categories"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true" />
+
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/home_fragment_no_recipes"
                 toggleVisibility="@{homeViewModel.recipes.empty}"
@@ -99,7 +112,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/home_fragment_categories" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
