@@ -101,11 +101,11 @@
 
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/home_fragment_no_recipes"
+                android:id="@+id/home_fragment_no_recipe_found"
                 toggleVisibility="@{homeViewModel.recipes.empty}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/no_recipes"
+                android:text="@string/no_recipe_found"
                 android:textAlignment="center"
                 android:textAppearance="?textAppearanceHeadline6"
                 android:textColor="?colorOnPrimary"
