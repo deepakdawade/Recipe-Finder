@@ -17,7 +17,7 @@ class SplashFragment : MyFragment<FragmentSplashBinding>(R.layout.fragment_splas
         val TAG: String = this::class.java.simpleName
     }
 
-    private val splashViewModel by viewModels<SplashViewModel>()
+    private val viewModel by viewModels<SplashViewModel>()
 
     override fun onViewCreated(binding: FragmentSplashBinding, savedInstanceState: Bundle?) {
         binding.splashFragmentLottieAnimation.setAnimation(R.raw.splash_animation_food)
@@ -28,7 +28,7 @@ class SplashFragment : MyFragment<FragmentSplashBinding>(R.layout.fragment_splas
 
             override fun onAnimationEnd(animation: Animator?) {
                 lifecycleScope.launch {
-                    val nextDestination = splashViewModel.decideDestination()
+                    val nextDestination = viewModel.decideDestination()
                     findNavController().navigate(nextDestination)
                 }
             }

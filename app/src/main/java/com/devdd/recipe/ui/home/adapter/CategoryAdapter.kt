@@ -5,17 +5,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devdd.recipe.R
-import com.devdd.recipe.databinding.ItemViewCategoryBinding
 import com.devdd.recipe.data.viewstate.CategoryViewState
+import com.devdd.recipe.databinding.ItemViewCategoryBinding
 import com.devdd.recipe.utils.extensions.bindWithLayout
 
 
-class CategoryAdapter() :
+class CategoryAdapter(private val listener:CategoryClickListener) :
     ListAdapter<CategoryViewState, CategoryAdapter.CategoryViewHolder>(
         CategoryDiffItemCallback
     ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        return CategoryViewHolder.getInstance(parent)
+        return CategoryViewHolder.getInstance(parent,listener)
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
@@ -25,18 +25,25 @@ class CategoryAdapter() :
         }
     }
 
-    class CategoryViewHolder private constructor(private val binding: ItemViewCategoryBinding) :
+    class CategoryViewHolder private constructor(
+        private val binding: ItemViewCategoryBinding,
+        clickListener: CategoryClickListener
+    ) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.listener = clickListener
+        }
         fun bind(item: CategoryViewState) {
             binding.category = item
             binding.executePendingBindings()
         }
 
         companion object {
-            fun getInstance(parent: ViewGroup): CategoryViewHolder {
+            fun getInstance(parent: ViewGroup, categoryClickListener: CategoryClickListener): CategoryViewHolder {
                 val binding =
                     bindWithLayout<ItemViewCategoryBinding>(R.layout.item_view_category, parent)
-                return CategoryViewHolder(binding)
+                return CategoryViewHolder(binding,categoryClickListener)
             }
         }
     }
@@ -55,5 +62,9 @@ class CategoryAdapter() :
         ): Boolean {
             return oldItem == newItem
         }
+    }
+
+    fun interface CategoryClickListener {
+        fun onCategoryClick(viewState: CategoryViewState)
     }
 }

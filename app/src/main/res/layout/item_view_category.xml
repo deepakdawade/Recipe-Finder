@@ -6,8 +6,12 @@
     <data>
 
         <variable
+            name="listener"
+            type="com.devdd.recipe.ui.home.adapter.CategoryAdapter.CategoryClickListener" />
+
+        <variable
             name="category"
-            type="com.devdd.recipe.ui.home.viewstate.CategoryViewState" />
+            type="com.devdd.recipe.data.viewstate.CategoryViewState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +19,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        >
+        android:onClick="@{()->listener.onCategoryClick(category)}">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/category_item_view_image"

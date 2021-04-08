@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
+import com.devdd.recipe.data.viewstate.CategoryViewState
+import com.devdd.recipe.data.viewstate.RecipeViewState
 import com.devdd.recipe.domain.executers.FetchAllCategories
 import com.devdd.recipe.domain.executers.FetchAllRecipes
 import com.devdd.recipe.domain.observers.ObserveAllCategories
@@ -12,8 +14,6 @@ import com.devdd.recipe.domain.observers.ObserveAllRecipes
 import com.devdd.recipe.domain.observers.SearchRecipes
 import com.devdd.recipe.domain.result.Event
 import com.devdd.recipe.domain.result.InvokeStarted
-import com.devdd.recipe.data.viewstate.CategoryViewState
-import com.devdd.recipe.data.viewstate.RecipeViewState
 import com.devdd.recipe.utils.extensions.toJsonString
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -97,6 +97,11 @@ class HomeViewModel @Inject constructor(
     fun navigateToRecipeDetails(viewState: RecipeViewState) {
         val recipe = viewState.toJsonString()
         val navDirection = HomeFragmentDirections.actionToRecipeDetailFragment(recipe)
+        mNavigation.value = Event(navDirection)
+    }
+
+    fun navigateToRecipes(categoryId: Int, categoryName: String) {
+        val navDirection = HomeFragmentDirections.actionToRecipesFragment(categoryId, categoryName)
         mNavigation.value = Event(navDirection)
     }
 

@@ -64,20 +64,6 @@ fun View.showOnData(response: List<*>?) {
     isVisible = !response.isNullOrEmpty()
 }
 
-@BindingAdapter("hideEmptyScreen", "showEmptyScreen", "disableEmptyScreen", requireAll = false)
-fun View.showEmptyScreen(
-    isLoading: Boolean,
-    data: List<*>?,
-    disableEmptyScreen: Boolean = false
-) {
-    if (disableEmptyScreen) {
-        visibility = View.GONE
-        return
-    }
-    val visibility = if (isLoading || data.isNullOrEmpty().not()) View.GONE else View.VISIBLE
-    if (visibility != visibility) post { this.visibility = visibility }
-}
-
 
 fun isValid(text: String, type: String) = when (type) {
     DIGIT_ONLY -> text.isBlank()

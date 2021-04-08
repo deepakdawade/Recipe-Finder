@@ -15,12 +15,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : MyFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
-    private val homeViewModel by viewModels<HomeViewModel>()
+    private val viewModel by viewModels<HomeViewModel>()
 
     private var recipeAdapter: RecipeAdapter? = null
     private var categoryAdapter: CategoryAdapter? = null
     override fun onViewCreated(binding: FragmentHomeBinding, savedInstanceState: Bundle?) {
-        binding.homeViewModel = homeViewModel
+        binding.homeViewModel = viewModel
         setupRecyclerViewAdapter()
         setObserver()
         setListeners()
@@ -28,7 +28,7 @@ class HomeFragment : MyFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private fun setListeners() {
         binding?.homeFragmentSwipeToRefresh?.setOnRefreshListener {
-            homeViewModel.fetchRecipes()
+            viewModel.fetchRecipes()
         }
 
         binding?.homeFragmentLottieNoRecipes?.setAnimation(R.raw.not_found_animation)
@@ -36,12 +36,12 @@ class HomeFragment : MyFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         val searchView = binding?.homeFragmentToolbar?.menu?.getItem(0)?.actionView as? SearchView
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                homeViewModel.searchRecipes(query)
+                viewModel.searchRecipes(query)
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                homeViewModel.searchRecipes(newText)
+                viewModel.searchRecipes(newText)
                 return true
             }
         })
@@ -49,26 +49,28 @@ class HomeFragment : MyFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun setObserver() {
-        homeViewModel.recipes.observe(viewLifecycleOwner) {
+        viewModel.recipes.observe(viewLifecycleOwner) {
             recipeAdapter?.submitList(it)
         }
 
-        homeViewModel.categories.observe(viewLifecycleOwner) {
+        viewModel.categories.observe(viewLifecycleOwner) {
             categoryAdapter?.submitList(it)
         }
 
-        homeViewModel.navigation.observeEvent(viewLifecycleOwner) {
+        viewModel.navigation.observeEvent(viewLifecycleOwner) {
             findNavController().navigate(it)
         }
     }
 
     private fun setupRecyclerViewAdapter() {
         recipeAdapter = RecipeAdapter {
-            homeViewModel.navigateToRecipeDetails(it)
+            viewModel.navigateToRecipeDetails(it)
         }
         binding?.homeFragmentRecipes?.adapter = recipeAdapter
 
-        categoryAdapter = CategoryAdapter()
+        categoryAdapter = CategoryAdapter {
+            viewModel.navigateToRecipes(it.id, it.name)
+        }
         binding?.homeFragmentCategories?.adapter = categoryAdapter
     }
 

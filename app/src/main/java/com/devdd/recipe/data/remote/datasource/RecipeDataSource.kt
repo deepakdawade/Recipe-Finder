@@ -2,6 +2,7 @@ package com.devdd.recipe.data.remote.datasource
 
 import com.devdd.recipe.data.db.entities.Category
 import com.devdd.recipe.data.db.entities.Recipe
+import com.devdd.recipe.data.remote.models.request.RecipesByCategoryRequest
 import com.devdd.recipe.data.remote.retrofit.RetrofitNetworkServiceApi
 import com.devdd.recipe.domain.mappers.CategoryResponseToCategoryEntity
 import com.devdd.recipe.domain.mappers.RecipeResponseToRecipeEntity
@@ -13,6 +14,8 @@ interface RecipeDataSource {
     suspend fun fetchRecipes(): List<Recipe>
 
     suspend fun fetchCategories(): List<Category>
+
+    suspend fun fetchRecipesByCategory(request: RecipesByCategoryRequest): List<Recipe>
 }
 
 class RecipeDataSourceImpl @Inject constructor(
@@ -33,5 +36,13 @@ class RecipeDataSourceImpl @Inject constructor(
         val categories = response.dataOrThrowException().categories
         return categories?.map { categoryResponseToCategoryEntity.map(it) } ?: emptyList()
 
+    }
+
+    override suspend fun fetchRecipesByCategory(request: RecipesByCategoryRequest): List<Recipe> {
+        val response = networkServiceApi.recipesByCategory(request)
+        val fetchedRecipes = response.dataOrThrowException()
+        return fetchedRecipes.recipes?.map {
+            recipeResponseToRecipeEntity.map(it)
+        } ?: emptyList()
     }
 }

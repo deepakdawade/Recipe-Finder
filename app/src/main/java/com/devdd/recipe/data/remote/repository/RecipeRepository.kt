@@ -1,11 +1,11 @@
 package com.devdd.recipe.data.remote.repository
 
-import androidx.lifecycle.LiveData
 import com.devdd.recipe.data.db.dao.CategoryDao
 import com.devdd.recipe.data.db.dao.RecipeDao
 import com.devdd.recipe.data.db.entities.Category
 import com.devdd.recipe.data.db.entities.Recipe
 import com.devdd.recipe.data.remote.datasource.RecipeDataSource
+import com.devdd.recipe.data.remote.models.request.RecipesByCategoryRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
@@ -19,7 +19,9 @@ interface RecipeRepository {
 
     fun observeCategories(): Flow<List<Category>>
 
-    fun searchRecipes(query:String): Flow<List<Recipe>>
+    fun searchRecipes(query: String): Flow<List<Recipe>>
+
+    suspend fun getRecipesByCategories(request: RecipesByCategoryRequest): List<Recipe>
 
 }
 
@@ -56,5 +58,9 @@ class RecipeRepositoryImpl @Inject constructor(
 
     override fun searchRecipes(query: String): Flow<List<Recipe>> {
         return recipeDao.searchRecipes("%$query%")
+    }
+
+    override suspend fun getRecipesByCategories(request: RecipesByCategoryRequest): List<Recipe> {
+        return dataSource.fetchRecipesByCategory(request)
     }
 }

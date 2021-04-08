@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devdd.recipe.R
-import com.devdd.recipe.databinding.ItemViewRecipeBinding
 import com.devdd.recipe.data.viewstate.RecipeViewState
+import com.devdd.recipe.databinding.ItemViewRecipeBinding
 import com.devdd.recipe.utils.extensions.bindWithLayout
 
 class RecipeAdapter(private val recipeClickListener: RecipeClickListener) :
@@ -26,12 +26,15 @@ class RecipeAdapter(private val recipeClickListener: RecipeClickListener) :
 
     class RecipeViewHolder private constructor(
         private val binding: ItemViewRecipeBinding,
-        private val recipeClickListener: RecipeClickListener
+        recipeClickListener: RecipeClickListener
     ) :
         RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.clickListener = recipeClickListener
+        }
+
         fun bind(item: RecipeViewState) {
             binding.recipe = item
-            binding.clickListener = recipeClickListener
             binding.executePendingBindings()
         }
 
