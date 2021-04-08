@@ -1,4 +1,4 @@
-package com.devdd.recipe.utils.extensions
+package com.devdd.recipe.utils.bindingadapter
 
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
