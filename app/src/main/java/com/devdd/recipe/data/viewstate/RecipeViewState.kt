@@ -1,4 +1,4 @@
-package com.devdd.recipe.ui.home.viewstate
+package com.devdd.recipe.data.viewstate
 
 data class RecipeViewState(
     val id: Int = 0,

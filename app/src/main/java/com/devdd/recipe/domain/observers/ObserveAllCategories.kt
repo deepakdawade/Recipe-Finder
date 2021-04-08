@@ -3,7 +3,7 @@ package com.devdd.recipe.domain.observers
 import com.devdd.recipe.data.db.entities.Category
 import com.devdd.recipe.data.remote.repository.RecipeRepository
 import com.devdd.recipe.domain.result.SubjectUseCase
-import com.devdd.recipe.ui.home.viewstate.CategoryViewState
+import com.devdd.recipe.data.viewstate.CategoryViewState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

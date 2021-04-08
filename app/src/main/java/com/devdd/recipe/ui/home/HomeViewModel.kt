@@ -12,8 +12,8 @@ import com.devdd.recipe.domain.observers.ObserveAllRecipes
 import com.devdd.recipe.domain.observers.SearchRecipes
 import com.devdd.recipe.domain.result.Event
 import com.devdd.recipe.domain.result.InvokeStarted
-import com.devdd.recipe.ui.home.viewstate.CategoryViewState
-import com.devdd.recipe.ui.home.viewstate.RecipeViewState
+import com.devdd.recipe.data.viewstate.CategoryViewState
+import com.devdd.recipe.data.viewstate.RecipeViewState
 import com.devdd.recipe.utils.extensions.toJsonString
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect

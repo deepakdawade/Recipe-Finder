@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devdd.recipe.R
 import com.devdd.recipe.databinding.ItemViewRecipeBinding
-import com.devdd.recipe.ui.home.viewstate.RecipeViewState
+import com.devdd.recipe.data.viewstate.RecipeViewState
 import com.devdd.recipe.utils.extensions.bindWithLayout
 
 class RecipeAdapter(private val recipeClickListener: RecipeClickListener) :
