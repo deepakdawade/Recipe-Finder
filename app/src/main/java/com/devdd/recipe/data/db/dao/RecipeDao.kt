@@ -14,4 +14,7 @@ interface RecipeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecipe(vararg recipe: Recipe)
+
+    @Query("Select * from recipes where title like  :title")
+    fun searchRecipes(title: String): Flow<List<Recipe>>
 }

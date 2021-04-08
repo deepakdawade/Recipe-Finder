@@ -1,6 +1,7 @@
 package com.devdd.recipe.ui.home
 
 import android.os.Bundle
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.R
@@ -29,6 +30,20 @@ class HomeFragment : MyFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding?.homeFragmentSwipeToRefresh?.setOnRefreshListener {
             homeViewModel.fetchRecipes()
         }
+
+        val searchView = binding?.homeFragmentToolbar?.menu?.getItem(0)?.actionView as? SearchView
+        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                homeViewModel.searchRecipes(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                homeViewModel.searchRecipes(newText)
+                return true
+            }
+        })
+
     }
 
     private fun setObserver() {

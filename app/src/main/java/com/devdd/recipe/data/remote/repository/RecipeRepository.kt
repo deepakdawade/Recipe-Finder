@@ -1,5 +1,6 @@
 package com.devdd.recipe.data.remote.repository
 
+import androidx.lifecycle.LiveData
 import com.devdd.recipe.data.db.dao.CategoryDao
 import com.devdd.recipe.data.db.dao.RecipeDao
 import com.devdd.recipe.data.db.entities.Category
@@ -17,6 +18,8 @@ interface RecipeRepository {
     suspend fun getCategories()
 
     fun observeCategories(): Flow<List<Category>>
+
+    fun searchRecipes(query:String): Flow<List<Recipe>>
 
 }
 
@@ -49,5 +52,9 @@ class RecipeRepositoryImpl @Inject constructor(
 
     override fun observeCategories(): Flow<List<Category>> {
         return categoryDao.allCategories()
+    }
+
+    override fun searchRecipes(query: String): Flow<List<Recipe>> {
+        return recipeDao.searchRecipes("%$query%")
     }
 }

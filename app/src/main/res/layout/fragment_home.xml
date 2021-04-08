@@ -23,6 +23,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/home_fragment_toolbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="?android:colorBackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:menu="@menu/menu_item_home"
+                app:title="@string/recipes"
+                app:titleTextColor="?colorOnPrimary" />
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/home_fragment_categories_label"
                 toggleVisibility="@{!homeViewModel.categories.empty}"
@@ -33,7 +45,7 @@
                 android:textAppearance="?textAppearanceHeadline6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/home_fragment_toolbar" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/home_fragment_categories"

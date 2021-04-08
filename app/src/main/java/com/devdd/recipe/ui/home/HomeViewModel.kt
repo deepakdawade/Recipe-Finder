@@ -9,6 +9,7 @@ import com.devdd.recipe.domain.executers.FetchAllCategories
 import com.devdd.recipe.domain.executers.FetchAllRecipes
 import com.devdd.recipe.domain.observers.ObserveAllCategories
 import com.devdd.recipe.domain.observers.ObserveAllRecipes
+import com.devdd.recipe.domain.observers.SearchRecipes
 import com.devdd.recipe.domain.result.Event
 import com.devdd.recipe.domain.result.InvokeStarted
 import com.devdd.recipe.ui.home.viewstate.CategoryViewState
@@ -24,9 +25,11 @@ class HomeViewModel @Inject constructor(
     private val fetchAllRecipes: FetchAllRecipes,
     private val observeAllRecipes: ObserveAllRecipes,
     private val fetchAllCategories: FetchAllCategories,
-    private val observeAllCategories: ObserveAllCategories
+    private val observeAllCategories: ObserveAllCategories,
+    private val searchRecipes: SearchRecipes
 ) : ViewModel() {
 
+    private val mAllRecipes = mutableListOf<RecipeViewState>()
     private val mRecipes: MutableLiveData<List<RecipeViewState>> = MutableLiveData()
     val recipes: LiveData<List<RecipeViewState>>
         get() = mRecipes
@@ -54,7 +57,8 @@ class HomeViewModel @Inject constructor(
     private fun observeRecipes() {
         viewModelScope.launch {
             observeAllRecipes.observe().collect {
-
+                mAllRecipes.clear()
+                mAllRecipes.addAll(it)
                 mRecipes.postValue(it)
 
             }
@@ -94,5 +98,18 @@ class HomeViewModel @Inject constructor(
         val recipe = viewState.toJsonString()
         val navDirection = HomeFragmentDirections.actionToRecipeDetailFragment(recipe)
         mNavigation.value = Event(navDirection)
+    }
+
+    fun searchRecipes(query: String?) {
+        if (query.isNullOrBlank())
+            mRecipes.value = mAllRecipes
+        else {
+            viewModelScope.launch {
+                searchRecipes.invoke(query)
+                searchRecipes.observe().collect { recipes ->
+                    mRecipes.value = recipes
+                }
+            }
+        }
     }
 }
