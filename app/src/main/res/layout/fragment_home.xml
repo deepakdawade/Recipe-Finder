@@ -37,8 +37,8 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/home_fragment_categories_label"
-                toggleVisibility="@{!homeViewModel.categories.empty}"
                 android:layout_width="0dp"
+                hideOnEmptyList="@{homeViewModel.categories}"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:text="@string/categories"
@@ -49,7 +49,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/home_fragment_categories"
-                toggleVisibility="@{!homeViewModel.categories.empty}"
+                hideOnEmptyList="@{homeViewModel.categories}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -63,7 +63,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/home_fragment_recipes_label"
-                toggleVisibility="@{!homeViewModel.recipes.empty}"
+                hideOnEmptyList="@{homeViewModel.recipes}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
@@ -75,7 +75,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/home_fragment_recipes"
-                toggleVisibility="@{!homeViewModel.recipes.empty}"
+                hideOnEmptyList="@{homeViewModel.recipes}"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
@@ -112,8 +112,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:layout_constraintTop_toBottomOf="@id/home_fragment_lottie_no_recipes" />
+                app:layout_constraintTop_toBottomOf="@id/home_fragment_categories" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
