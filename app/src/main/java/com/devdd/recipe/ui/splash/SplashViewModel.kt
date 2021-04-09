@@ -30,7 +30,7 @@ class SplashViewModel @Inject constructor(
             if (settingSaved)
                 navigateToHome()
             else
-                navigateToSetting()
+                navigateToHome()
         }
     }
 

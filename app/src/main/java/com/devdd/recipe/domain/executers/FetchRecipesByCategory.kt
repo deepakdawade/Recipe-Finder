@@ -1,6 +1,6 @@
 package com.devdd.recipe.domain.executers
 
-import com.devdd.recipe.data.db.entities.toRecipeViewState
+import com.devdd.recipe.data.db.toRecipeViewState
 import com.devdd.recipe.data.remote.models.request.RecipesByCategoryRequest
 import com.devdd.recipe.data.remote.repository.RecipeRepository
 import com.devdd.recipe.domain.viewstate.RecipeViewState

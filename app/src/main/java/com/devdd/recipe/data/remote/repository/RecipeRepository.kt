@@ -34,9 +34,12 @@ class RecipeRepositoryImpl @Inject constructor(
     override suspend fun getRecipes() {
         val recipes = dataSource.fetchRecipes()
         val localRecipes = recipeDao.allRecipes().first()
-        localRecipes.map { it.apply { key = 0 } }
-        if (localRecipes != recipes && recipes.isNotEmpty())
+        val insertIntoDB = recipes.isNotEmpty() && recipes != localRecipes
+        if (insertIntoDB) {
+            if (localRecipes.isNotEmpty())
+                recipeDao.dropRecipes()
             recipeDao.insertRecipe(*recipes.toTypedArray())
+        }
     }
 
     override fun observeRecipes(): Flow<List<Recipe>> {
@@ -45,11 +48,13 @@ class RecipeRepositoryImpl @Inject constructor(
 
     override suspend fun getCategories() {
         val categories = dataSource.fetchCategories()
-        val localCategory = categoryDao.allCategories().first()
-        localCategory.map { it.apply { key = 0 } }
-        if (localCategory != categories && categories.isNotEmpty())
+        val localCategories = categoryDao.allCategories().first()
+        val insertIntoDB = categories.isNotEmpty() && categories != localCategories
+        if (insertIntoDB) {
+            if (localCategories.isNotEmpty())
+                categoryDao.dropCategories()
             categoryDao.insertCategory(*categories.toTypedArray())
-
+        }
     }
 
     override fun observeCategories(): Flow<List<Category>> {

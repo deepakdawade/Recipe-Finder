@@ -1,6 +1,6 @@
 package com.devdd.recipe.domain.observers
 
-import com.devdd.recipe.data.db.entities.toRecipeViewState
+import com.devdd.recipe.data.db.toRecipeViewState
 import com.devdd.recipe.data.remote.repository.RecipeRepository
 import com.devdd.recipe.domain.result.SubjectUseCase
 import com.devdd.recipe.domain.viewstate.RecipeViewState
