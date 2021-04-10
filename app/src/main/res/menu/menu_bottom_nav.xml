@@ -8,4 +8,9 @@
         android:id="@+id/profileFragment"
         android:icon="@drawable/selector_profile"
         android:title="@string/menu_title_profile" />
+
+    <item
+        android:id="@+id/searchRecipeFragment"
+        android:icon="@drawable/selector_search"
+        android:title="@string/menu_title_search" />
 </menu>

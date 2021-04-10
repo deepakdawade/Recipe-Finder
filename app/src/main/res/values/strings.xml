@@ -20,4 +20,7 @@
     <string name="menu_title_profile">Profile</string>
     <string name="profile_option_change_language">Change language</string>
     <string name="profile_option_change_recipe_pref">Change recipe preference</string>
+    <string name="menu_title_search">Search</string>
+    <string name="search_recipe_hint">Search recipes</string>
+    <string name="search_recipe_result">Search results</string>
 </resources>

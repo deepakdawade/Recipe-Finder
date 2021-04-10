@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.devdd.recipe.ui.preferencesetting.search.SearchRecipeViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_recipe_fragment_search_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/shape_outline_edittext_background"
+            android:drawablePadding="8dp"
+            android:hint="@string/search_recipe_hint"
+            android:paddingVertical="8dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="16dp"
+            android:singleLine="true"
+            android:text="@={viewModel.query}"
+            app:drawableStartCompat="@drawable/ic_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/search_recipe_fragment_clear_field"
+            toggleVisibility="@{viewModel.canClearInput}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:onClick="@{()->viewModel.clearField()}"
+            app:layout_constraintBottom_toBottomOf="@id/search_recipe_fragment_search_input"
+            app:layout_constraintEnd_toEndOf="@id/search_recipe_fragment_search_input"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/search_recipe_fragment_search_input"
+            app:layout_constraintTop_toTopOf="@id/search_recipe_fragment_search_input"
+            app:srcCompat="@drawable/ic_close"
+            app:tint="@color/colorOnPrimary" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/search_recipe_fragment_search_result_label"
+            hideOnEmptyList="@{viewModel.recipes}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/search_recipe_result"
+            android:textAppearance="?textAppearanceHeadline6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_recipe_fragment_search_input" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_recipe_fragment_search_results"
+            hideOnEmptyList="@{viewModel.recipes}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_recipe_fragment_search_result_label"
+            tools:itemCount="4"
+            tools:listitem="@layout/item_view_recipe" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/home_fragment_lottie_no_recipes"
+            toggleVisibility="@{viewModel.recipes.empty}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_recipe_fragment_search_input"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/home_fragment_no_recipe_found"
+            toggleVisibility="@{viewModel.recipes.empty}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/no_recipe_found"
+            android:textAlignment="center"
+            android:textAppearance="?textAppearanceHeadline6"
+            android:textColor="?colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_recipe_fragment_search_input" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

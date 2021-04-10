@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.devdd.recipe.R
@@ -20,7 +19,12 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private val TAG: String = this::class.java.simpleName
-        private val TOP_LEVEL_DESTINATION: Set<Int> = setOf(R.id.homeFragment, R.id.profileFragment)
+        private val TOP_LEVEL_DESTINATION: Set<Int> =
+            setOf(
+                R.id.homeFragment,
+                R.id.profileFragment,
+                R.id.searchRecipeFragment
+            )
     }
 
     private var mBinding: ActivityMainBinding? = null
@@ -38,7 +42,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpNavigation() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_activity_container) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.main_activity_container) as NavHostFragment
         val navController = navHostFragment.navController
         navController.let {
             NavigationUI.setupWithNavController(binding.mainActivityBottomNav, it)
