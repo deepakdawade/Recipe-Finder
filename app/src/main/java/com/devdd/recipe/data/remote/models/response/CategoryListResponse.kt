@@ -12,12 +12,23 @@ data class CategoryListResponse(
         @Expose
         @SerializedName("id")
         val id: Int? = null,
+
         @Expose
         @SerializedName("name")
         val name: String? = null,
+
+        @Expose
+        @SerializedName("name_hi")
+        val nameHi: String? = null,
+
         @Expose
         @SerializedName("description")
         val description: String? = null,
+
+        @Expose
+        @SerializedName("description_hi")
+        val descriptionHi: String? = null,
+
         @Expose
         @SerializedName("image_url")
         val imageUrl: String? = null

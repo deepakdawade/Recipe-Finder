@@ -14,8 +14,15 @@ data class Category(
     @ColumnInfo(name = "name")
     val name: String = "",
 
+    @ColumnInfo(name = "name_hi")
+    val nameHi: String = "",
+
     @ColumnInfo(name = "description")
     val description: String = "",
+
+
+    @ColumnInfo(name = "description_hi")
+    val descriptionHi: String = "",
 
     @ColumnInfo(name = "image_url")
     val imageUrl: String = "",

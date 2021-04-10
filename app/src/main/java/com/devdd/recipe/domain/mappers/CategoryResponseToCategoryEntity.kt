@@ -14,6 +14,8 @@ class CategoryResponseToCategoryEntity @Inject constructor(
         return Category(
             name = name ?: "",
             description = description ?: "",
+            nameHi = nameHi ?: "",
+            descriptionHi = descriptionHi ?: "",
             id = id ?: 0,
             imageUrl = imageUrl ?: ""
         )
