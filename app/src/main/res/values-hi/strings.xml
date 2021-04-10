@@ -4,7 +4,7 @@
     <string name="no_internet_connection">कोई कनेक्शन नहीं</string>
     <string name="no_internet_connection_action_retry">पुन: प्रयास करें</string>
     <string name="categories"> श्रेणियाँ </string>
-    <string name="recipes">रेसिपीया</string>
+    <string name="recipes">रेसिपीस</string>
     <string name="no_recipe_found">कोई रेसिपी नहीं मिली</string>
     <string name="recipe_details_author_name">लेखक: %1$s</string>
     <string name="search">खोज</string>
@@ -14,6 +14,8 @@
     <string name="recipe_type_selection_option_non_veg">मांसाहारी</string>
     <string name="language_preference_choose_language">भाषा चुनें</string>
     <string name="home_toolbar_title">व्यंजनों की खोज करें</string>
-    <string name="menu_title_home">Home</string>
-    <string name="menu_title_profile">Profile</string>
+    <string name="menu_title_home">होम</string>
+    <string name="menu_title_profile">प्रोफ़ाइल</string>
+    <string name="profile_option_change_language">भाषा बदलें</string>
+    <string name="profile_option_change_recipe_pref">रेसिपी प्राथमिकता बदलें</string>
 </resources>

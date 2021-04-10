@@ -72,7 +72,10 @@
         tools:layout="@layout/fragment_preference_setting">
         <action
             android:id="@+id/action_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/preferenceSettingFragment"
+            app:popUpToInclusive="true"
+            />
         <argument
             android:name="page"
             android:defaultValue="0"

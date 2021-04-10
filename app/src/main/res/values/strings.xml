@@ -18,4 +18,6 @@
     <string name="home_toolbar_title">Search recipes</string>
     <string name="menu_title_home">Home</string>
     <string name="menu_title_profile">Profile</string>
+    <string name="profile_option_change_language">Change language</string>
+    <string name="profile_option_change_recipe_pref">Change recipe preference</string>
 </resources>
