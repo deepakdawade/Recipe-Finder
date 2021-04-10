@@ -1,6 +1,9 @@
 package com.devdd.recipe.data.db.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.devdd.recipe.data.db.entities.Recipe
 import kotlinx.coroutines.flow.Flow
 
@@ -10,13 +13,13 @@ interface RecipeDao {
     fun allRecipes(): Flow<List<Recipe>>
 
     @Query("SELECT * FROM recipes WHERE id = :id")
-    fun recipeById(id:Int): List<Recipe>
+    fun recipeById(id: Int): List<Recipe>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecipe(vararg recipe: Recipe)
 
-    @Query("Select * FROM recipes where title like  :title")
-    fun searchRecipes(title: String): Flow<List<Recipe>>
+    @Query("Select * FROM recipes where title like  :query OR title_hi like :query")
+    fun searchRecipes(query: String): Flow<List<Recipe>>
 
     @Query("DELETE FROM recipes")
     fun dropRecipes()

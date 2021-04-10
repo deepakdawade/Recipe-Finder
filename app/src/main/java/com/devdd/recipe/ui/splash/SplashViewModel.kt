@@ -25,9 +25,9 @@ class SplashViewModel @Inject constructor(
     fun decideDestination() {
         viewModelScope.launch {
             when {
-                localeManager.isLanguageSelected() -> navigateToRecipePreference()
-                recipeManager.isRecipeSelected() -> navigateToHome()
-                else -> navigateToLanguagePreference()
+                !localeManager.isLanguageSelected() -> navigateToLanguagePreference()
+                !recipeManager.isRecipeSelected() -> navigateToRecipePreference()
+                else -> navigateToHome()
             }
         }
     }
