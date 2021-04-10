@@ -8,4 +8,8 @@
     <string name="no_recipe_found">No recipe found</string>
     <string name="recipe_details_author_name">Author: %1$s</string>
     <string name="search">Search</string>
+    <string name="recipe_type_selection_are_you_vegetarian">Are you Vegetarian?</string>
+    <string name="recipe_type_selection_option_veg">Veg</string>
+    <string name="recipe_type_selection_option_both">Both</string>
+    <string name="recipe_type_selection_option_non_veg">Non veg</string>
 </resources>

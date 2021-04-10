@@ -9,8 +9,9 @@ import com.devdd.recipe.data.prefs.RecipeDataStore
 import com.devdd.recipe.domain.result.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,18 +25,21 @@ class SplashViewModel @Inject constructor(
 
     fun decideDestination() {
         viewModelScope.launch {
-            val settingSaved = recipeDataStore.settingSaved.catch {
-                navigateToSetting()
-            }.first()
-            if (settingSaved)
-                navigateToHome()
-            else
-                navigateToHome()
+            recipeDataStore.vegetarianType.catch {
+                Timber.e("error while reading recipeType $this")
+                navigateToRecipeTypeSelection()
+            }.collect {
+                if (it.isBlank())
+                    navigateToRecipeTypeSelection()
+                else
+                    navigateToHome()
+            }
         }
     }
 
-    private fun navigateToSetting() {
-        //TODO:("Setting fragment needs to implement")
+    private fun navigateToRecipeTypeSelection() {
+        val direction = SplashFragmentDirections.actionToRecipeTypeSelectionFragment()
+        mNavigation.value = Event(direction)
     }
 
     private fun navigateToHome() {

@@ -15,6 +15,9 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_to_recipeTypeSelectionFragment"
+            app:destination="@id/recipeTypeSelectionFragment" />
 
     </fragment>
 
@@ -53,5 +56,16 @@
         <action
             android:id="@+id/action_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeTypeSelectionFragment"
+        android:name="com.devdd.recipe.ui.recipesetting.recipetype.RecipeTypeSelectionFragment"
+        android:label="RecipeTypeSelectionFragment"
+        tools:layout="@layout/fragment_recipe_type_selection">
+        <action
+            android:id="@+id/action_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/recipeTypeSelectionFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
