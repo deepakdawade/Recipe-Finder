@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Recipe</string>
+    <string name="empty_string" />
+    <string name="no_internet_connection">कोई कनेक्शन नहीं</string>
+    <string name="no_internet_connection_action_retry">पुन: प्रयास करें</string>
+    <string name="categories"> श्रेणियाँ </string>
+    <string name="recipes">रेसिपीया</string>
+    <string name="no_recipe_found">कोई रेसिपी नहीं मिली</string>
+    <string name="recipe_details_author_name">लेखक: %1$s</string>
+    <string name="search">खोज</string>
+    <string name="recipe_type_selection_are_you_vegetarian">क्या आप शाकाहारी हैं?</string>
+    <string name="recipe_type_selection_option_veg">शाकाहारी</string>
+    <string name="recipe_type_selection_option_both">दोनों</string>
+    <string name="recipe_type_selection_option_non_veg">मांसाहारी</string>
+    <string name="language_preference_choose_language">भाषा चुनें</string>
+</resources>
