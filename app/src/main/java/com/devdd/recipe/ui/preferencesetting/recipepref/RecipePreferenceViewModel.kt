@@ -19,8 +19,8 @@ class RecipePreferenceViewModel @Inject constructor(
 ) : ViewModel() {
     val checkButtonId: MutableLiveData<Int> = MutableLiveData()
 
-    private val mNavigation: MutableLiveData<Event<NavDirections>> = MutableLiveData()
-    val navigation: LiveData<Event<NavDirections>>
+    private val mNavigation: MutableLiveData<Event<Pair<NavDirections,Boolean>>> = MutableLiveData()
+    val navigation: LiveData<Event<Pair<NavDirections,Boolean>>>
         get() = mNavigation
 
     init {
@@ -31,9 +31,9 @@ class RecipePreferenceViewModel @Inject constructor(
         viewModelScope.launch {
             with(recipeManager) {
                 val id = when {
-                    isVegetarian() -> OptionId.VEG
-                    isNonVegetarian() -> OptionId.NON_VEG
-                    isBothVegNonVeg() -> OptionId.BOTH_VEG_NON_VEG
+                    isVegetarian() -> RecipeOptionId.VEG
+                    isNonVegetarian() -> RecipeOptionId.NON_VEG
+                    isBothVegNonVeg() -> RecipeOptionId.BOTH_VEG_NON_VEG
                     else -> return@with
                 }
                 checkButtonId.postValue(id)
@@ -42,34 +42,35 @@ class RecipePreferenceViewModel @Inject constructor(
     }
 
     fun vegetarian() {
-        checkButtonId.value = OptionId.VEG
+        checkButtonId.value = RecipeOptionId.VEG
         updateDataStore(RecipePreference.VEG)
     }
 
     fun nonVegetarian() {
-        checkButtonId.value = OptionId.NON_VEG
+        checkButtonId.value = RecipeOptionId.NON_VEG
         updateDataStore(RecipePreference.NON_VEG)
 
     }
 
     fun bothVegNonVeg() {
-        checkButtonId.value = OptionId.BOTH_VEG_NON_VEG
+        checkButtonId.value = RecipeOptionId.BOTH_VEG_NON_VEG
         updateDataStore(RecipePreference.BOTH)
     }
 
     private fun updateDataStore(type: String) {
         viewModelScope.launch {
+            val previouslySelected = recipeManager.isRecipeSelected()
             recipeManager.updateRecipePref(type)
-            navigateToHome()
+            navigateToHome(previouslySelected)
         }
     }
 
-    private fun navigateToHome() {
+    private fun navigateToHome(shouldPop: Boolean = false) {
         val direction = RecipePreferenceFragmentDirections.actionToHomeFragment()
-        mNavigation.value = Event(direction)
+        mNavigation.value = Event(Pair(direction,shouldPop))
     }
 
-    private object OptionId {
+    private object RecipeOptionId {
         const val VEG = R.id.recipe_preference_fragment_option_veg
         const val NON_VEG = R.id.recipe_preference_fragment_option_non_veg
         const val BOTH_VEG_NON_VEG = R.id.recipe_preference_fragment_option_both

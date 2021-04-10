@@ -20,8 +20,8 @@ class LanguagePreferenceViewModel @Inject constructor(
 ) : ViewModel() {
     val checkButtonId: MutableLiveData<Int> = MutableLiveData()
 
-    private val mNavigation: MutableLiveData<Event<NavDirections>> = MutableLiveData()
-    val navigation: LiveData<Event<NavDirections>>
+    private val mNavigation: MutableLiveData<Event<Pair<NavDirections,Boolean>>> = MutableLiveData()
+    val navigation: LiveData<Event<Pair<NavDirections,Boolean>>>
         get() = mNavigation
 
     init {
@@ -53,22 +53,22 @@ class LanguagePreferenceViewModel @Inject constructor(
 
     private fun updateDataStore(language: String) {
         viewModelScope.launch {
+            val previousSelected = localeManager.isLanguageSelected()
             localeManager.updateLanguage(language)
             if (recipeManager.isRecipeSelected())
-                navigateToHome()
+                navigateToHome(previousSelected)
             else navigateToRecipePref()
         }
     }
 
-    private fun navigateToHome() {
+    private fun navigateToHome(shouldPop: Boolean = false) {
         val direction = LanguagePreferenceFragmentDirections.actionToHomeFragment()
-        mNavigation.value = Event(direction)
+        mNavigation.value = Event(Pair(direction,shouldPop))
     }
 
     private fun navigateToRecipePref() {
         val direction = LanguagePreferenceFragmentDirections.actionToRecipePreferenceFragment()
-        mNavigation.value = Event(direction)
-
+        mNavigation.value = Event(Pair(direction,false))
     }
 
     private object LanguageOptionId {

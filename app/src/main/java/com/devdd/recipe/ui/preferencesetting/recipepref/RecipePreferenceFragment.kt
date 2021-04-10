@@ -27,7 +27,10 @@ class RecipePreferenceFragment :
 
     private fun setObservers() {
         viewModel.navigation.observeEvent(viewLifecycleOwner) {
-            findNavController().navigate(it)
+            if (it.second)
+                findNavController().navigateUp()
+            else
+                findNavController().navigate(it.first)
         }
     }
 }

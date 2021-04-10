@@ -18,7 +18,7 @@ import java.util.*
 
 
 object LocaleManagerUtils {
-    private val SELECTED_LOCALE = stringPreferencesKey("language_preference")
+    private val SELECTED_LOCALE = stringPreferencesKey("selected_language")
     private fun dataStore(context: Context): DataStore<Preferences> = context.dataStore
 
     @JvmStatic
