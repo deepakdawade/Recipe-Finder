@@ -68,14 +68,23 @@
     <fragment
         android:id="@+id/preferenceSettingFragment"
         android:name="com.devdd.recipe.ui.preferencesetting.PreferenceSettingFragment"
-        tools:layout="@layout/fragment_preference_setting"
-        android:label="PreferenceSettingFragment" >
+        android:label="PreferenceSettingFragment"
+        tools:layout="@layout/fragment_preference_setting">
         <action
             android:id="@+id/action_to_homeFragment"
             app:destination="@id/homeFragment" />
         <argument
             android:name="page"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.devdd.recipe.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_to_preferenceSettingFragment"
+            app:destination="@id/preferenceSettingFragment" />
     </fragment>
 </navigation>

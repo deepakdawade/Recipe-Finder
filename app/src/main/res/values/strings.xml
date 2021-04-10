@@ -16,4 +16,6 @@
     <string name="language_preference_hindi" translatable="false">हिंदी</string>
     <string name="language_preference_english" translatable="false">English</string>
     <string name="home_toolbar_title">Search recipes</string>
+    <string name="menu_title_home">Home</string>
+    <string name="menu_title_profile">Profile</string>
 </resources>
