@@ -30,8 +30,10 @@ class PreferenceSettingFragment :
 
     private fun setViewPagerAdapter(binding: FragmentPreferenceSettingBinding) {
         binding.preferenceSettingFragmentViewPager.adapter = PreferenceSettingAdapter(this)
-        val position = navArgs<PreferenceSettingFragmentArgs>().value.page
-        viewModel.setPage(position)
+        binding.preferenceSettingFragmentViewPager.isUserInputEnabled = false
+        val page = navArgs<PreferenceSettingFragmentArgs>().value.page
+        if (page != 0)
+            viewModel.setPage(page)
     }
 
     private fun setObservers() {
