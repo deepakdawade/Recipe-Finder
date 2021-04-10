@@ -1,24 +1,24 @@
-package com.devdd.recipe.ui.recipesetting.recipepref
+package com.devdd.recipe.ui.preferencesetting.recipepref
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
-import com.devdd.recipe.databinding.FragmentRecipePreferenceSelectionBinding
+import com.devdd.recipe.databinding.FragmentRecipePreferenceBinding
 import com.devdd.recipe.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RecipePreferenceSelectionFragment :
-    DevFragment<FragmentRecipePreferenceSelectionBinding>(R.layout.fragment_recipe_preference_selection) {
+class RecipePreferenceFragment :
+    DevFragment<FragmentRecipePreferenceBinding>(R.layout.fragment_recipe_preference) {
     companion object {
         private val TAG: String = this::class.java.simpleName
     }
 
-    private val viewModel by viewModels<RecipePreferenceSelectionViewModel>()
+    private val viewModel by viewModels<RecipePreferenceViewModel>()
     override fun onViewCreated(
-        binding: FragmentRecipePreferenceSelectionBinding,
+        binding: FragmentRecipePreferenceBinding,
         savedInstanceState: Bundle?
     ) {
         binding.viewModel = viewModel

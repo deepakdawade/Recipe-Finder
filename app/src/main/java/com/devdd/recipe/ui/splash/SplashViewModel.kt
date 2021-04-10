@@ -5,18 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
-import com.devdd.recipe.data.prefs.RecipeDataStore
+import com.devdd.recipe.data.prefs.manager.RecipeManager
 import com.devdd.recipe.domain.result.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-    private val recipeDataStore: RecipeDataStore
+    private val recipeManager: RecipeManager
 ) : ViewModel() {
 
     private val mNavigation: MutableLiveData<Event<NavDirections>> = MutableLiveData()
@@ -25,20 +22,15 @@ class SplashViewModel @Inject constructor(
 
     fun decideDestination() {
         viewModelScope.launch {
-            recipeDataStore.recipePreference.catch {
-                Timber.e("error while reading recipe preference $this")
-                navigateToRecipePreferenceSelection()
-            }.collect {
-                if (it.isBlank())
-                    navigateToRecipePreferenceSelection()
-                else
-                    navigateToHome()
-            }
+            if (recipeManager.isRecipeSelected())
+                navigateToHome()
+            else
+                navigateToRecipePreference()
         }
     }
 
-    private fun navigateToRecipePreferenceSelection() {
-        val direction = SplashFragmentDirections.actionToRecipePreferenceSelectionFragment()
+    private fun navigateToRecipePreference() {
+        val direction = SplashFragmentDirections.actionToRecipePreferenceFragment()
         mNavigation.value = Event(direction)
     }
 
