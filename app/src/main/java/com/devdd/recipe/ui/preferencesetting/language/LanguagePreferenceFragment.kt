@@ -7,7 +7,9 @@ import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentLanguagePreferenceBinding
 import com.devdd.recipe.utils.extensions.observeEvent
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LanguagePreferenceFragment :
     DevFragment<FragmentLanguagePreferenceBinding>(R.layout.fragment_language_preference) {
     companion object {
