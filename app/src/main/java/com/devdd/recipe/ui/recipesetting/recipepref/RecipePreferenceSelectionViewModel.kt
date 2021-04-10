@@ -1,4 +1,4 @@
-package com.devdd.recipe.ui.recipesetting.recipetype
+package com.devdd.recipe.ui.recipesetting.recipepref
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.devdd.recipe.R
-import com.devdd.recipe.constants.Vegetarian
+import com.devdd.recipe.constants.RecipePreference
 import com.devdd.recipe.data.prefs.RecipeDataStore
 import com.devdd.recipe.domain.result.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +17,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class RecipeTypeSelectionViewModel @Inject constructor(
+class RecipePreferenceSelectionViewModel @Inject constructor(
     private val dataStore: RecipeDataStore
 ) : ViewModel() {
     val checkButtonId: MutableLiveData<Int> = MutableLiveData()
@@ -32,13 +32,13 @@ class RecipeTypeSelectionViewModel @Inject constructor(
 
     private fun loadRecipeType() {
         viewModelScope.launch {
-            dataStore.vegetarianType.catch {
-                Timber.e("error while reading recipeType $this")
+            dataStore.recipePreference.catch {
+                Timber.e("error while reading recipe preference $this")
             }.collect {
                 val id = when (it) {
-                    Vegetarian.VEG -> OptionId.VEG
-                    Vegetarian.NON_VEG -> OptionId.NON_VEG
-                    Vegetarian.BOTH -> OptionId.BOTH_VEG_NON_VEG
+                    RecipePreference.VEG -> OptionId.VEG
+                    RecipePreference.NON_VEG -> OptionId.NON_VEG
+                    RecipePreference.BOTH -> OptionId.BOTH_VEG_NON_VEG
                     else -> return@collect
                 }
                 checkButtonId.postValue(id)
@@ -48,35 +48,35 @@ class RecipeTypeSelectionViewModel @Inject constructor(
 
     fun vegetarian() {
         checkButtonId.value = OptionId.VEG
-        updateDataStore(Vegetarian.VEG)
+        updateDataStore(RecipePreference.VEG)
     }
 
     fun nonVegetarian() {
         checkButtonId.value = OptionId.NON_VEG
-        updateDataStore(Vegetarian.NON_VEG)
+        updateDataStore(RecipePreference.NON_VEG)
 
     }
 
     fun bothVegNonVeg() {
         checkButtonId.value = OptionId.BOTH_VEG_NON_VEG
-        updateDataStore(Vegetarian.BOTH)
+        updateDataStore(RecipePreference.BOTH)
     }
 
     private fun updateDataStore(type: String) {
         viewModelScope.launch {
-            dataStore.setVegetarianType(type)
+            dataStore.setRecipePreference(type)
             navigateToHome()
         }
     }
 
     private fun navigateToHome() {
-        val direction = RecipeTypeSelectionFragmentDirections.actionToHomeFragment()
+        val direction = RecipePreferenceSelectionFragmentDirections.actionToHomeFragment()
         mNavigation.value = Event(direction)
     }
 
     private object OptionId {
-        const val VEG = R.id.recipe_type_selection_fragment_option_veg
-        const val NON_VEG = R.id.recipe_type_selection_fragment_option_non_veg
-        const val BOTH_VEG_NON_VEG = R.id.recipe_type_selection_fragment_option_both
+        const val VEG = R.id.recipe_preference_selection_fragment_option_veg
+        const val NON_VEG = R.id.recipe_preference_selection_fragment_option_non_veg
+        const val BOTH_VEG_NON_VEG = R.id.recipe_preference_selection_fragment_option_both
     }
 }

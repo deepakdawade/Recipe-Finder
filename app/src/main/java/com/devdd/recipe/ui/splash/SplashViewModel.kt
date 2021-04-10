@@ -25,20 +25,20 @@ class SplashViewModel @Inject constructor(
 
     fun decideDestination() {
         viewModelScope.launch {
-            recipeDataStore.vegetarianType.catch {
-                Timber.e("error while reading recipeType $this")
-                navigateToRecipeTypeSelection()
+            recipeDataStore.recipePreference.catch {
+                Timber.e("error while reading recipe preference $this")
+                navigateToRecipePreferenceSelection()
             }.collect {
                 if (it.isBlank())
-                    navigateToRecipeTypeSelection()
+                    navigateToRecipePreferenceSelection()
                 else
                     navigateToHome()
             }
         }
     }
 
-    private fun navigateToRecipeTypeSelection() {
-        val direction = SplashFragmentDirections.actionToRecipeTypeSelectionFragment()
+    private fun navigateToRecipePreferenceSelection() {
+        val direction = SplashFragmentDirections.actionToRecipePreferenceSelectionFragment()
         mNavigation.value = Event(direction)
     }
 

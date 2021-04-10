@@ -8,7 +8,7 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.devdd.recipe.constants.DATA_STORE_NAME
-import com.devdd.recipe.constants.Vegetarian
+import com.devdd.recipe.constants.RecipePreference
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -24,8 +24,8 @@ interface RecipeDataStore {
     suspend fun isNonVegetarian(): Boolean
     suspend fun isBothVegNonVeg(): Boolean
 
-    suspend fun setVegetarianType(type: String)
-    val vegetarianType: Flow<String>
+    suspend fun setRecipePreference(pref: String)
+    val recipePreference: Flow<String>
 
     /***
      * clears all the stored data
@@ -44,26 +44,26 @@ class RecipeDataStoreImpl @Inject constructor(@ApplicationContext private val co
     /**
      * override preferences
      * */
-    override suspend fun setVegetarianType(type: String) {
-        dataStore.setValue(PreferencesKeys.RECIPE_VEGETARIAN_TYPE, type)
+    override suspend fun setRecipePreference(pref: String) {
+        dataStore.setValue(PreferencesKeys.RECIPE_PREFERENCE, pref)
     }
 
-    override val vegetarianType: Flow<String>
-        get() = dataStore.getValueAsFlow(PreferencesKeys.RECIPE_VEGETARIAN_TYPE, "")
+    override val recipePreference: Flow<String>
+        get() = dataStore.getValueAsFlow(PreferencesKeys.RECIPE_PREFERENCE, "")
 
     override suspend fun isVegetarian(): Boolean {
-        val type = vegetarianType.first()
-        return type == Vegetarian.VEG
+        val type = recipePreference.first()
+        return type == RecipePreference.VEG
     }
 
     override suspend fun isNonVegetarian(): Boolean {
-        val type = vegetarianType.first()
-        return type == Vegetarian.NON_VEG
+        val type = recipePreference.first()
+        return type == RecipePreference.NON_VEG
     }
 
     override suspend fun isBothVegNonVeg(): Boolean {
-        val type = vegetarianType.first()
-        return type == Vegetarian.BOTH
+        val type = recipePreference.first()
+        return type == RecipePreference.BOTH
     }
 
     override suspend fun clearPreferences() {
@@ -73,7 +73,7 @@ class RecipeDataStoreImpl @Inject constructor(@ApplicationContext private val co
     }
 
     private object PreferencesKeys {
-        val RECIPE_VEGETARIAN_TYPE = stringPreferencesKey("vegetarianType")
+        val RECIPE_PREFERENCE = stringPreferencesKey("recipe_preference")
     }
 
     /***

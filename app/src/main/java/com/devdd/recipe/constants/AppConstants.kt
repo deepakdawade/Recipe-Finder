@@ -5,10 +5,10 @@ const val DATA_STORE_NAME: String = "recipe_prefs"
 const val DB_NAME = "recipe-db"
 
 //Recipe type
-object Vegetarian{
+object RecipePreference {
     const val VEG = "veg"
-    const val NON_VEG = "nonVeg"
-    const val BOTH = "veg_nonVeg"
+    const val NON_VEG = "non_veg"
+    const val BOTH = "veg_non_veg"
 }
 
 // External Storage

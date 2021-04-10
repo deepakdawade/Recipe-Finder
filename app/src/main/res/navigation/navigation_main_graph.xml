@@ -16,8 +16,8 @@
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_to_recipeTypeSelectionFragment"
-            app:destination="@id/recipeTypeSelectionFragment" />
+            android:id="@+id/action_to_recipePreferenceSelectionFragment"
+            app:destination="@id/recipePreferenceSelectionFragment" />
 
     </fragment>
 
@@ -58,14 +58,14 @@
             app:destination="@id/recipeDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/recipeTypeSelectionFragment"
-        android:name="com.devdd.recipe.ui.recipesetting.recipetype.RecipeTypeSelectionFragment"
-        android:label="RecipeTypeSelectionFragment"
-        tools:layout="@layout/fragment_recipe_type_selection">
+        android:id="@+id/recipePreferenceSelectionFragment"
+        android:name="com.devdd.recipe.ui.recipesetting.recipepref.RecipePreferenceSelectionFragment"
+        android:label="RecipePreferenceSelectionFragment"
+        tools:layout="@layout/fragment_recipe_preference_selection">
         <action
             android:id="@+id/action_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:popUpTo="@id/recipeTypeSelectionFragment"
+            app:popUpTo="@id/recipePreferenceSelectionFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>
