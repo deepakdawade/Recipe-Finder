@@ -13,8 +13,10 @@ class RecipeResponseToRecipeEntity @Inject constructor(
     private fun RecipeResponse.toRecipeEntity(): Recipe {
         return Recipe(
             title = title ?: "",
+            titleHi = titleHi ?: "",
             authorName = authorName ?: "",
             description = description ?: "",
+            descriptionHi = descriptionHi ?: "",
             id = id ?: 0,
             imageUrl = imageUrl ?: ""
         )

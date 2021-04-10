@@ -19,12 +19,20 @@ data class RecipeListResponse(
         var title: String? = null,
 
         @Expose
+        @SerializedName("title_hi")
+        var titleHi: String? = null,
+
+        @Expose
         @SerializedName("author_name")
         var authorName: String? = null,
 
         @Expose
         @SerializedName("description")
         var description: String? = null,
+
+        @Expose
+        @SerializedName("description_hi")
+        var descriptionHi: String? = null,
 
         @Expose
         @SerializedName("image_url")

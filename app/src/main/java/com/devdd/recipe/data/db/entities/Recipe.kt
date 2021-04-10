@@ -17,8 +17,14 @@ data class Recipe(
      @ColumnInfo(name = "title")
      val title: String = "",
 
+     @ColumnInfo(name = "title_hi")
+     val titleHi: String = "",
+
      @ColumnInfo(name = "description")
      val description: String = "",
+
+     @ColumnInfo(name = "description_hi")
+     val descriptionHi: String = "",
 
      @ColumnInfo(name = "image_url")
      val imageUrl: String = "",

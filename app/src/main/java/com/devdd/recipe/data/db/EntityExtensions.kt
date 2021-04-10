@@ -3,11 +3,11 @@ package com.devdd.recipe.data.db
 import com.devdd.recipe.data.db.entities.Recipe
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 
-fun Recipe.toRecipeViewState(): RecipeViewState {
+fun Recipe.toRecipeViewState(isEnglish: Boolean): RecipeViewState {
     return RecipeViewState(
         id = id,
-        title = title,
-        description = description,
+        title = if (isEnglish) title else titleHi,
+        description = if (isEnglish) description else descriptionHi,
         authorName = authorName,
         imageUrl = imageUrl
     )
