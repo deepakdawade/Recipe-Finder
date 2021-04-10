@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.devdd.recipe.ui.preferencesetting.search.SearchRecipeViewModel" />
+            type="com.devdd.recipe.ui.search.SearchRecipeViewModel" />
 
     </data>
 

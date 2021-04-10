@@ -1,4 +1,4 @@
-package com.devdd.recipe.ui.preferencesetting.search
+package com.devdd.recipe.ui.search
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels

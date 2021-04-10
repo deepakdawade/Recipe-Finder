@@ -91,7 +91,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchRecipeFragment"
-        android:name="com.devdd.recipe.ui.preferencesetting.search.SearchRecipeFragment"
+        android:name="com.devdd.recipe.ui.search.SearchRecipeFragment"
         android:label="SearchRecipeFragment"
         tools:layout="@layout/fragment_search_recipe">
         <action
