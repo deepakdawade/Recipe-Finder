@@ -25,20 +25,15 @@ class SplashViewModel @Inject constructor(
     fun decideDestination() {
         viewModelScope.launch {
             when {
-                !localeManager.isLanguageSelected() -> navigateToLanguagePreference()
-                !recipeManager.isRecipeSelected() -> navigateToRecipePreference()
+                !localeManager.isLanguageSelected() -> navigateToPreferenceSetting()
+                !recipeManager.isRecipeSelected() -> navigateToPreferenceSetting(1)
                 else -> navigateToHome()
             }
         }
     }
 
-    private fun navigateToRecipePreference() {
-        val direction = SplashFragmentDirections.actionToRecipePreferenceFragment()
-        mNavigation.value = Event(direction)
-    }
-
-    private fun navigateToLanguagePreference() {
-        val direction = SplashFragmentDirections.actionToLanguagePreferenceFragment()
+    private fun navigateToPreferenceSetting(page:Int = 0) {
+        val direction = SplashFragmentDirections.actionToPreferenceSettingFragment(page)
         mNavigation.value = Event(direction)
     }
 

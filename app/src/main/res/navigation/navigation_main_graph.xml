@@ -15,14 +15,10 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+
         <action
-            android:id="@+id/action_to_recipePreferenceFragment"
-            app:destination="@id/recipePreferenceFragment"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_to_languagePreferenceFragment"
-            app:destination="@id/languagePreferenceFragment"
+            android:id="@+id/action_to_preferenceSettingFragment"
+            app:destination="@id/preferenceSettingFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
 
@@ -39,12 +35,10 @@
         <action
             android:id="@+id/action_to_recipesFragment"
             app:destination="@id/recipesFragment" />
+
         <action
-            android:id="@+id/action_to_recipePreferenceFragment"
-            app:destination="@id/recipePreferenceFragment" />
-        <action
-            android:id="@+id/action_to_languagePreferenceFragment"
-            app:destination="@id/languagePreferenceFragment" />
+            android:id="@+id/action_to_preferenceSettingFragment"
+            app:destination="@id/preferenceSettingFragment" />
     </fragment>
     <fragment
         android:id="@+id/recipeDetailFragment"
@@ -70,32 +64,18 @@
             android:id="@+id/action_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/recipePreferenceFragment"
-        android:name="com.devdd.recipe.ui.preferencesetting.recipepref.RecipePreferenceFragment"
-        android:label="RecipePreferenceFragment"
-        tools:layout="@layout/fragment_recipe_preference">
+        android:id="@+id/preferenceSettingFragment"
+        android:name="com.devdd.recipe.ui.preferencesetting.PreferenceSettingFragment"
+        tools:layout="@layout/fragment_preference_setting"
+        android:label="PreferenceSettingFragment" >
         <action
             android:id="@+id/action_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/recipePreferenceFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/languagePreferenceFragment"
-        android:name="com.devdd.recipe.ui.preferencesetting.language.LanguagePreferenceFragment"
-        android:label="LanguagePreferenceFragment"
-        tools:layout="@layout/fragment_language_preference">
-        <action
-            android:id="@+id/action_to_recipePreferenceFragment"
-            app:destination="@id/recipePreferenceFragment"
-            app:popUpTo="@id/languagePreferenceFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/languagePreferenceFragment"
-            app:popUpToInclusive="true"
-            />
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="page"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

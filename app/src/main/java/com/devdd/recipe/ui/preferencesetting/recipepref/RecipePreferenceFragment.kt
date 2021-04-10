@@ -2,11 +2,10 @@ package com.devdd.recipe.ui.preferencesetting.recipepref
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentRecipePreferenceBinding
-import com.devdd.recipe.utils.extensions.observeEvent
+import com.devdd.recipe.ui.preferencesetting.PreferenceSettingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,21 +15,11 @@ class RecipePreferenceFragment :
         private val TAG: String = this::class.java.simpleName
     }
 
-    private val viewModel by viewModels<RecipePreferenceViewModel>()
+    private val viewModel by viewModels<PreferenceSettingViewModel>({ requireParentFragment() })
     override fun onViewCreated(
         binding: FragmentRecipePreferenceBinding,
         savedInstanceState: Bundle?
     ) {
         binding.viewModel = viewModel
-        setObservers()
-    }
-
-    private fun setObservers() {
-        viewModel.navigation.observeEvent(viewLifecycleOwner) {
-            if (it.second)
-                findNavController().navigateUp()
-            else
-                findNavController().navigate(it.first)
-        }
     }
 }

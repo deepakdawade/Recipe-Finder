@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.devdd.recipe.ui.preferencesetting.language.LanguagePreferenceViewModel" />
+            type="com.devdd.recipe.ui.preferencesetting.PreferenceSettingViewModel" />
 
     </data>
 
@@ -33,7 +34,7 @@
             android:id="@+id/language_preference_fragment_option_group"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:checkedButton="@{viewModel.checkButtonId}"
+            android:checkedButton="@{viewModel.checkedLanguageButtonId}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

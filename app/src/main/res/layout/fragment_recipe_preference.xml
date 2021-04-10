@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.devdd.recipe.ui.preferencesetting.recipepref.RecipePreferenceViewModel" />
+            type="com.devdd.recipe.ui.preferencesetting.PreferenceSettingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +32,7 @@
             android:id="@+id/recipe_preference_fragment_option_group"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:checkedButton="@{viewModel.checkButtonId}"
+            android:checkedButton="@{viewModel.checkedRecipeButtonId}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
