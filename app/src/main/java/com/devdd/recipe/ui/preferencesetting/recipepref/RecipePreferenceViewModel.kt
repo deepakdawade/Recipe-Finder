@@ -24,10 +24,10 @@ class RecipePreferenceViewModel @Inject constructor(
         get() = mNavigation
 
     init {
-        loadRecipeType()
+        loadRecipePreference()
     }
 
-    private fun loadRecipeType() {
+    private fun loadRecipePreference() {
         viewModelScope.launch {
             with(recipeManager) {
                 val id = when {
