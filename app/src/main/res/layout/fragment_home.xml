@@ -32,7 +32,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:menu="@menu/menu_item_home"
-                app:title="@string/recipes"
+                app:title="@string/home_toolbar_title"
                 app:titleTextColor="?colorOnPrimary" />
 
             <com.google.android.material.textview.MaterialTextView

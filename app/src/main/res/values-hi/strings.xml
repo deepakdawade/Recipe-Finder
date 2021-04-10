@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Recipe</string>
     <string name="empty_string" />
     <string name="no_internet_connection">कोई कनेक्शन नहीं</string>
     <string name="no_internet_connection_action_retry">पुन: प्रयास करें</string>
@@ -14,4 +13,5 @@
     <string name="recipe_type_selection_option_both">दोनों</string>
     <string name="recipe_type_selection_option_non_veg">मांसाहारी</string>
     <string name="language_preference_choose_language">भाषा चुनें</string>
+    <string name="home_toolbar_title">व्यंजनों की खोज करें</string>
 </resources>

@@ -1,40 +1,54 @@
 package com.devdd.recipe.utils.localemanager
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build.VERSION_CODES.N
 import android.os.LocaleList
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.stringPreferencesKey
+import com.devdd.recipe.constants.SHARED_PREF_NAME
 import com.devdd.recipe.data.prefs.manager.LocaleManager.Companion.LOCALE_ENGLISH
 import com.devdd.recipe.data.prefs.manager.LocaleManager.Companion.LOCALE_HINDI
-import com.devdd.recipe.utils.extensions.dataStore
-import com.devdd.recipe.utils.extensions.getValueAsFlow
 import com.devdd.recipe.utils.extensions.isAtLeastVersion
-import kotlinx.coroutines.flow.first
 import java.util.*
 
-
 object LocaleManagerUtils {
-    private val SELECTED_LOCALE = stringPreferencesKey("selected_language")
-    private fun dataStore(context: Context): DataStore<Preferences> = context.dataStore
+
+    private const val SELECTED_LOCALE = "selected_locale"
+    private fun getPrefs(context: Context?): SharedPreferences? {
+        return context?.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+    }
+
+
+    fun getLocale(res: Resources): Locale {
+        val config = res.configuration
+        return if (isAtLeastVersion(N)) config.locales.get(0) else config.locale
+    }
+
+
+    @SuppressLint("ApplySharedPref")
+    private fun persistLanguage(context: Context, language: String) {
+        // use commit() instead of apply(), because sometimes we kill the application process immediately
+        // which will prevent apply() to finish
+        getPrefs(context)?.edit()?.putString(SELECTED_LOCALE, language)?.commit()
+    }
+
+    fun setNewLocale(context: Context, language: String): Context {
+        persistLanguage(context, language)
+        return updateBaseContext(context, language)
+    }
+
 
     @JvmStatic
-    suspend fun isEnglishLocale(context: Context): Boolean =
+    fun isEnglishLocale(context: Context?): Boolean =
         getLanguage(context) == LOCALE_ENGLISH
 
     @JvmStatic
-    suspend fun isHindiLocale(context: Context): Boolean =
-        getLanguage(context) == LOCALE_HINDI
+    fun setLocale(c: Context): Context = updateBaseContext(c, getLanguage(c))
 
-    @JvmStatic
-    suspend fun setLocale(context: Context): Context =
-        updateBaseContext(context, getLanguage(context))
-
-    suspend fun getLanguage(context: Context): String =
-        dataStore(context).getValueAsFlow(SELECTED_LOCALE, LOCALE_HINDI).first()
+    fun getLanguage(context: Context?): String =
+        getPrefs(context)?.getString(SELECTED_LOCALE, LOCALE_HINDI) ?: LOCALE_HINDI
 
     @JvmStatic
     private fun updateBaseContext(context: Context, language: String): Context {

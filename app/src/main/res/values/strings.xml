@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Recipe</string>
+    <string name="app_name" translatable="false">Recipe</string>
     <string name="empty_string" />
     <string name="no_internet_connection">No connection</string>
     <string name="no_internet_connection_action_retry">retry</string>
@@ -15,4 +15,5 @@
     <string name="language_preference_choose_language">Choose language</string>
     <string name="language_preference_hindi" translatable="false">हिंदी</string>
     <string name="language_preference_english" translatable="false">English</string>
+    <string name="home_toolbar_title">Search recipes</string>
 </resources>
