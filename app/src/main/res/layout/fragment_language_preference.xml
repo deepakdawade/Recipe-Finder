@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.devdd.recipe.ui.preferencesetting.language.LanguagePreferenceViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/language_preference_fragment_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/language_preference_fragment_choose_language_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/language_preference_choose_language"
+            android:textAlignment="center"
+            android:textAppearance="?textAppearanceHeadline5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.05" />
+
+        <RadioGroup
+            android:id="@+id/language_preference_fragment_option_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:checkedButton="@{viewModel.checkButtonId}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/language_preference_fragment_choose_language_label"
+            app:layout_constraintWidth_percent="0.7">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/language_preference_fragment_option_english"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/selector_radio_button"
+                android:button="@null"
+                android:onClick="@{()->viewModel.english()}"
+                android:text="@string/language_preference_english"
+                android:textAlignment="center"
+                android:textAppearance="?textAppearanceHeadline5"
+                android:textColor="@drawable/selector_radio_text_color"
+                tools:checked="true" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/language_preference_fragment_option_hindi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/selector_radio_button"
+                android:button="@null"
+                android:onClick="@{()->viewModel.hindi()}"
+                android:text="@string/language_preference_hindi"
+                android:textAlignment="center"
+                android:textAppearance="?textAppearanceHeadline5"
+                android:textColor="@drawable/selector_radio_text_color" />
+        </RadioGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

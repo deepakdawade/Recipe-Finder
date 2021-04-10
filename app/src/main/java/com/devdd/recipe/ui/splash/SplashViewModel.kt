@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
+import com.devdd.recipe.data.prefs.manager.LocaleManager
 import com.devdd.recipe.data.prefs.manager.RecipeManager
 import com.devdd.recipe.domain.result.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-    private val recipeManager: RecipeManager
+    private val recipeManager: RecipeManager,
+    private val localeManager: LocaleManager
 ) : ViewModel() {
 
     private val mNavigation: MutableLiveData<Event<NavDirections>> = MutableLiveData()
@@ -22,15 +24,21 @@ class SplashViewModel @Inject constructor(
 
     fun decideDestination() {
         viewModelScope.launch {
-            if (recipeManager.isRecipeSelected())
-                navigateToHome()
-            else
-                navigateToRecipePreference()
+            when {
+                localeManager.isLanguageSelected() -> navigateToRecipePreference()
+                recipeManager.isRecipeSelected() -> navigateToHome()
+                else -> navigateToLanguagePreference()
+            }
         }
     }
 
     private fun navigateToRecipePreference() {
         val direction = SplashFragmentDirections.actionToRecipePreferenceFragment()
+        mNavigation.value = Event(direction)
+    }
+
+    private fun navigateToLanguagePreference() {
+        val direction = SplashFragmentDirections.actionToLanguagePreferenceFragment()
         mNavigation.value = Event(direction)
     }
 

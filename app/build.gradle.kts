@@ -25,6 +25,7 @@ android {
         versionName = VersionInfo.versionName
 
         vectorDrawables.useSupportLibrary = true
+        resConfigs("en", "hi")
         testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
     }
 
