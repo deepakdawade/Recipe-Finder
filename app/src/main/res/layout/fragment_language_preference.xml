@@ -18,16 +18,29 @@
 
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/language_preference_fragment_choose_language_label"
+            android:id="@+id/language_preference_fragment_choose_language_english_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/language_preference_choose_language"
+            android:text="@string/language_preference_choose_language_english"
             android:textAlignment="center"
             android:textAppearance="?textAppearanceHeadline5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.05" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/language_preference_fragment_choose_language_hindi_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/language_preference_choose_language_hindi"
+            android:textAlignment="center"
+            android:textAppearance="?textAppearanceHeadline5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/language_preference_fragment_choose_language_english_label"
             app:layout_constraintVertical_bias="0.05" />
 
         <RadioGroup
@@ -37,8 +50,9 @@
             android:checkedButton="@{viewModel.checkedLanguageButtonId}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/language_preference_fragment_choose_language_label"
+            app:layout_constraintTop_toBottomOf="@id/language_preference_fragment_choose_language_hindi_label"
             app:layout_constraintWidth_percent="0.7">
 
             <com.google.android.material.radiobutton.MaterialRadioButton

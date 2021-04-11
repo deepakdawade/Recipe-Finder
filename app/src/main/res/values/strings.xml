@@ -12,7 +12,8 @@
     <string name="recipe_type_selection_option_veg">Veg</string>
     <string name="recipe_type_selection_option_both">Both</string>
     <string name="recipe_type_selection_option_non_veg">Non veg</string>
-    <string name="language_preference_choose_language">Choose language</string>
+    <string name="language_preference_choose_language_english">Choose language</string>
+    <string name="language_preference_choose_language_hindi">भाषा चुनें</string>
     <string name="language_preference_hindi" translatable="false">हिंदी</string>
     <string name="language_preference_english" translatable="false">English</string>
     <string name="home_toolbar_title">Search recipes</string>

@@ -48,13 +48,13 @@ class PreferenceSettingFragment :
         viewModel.navigation.observeEvent(viewLifecycleOwner) {
             when {
                 it.first -> findNavController().navigateUp()
-                it.second -> restartApp()
+                it.second -> recreateActivity()
                 else -> findNavController().navigate(it.third)
             }
         }
     }
 
-    private fun restartApp() {
+    private fun recreateActivity() {
         requireActivity().recreate()
     }
 }

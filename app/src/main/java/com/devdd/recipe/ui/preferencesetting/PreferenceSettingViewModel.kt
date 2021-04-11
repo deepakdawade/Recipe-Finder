@@ -101,13 +101,16 @@ class PreferenceSettingViewModel @Inject constructor(
             val newSelection =
                 localeManager.isEnglishLocale() && language == LocaleManager.LOCALE_HINDI ||
                         localeManager.isHindiLocale() && language == LocaleManager.LOCALE_ENGLISH
-            if (!previouslySelected || newSelection)
-                localeManager.updateLanguage(language)
-            if (previouslySelected && newSelection)
+            val updateLanguage = !previouslySelected || newSelection
+            if (updateLanguage) localeManager.updateLanguage(language)
+            if (recipeManager.isRecipeSelected() && updateLanguage) {
                 navigateToDashboard(shouldRestart = true)
-            if (recipeManager.isRecipeSelected())
                 navigateToDashboard(shouldPop = true)
-            else setPage(1)
+            }
+            else {
+                setPage(1)
+                navigateToDashboard(shouldRestart = true)
+            }
         }
     }
 
