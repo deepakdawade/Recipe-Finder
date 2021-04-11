@@ -15,7 +15,7 @@ data class RecipeViewState(
     fun getIngredients(): String {
         val string = StringBuilder()
         ingredients.forEach {
-            string.append(it).append("\n")
+            string.append("\u25CF\t").append(it).append("\n")
         }
         return string.toString()
     }
