@@ -77,7 +77,7 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/home_fragment_lottie_no_recipes"
-                toggleVisibility="@{homeViewModel.recipes.empty}"
+                toggleVisibility="@{homeViewModel.loading || homeViewModel.recipes.empty}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -86,21 +86,6 @@
                 app:layout_constraintTop_toBottomOf="@id/home_fragment_categories"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true" />
-
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/home_fragment_no_recipe_found"
-                toggleVisibility="@{homeViewModel.recipes.empty}"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/no_recipe_found"
-                android:textAlignment="center"
-                android:textAppearance="?textAppearanceHeadline6"
-                android:textColor="?colorOnPrimary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/home_fragment_categories" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

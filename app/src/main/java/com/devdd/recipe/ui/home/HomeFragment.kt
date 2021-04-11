@@ -20,9 +20,9 @@ class HomeFragment : DevFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private var categoryAdapter: CategoryAdapter? = null
     override fun onViewCreated(binding: FragmentHomeBinding, savedInstanceState: Bundle?) {
         binding.homeViewModel = viewModel
+        setListeners()
         setupRecyclerViewAdapter()
         setObserver()
-        setListeners()
     }
 
     private fun setListeners() {
@@ -30,12 +30,14 @@ class HomeFragment : DevFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             viewModel.fetchRecipes()
         }
 
-        binding?.homeFragmentLottieNoRecipes?.setAnimation(R.raw.not_found_animation)
+        binding?.homeFragmentLottieNoRecipes?.setAnimation(R.raw.recipe_loading_animation)
 
     }
 
     private fun setObserver() {
         viewModel.recipes.observe(viewLifecycleOwner) {
+            if (it.isEmpty() && viewModel.loading.value == false)
+                binding?.homeFragmentLottieNoRecipes?.setAnimation(R.raw.not_found_animation)
             recipeAdapter?.submitList(it)
         }
 

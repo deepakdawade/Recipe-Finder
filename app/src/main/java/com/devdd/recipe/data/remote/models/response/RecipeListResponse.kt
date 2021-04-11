@@ -36,6 +36,22 @@ data class RecipeListResponse(
 
         @Expose
         @SerializedName("image_url")
-        var imageUrl: String? = null
+        var imageUrl: String? = null,
+
+        @Expose
+        @SerializedName("total_time")
+        var totalTime: String? = null,
+
+        @Expose
+        @SerializedName("preparing_time")
+        var preparingTime: String? = null,
+
+        @Expose
+        @SerializedName("cooking_time")
+        var cookingTime: String? = null,
+
+        @Expose
+        @SerializedName("category_name")
+        var categoryName: String? = null
     )
 }

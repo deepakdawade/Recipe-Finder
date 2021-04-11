@@ -29,4 +29,16 @@ data class Recipe(
      @ColumnInfo(name = "image_url")
      val imageUrl: String = "",
 
-     )
+     @ColumnInfo(name = "category_name")
+     val categoryName: String = "",
+
+     @ColumnInfo(name = "preparing_time")
+     val preparingTime: String = "",
+
+     @ColumnInfo(name = "cooking_time")
+     val cookingTime: String = "",
+
+     @ColumnInfo(name = "total_time")
+     val totalTime: String = ""
+
+)
