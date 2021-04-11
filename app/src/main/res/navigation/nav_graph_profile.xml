@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_profile"
+    app:startDestination="@id/profileFragment">
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.devdd.recipe.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_to_preferenceSettingFragment"
+            app:destination="@id/preferenceSettingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/preferenceSettingFragment"
+        android:name="com.devdd.recipe.ui.preferencesetting.PreferenceSettingFragment"
+        android:label="PreferenceSettingFragment"
+        tools:layout="@layout/fragment_preference_setting">
+
+        <argument
+            android:name="page"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
+
+
+</navigation>

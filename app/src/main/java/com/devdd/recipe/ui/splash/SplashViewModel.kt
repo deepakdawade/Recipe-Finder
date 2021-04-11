@@ -27,7 +27,7 @@ class SplashViewModel @Inject constructor(
             when {
                 !localeManager.isLanguageSelected() -> navigateToPreferenceSetting()
                 !recipeManager.isRecipeSelected() -> navigateToPreferenceSetting(1)
-                else -> navigateToHome()
+                else -> navigateToDashboard()
             }
         }
     }
@@ -37,8 +37,8 @@ class SplashViewModel @Inject constructor(
         mNavigation.value = Event(direction)
     }
 
-    private fun navigateToHome() {
-        val direction = SplashFragmentDirections.actionToHomeFragment()
+    private fun navigateToDashboard() {
+        val direction = SplashFragmentDirections.actionToDashboardFragment()
         mNavigation.value = Event(direction)
     }
 }

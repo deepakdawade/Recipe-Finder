@@ -100,7 +100,7 @@ class PreferenceSettingViewModel @Inject constructor(
             val previousSelected = localeManager.isLanguageSelected()
             localeManager.updateLanguage(language)
             if (recipeManager.isRecipeSelected())
-                navigateToHome(previousSelected)
+                navigateToDashboard(previousSelected)
             else setPage(1)
         }
     }
@@ -109,13 +109,13 @@ class PreferenceSettingViewModel @Inject constructor(
         viewModelScope.launch {
             val previouslySelected = recipeManager.isRecipeSelected()
             recipeManager.updateRecipePref(type)
-            navigateToHome(previouslySelected)
+            navigateToDashboard(previouslySelected)
         }
     }
 
-    private fun navigateToHome(shouldPop: Boolean = false) {
-        val direction = PreferenceSettingFragmentDirections.actionToHomeFragment()
-        mNavigation.value = Event(Pair(direction, shouldPop))
+    private fun navigateToDashboard(shouldRestart: Boolean = false) {
+        val direction = PreferenceSettingFragmentDirections.actionToDashboardFragment()
+        mNavigation.value = Event(Pair(direction, shouldRestart))
     }
 
     private object RecipeOptionId {
