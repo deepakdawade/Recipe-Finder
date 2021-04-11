@@ -6,7 +6,6 @@ import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentHomeBinding
-import com.devdd.recipe.ui.home.adapter.CategoryAdapter
 import com.devdd.recipe.ui.home.adapter.RecipeAdapter
 import com.devdd.recipe.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,7 +16,6 @@ class HomeFragment : DevFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     private val viewModel: HomeViewModel by viewModels()
 
     private var recipeAdapter: RecipeAdapter? = null
-    private var categoryAdapter: CategoryAdapter? = null
     override fun onViewCreated(binding: FragmentHomeBinding, savedInstanceState: Bundle?) {
         binding.homeViewModel = viewModel
         setListeners()
@@ -41,10 +39,6 @@ class HomeFragment : DevFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             recipeAdapter?.submitList(it)
         }
 
-        viewModel.categories.observe(viewLifecycleOwner) {
-            categoryAdapter?.submitList(it)
-        }
-
         viewModel.navigation.observeEvent(viewLifecycleOwner) {
             findNavController().navigate(it)
         }
@@ -56,15 +50,10 @@ class HomeFragment : DevFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         }
         binding?.homeFragmentRecipes?.adapter = recipeAdapter
 
-        categoryAdapter = CategoryAdapter {
-            viewModel.navigateToRecipes(it.id, it.name)
-        }
-        binding?.homeFragmentCategories?.adapter = categoryAdapter
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         recipeAdapter = null
-        categoryAdapter = null
     }
 }

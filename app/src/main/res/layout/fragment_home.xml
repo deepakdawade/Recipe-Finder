@@ -24,32 +24,6 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/home_fragment_categories_label"
-                hideOnEmptyList="@{homeViewModel.categories}"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="@string/categories"
-                android:textAppearance="?textAppearanceHeadline6"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/home_fragment_categories"
-                hideOnEmptyList="@{homeViewModel.categories}"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingHorizontal="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/home_fragment_categories_label"
-                tools:itemCount="4"
-                tools:listitem="@layout/item_view_category" />
-
-            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/home_fragment_recipes_label"
                 hideOnEmptyList="@{homeViewModel.recipes}"
                 android:layout_width="0dp"
@@ -59,7 +33,7 @@
                 android:textAppearance="?textAppearanceHeadline6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/home_fragment_categories" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/home_fragment_recipes"
@@ -67,11 +41,12 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/home_fragment_recipes_label"
+                app:spanCount="2"
                 tools:itemCount="4"
                 tools:listitem="@layout/item_view_recipe" />
 
@@ -83,7 +58,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/home_fragment_categories"
+                app:layout_constraintTop_toTopOf="parent"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true" />
 

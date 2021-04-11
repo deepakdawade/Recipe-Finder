@@ -5,13 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
-import com.devdd.recipe.domain.executers.FetchAllCategories
 import com.devdd.recipe.domain.executers.FetchAllRecipes
-import com.devdd.recipe.domain.observers.ObserveAllCategories
 import com.devdd.recipe.domain.observers.ObserveAllRecipes
 import com.devdd.recipe.domain.result.Event
 import com.devdd.recipe.domain.result.InvokeStarted
-import com.devdd.recipe.domain.viewstate.CategoryViewState
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.utils.extensions.toJsonString
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,19 +19,13 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val fetchAllRecipes: FetchAllRecipes,
-    private val observeAllRecipes: ObserveAllRecipes,
-    private val fetchAllCategories: FetchAllCategories,
-    private val observeAllCategories: ObserveAllCategories,
+    private val observeAllRecipes: ObserveAllRecipes
 ) : ViewModel() {
 
     private val mAllRecipes = mutableListOf<RecipeViewState>()
     private val mRecipes: MutableLiveData<List<RecipeViewState>> = MutableLiveData()
     val recipes: LiveData<List<RecipeViewState>>
         get() = mRecipes
-
-    private val mCategories: MutableLiveData<List<CategoryViewState>> = MutableLiveData()
-    val categories: LiveData<List<CategoryViewState>>
-        get() = mCategories
 
     private val mLoading: MutableLiveData<Boolean> = MutableLiveData()
     val loading: LiveData<Boolean>
@@ -46,10 +37,8 @@ class HomeViewModel @Inject constructor(
 
     init {
         fetchRecipes()
-        fetchCategories()
         createObservers()
         observeRecipes()
-        observeCategories()
     }
 
     private fun observeRecipes() {
@@ -63,17 +52,8 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun observeCategories() {
-        viewModelScope.launch {
-            observeAllCategories.observe().collect {
-                mCategories.postValue(it)
-            }
-        }
-    }
-
     private fun createObservers() {
         observeAllRecipes(Unit)
-        observeAllCategories(Unit)
     }
 
     fun fetchRecipes() {
@@ -83,12 +63,6 @@ class HomeViewModel @Inject constructor(
                     mLoading.postValue(true)
                 else mLoading.postValue(false)
             }
-        }
-    }
-
-    private fun fetchCategories() {
-        viewModelScope.launch {
-            fetchAllCategories(Unit).collect {}
         }
     }
 
