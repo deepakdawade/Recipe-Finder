@@ -33,19 +33,6 @@ class HomeFragment : DevFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         binding?.homeFragmentLottieNoRecipes?.setAnimation(R.raw.not_found_animation)
 
-        val searchView = binding?.homeFragmentToolbar?.menu?.getItem(0)?.actionView as? SearchView
-        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.searchRecipes(query)
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                viewModel.searchRecipes(newText)
-                return true
-            }
-        })
-
     }
 
     private fun setObserver() {

@@ -5,15 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
-import com.devdd.recipe.domain.viewstate.CategoryViewState
-import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.domain.executers.FetchAllCategories
 import com.devdd.recipe.domain.executers.FetchAllRecipes
 import com.devdd.recipe.domain.observers.ObserveAllCategories
 import com.devdd.recipe.domain.observers.ObserveAllRecipes
-import com.devdd.recipe.domain.observers.SearchRecipes
 import com.devdd.recipe.domain.result.Event
 import com.devdd.recipe.domain.result.InvokeStarted
+import com.devdd.recipe.domain.viewstate.CategoryViewState
+import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.utils.extensions.toJsonString
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -26,7 +25,6 @@ class HomeViewModel @Inject constructor(
     private val observeAllRecipes: ObserveAllRecipes,
     private val fetchAllCategories: FetchAllCategories,
     private val observeAllCategories: ObserveAllCategories,
-    private val searchRecipes: SearchRecipes
 ) : ViewModel() {
 
     private val mAllRecipes = mutableListOf<RecipeViewState>()
@@ -103,18 +101,5 @@ class HomeViewModel @Inject constructor(
     fun navigateToRecipes(categoryId: Int, categoryName: String) {
         val navDirection = HomeFragmentDirections.actionToRecipesFragment(categoryId, categoryName)
         mNavigation.value = Event(navDirection)
-    }
-
-    fun searchRecipes(query: String?) {
-        if (query.isNullOrBlank())
-            mRecipes.value = mAllRecipes
-        else {
-            viewModelScope.launch {
-                searchRecipes.invoke(query)
-                searchRecipes.observe().collect { recipes ->
-                    mRecipes.value = recipes
-                }
-            }
-        }
     }
 }

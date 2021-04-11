@@ -15,39 +15,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/search_recipe_fragment_search_input"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/search_recipe_fragment_toolbar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/shape_outline_edittext_background"
-            android:drawablePadding="8dp"
-            android:hint="@string/search_recipe_hint"
-            android:paddingVertical="8dp"
-            android:paddingStart="12dp"
-            android:paddingEnd="16dp"
-            android:singleLine="true"
-            android:text="@={viewModel.query}"
-            app:drawableStartCompat="@drawable/ic_search"
+            android:background="?android:colorBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/menu_item_search"
+            app:title="@string/search_recipe_toolbar_title"
+            app:titleTextColor="?colorOnPrimary" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/search_recipe_fragment_clear_field"
-            toggleVisibility="@{viewModel.canClearInput}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:onClick="@{()->viewModel.clearField()}"
-            app:layout_constraintBottom_toBottomOf="@id/search_recipe_fragment_search_input"
-            app:layout_constraintEnd_toEndOf="@id/search_recipe_fragment_search_input"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@id/search_recipe_fragment_search_input"
-            app:layout_constraintTop_toTopOf="@id/search_recipe_fragment_search_input"
-            app:srcCompat="@drawable/ic_close"
-            app:tint="@color/colorOnPrimary" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/search_recipe_fragment_search_result_label"
@@ -59,7 +38,7 @@
             android:textAppearance="?textAppearanceHeadline6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_recipe_fragment_search_input" />
+            app:layout_constraintTop_toBottomOf="@id/search_recipe_fragment_toolbar" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_recipe_fragment_search_results"
@@ -83,7 +62,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_recipe_fragment_search_input"
+            app:layout_constraintTop_toBottomOf="@id/search_recipe_fragment_toolbar"
             app:lottie_autoPlay="true"
             app:lottie_loop="true" />
 
@@ -100,7 +79,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_recipe_fragment_search_input" />
+            app:layout_constraintTop_toBottomOf="@id/search_recipe_fragment_toolbar" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.devdd.recipe.ui.search
 
 import android.os.Bundle
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.R
@@ -32,6 +33,20 @@ class SearchRecipeFragment :
 
     private fun setViews() {
         binding?.homeFragmentLottieNoRecipes?.setAnimation(R.raw.not_found_animation)
+        val searchView =
+            binding?.searchRecipeFragmentToolbar?.menu?.getItem(0)?.actionView as? SearchView
+        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.searchRecipes(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.searchRecipes(newText)
+                return true
+            }
+        })
+
     }
 
     private fun setupRecyclerViewAdapter() {

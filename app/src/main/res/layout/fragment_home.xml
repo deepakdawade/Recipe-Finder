@@ -23,29 +23,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/home_fragment_toolbar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="?android:colorBackground"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:menu="@menu/menu_item_home"
-                app:title="@string/home_toolbar_title"
-                app:titleTextColor="?colorOnPrimary" />
-
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/home_fragment_categories_label"
-                android:layout_width="0dp"
                 hideOnEmptyList="@{homeViewModel.categories}"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:text="@string/categories"
                 android:textAppearance="?textAppearanceHeadline6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/home_fragment_toolbar" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/home_fragment_categories"
@@ -89,9 +77,9 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/home_fragment_lottie_no_recipes"
+                toggleVisibility="@{homeViewModel.recipes.empty}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                toggleVisibility="@{homeViewModel.recipes.empty}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

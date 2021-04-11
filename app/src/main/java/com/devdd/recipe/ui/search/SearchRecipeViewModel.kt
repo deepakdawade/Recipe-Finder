@@ -29,7 +29,7 @@ class SearchRecipeViewModel @Inject constructor(
     val navigation: LiveData<Event<NavDirections>>
         get() = mNavigation
 
-    private fun searchRecipes(query: String?) {
+    fun searchRecipes(query: String?) {
         if (query.isNullOrBlank())
             mRecipes.value = emptyList()
         else {
