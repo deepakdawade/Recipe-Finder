@@ -20,4 +20,5 @@
     <string name="menu_title_search">खोजें</string>
     <string name="search_recipe_hint">रेसिपीस खोजें</string>
     <string name="search_recipe_result">खोज परिणाम</string>
+    <string name="menu_title_favorite">पसंदीदा</string>
 </resources>

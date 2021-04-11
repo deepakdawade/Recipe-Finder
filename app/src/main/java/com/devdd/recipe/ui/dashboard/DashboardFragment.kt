@@ -52,8 +52,9 @@ class DashboardFragment : DevFragment<FragmentDashboardBinding>(R.layout.fragmen
 
         private val NAV_GRAPH_IDS = listOf(
             R.navigation.nav_graph_home,
-            R.navigation.nav_graph_profile,
-            R.navigation.nav_graph_search
+            R.navigation.nav_graph_search,
+            R.navigation.nav_graph_favorite,
+            R.navigation.nav_graph_profile
         )
 
         private val TOP_LEVEL_DESTINATION: Set<Int> = setOf(

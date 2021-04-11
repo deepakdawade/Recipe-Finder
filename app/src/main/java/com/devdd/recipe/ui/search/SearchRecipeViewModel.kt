@@ -42,10 +42,6 @@ class SearchRecipeViewModel @Inject constructor(
         }
     }
 
-    fun clearField() {
-        query.value = ""
-    }
-
     fun navigateToRecipeDetails(viewState: RecipeViewState) {
         val recipe = viewState.toJsonString()
         val navDirection = SearchRecipeFragmentDirections.actionToRecipeDetailFragment(recipe)

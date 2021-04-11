@@ -1,7 +1,6 @@
 package com.devdd.recipe.ui.home
 
 import android.os.Bundle
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.R
@@ -15,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : DevFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
-    private val viewModel by viewModels<HomeViewModel>()
+    private val viewModel: HomeViewModel by viewModels()
 
     private var recipeAdapter: RecipeAdapter? = null
     private var categoryAdapter: CategoryAdapter? = null

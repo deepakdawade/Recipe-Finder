@@ -31,7 +31,7 @@
             app:itemTextColor="@drawable/bottom_nav_color"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/menu_bottom_nav" />
+            app:menu="@menu/menu_bottom_navigation" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
