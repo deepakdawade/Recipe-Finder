@@ -59,8 +59,9 @@ class DashboardFragment : DevFragment<FragmentDashboardBinding>(R.layout.fragmen
 
         private val TOP_LEVEL_DESTINATION: Set<Int> = setOf(
             R.id.homeFragment,
-            R.id.profileFragment,
             R.id.searchRecipeFragment,
+            R.id.favoriteRecipeFragment,
+            R.id.profileFragment,
         )
 
         private val NAV_ANIMATIONS = NavAnimations(
