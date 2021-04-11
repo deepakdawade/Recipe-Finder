@@ -24,7 +24,7 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
     }
 
     fun navigateToChangeRecipePref() {
-        val direction = ProfileFragmentDirections.actionToPreferenceSettingFragment()
+        val direction = ProfileFragmentDirections.actionToPreferenceSettingFragment(1)
         mNavigation.value = Event(Pair(direction, false))
     }
 

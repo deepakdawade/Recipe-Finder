@@ -22,9 +22,9 @@ class PreferenceSettingViewModel @Inject constructor(
     val checkedRecipeButtonId: MutableLiveData<Int> = MutableLiveData()
     val checkedLanguageButtonId: MutableLiveData<Int> = MutableLiveData()
 
-    private val mNavigation: MutableLiveData<Event<Pair<NavDirections, Boolean>>> =
+    private val mNavigation: MutableLiveData<Event<Triple<Boolean, Boolean, NavDirections>>> =
         MutableLiveData()
-    val navigation: LiveData<Event<Pair<NavDirections, Boolean>>>
+    val navigation: LiveData<Event<Triple<Boolean, Boolean, NavDirections>>>
         get() = mNavigation
 
     private val mPage: MutableLiveData<Event<Int>> = MutableLiveData()
@@ -97,10 +97,16 @@ class PreferenceSettingViewModel @Inject constructor(
 
     private fun updateLanguagePref(language: String) {
         viewModelScope.launch {
-            val previousSelected = localeManager.isLanguageSelected()
-            localeManager.updateLanguage(language)
+            val previouslySelected = localeManager.isLanguageSelected()
+            val newSelection =
+                localeManager.isEnglishLocale() && language == LocaleManager.LOCALE_HINDI ||
+                        localeManager.isHindiLocale() && language == LocaleManager.LOCALE_ENGLISH
+            if (!previouslySelected || newSelection)
+                localeManager.updateLanguage(language)
+            if (previouslySelected && newSelection)
+                navigateToDashboard(shouldRestart = true)
             if (recipeManager.isRecipeSelected())
-                navigateToDashboard(previousSelected)
+                navigateToDashboard(shouldPop = true)
             else setPage(1)
         }
     }
@@ -109,13 +115,13 @@ class PreferenceSettingViewModel @Inject constructor(
         viewModelScope.launch {
             val previouslySelected = recipeManager.isRecipeSelected()
             recipeManager.updateRecipePref(type)
-            navigateToDashboard(previouslySelected)
+            navigateToDashboard(shouldPop = previouslySelected)
         }
     }
 
-    private fun navigateToDashboard(shouldRestart: Boolean = false) {
+    private fun navigateToDashboard(shouldRestart: Boolean = false, shouldPop: Boolean = false) {
         val direction = PreferenceSettingFragmentDirections.actionToDashboardFragment()
-        mNavigation.value = Event(Pair(direction, shouldRestart))
+        mNavigation.value = Event(Triple(shouldPop, shouldRestart, direction))
     }
 
     private object RecipeOptionId {

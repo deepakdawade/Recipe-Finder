@@ -1,6 +1,5 @@
 package com.devdd.recipe.ui.preferencesetting
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -8,7 +7,6 @@ import androidx.navigation.fragment.navArgs
 import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentPreferenceSettingBinding
-import com.devdd.recipe.ui.MainActivity
 import com.devdd.recipe.ui.preferencesetting.adapter.PreferenceSettingAdapter
 import com.devdd.recipe.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,14 +46,15 @@ class PreferenceSettingFragment :
         }
 
         viewModel.navigation.observeEvent(viewLifecycleOwner) {
-            if (it.second)
-                restartApp()
-            else findNavController().navigate(it.first)
+            when {
+                it.first -> findNavController().navigateUp()
+                it.second -> restartApp()
+                else -> findNavController().navigate(it.third)
+            }
         }
     }
 
     private fun restartApp() {
-        startActivity(Intent(requireContext(), MainActivity::class.java))
-        requireActivity().finish()
+        requireActivity().recreate()
     }
 }

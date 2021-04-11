@@ -48,7 +48,7 @@ object LocaleManagerUtils {
     fun setLocale(c: Context): Context = updateBaseContext(c, getLanguage(c))
 
     fun getLanguage(context: Context?): String =
-        getPrefs(context)?.getString(SELECTED_LOCALE, LOCALE_HINDI) ?: LOCALE_HINDI
+        getPrefs(context)?.getString(SELECTED_LOCALE, LOCALE_HINDI) ?: LOCALE_ENGLISH
 
     @JvmStatic
     private fun updateBaseContext(context: Context, language: String): Context {
