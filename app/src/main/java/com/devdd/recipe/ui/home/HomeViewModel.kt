@@ -5,21 +5,26 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
+import com.devdd.recipe.data.prefs.manager.LocaleManager
+import com.devdd.recipe.data.prefs.manager.RecipeManager
 import com.devdd.recipe.domain.executers.FetchAllRecipes
-import com.devdd.recipe.domain.observers.ObserveAllRecipes
+import com.devdd.recipe.domain.observers.ObserveRecipeByPref
 import com.devdd.recipe.domain.result.Event
 import com.devdd.recipe.domain.result.InvokeStarted
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.utils.extensions.toJsonString
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.combineTransform
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val fetchAllRecipes: FetchAllRecipes,
-    private val observeAllRecipes: ObserveAllRecipes
+    private val observeRecipeByPref: ObserveRecipeByPref,
+    private val localeManager: LocaleManager,
+    private val recipeManager: RecipeManager
 ) : ViewModel() {
 
     private val mAllRecipes = mutableListOf<RecipeViewState>()
@@ -43,7 +48,7 @@ class HomeViewModel @Inject constructor(
 
     private fun observeRecipes() {
         viewModelScope.launch {
-            observeAllRecipes.observe().collect {
+            observeRecipeByPref.observe().collect {
                 mAllRecipes.clear()
                 mAllRecipes.addAll(it)
                 mRecipes.postValue(it)
@@ -53,7 +58,13 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun createObservers() {
-        observeAllRecipes(Unit)
+        viewModelScope.launch {
+            localeManager.selectedLanguage.combineTransform(recipeManager.recipePreference) { lang: String, pref: String ->
+                emit(ObserveRecipeByPref.Params(lang == LocaleManager.LOCALE_ENGLISH, pref))
+            }.collect {
+                observeRecipeByPref(it)
+            }
+        }
     }
 
     fun fetchRecipes() {

@@ -4,6 +4,7 @@ import com.devdd.recipe.data.db.dao.CategoryDao
 import com.devdd.recipe.data.db.dao.RecipeDao
 import com.devdd.recipe.data.db.entities.Category
 import com.devdd.recipe.data.db.entities.Recipe
+import com.devdd.recipe.data.prefs.manager.RecipeManager.Companion.BOTH
 import com.devdd.recipe.data.remote.datasource.RecipeDataSource
 import com.devdd.recipe.data.remote.models.request.RecipesByCategoryRequest
 import kotlinx.coroutines.flow.Flow
@@ -14,6 +15,8 @@ interface RecipeRepository {
     suspend fun getRecipes()
 
     fun observeRecipes(): Flow<List<Recipe>>
+
+    fun observeRecipesByPref(recipePref: String): Flow<List<Recipe>>
 
     suspend fun getCategories()
 
@@ -44,6 +47,12 @@ class RecipeRepositoryImpl @Inject constructor(
 
     override fun observeRecipes(): Flow<List<Recipe>> {
         return recipeDao.allRecipes()
+    }
+
+    override fun observeRecipesByPref(recipePref: String): Flow<List<Recipe>> {
+        return if (recipePref == BOTH)
+            recipeDao.allRecipes()
+        else recipeDao.recipesByPref(recipePref)
     }
 
     override suspend fun getCategories() {

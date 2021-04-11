@@ -18,7 +18,11 @@ class RecipeResponseToRecipeEntity @Inject constructor(
             description = description ?: "",
             descriptionHi = descriptionHi ?: "",
             id = id ?: 0,
-            imageUrl = imageUrl ?: ""
+            imageUrl = imageUrl ?: "",
+            categoryName = categoryName ?: "",
+            preparingTime = preparingTime?:"",
+            totalTime = totalTime?:"",
+            cookingTime = cookingTime?:""
         )
     }
 }

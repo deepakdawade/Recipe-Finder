@@ -1,6 +1,5 @@
 package com.devdd.recipe.data.prefs.manager
 
-import com.devdd.recipe.constants.RecipePreference
 import com.devdd.recipe.data.prefs.DataStorePreference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -15,24 +14,29 @@ class RecipeManager @Inject constructor(
         preference.setRecipePreference(pref)
     }
 
-    private val recipePreference: Flow<String>
+    val recipePreference: Flow<String>
         get() = preference.recipePreference.catch { emit("") }
 
     suspend fun isRecipeSelected(): Boolean = recipePreference.first().isNotBlank()
 
     suspend fun isVegetarian(): Boolean {
         val type = recipePreference.first()
-        return type == RecipePreference.VEG
+        return type == VEG
     }
 
     suspend fun isNonVegetarian(): Boolean {
         val type = recipePreference.first()
-        return type == RecipePreference.NON_VEG
+        return type == NON_VEG
     }
 
     suspend fun isBothVegNonVeg(): Boolean {
         val type = recipePreference.first()
-        return type == RecipePreference.BOTH
+        return type == BOTH
     }
 
+    companion object {
+        const val VEG = "Veg"
+        const val NON_VEG = "Non Veg"
+        const val BOTH = "Both"
+    }
 }

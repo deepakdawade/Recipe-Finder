@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.devdd.recipe.R
-import com.devdd.recipe.constants.RecipePreference
 import com.devdd.recipe.data.prefs.manager.LocaleManager
 import com.devdd.recipe.data.prefs.manager.RecipeManager
 import com.devdd.recipe.domain.result.Event
@@ -81,18 +80,18 @@ class PreferenceSettingViewModel @Inject constructor(
 
     fun vegetarian() {
         checkedRecipeButtonId.value = RecipeOptionId.VEG
-        updateRecipePref(RecipePreference.VEG)
+        updateRecipePref(RecipeManager.VEG)
     }
 
     fun nonVegetarian() {
         checkedRecipeButtonId.value = RecipeOptionId.NON_VEG
-        updateRecipePref(RecipePreference.NON_VEG)
+        updateRecipePref(RecipeManager.NON_VEG)
 
     }
 
     fun bothVegNonVeg() {
         checkedRecipeButtonId.value = RecipeOptionId.BOTH_VEG_NON_VEG
-        updateRecipePref(RecipePreference.BOTH)
+        updateRecipePref(RecipeManager.BOTH)
     }
 
     private fun updateLanguagePref(language: String) {

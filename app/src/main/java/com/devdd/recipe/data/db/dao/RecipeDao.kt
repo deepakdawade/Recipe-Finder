@@ -12,6 +12,9 @@ interface RecipeDao {
     @Query("SELECT * FROM recipes")
     fun allRecipes(): Flow<List<Recipe>>
 
+    @Query("SELECT * FROM recipes WHERE category_name = :category")
+    fun recipesByPref(category: String): Flow<List<Recipe>>
+
     @Query("SELECT * FROM recipes WHERE id = :id")
     fun recipeById(id: Int): List<Recipe>
 

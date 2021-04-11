@@ -14,7 +14,7 @@ class LocaleManager @Inject constructor(
     @ApplicationContext private val context: Context,
     private val dataStore: DataStorePreference
 ) {
-    private val selectedLanguage: Flow<String>
+    val selectedLanguage: Flow<String>
         get() = dataStore.selectedLanguage.catch { emit("") }
 
     suspend fun isEnglishLocale(): Boolean = selectedLanguage.first() == LOCALE_ENGLISH

@@ -5,11 +5,11 @@ import com.devdd.recipe.data.db.entities.Recipe
 import com.devdd.recipe.domain.viewstate.CategoryViewState
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 
-fun Recipe.toRecipeViewState(isEnglish: Boolean): RecipeViewState {
+fun Recipe.toRecipeViewState(isEnglishLocale: Boolean): RecipeViewState {
     return RecipeViewState(
         id = id,
-        title = if (isEnglish) title else titleHi,
-        description = if (isEnglish) description else descriptionHi,
+        title = if (isEnglishLocale) title else titleHi,
+        description = if (isEnglishLocale) description else descriptionHi,
         authorName = authorName,
         imageUrl = imageUrl
     )
