@@ -15,7 +15,9 @@ fun Recipe.toRecipeViewState(isEnglishLocale: Boolean): RecipeViewState {
         cookingTime = cookingTime,
         preparingTime = preparingTime,
         totalTime = totalTime,
-        ingredients = if (isEnglishLocale) ingredients else ingredientsHi
+        ingredients = if (isEnglishLocale) ingredients else ingredientsHi,
+        saved = saved,
+        savedDate = savedDate
     )
 }
 

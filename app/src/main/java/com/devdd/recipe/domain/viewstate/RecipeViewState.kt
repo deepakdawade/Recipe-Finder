@@ -11,12 +11,17 @@ data class RecipeViewState(
     val cookingTime: String = "",
     val preparingTime: String = "",
     val categoryName: String = "",
+    val savedDate: String = "",
+    val saved: Boolean = false
 ) {
     fun getIngredients(): String {
-        val string = StringBuilder()
+        val builder = StringBuilder()
         ingredients.forEach {
-            string.append("\u25CF\t").append(it).append("\n")
+            builder
+                .append("\u25CF\t")
+                .append(it)
+                .append("\n")
         }
-        return string.toString()
+        return builder.toString()
     }
 }

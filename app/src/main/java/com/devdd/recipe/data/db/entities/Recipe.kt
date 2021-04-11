@@ -45,5 +45,12 @@ data class Recipe(
     var ingredients: List<String> = emptyList(),
 
     @ColumnInfo(name = "ingrediants_hi")
-    var ingredientsHi: List<String> = emptyList()
-)
+    var ingredientsHi: List<String> = emptyList(),
+
+    @ColumnInfo(name = "saved_date")
+    var savedDate: String = "",
+
+    @ColumnInfo(name = "saved")
+    var saved: Boolean = false,
+
+    )
