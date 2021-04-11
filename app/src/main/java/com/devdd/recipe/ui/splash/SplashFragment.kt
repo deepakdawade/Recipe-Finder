@@ -21,8 +21,6 @@ class SplashFragment : DevFragment<FragmentSplashBinding>(R.layout.fragment_spla
     private val viewModel by viewModels<SplashViewModel>()
 
     override fun onViewCreated(binding: FragmentSplashBinding, savedInstanceState: Bundle?) {
-        binding.splashFragmentLottieAnimation.setAnimation(R.raw.splash_animation_food)
-        binding.splashFragmentLottieAnimation.playAnimation()
         binding.splashFragmentLottieAnimation.addAnimatorListener(object :
             Animator.AnimatorListener {
             override fun onAnimationRepeat(animation: Animator?) {}

@@ -25,4 +25,5 @@
     <string name="search_recipe_hint">Search recipes</string>
     <string name="search_recipe_result">Search results</string>
     <string name="menu_title_favorite">Favorite</string>
+    <string name="home_loading_recipes_text">Loading recipes</string>
 </resources>

@@ -12,7 +12,7 @@
     <string name="recipe_type_selection_option_veg">शाकाहारी</string>
     <string name="recipe_type_selection_option_both">दोनों</string>
     <string name="recipe_type_selection_option_non_veg">मांसाहारी</string>
-    <string name="search_recipe_toolbar_title">व्यंजनों की खोज करें</string>
+    <string name="search_recipe_toolbar_title">रेसिपीस की खोज करें</string>
     <string name="menu_title_home">होम</string>
     <string name="menu_title_profile">प्रोफ़ाइल</string>
     <string name="profile_option_change_language">भाषा बदलें</string>
@@ -21,4 +21,5 @@
     <string name="search_recipe_hint">रेसिपीस खोजें</string>
     <string name="search_recipe_result">खोज परिणाम</string>
     <string name="menu_title_favorite">पसंदीदा</string>
+    <string name="home_loading_recipes_text">रेसिपीस लोड हो रहा है</string>
 </resources>

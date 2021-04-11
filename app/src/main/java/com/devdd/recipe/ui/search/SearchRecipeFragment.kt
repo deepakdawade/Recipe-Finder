@@ -32,7 +32,7 @@ class SearchRecipeFragment :
     }
 
     private fun setViews() {
-        binding?.homeFragmentLottieNoRecipes?.setAnimation(R.raw.not_found_animation)
+        binding?.homeFragmentLottieNoRecipes?.setAnimation(R.raw.recipe_not_found_animation)
         val searchView =
             binding?.searchRecipeFragmentToolbar?.menu?.getItem(0)?.actionView as? SearchView
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

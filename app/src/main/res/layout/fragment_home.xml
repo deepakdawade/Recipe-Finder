@@ -51,7 +51,7 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/home_fragment_lottie_no_recipes"
-                toggleVisibility="@{homeViewModel.loading || homeViewModel.recipes.empty}"
+                toggleVisibility="@{homeViewModel.recipes.empty}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -59,7 +59,22 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:lottie_autoPlay="true"
-                app:lottie_loop="true" />
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/recipe_not_found_animation" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/home_fragment_loading_recipe_text"
+                toggleVisibility="@{homeViewModel.recipes.empty &amp;&amp; homeViewModel.loading}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/home_loading_recipes_text"
+                android:textAlignment="center"
+                android:textAppearance="?textAppearanceHeadline6"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.05" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

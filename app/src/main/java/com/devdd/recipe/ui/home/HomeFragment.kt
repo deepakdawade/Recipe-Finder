@@ -27,15 +27,10 @@ class HomeFragment : DevFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding?.homeFragmentSwipeToRefresh?.setOnRefreshListener {
             viewModel.fetchRecipes()
         }
-
-        binding?.homeFragmentLottieNoRecipes?.setAnimation(R.raw.recipe_loading_animation)
-
     }
 
     private fun setObserver() {
         viewModel.recipes.observe(viewLifecycleOwner) {
-            if (it.isEmpty() && viewModel.loading.value == false)
-                binding?.homeFragmentLottieNoRecipes?.setAnimation(R.raw.not_found_animation)
             recipeAdapter?.submitList(it)
         }
 

@@ -36,7 +36,7 @@ class RecipesFragment : DevFragment<FragmentRecipesBinding>(R.layout.fragment_re
 
     private fun setView(binding: FragmentRecipesBinding) {
         binding.recipesFragmentToolbar.title = args.categoryName
-        binding.recipesFragmentLottieNoRecipes.setAnimation(R.raw.not_found_animation)
+        binding.recipesFragmentLottieNoRecipes.setAnimation(R.raw.recipe_not_found_animation)
     }
 
     private fun setListeners(binding: FragmentRecipesBinding) {
