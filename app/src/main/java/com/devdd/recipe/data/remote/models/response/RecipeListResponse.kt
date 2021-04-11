@@ -7,7 +7,7 @@ data class RecipeListResponse(
     @Expose
     @SerializedName("recipes")
     var recipes: List<RecipeResponse>? = null,
-    ) {
+) {
     data class RecipeResponse(
 
         @Expose
@@ -52,6 +52,14 @@ data class RecipeListResponse(
 
         @Expose
         @SerializedName("category_name")
-        var categoryName: String? = null
+        var categoryName: String? = null,
+
+        @Expose
+        @SerializedName("ingrediants")
+        var ingredients: List<String>? = null,
+
+        @Expose
+        @SerializedName("ingrediants_hi")
+        var ingredientsHi: List<String>? = null
     )
 }

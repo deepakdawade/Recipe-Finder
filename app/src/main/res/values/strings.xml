@@ -26,4 +26,9 @@
     <string name="search_recipe_result">Search results</string>
     <string name="menu_title_favorite">Favorite</string>
     <string name="home_loading_recipes_text">Loading recipes</string>
+    <string name="recipe_details_ingredients_text">Ingredients</string>
+    <string name="recipe_details_total_time"><![CDATA[Total time <b>%1$s</b>]]></string>
+    <string name="recipe_details_preparation_time"><![CDATA[Preparation time <b>%1$s</b>]]></string>
+    <string name="recipe_details_cooking_time"><![CDATA[Cooking time <b>%1$s</b>]]></string>
+    <string name="recipe_details_description_label">Description</string>
 </resources>

@@ -22,7 +22,9 @@ class RecipeResponseToRecipeEntity @Inject constructor(
             categoryName = categoryName ?: "",
             preparingTime = preparingTime?:"",
             totalTime = totalTime?:"",
-            cookingTime = cookingTime?:""
+            cookingTime = cookingTime?:"",
+            ingredients = ingredients?: emptyList(),
+            ingredientsHi = ingredientsHi?: emptyList(),
         )
     }
 }

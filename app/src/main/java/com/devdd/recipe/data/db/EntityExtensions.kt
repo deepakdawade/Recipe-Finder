@@ -11,7 +11,11 @@ fun Recipe.toRecipeViewState(isEnglishLocale: Boolean): RecipeViewState {
         title = if (isEnglishLocale) title else titleHi,
         description = if (isEnglishLocale) description else descriptionHi,
         authorName = authorName,
-        imageUrl = imageUrl
+        imageUrl = imageUrl,
+        cookingTime = cookingTime,
+        preparingTime = preparingTime,
+        totalTime = totalTime,
+        ingredients = if (isEnglishLocale) ingredients else ingredientsHi
     )
 }
 

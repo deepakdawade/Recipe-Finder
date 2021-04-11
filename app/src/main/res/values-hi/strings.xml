@@ -22,4 +22,9 @@
     <string name="search_recipe_result">खोज परिणाम</string>
     <string name="menu_title_favorite">पसंदीदा</string>
     <string name="home_loading_recipes_text">रेसिपीस लोड हो रहा है</string>
+    <string name="recipe_details_ingredients_text">सामग्री</string>
+    <string name="recipe_details_total_time"><![CDATA[कुल समय <b>%1$s</b>]]></string>
+    <string name="recipe_details_preparation_time"><![CDATA[तैयारी का समय <b>%1$s</b>]]></string>
+    <string name="recipe_details_cooking_time"><![CDATA[पकाने का समय <b>%1$s</b>]]></string>
+    <string name="recipe_details_description_label">विवरण</string>
 </resources>
