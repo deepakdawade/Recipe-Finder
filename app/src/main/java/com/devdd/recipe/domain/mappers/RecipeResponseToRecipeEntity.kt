@@ -20,11 +20,12 @@ class RecipeResponseToRecipeEntity @Inject constructor(
             id = id ?: 0,
             imageUrl = imageUrl ?: "",
             categoryName = categoryName ?: "",
-            preparingTime = preparingTime?:"",
-            totalTime = totalTime?:"",
-            cookingTime = cookingTime?:"",
-            ingredients = ingredients?: emptyList(),
-            ingredientsHi = ingredientsHi?: emptyList(),
+            preparingTime = preparingTime ?: "",
+            totalTime = totalTime ?: "",
+            cookingTime = cookingTime ?: "",
+            ingredients = ingredients ?: emptyList(),
+            ingredientsHi = ingredientsHi ?: emptyList(),
+            saved = saved ?: false
         )
     }
 }

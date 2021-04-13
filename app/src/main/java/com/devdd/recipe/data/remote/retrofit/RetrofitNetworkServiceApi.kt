@@ -1,6 +1,7 @@
 package com.devdd.recipe.data.remote.retrofit
 
 import com.devdd.recipe.data.remote.models.ServerResponse
+import com.devdd.recipe.data.remote.models.request.FetchRecipeRequest
 import com.devdd.recipe.data.remote.models.request.RecipesByCategoryRequest
 import com.devdd.recipe.data.remote.models.response.CategoryListResponse
 import com.devdd.recipe.data.remote.models.response.GuestResponse
@@ -17,7 +18,7 @@ interface RetrofitNetworkServiceApi {
     suspend fun guests(): ServerResponse<GuestResponse>
 
     @GET(EndPoints.RECIPES)
-    suspend fun recipes(): ServerResponse<RecipeListResponse>
+    suspend fun recipes(@Body fetchRecipeRequest: FetchRecipeRequest): ServerResponse<RecipeListResponse>
 
     @GET(EndPoints.CATEGORIES)
     suspend fun categories(): ServerResponse<CategoryListResponse>

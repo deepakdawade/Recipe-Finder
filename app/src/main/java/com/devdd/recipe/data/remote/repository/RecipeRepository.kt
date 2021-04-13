@@ -7,6 +7,7 @@ import com.devdd.recipe.data.db.entities.Recipe
 import com.devdd.recipe.data.prefs.manager.GuestManager
 import com.devdd.recipe.data.prefs.manager.RecipeManager.Companion.BOTH
 import com.devdd.recipe.data.remote.datasource.RecipeDataSource
+import com.devdd.recipe.data.remote.models.request.FetchRecipeRequest
 import com.devdd.recipe.data.remote.models.request.RecipesByCategoryRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -40,7 +41,7 @@ class RecipeRepositoryImpl @Inject constructor(
 ) : RecipeRepository {
 
     override suspend fun getGuestToken() {
-        if (!guestManager.hasGuestToken()){
+        if (!guestManager.hasGuestToken()) {
             val guestResponse = dataSource.fetchGuestToken()
             val guestToken = guestResponse.guestToken ?: ""
             guestManager.updateGuestToken(guestToken)
@@ -48,7 +49,9 @@ class RecipeRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getRecipes() {
-        val recipes = dataSource.fetchRecipes()
+        if (!guestManager.hasGuestToken()) return
+        val fetchRecipeRequest = FetchRecipeRequest(guestManager.guestToken())
+        val recipes = dataSource.fetchRecipes(fetchRecipeRequest)
         val localRecipes = recipeDao.allRecipes().first()
         val insertIntoDB = recipes.isNotEmpty() && recipes != localRecipes
         if (insertIntoDB) {

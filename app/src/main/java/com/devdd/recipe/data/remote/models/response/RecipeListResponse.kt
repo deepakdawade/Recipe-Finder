@@ -60,6 +60,10 @@ data class RecipeListResponse(
 
         @Expose
         @SerializedName("ingrediants_hi")
-        var ingredientsHi: List<String>? = null
+        var ingredientsHi: List<String>? = null,
+
+        @Expose
+        @SerializedName("saved")
+        var saved: Boolean? = null
     )
 }
