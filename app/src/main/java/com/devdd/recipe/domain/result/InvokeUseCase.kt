@@ -15,7 +15,7 @@ abstract class InvokeUseCase<in P> {
                 emit(InvokeSuccess(Unit))
             }
         }.catch { error ->
-            Timber.d("Error thrown by interactor ${error}")
+            Timber.d("Error thrown by InvokeUseCase $error")
             emit(InvokeError(error))
         }
     }
@@ -24,7 +24,7 @@ abstract class InvokeUseCase<in P> {
         doWork(params)
         InvokeSuccess(Unit)
     } catch (e: Exception) {
-        Timber.d("Error thrown by interactor ${e}")
+        Timber.d("Error thrown by interactor $e")
         InvokeError(e)
     }
 
@@ -45,7 +45,7 @@ abstract class InvokeResultUseCase<in P, R> {
             }
 
         }.catch { error ->
-            Timber.d("Error thrown by interactor ${error.message}")
+            Timber.d("Error thrown by InvokeResultUseCase ${error.message}")
             emit(InvokeError(error))
         }
     }
@@ -65,7 +65,7 @@ abstract class ResultUseCase<in P, R> {
         return flow {
             emit(doWork(params))
         }.catch { error ->
-            Timber.d("Error thrown by interactor ${error}")
+            Timber.d("Error thrown by ResultUseCase $error")
         }
     }
 
@@ -86,7 +86,7 @@ abstract class SuspendingWorkUseCase<P : Any, T> : SubjectUseCase<P, T>() {
     override fun createObservable(params: P): Flow<T> = flow {
         emit(doWork(params))
     }.catch { error ->
-        Timber.d("Error thrown by interactor ${error}")
+        Timber.d("Error thrown by SuspendingWorkUseCase $error")
     }
 
     abstract suspend fun doWork(params: P): T
@@ -103,7 +103,7 @@ abstract class SubjectUseCase<P : Any, T> {
 
     fun observe(): Flow<T> = paramState.filterNotNull().flatMapLatest { createObservable(it) }
             .catch { error ->
-                Timber.d("Error thrown by interactor ${error}")
+                Timber.d("Error thrown by SubjectUseCase $error")
             }
 }
 
