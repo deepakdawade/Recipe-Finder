@@ -8,6 +8,7 @@ import androidx.navigation.NavDirections
 import com.devdd.recipe.data.prefs.manager.LocaleManager
 import com.devdd.recipe.data.prefs.manager.RecipeManager
 import com.devdd.recipe.domain.executers.FetchAllRecipes
+import com.devdd.recipe.domain.executers.FetchGuestToken
 import com.devdd.recipe.domain.observers.ObserveRecipeByPref
 import com.devdd.recipe.domain.result.Event
 import com.devdd.recipe.domain.result.InvokeStarted
@@ -16,11 +17,13 @@ import com.devdd.recipe.utils.extensions.toJsonString
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combineTransform
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
+    private val fetchGuestToken: FetchGuestToken,
     private val fetchAllRecipes: FetchAllRecipes,
     private val observeRecipeByPref: ObserveRecipeByPref,
     private val localeManager: LocaleManager,
@@ -41,9 +44,16 @@ class HomeViewModel @Inject constructor(
         get() = mNavigation
 
     init {
+        fetchGuestToken()
         fetchRecipes()
         createObservers()
         observeRecipes()
+    }
+
+    private fun fetchGuestToken() {
+        viewModelScope.launch {
+            fetchGuestToken.invoke(Unit).first()
+        }
     }
 
     private fun observeRecipes() {

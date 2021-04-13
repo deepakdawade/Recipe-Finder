@@ -3,6 +3,7 @@ package com.devdd.recipe.data.remote.datasource
 import com.devdd.recipe.data.db.entities.Category
 import com.devdd.recipe.data.db.entities.Recipe
 import com.devdd.recipe.data.remote.models.request.RecipesByCategoryRequest
+import com.devdd.recipe.data.remote.models.response.GuestResponse
 import com.devdd.recipe.data.remote.retrofit.RetrofitNetworkServiceApi
 import com.devdd.recipe.domain.mappers.CategoryResponseToCategoryEntity
 import com.devdd.recipe.domain.mappers.RecipeResponseToRecipeEntity
@@ -11,6 +12,9 @@ import javax.inject.Inject
 
 
 interface RecipeDataSource {
+
+    suspend fun fetchGuestToken(): GuestResponse
+
     suspend fun fetchRecipes(): List<Recipe>
 
     suspend fun fetchCategories(): List<Category>
@@ -23,6 +27,12 @@ class RecipeDataSourceImpl @Inject constructor(
     private val recipeResponseToRecipeEntity: RecipeResponseToRecipeEntity,
     private val categoryResponseToCategoryEntity: CategoryResponseToCategoryEntity
 ) : RecipeDataSource {
+
+    override suspend fun fetchGuestToken(): GuestResponse {
+        val response = networkServiceApi.guests()
+        return response.dataOrThrowException()
+    }
+
     override suspend fun fetchRecipes(): List<Recipe> {
         val response = networkServiceApi.recipes()
         val fetchedRecipes = response.dataOrThrowException()

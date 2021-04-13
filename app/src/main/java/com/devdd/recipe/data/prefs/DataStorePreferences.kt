@@ -14,6 +14,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 interface DataStorePreference {
+
+    suspend fun setGuestToken(token: String)
+    val guestToken: Flow<String>
+
     suspend fun setRecipePreference(pref: String)
     val recipePreference: Flow<String>
 
@@ -36,6 +40,14 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
     /**
      * override preferences
      * */
+
+    override suspend fun setGuestToken(token: String) {
+        dataStore.setValue(PreferencesKeys.PREF_KEY_GUEST_TOKEN, token)
+    }
+
+    override val guestToken: Flow<String>
+        get() = dataStore.getValueAsFlow(PreferencesKeys.PREF_KEY_GUEST_TOKEN,"")
+
 
     override suspend fun setRecipePreference(pref: String) {
         dataStore.setValue(PreferencesKeys.PREF_KEY_SELECTED_RECIPE_PREF, pref)
@@ -60,10 +72,12 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
     private object PreferencesKeys {
 
         object PreferencesName {
+            const val GUEST_TOKEN = "guest_token"
             const val SELECTED_RECIPE = "selected_recipe_pref"
             const val SELECTED_LANGUAGE = "selected_language"
         }
 
+        val PREF_KEY_GUEST_TOKEN = stringPreferencesKey(PreferencesName.GUEST_TOKEN)
         val PREF_KEY_SELECTED_RECIPE_PREF = stringPreferencesKey(PreferencesName.SELECTED_RECIPE)
         val PREF_KEY_SELECTED_LANGUAGE = stringPreferencesKey(PreferencesName.SELECTED_LANGUAGE)
     }

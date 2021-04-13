@@ -4,6 +4,7 @@ import com.devdd.recipe.data.db.dao.CategoryDao
 import com.devdd.recipe.data.db.dao.RecipeDao
 import com.devdd.recipe.data.db.entities.Category
 import com.devdd.recipe.data.db.entities.Recipe
+import com.devdd.recipe.data.prefs.manager.GuestManager
 import com.devdd.recipe.data.prefs.manager.RecipeManager.Companion.BOTH
 import com.devdd.recipe.data.remote.datasource.RecipeDataSource
 import com.devdd.recipe.data.remote.models.request.RecipesByCategoryRequest
@@ -12,6 +13,9 @@ import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 interface RecipeRepository {
+
+    suspend fun getGuestToken()
+
     suspend fun getRecipes()
 
     fun observeRecipes(): Flow<List<Recipe>>
@@ -31,8 +35,17 @@ interface RecipeRepository {
 class RecipeRepositoryImpl @Inject constructor(
     private val dataSource: RecipeDataSource,
     private val recipeDao: RecipeDao,
-    private val categoryDao: CategoryDao
+    private val categoryDao: CategoryDao,
+    private val guestManager: GuestManager
 ) : RecipeRepository {
+
+    override suspend fun getGuestToken() {
+        if (!guestManager.hasGuestToken()){
+            val guestResponse = dataSource.fetchGuestToken()
+            val guestToken = guestResponse.guestToken ?: ""
+            guestManager.updateGuestToken(guestToken)
+        }
+    }
 
     override suspend fun getRecipes() {
         val recipes = dataSource.fetchRecipes()
