@@ -5,6 +5,7 @@ import androidx.core.view.isVisible
 import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentDashboardBinding
+import com.devdd.recipe.utils.extensions.hideToolTip
 import com.devdd.recipe.utils.handlemultibackstack.NavAnimations
 import com.devdd.recipe.utils.handlemultibackstack.setupMultipleBackStackBottomNavigation
 import dagger.hilt.android.AndroidEntryPoint
@@ -12,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DashboardFragment : DevFragment<FragmentDashboardBinding>(R.layout.fragment_dashboard) {
     override fun onViewCreated(binding: FragmentDashboardBinding, savedInstanceState: Bundle?) {
-
+        binding.dashboardFragmentBottomNavigation.hideToolTip()
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {

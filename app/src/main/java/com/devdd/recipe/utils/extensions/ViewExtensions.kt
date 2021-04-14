@@ -22,6 +22,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.graphics.component1
 import androidx.core.graphics.component2
 import androidx.core.view.doOnLayout
+import androidx.core.view.forEach
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.airbnb.lottie.LottieDrawable
@@ -216,6 +217,19 @@ fun MaterialToolbar.animateLottieMenuItem(url: String, itemId: Int, repeatable: 
             addAnimatorUpdateListener { view?.invalidate() }
             menuItem?.icon = this
             playAnimation()
+        }
+    }
+}
+
+fun BottomNavigationView.hideToolTip() {
+    val content: View = getChildAt(0)
+    if (content is ViewGroup) {
+        content.forEach {
+            it.setOnLongClickListener {
+                return@setOnLongClickListener true
+            }
+            // disable vibration also
+            it.isHapticFeedbackEnabled = false
         }
     }
 }
