@@ -27,4 +27,5 @@
     <string name="recipe_details_preparation_time"><![CDATA[तैयारी का समय <b>%1$s</b>]]></string>
     <string name="recipe_details_cooking_time"><![CDATA[पकाने का समय <b>%1$s</b>]]></string>
     <string name="recipe_details_description_label">विवरण</string>
+    <string name="profile_option_dev_options">Dev options</string>
 </resources>

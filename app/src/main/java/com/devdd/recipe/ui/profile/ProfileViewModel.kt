@@ -28,4 +28,9 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
         mNavigation.value = Event(Pair(direction, false))
     }
 
+    fun navigateToDeveloperOption() {
+        val direction = ProfileFragmentDirections.actionToDeveloperOptionFragment()
+        mNavigation.value = Event(Pair(direction, false))
+    }
+
 }

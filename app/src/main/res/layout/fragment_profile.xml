@@ -60,5 +60,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/profile_fragment_action_change_language_pref" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/profile_fragment_action_dev_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:onClick="@{()->viewModel.navigateToDeveloperOption()}"
+            android:padding="16dp"
+            android:text="@string/profile_option_dev_options"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="?textAppearanceButton"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_fragment_action_change_recipe_pref" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

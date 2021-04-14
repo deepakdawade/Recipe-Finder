@@ -32,4 +32,5 @@
     <string name="recipe_details_cooking_time"><![CDATA[Cooking time <b>%1$s</b>]]></string>
     <string name="recipe_details_description_label">Description</string>
     <string name="dev_option_preference" translatable="false">Data store</string>
+    <string name="profile_option_dev_options">Dev options</string>
 </resources>
