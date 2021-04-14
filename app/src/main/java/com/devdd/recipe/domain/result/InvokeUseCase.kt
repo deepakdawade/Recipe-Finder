@@ -102,9 +102,24 @@ abstract class SubjectUseCase<P : Any, T> {
     protected abstract fun createObservable(params: P): Flow<T>
 
     fun observe(): Flow<T> = paramState.filterNotNull().flatMapLatest { createObservable(it) }
-            .catch { error ->
-                Timber.d("Error thrown by SubjectUseCase $error")
-            }
+        .catch { error ->
+            Timber.d("Error thrown by SubjectUseCase $error")
+        }
+}
+
+abstract class SuspendSubjectUseCase<P : Any, T> {
+    private val paramState = MutableStateFlow<P?>(null)
+
+    operator fun invoke(params: P) {
+        paramState.value = params
+    }
+
+    protected abstract suspend fun createObservable(params: P): Flow<T>
+
+    fun observe(): Flow<T> = paramState.filterNotNull().flatMapLatest { createObservable(it) }
+        .catch { error ->
+            Timber.d("Error thrown by SubjectUseCase $error")
+        }
 }
 
 operator fun InvokeUseCase<Unit>.invoke() = invoke(Unit)
