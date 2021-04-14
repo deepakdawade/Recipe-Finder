@@ -8,6 +8,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.ConnectionPool
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.LoggingEventListener
@@ -53,7 +54,7 @@ object NetworkModule {
                     eventListenerFactory(loggingEventListener)
                 }
             }
-//            .connectionPool(ConnectionPool(10, 2, TimeUnit.MINUTES))
+            .connectionPool(ConnectionPool(10, 2, TimeUnit.MINUTES))
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .build()
