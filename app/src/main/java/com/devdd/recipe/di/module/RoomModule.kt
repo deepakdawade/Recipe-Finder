@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import com.devdd.recipe.constants.DB_NAME
 import com.devdd.recipe.data.db.RecipeDatabase
-import com.devdd.recipe.data.db.dao.CategoryDao
 import com.devdd.recipe.data.db.dao.RecipeDao
 import dagger.Module
 import dagger.Provides
@@ -19,11 +18,6 @@ object RoomModule {
     @Singleton
     @Provides
     fun provideRecipeDao(database: RecipeDatabase): RecipeDao = database.recipeDao()
-
-    @Singleton
-    @Provides
-    fun provideCategoryDao(database: RecipeDatabase): CategoryDao = database.categoryDao()
-
     @Provides
     @Singleton
     fun provideRecipeDatabase(@ApplicationContext appContext: Context): RecipeDatabase {

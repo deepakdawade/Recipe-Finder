@@ -12,13 +12,6 @@
         <action
             android:id="@+id/action_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment" />
-        <action
-            android:id="@+id/action_to_recipesFragment"
-            app:destination="@id/recipesFragment" />
-
-        <action
-            android:id="@+id/action_to_preferenceSettingFragment"
-            app:destination="@id/preferenceSettingFragment" />
     </fragment>
 
     <fragment
@@ -29,22 +22,6 @@
         <argument
             android:name="recipe"
             app:argType="string" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/recipesFragment"
-        android:name="com.devdd.recipe.ui.categoryrecipe.RecipesFragment"
-        android:label="RecipesFragment"
-        tools:layout="@layout/fragment_recipes">
-        <argument
-            android:name="categoryId"
-            app:argType="integer" />
-        <argument
-            android:name="categoryName"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_to_recipeDetailFragment"
-            app:destination="@id/recipeDetailFragment" />
     </fragment>
 
 </navigation>
