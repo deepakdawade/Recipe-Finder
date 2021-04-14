@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
-import com.devdd.recipe.domain.executers.FetchAllRecipes
-import com.devdd.recipe.domain.executers.FetchGuestToken
+import com.devdd.recipe.data.prefs.manager.GuestManager
+import com.devdd.recipe.data.prefs.manager.LocaleManager
+import com.devdd.recipe.data.prefs.manager.RecipeManager
+import com.devdd.recipe.domain.executers.FetchRecipes
 import com.devdd.recipe.domain.observers.ObserveRecipeByPref
 import com.devdd.recipe.domain.result.Event
 import com.devdd.recipe.domain.result.InvokeStarted
@@ -14,15 +16,17 @@ import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.utils.extensions.toJsonString
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.combineTransform
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val fetchGuestToken: FetchGuestToken,
-    private val fetchAllRecipes: FetchAllRecipes,
-    private val observeRecipeByPref: ObserveRecipeByPref
+    private val fetchRecipes: FetchRecipes,
+    private val observeRecipeByPref: ObserveRecipeByPref,
+    private val guestManager: GuestManager,
+    private val recipeManager: RecipeManager,
+    private val localeManager: LocaleManager
 ) : ViewModel() {
 
     private val mAllRecipes = mutableListOf<RecipeViewState>()
@@ -39,21 +43,14 @@ class HomeViewModel @Inject constructor(
         get() = mNavigation
 
     init {
-        fetchGuestToken()
         fetchRecipes()
         createObservers()
         observeRecipes()
     }
 
-    private fun fetchGuestToken() {
-        viewModelScope.launch {
-            fetchGuestToken.invoke(Unit).collect()
-        }
-    }
-
     fun fetchRecipes() {
         viewModelScope.launch {
-            fetchAllRecipes(Unit).collect {
+            fetchRecipes(guestManager.guestToken()).collect {
                 if (it is InvokeStarted)
                     mLoading.postValue(true)
                 else mLoading.postValue(false)
@@ -62,7 +59,13 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun createObservers() {
-        observeRecipeByPref.invoke(Unit)
+        viewModelScope.launch {
+            localeManager.selectedLanguage.combineTransform(recipeManager.recipePreference) { lang: String, pref: String ->
+                emit(ObserveRecipeByPref.Params(lang == LocaleManager.LOCALE_ENGLISH, pref))
+            }.collect {
+                observeRecipeByPref(it)
+            }
+        }
     }
 
     private fun observeRecipes() {

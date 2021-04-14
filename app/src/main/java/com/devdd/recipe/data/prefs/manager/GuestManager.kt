@@ -24,7 +24,7 @@ class GuestManager @Inject constructor(
 
     suspend fun guestToken(): String = guestToken.first()
 
-    suspend fun hasGuestToken(): Boolean {
+    suspend fun guestTokenGenerated(): Boolean {
         val token = guestToken.first()
         return token.isNotEmpty()
     }

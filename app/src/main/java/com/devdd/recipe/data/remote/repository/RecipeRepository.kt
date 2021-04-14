@@ -4,26 +4,22 @@ import com.devdd.recipe.data.db.dao.CategoryDao
 import com.devdd.recipe.data.db.dao.RecipeDao
 import com.devdd.recipe.data.db.entities.Category
 import com.devdd.recipe.data.db.entities.Recipe
-import com.devdd.recipe.data.db.toRecipeViewState
-import com.devdd.recipe.data.prefs.manager.GuestManager
-import com.devdd.recipe.data.prefs.manager.LocaleManager
-import com.devdd.recipe.data.prefs.manager.RecipeManager
 import com.devdd.recipe.data.prefs.manager.RecipeManager.Companion.BOTH
 import com.devdd.recipe.data.remote.datasource.RecipeDataSource
 import com.devdd.recipe.data.remote.models.request.RecipesByCategoryRequest
-import com.devdd.recipe.domain.viewstate.RecipeViewState
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 interface RecipeRepository {
 
-    suspend fun getGuestToken()
+    suspend fun getGuestToken(): String
 
-    suspend fun getRecipes()
+    suspend fun getRecipes(guestToken: String)
 
     fun observeRecipes(): Flow<List<Recipe>>
 
-    suspend fun observeRecipesByPref(): Flow<List<RecipeViewState>>
+    fun observeRecipesByPref(pref:String): Flow<List<Recipe>>
 
     suspend fun getCategories()
 
@@ -38,23 +34,16 @@ interface RecipeRepository {
 class RecipeRepositoryImpl @Inject constructor(
     private val dataSource: RecipeDataSource,
     private val recipeDao: RecipeDao,
-    private val categoryDao: CategoryDao,
-    private val guestManager: GuestManager,
-    private val localeManager: LocaleManager,
-    private val recipeManager: RecipeManager
+    private val categoryDao: CategoryDao
 ) : RecipeRepository {
 
-    override suspend fun getGuestToken() {
-        if (!guestManager.hasGuestToken()) {
-            val guestResponse = dataSource.fetchGuestToken()
-            val guestToken = guestResponse.guestToken ?: ""
-            guestManager.updateGuestToken(guestToken)
-        }
+    override suspend fun getGuestToken(): String {
+        val guestResponse = dataSource.fetchGuestToken()
+        return guestResponse.guestToken ?: ""
     }
 
-    override suspend fun getRecipes() {
-        if (!guestManager.hasGuestToken()) return
-        val recipes = dataSource.fetchRecipes(guestManager.guestToken())
+    override suspend fun getRecipes(guestToken: String) {
+        val recipes = dataSource.fetchRecipes(guestToken)
         val localRecipes = recipeDao.allRecipes().first()
         val insertIntoDB = recipes.isNotEmpty() && recipes != localRecipes
         if (insertIntoDB) {
@@ -68,20 +57,10 @@ class RecipeRepositoryImpl @Inject constructor(
         return recipeDao.allRecipes()
     }
 
-    override suspend fun observeRecipesByPref(): Flow<List<RecipeViewState>> {
-        return localeManager.selectedLanguage.combineTransform(recipeManager.recipePreference) { lang: String, pref: String ->
-            emit(Pair(lang == LocaleManager.LOCALE_ENGLISH, pref))
-        }.flatMapLatest { pair ->
-            val flow = if (pair.second == BOTH)
-                recipeDao.allRecipes()
-            else recipeDao.recipesByPref(pair.second)
-            val viewState = flow.map { recipes ->
-                recipes.map { recipe ->
-                    recipe.toRecipeViewState(pair.first)
-                }
-            }
-            viewState
-        }
+    override fun observeRecipesByPref(recipePref: String): Flow<List<Recipe>> {
+        return if (recipePref == BOTH)
+            recipeDao.allRecipes()
+        else recipeDao.recipesByPref(recipePref)
     }
 
     override suspend fun getCategories() {
