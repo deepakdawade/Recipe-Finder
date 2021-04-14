@@ -1,9 +1,9 @@
-package com.devdd.recipe.ui.profile.developeroption
+package com.devdd.recipe.ui.profile.devoption
 
 import android.os.Bundle
 import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
-import com.devdd.recipe.databinding.FragmentDeveloperOptionBinding
+import com.devdd.recipe.databinding.FragmentDevOptionBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -13,10 +13,10 @@ import dagger.hilt.android.AndroidEntryPoint
  *
  */
 @AndroidEntryPoint
-class DeveloperOptionFragment :
-    DevFragment<FragmentDeveloperOptionBinding>(R.layout.fragment_developer_option) {
+class DevOptionFragment :
+    DevFragment<FragmentDevOptionBinding>(R.layout.fragment_dev_option) {
     override fun onViewCreated(
-        binding: FragmentDeveloperOptionBinding,
+        binding: FragmentDevOptionBinding,
         savedInstanceState: Bundle?
     ) {
 
