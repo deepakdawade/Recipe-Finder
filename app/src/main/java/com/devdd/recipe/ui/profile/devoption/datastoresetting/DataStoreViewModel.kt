@@ -3,6 +3,8 @@ package com.devdd.recipe.ui.profile.devoption.datastoresetting
 import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.*
 import com.devdd.recipe.data.prefs.DataStorePreference
+import com.devdd.recipe.utils.extensions.isBoolean
+import com.devdd.recipe.utils.extensions.isInt
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -24,7 +26,7 @@ class DataStoreViewModel @Inject constructor(
         }
     }
 
-    val selectedValue: MutableLiveData<Any> = MutableLiveData<Any>()
+    val selectedValue: MutableLiveData<String> = MutableLiveData<String>()
     private val selectedKey = MutableLiveData<Preferences.Key<*>>()
 
     fun getKeyAtPosition(position: Int): Preferences.Key<*>? {
@@ -56,8 +58,14 @@ class DataStoreViewModel @Inject constructor(
 
     fun putKey() {
         val key = selectedKey.value ?: return
-        val value = getValueAtKey(key) ?: return
+        val any = selectedValue.value ?: return
         viewModelScope.launch {
+            val value = when {
+                any.isInt() -> any.toInt()
+                any.isBoolean() -> any.toBoolean()
+                any.isNotBlank() -> any
+                else -> return@launch
+            }
             storePreference.setValue(key, value)
         }
     }

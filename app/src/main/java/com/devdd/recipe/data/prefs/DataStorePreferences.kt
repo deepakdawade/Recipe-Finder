@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import timber.log.Timber
 import java.util.UUID.randomUUID
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -71,7 +72,11 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
         get() = dataStore.data
 
     override suspend fun <T> setValue(key: Preferences.Key<T>, value: Any) {
-        dataStore.setValue(key, value as T)
+        try {
+            dataStore.setValue(key, value as T)
+        } catch (ex: ClassCastException) {
+            Timber.e(ex)
+        }
     }
 
     override fun <T> getValue(key: Preferences.Key<T>, default: T): Flow<T> {
@@ -92,7 +97,7 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
                 context.contentResolver,
                 Settings.Secure.ANDROID_ID
             ) ?: randomUUID().toString()
-            setValue(PREF_KEY_DEVICE_ID, guid)
+            dataStore.setValue(PREF_KEY_DEVICE_ID, guid)
             shouldUploadDeviceIdToServer(true)
         }
     }
