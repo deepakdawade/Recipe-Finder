@@ -15,11 +15,11 @@ import javax.inject.Singleton
 
 interface DataStorePreference {
 
-    suspend fun <T>setValue(key:Preferences.Key<T>,value:Any)
+    suspend fun <T> setValue(key: Preferences.Key<T>, value: Any)
 
-    fun <T>getValue(key:Preferences.Key<T>,default:T):Flow<T>
+    fun <T> getValue(key: Preferences.Key<T>, default: T): Flow<T>
 
-    suspend fun <T>remove(key:Preferences.Key<T>)
+    suspend fun <T> remove(key: Preferences.Key<T>)
 
     suspend fun setGuestToken(token: String)
     val guestToken: Flow<String>
@@ -54,12 +54,12 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
         dataStore.setValue(PREF_KEY_GUEST_TOKEN, token)
     }
 
-    override suspend fun <T>setValue(key: Preferences.Key<T>, value: Any) {
-        dataStore.setValue(key,value as T)
+    override suspend fun <T> setValue(key: Preferences.Key<T>, value: Any) {
+        dataStore.setValue(key, value as T)
     }
 
-    override fun <T>getValue(key: Preferences.Key<T>, default: T):Flow<T> {
-        return dataStore.getValueAsFlow(key,default)
+    override fun <T> getValue(key: Preferences.Key<T>, default: T): Flow<T> {
+        return dataStore.getValueAsFlow(key, default)
     }
 
     override suspend fun <T> remove(key: Preferences.Key<T>) {
