@@ -15,8 +15,8 @@ class DataStoreViewModel @Inject constructor(
 
     private val data: MutableLiveData<Map<Preferences.Key<*>, Any>> = MutableLiveData()
     private val prefKeys: LiveData<Set<Preferences.Key<*>>> = data.map {
-            it.keys
-        }
+        it.keys
+    }
 
     val prefNames: LiveData<List<String>> = prefKeys.map {
         it.map { key ->
@@ -27,17 +27,19 @@ class DataStoreViewModel @Inject constructor(
     val selectedValue: MutableLiveData<Any> = MutableLiveData<Any>()
     private val selectedKey = MutableLiveData<Preferences.Key<*>>()
 
-    fun setValueAtPosition(position: Int) {
+    fun getKeyAtPosition(position: Int): Preferences.Key<*>? {
         val set: Set<Preferences.Key<*>>? = prefKeys.value
         val key = set?.elementAt(position)
-        key?.let { setValueAtKey(it) }
+        key?.let { getValueAtKey(it) }
+        return key
     }
 
-    private fun setValueAtKey(key: Preferences.Key<*>) {
+    private fun getValueAtKey(key: Preferences.Key<*>): Any? {
         val data = data.value
         val value: Any? = data?.get(key)
         selectedKey.value = key
-        selectedValue.value = value ?: Any()
+        selectedValue.value = value.toString()
+        return value
     }
 
     init {
@@ -54,7 +56,7 @@ class DataStoreViewModel @Inject constructor(
 
     fun putKey() {
         val key = selectedKey.value ?: return
-        val value = selectedValue.value ?: return
+        val value = getValueAtKey(key) ?: return
         viewModelScope.launch {
             storePreference.setValue(key, value)
         }

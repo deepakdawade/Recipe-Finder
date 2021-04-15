@@ -56,7 +56,7 @@ class DataStoreSettingFragment :
                     position: Int,
                     id: Long
                 ) {
-                    viewModel.setValueAtPosition(position)
+                    viewModel.getKeyAtPosition(position)
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {

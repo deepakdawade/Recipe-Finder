@@ -34,7 +34,7 @@ interface DataStorePreference {
     fun generateDeviceId()
     val deviceId: Flow<String>
 
-    suspend fun shouldUploadDeviceIdToServer(shouldAsk: Boolean)
+    suspend fun shouldUploadDeviceIdToServer(shouldUpload: Boolean)
     val shouldUploadDeviceIdToServer: Flow<Boolean>
 
     suspend fun setGuestToken(token: String)
@@ -101,11 +101,11 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
         get() = dataStore.getValueAsFlow(PREF_KEY_DEVICE_ID, "")
 
     override suspend fun shouldUploadDeviceIdToServer(shouldUpload: Boolean) {
-        dataStore.setValue(PREF_KEY_UPLOAD_DEVICE_ID, shouldUpload)
+        dataStore.setValue(PREF_KEY_SHOULD_UPLOAD_DEVICE_ID, shouldUpload)
     }
 
     override val shouldUploadDeviceIdToServer: Flow<Boolean>
-        get() = dataStore.getValueAsFlow(PREF_KEY_UPLOAD_DEVICE_ID, true)
+        get() = dataStore.getValueAsFlow(PREF_KEY_SHOULD_UPLOAD_DEVICE_ID, true)
 
     override suspend fun setGuestToken(token: String) {
         dataStore.setValue(PREF_KEY_GUEST_TOKEN, token)
@@ -141,7 +141,7 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
             const val SELECTED_RECIPE = "selected_recipe_pref"
             const val SELECTED_LANGUAGE = "selected_language"
             const val DEVICE_ID = "device_id"
-            const val UPLOAD_DEVICE_ID = "upload_device_id"
+            const val SHOULD_UPLOAD_DEVICE_ID = "should_upload_device_id"
         }
 
         val PREF_KEY_GUEST_TOKEN: Preferences.Key<String> =
@@ -156,8 +156,8 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
         val PREF_KEY_DEVICE_ID: Preferences.Key<String> =
             stringPreferencesKey(PreferencesName.DEVICE_ID)
 
-        val PREF_KEY_UPLOAD_DEVICE_ID: Preferences.Key<Boolean> =
-            booleanPreferencesKey(PreferencesName.UPLOAD_DEVICE_ID)
+        val PREF_KEY_SHOULD_UPLOAD_DEVICE_ID: Preferences.Key<Boolean> =
+            booleanPreferencesKey(PreferencesName.SHOULD_UPLOAD_DEVICE_ID)
 
 
     }
