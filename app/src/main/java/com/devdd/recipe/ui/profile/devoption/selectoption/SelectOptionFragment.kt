@@ -2,10 +2,13 @@ package com.devdd.recipe.ui.profile.devoption.selectoption
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentSelectOptionBinding
 import com.devdd.recipe.ui.profile.devoption.selectoption.adapter.SelectOptionAdapter
+import com.devdd.recipe.utils.extensions.navigateOnce
+import com.devdd.recipe.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -29,16 +32,21 @@ class SelectOptionFragment :
     }
 
     private fun setRecyclerViewAdapter(binding: FragmentSelectOptionBinding) {
-        adapter = SelectOptionAdapter { directions ->
-            directions?.let { it1 -> viewModel.navigateToOption(it1) }
 
+        adapter = SelectOptionAdapter { directions ->
+            viewModel.navigateToOption(directions)
         }
+
         binding.selectOptionFragmentRecyclerView.adapter = adapter
     }
 
     private fun setObservers() {
         viewModel.options.observe(viewLifecycleOwner) {
             adapter?.submitList(it)
+        }
+
+        viewModel.navigation.observeEvent(viewLifecycleOwner) {
+            findNavController().navigateOnce(it)
         }
     }
 

@@ -15,6 +15,12 @@ import javax.inject.Singleton
 
 interface DataStorePreference {
 
+    suspend fun <T>setValue(key:Preferences.Key<T>,value:Any)
+
+    fun <T>getValue(key:Preferences.Key<T>,default:T):Flow<T>
+
+    suspend fun <T>remove(key:Preferences.Key<T>)
+
     suspend fun setGuestToken(token: String)
     val guestToken: Flow<String>
 
@@ -23,6 +29,8 @@ interface DataStorePreference {
 
     suspend fun setSelectedLocale(language: String)
     val selectedLanguage: Flow<String>
+
+    val preferences: Flow<Preferences>
 
     /***
      * clears all the stored data
@@ -41,27 +49,45 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
      * override preferences
      * */
 
+
     override suspend fun setGuestToken(token: String) {
-        dataStore.setValue(PreferencesKeys.PREF_KEY_GUEST_TOKEN, token)
+        dataStore.setValue(PREF_KEY_GUEST_TOKEN, token)
     }
 
+    override suspend fun <T>setValue(key: Preferences.Key<T>, value: Any) {
+        dataStore.setValue(key,value as T)
+    }
+
+    override fun <T>getValue(key: Preferences.Key<T>, default: T):Flow<T> {
+        return dataStore.getValueAsFlow(key,default)
+    }
+
+    override suspend fun <T> remove(key: Preferences.Key<T>) {
+        dataStore.edit {
+            it.remove(key)
+        }
+    }
+
+    override val preferences: Flow<Preferences>
+        get() = dataStore.data
+
     override val guestToken: Flow<String>
-        get() = dataStore.getValueAsFlow(PreferencesKeys.PREF_KEY_GUEST_TOKEN,"")
+        get() = dataStore.getValueAsFlow(PREF_KEY_GUEST_TOKEN, "")
 
 
     override suspend fun setRecipePreference(pref: String) {
-        dataStore.setValue(PreferencesKeys.PREF_KEY_SELECTED_RECIPE_PREF, pref)
+        dataStore.setValue(PREF_KEY_SELECTED_RECIPE_PREF, pref)
     }
 
     override val recipePreference: Flow<String>
-        get() = dataStore.getValueAsFlow(PreferencesKeys.PREF_KEY_SELECTED_RECIPE_PREF, "")
+        get() = dataStore.getValueAsFlow(PREF_KEY_SELECTED_RECIPE_PREF, "")
 
     override suspend fun setSelectedLocale(language: String) {
-        dataStore.setValue(PreferencesKeys.PREF_KEY_SELECTED_LANGUAGE, language)
+        dataStore.setValue(PREF_KEY_SELECTED_LANGUAGE, language)
     }
 
     override val selectedLanguage: Flow<String>
-        get() = dataStore.getValueAsFlow(PreferencesKeys.PREF_KEY_SELECTED_LANGUAGE, "")
+        get() = dataStore.getValueAsFlow(PREF_KEY_SELECTED_LANGUAGE, "")
 
     override suspend fun clearPreferences() {
         dataStore.edit {
@@ -69,18 +95,21 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
         }
     }
 
-    private object PreferencesKeys {
-
-        object PreferencesName {
+    companion object {
+        private object PreferencesName {
             const val GUEST_TOKEN = "guest_token"
             const val SELECTED_RECIPE = "selected_recipe_pref"
             const val SELECTED_LANGUAGE = "selected_language"
         }
 
-        val PREF_KEY_GUEST_TOKEN = stringPreferencesKey(PreferencesName.GUEST_TOKEN)
-        val PREF_KEY_SELECTED_RECIPE_PREF = stringPreferencesKey(PreferencesName.SELECTED_RECIPE)
-        val PREF_KEY_SELECTED_LANGUAGE = stringPreferencesKey(PreferencesName.SELECTED_LANGUAGE)
-    }
+        val PREF_KEY_GUEST_TOKEN: Preferences.Key<String> =
+            stringPreferencesKey(PreferencesName.GUEST_TOKEN)
 
+        val PREF_KEY_SELECTED_RECIPE_PREF: Preferences.Key<String> =
+            stringPreferencesKey(PreferencesName.SELECTED_RECIPE)
+
+        val PREF_KEY_SELECTED_LANGUAGE: Preferences.Key<String> =
+            stringPreferencesKey(PreferencesName.SELECTED_LANGUAGE)
+    }
 
 }

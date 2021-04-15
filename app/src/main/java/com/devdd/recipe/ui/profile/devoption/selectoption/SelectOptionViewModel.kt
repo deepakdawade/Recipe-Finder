@@ -33,7 +33,7 @@ class SelectOptionViewModel @Inject constructor() : ViewModel() {
                 name = R.string.dev_option_preference,
                 icon = R.drawable.shared_preference,
                 bgColor = R.color.colorDevOption1,
-                direction = null
+                direction = SelectOptionFragmentDirections.actionToDataStoreSettingFragment()
             )
         )
         mOptions.value = options

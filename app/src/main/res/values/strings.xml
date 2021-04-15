@@ -33,4 +33,28 @@
     <string name="recipe_details_description_label">Description</string>
     <string name="dev_option_preference" translatable="false">Data store</string>
     <string name="profile_option_dev_options">Dev options</string>
+    <string name="data_store_preference_name">Data store preference</string>
+    <string name="data_store_setting_value_field_hint">value</string>
+    <string name="data_store_setting_action_put">put</string>
+    <string name="data_store_setting_action_remove">remove</string>
+    <string name="instructions_developer_options" translatable="false">Instructions</string>
+    <string name="database_value_instruction_message_first" translatable="false">To view database table or find ob_id use \"Open DataBase\".</string>
+    <string name="database_value_instruction_message_second" translatable="false">In open database, filters are provided to search data in entire DB.</string>
+    <string name="database_value_instruction_message_third" translatable="false">To delete single entry in table, select table then insert ob_id.</string>
+    <string name="database_value_instruction_message_fourth" translatable="false">To remove entire db use \"remove all\"</string>
+    <string name="database_value_warning_message_first" translatable="false">Deleting entries and table might lead to unexpected crash, in that case clear data.</string>
+    <string name="database_value_warning_message_second" translatable="false">Do not delete family member or family detail data in any case.</string>
+    <string name="preference_value_instruction_message_first" translatable="false">\u2022 To view preference value, select key from spinner.</string>
+    <string name="preference_value_instruction_message_second" translatable="false">To delete single key in table, select table then remove.</string>
+    <string name="preference_value_instruction_message_third" translatable="false">To edit single key, select key then put value in value box.</string>
+    <string name="preference_value_warning_message_first" translatable="false">Deleting keys might lead to unexpected crash, in that case default value will be used.</string>
+    <string name="preference_value_warning_message_second" translatable="false">Do not delete firebase token and data server url.</string>
+    <string name="doYouWantToProceedDeveloperOption" translatable="false">Do you want to proceed?</string>
+    <string name="doYouWantToDeleteDeveloperOption" translatable="false">If you proceed data will be removed. \nIs that OK?</string>
+    <string name="doYouWantToPutPreferenceDeveloperOption" translatable="false">If you proceed value will be changed. \nIs that OK?</string>
+
+    <string name="yesDeleteDeveloperOption" translatable="false">Yes, delete</string>
+    <string name="yesPutPreferenceDeveloperOption" translatable="false">Yes, put</string>
+    <string name="warning">Warning</string>
+
 </resources>

@@ -16,7 +16,7 @@ class SelectOptionAdapter(private val listener: OnOptionSelectListener) :
 
 
     fun interface OnOptionSelectListener {
-        fun onOptionClick(direction: NavDirections?)
+        fun onOptionClick(direction: NavDirections)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectOptionViewHolder {

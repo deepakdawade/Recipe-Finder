@@ -15,5 +15,5 @@ data class DeveloperOption(
     @StringRes val name: Int,
     @ColorRes val bgColor: Int,
     @DrawableRes val icon:Int,
-    val direction:NavDirections?
+    val direction:NavDirections
 )

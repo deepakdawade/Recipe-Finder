@@ -13,13 +13,13 @@ import javax.inject.Inject
  *
  */
 class GuestManager @Inject constructor(
-    private val preference: DataStorePreference
+    private val storePreference: DataStorePreference
 ) {
     private val guestToken: Flow<String>
-        get() = preference.guestToken.catch { emit("") }
+        get() = storePreference.guestToken.catch { emit("") }
 
     suspend fun updateGuestToken(token: String) {
-        preference.setGuestToken(token)
+        storePreference.setGuestToken(token)
     }
 
     suspend fun guestToken(): String = guestToken.first()

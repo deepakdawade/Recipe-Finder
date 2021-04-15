@@ -8,6 +8,15 @@
     <fragment
         android:id="@+id/selectOptionFragment"
         android:name="com.devdd.recipe.ui.profile.devoption.selectoption.SelectOptionFragment"
-        tools:layout="@layout/fragment_select_option"
-        android:label="SelectOptionFragment" />
+        android:label="SelectOptionFragment"
+        tools:layout="@layout/fragment_select_option">
+        <action
+            android:id="@+id/action_to_dataStoreSettingFragment"
+            app:destination="@id/dataStoreSettingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dataStoreSettingFragment"
+        android:name="com.devdd.recipe.ui.profile.devoption.datastoresetting.DataStoreSettingFragment"
+        android:label="DataStoreSettingFragment"
+        tools:layout="@layout/fragment_data_store_setting" />
 </navigation>
