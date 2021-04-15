@@ -19,7 +19,7 @@
             android:id="@+id/profile_fragment_heading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/menu_title_profile"
+            android:text="@string/bottom_nav_menu_label_profile"
             android:textAlignment="center"
             android:textAppearance="?textAppearanceHeadline5"
             app:layout_constraintBottom_toBottomOf="parent"
