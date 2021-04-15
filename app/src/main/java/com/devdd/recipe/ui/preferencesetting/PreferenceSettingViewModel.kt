@@ -9,19 +9,15 @@ import com.devdd.recipe.R
 import com.devdd.recipe.data.prefs.manager.GuestManager
 import com.devdd.recipe.data.prefs.manager.LocaleManager
 import com.devdd.recipe.data.prefs.manager.RecipeManager
-import com.devdd.recipe.domain.executers.FetchGuestToken
 import com.devdd.recipe.domain.result.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class PreferenceSettingViewModel @Inject constructor(
     private val localeManager: LocaleManager,
-    private val recipeManager: RecipeManager,
-    private val guestManager: GuestManager,
-    private val fetchGuestToken: FetchGuestToken
+    private val recipeManager: RecipeManager
 ) : ViewModel() {
     val checkedRecipeButtonId: MutableLiveData<Int> = MutableLiveData()
     val checkedLanguageButtonId: MutableLiveData<Int> = MutableLiveData()
@@ -37,26 +33,9 @@ class PreferenceSettingViewModel @Inject constructor(
 
     init {
 
-        checkHasGuestTokenGenerated()
         loadLanguagePreference()
         loadRecipePreference()
     }
-
-    private fun checkHasGuestTokenGenerated() {
-        viewModelScope.launch {
-            if (!guestManager.guestTokenGenerated())
-                generateGuestToken()
-        }
-    }
-
-    private fun generateGuestToken() {
-        viewModelScope.launch {
-            fetchGuestToken.invoke(Unit).collect { token ->
-                guestManager.updateGuestToken(token)
-            }
-        }
-    }
-
 
     fun setPage(page: Int) {
         mPage.value = Event(page)

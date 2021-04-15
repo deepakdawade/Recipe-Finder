@@ -15,8 +15,14 @@ import javax.inject.Inject
 class GuestManager @Inject constructor(
     private val storePreference: DataStorePreference
 ) {
-    private val guestToken: Flow<String>
+    val guestToken: Flow<String>
         get() = storePreference.guestToken.catch { emit("") }
+
+    private val deviceId: Flow<String>
+        get() = storePreference.deviceId.catch { emit("") }
+
+    val shouldUploadDeviceIdToServer: Flow<Boolean>
+        get() = storePreference.shouldUploadDeviceIdToServer
 
     suspend fun updateGuestToken(token: String) {
         storePreference.setGuestToken(token)
@@ -24,9 +30,23 @@ class GuestManager @Inject constructor(
 
     suspend fun guestToken(): String = guestToken.first()
 
+    suspend fun deviceId(): String = deviceId.first()
+
     suspend fun guestTokenGenerated(): Boolean {
         val token = guestToken.first()
         return token.isNotEmpty()
     }
 
+    suspend fun deviceIdGenerated(): Boolean {
+        val token = deviceId.first()
+        return token.isNotEmpty()
+    }
+
+    suspend fun shouldUploadDeviceIdToServer(shouldUpload: Boolean) {
+        storePreference.shouldUploadDeviceIdToServer(shouldUpload)
+    }
+
+    fun generateDeviceId() {
+        storePreference.generateDeviceId()
+    }
 }

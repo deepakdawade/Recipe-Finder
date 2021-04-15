@@ -8,10 +8,13 @@ import androidx.navigation.NavDirections
 import com.devdd.recipe.data.prefs.manager.GuestManager
 import com.devdd.recipe.data.prefs.manager.LocaleManager
 import com.devdd.recipe.data.prefs.manager.RecipeManager
+import com.devdd.recipe.domain.executers.FetchGuestToken
 import com.devdd.recipe.domain.executers.FetchRecipes
+import com.devdd.recipe.domain.executers.SetDeviceIdToServer
 import com.devdd.recipe.domain.observers.ObserveRecipeByPref
 import com.devdd.recipe.domain.result.Event
 import com.devdd.recipe.domain.result.InvokeStarted
+import com.devdd.recipe.domain.result.InvokeSuccess
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.utils.extensions.toJsonString
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,6 +27,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val fetchRecipes: FetchRecipes,
     private val observeRecipeByPref: ObserveRecipeByPref,
+    private val fetchGuestToken: FetchGuestToken,
+    private val setDeviceIdToServer: SetDeviceIdToServer,
     private val guestManager: GuestManager,
     private val recipeManager: RecipeManager,
     private val localeManager: LocaleManager
@@ -43,17 +48,58 @@ class HomeViewModel @Inject constructor(
         get() = mNavigation
 
     init {
+        checkHasGuestTokenGenerated()
+        checkHasDeviceIdGenerated()
+        shouldUploadDeviceId()
+
         fetchRecipes()
         createObservers()
         observeRecipes()
     }
 
+    private fun checkHasGuestTokenGenerated() {
+        viewModelScope.launch {
+            if (!guestManager.guestTokenGenerated())
+                generateGuestToken()
+        }
+    }
+
+    private fun checkHasDeviceIdGenerated() {
+        viewModelScope.launch {
+            if (!guestManager.deviceIdGenerated())
+                guestManager.generateDeviceId()
+        }
+    }
+
+    private fun generateGuestToken() {
+        viewModelScope.launch {
+            fetchGuestToken.invoke(Unit).collect { token ->
+                guestManager.updateGuestToken(token)
+            }
+        }
+    }
+
+    private fun shouldUploadDeviceId() {
+        viewModelScope.launch {
+            guestManager.shouldUploadDeviceIdToServer.collect {
+                if (it)
+                    setDeviceIdToServer.invoke(guestManager.deviceId()).collect { status ->
+                        if (status is InvokeSuccess)
+                            guestManager.shouldUploadDeviceIdToServer(false)
+                    }
+            }
+        }
+    }
+
     fun fetchRecipes() {
         viewModelScope.launch {
-            fetchRecipes(guestManager.guestToken()).collect {
-                if (it is InvokeStarted)
-                    mLoading.postValue(true)
-                else mLoading.postValue(false)
+            guestManager.guestToken.collect { token ->
+                fetchRecipes(token).collect { status ->
+                    if (status is InvokeStarted)
+                        mLoading.postValue(true)
+                    else mLoading.postValue(false)
+                }
+
             }
         }
     }

@@ -6,4 +6,6 @@ object EndPoints {
 
     const val RECIPES = "receipes"
 
+    const val DEVICES = "devices"
+
 }

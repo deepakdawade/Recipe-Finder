@@ -14,6 +14,8 @@ interface RecipeDataSource {
 
     suspend fun fetchRecipes(guestToken: String): List<Recipe>
 
+    suspend fun setDeviceId(deviceId: String): Any
+
 }
 
 class RecipeDataSourceImpl @Inject constructor(
@@ -32,5 +34,10 @@ class RecipeDataSourceImpl @Inject constructor(
         return fetchedRecipes.recipes?.map {
             recipeResponseToRecipeEntity.map(it)
         } ?: emptyList()
+    }
+
+    override suspend fun setDeviceId(deviceId: String): Any {
+        val response = networkServiceApi.devices(deviceId)
+        return response.dataOrThrowException()
     }
 }

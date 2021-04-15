@@ -14,6 +14,8 @@ interface RecipeRepository {
 
     suspend fun getRecipes(guestToken: String)
 
+    suspend fun setDeviceId(deviceId: String)
+
     fun observeRecipes(): Flow<List<Recipe>>
 
     fun observeRecipesByPref(pref: String): Flow<List<Recipe>>
@@ -41,6 +43,10 @@ class RecipeRepositoryImpl @Inject constructor(
                 recipeDao.dropRecipes()
             recipeDao.insertRecipe(*recipes.toTypedArray())
         }
+    }
+
+    override suspend fun setDeviceId(deviceId: String) {
+        dataSource.setDeviceId(deviceId)
     }
 
     override fun observeRecipes(): Flow<List<Recipe>> {

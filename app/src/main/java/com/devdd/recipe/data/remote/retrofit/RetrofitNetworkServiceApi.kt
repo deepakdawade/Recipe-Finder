@@ -18,6 +18,12 @@ interface RetrofitNetworkServiceApi {
      * fetch recipes by @param guest_token
      * */
     @GET(EndPoints.RECIPES)
-    suspend fun recipes(@Query("guest_token") guest_token: String): ServerResponse<RecipeListResponse>
+    suspend fun recipes(@Query("guest_token") guestToken: String): ServerResponse<RecipeListResponse>
+
+    /**
+     * register device @param device_id
+     * */
+    @POST(EndPoints.DEVICES)
+    suspend fun devices(@Query("device_id") deviceId: String): ServerResponse<Any>
 
 }
