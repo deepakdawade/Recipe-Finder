@@ -8,4 +8,6 @@ object EndPoints {
 
     const val DEVICES = "devices"
 
+    const val FAVORITE_RECIPES = "favorite_recipes"
+
 }

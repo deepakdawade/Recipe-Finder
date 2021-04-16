@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.devdd.recipe.ui.home.HomeViewModel" />
+            type="com.devdd.recipe.ui.search.SearchRecipeViewModel" />
 
     </data>
 

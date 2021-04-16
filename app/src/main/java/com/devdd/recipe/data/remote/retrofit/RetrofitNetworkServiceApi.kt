@@ -1,8 +1,10 @@
 package com.devdd.recipe.data.remote.retrofit
 
 import com.devdd.recipe.data.remote.models.ServerResponse
+import com.devdd.recipe.data.remote.models.request.MarkRecipeFavoriteRequest
 import com.devdd.recipe.data.remote.models.response.GuestResponse
 import com.devdd.recipe.data.remote.models.response.RecipeListResponse
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -25,5 +27,10 @@ interface RetrofitNetworkServiceApi {
      * */
     @POST(EndPoints.DEVICES)
     suspend fun devices(@Query("device_id") deviceId: String): ServerResponse<Any>
+    /**
+     * mark recipe favorite @param guest_token and recipe_id
+     * */
+    @POST(EndPoints.FAVORITE_RECIPES)
+    suspend fun markRecipeFavorite(@Body request: MarkRecipeFavoriteRequest): ServerResponse<Any>
 
 }

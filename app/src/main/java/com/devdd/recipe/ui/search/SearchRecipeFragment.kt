@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentSearchRecipeBinding
-import com.devdd.recipe.ui.home.adapter.RecipeAdapter
+import com.devdd.recipe.ui.home.adapter.SearchRecipeAdapter
 import com.devdd.recipe.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +21,7 @@ class SearchRecipeFragment :
 
     private val viewModel by viewModels<SearchRecipeViewModel>()
 
-    private var recipeAdapter: RecipeAdapter? = null
+    private var searchRecipeAdapter: SearchRecipeAdapter? = null
 
     override fun onViewCreated(binding: FragmentSearchRecipeBinding, savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
@@ -32,7 +32,6 @@ class SearchRecipeFragment :
     }
 
     private fun setViews() {
-        binding?.homeFragmentLottieNoRecipes?.setAnimation(R.raw.recipe_not_found_animation)
         val searchView =
             binding?.searchRecipeFragmentToolbar?.menu?.getItem(0)?.actionView as? SearchView
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -50,15 +49,13 @@ class SearchRecipeFragment :
     }
 
     private fun setupRecyclerViewAdapter() {
-        recipeAdapter = RecipeAdapter {
-            viewModel.navigateToRecipeDetails(it)
-        }
-        binding?.searchRecipeFragmentSearchResults?.adapter = recipeAdapter
+        searchRecipeAdapter = SearchRecipeAdapter(viewModel)
+        binding?.searchRecipeFragmentSearchResults?.adapter = searchRecipeAdapter
     }
 
     private fun setObserver() {
         viewModel.recipes.observe(viewLifecycleOwner) {
-            recipeAdapter?.submitList(it)
+            searchRecipeAdapter?.submitList(it)
         }
         viewModel.navigation.observeEvent(viewLifecycleOwner) {
             findNavController().navigate(it)
@@ -67,6 +64,6 @@ class SearchRecipeFragment :
 
     override fun onDestroyView() {
         super.onDestroyView()
-        recipeAdapter = null
+        searchRecipeAdapter = null
     }
 }

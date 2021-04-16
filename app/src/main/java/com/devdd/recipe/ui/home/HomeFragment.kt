@@ -40,9 +40,7 @@ class HomeFragment : DevFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun setupRecyclerViewAdapter() {
-        recipeAdapter = RecipeAdapter {
-            viewModel.navigateToRecipeDetails(it)
-        }
+        recipeAdapter = RecipeAdapter(viewModel)
         binding?.homeFragmentRecipes?.adapter = recipeAdapter
 
     }

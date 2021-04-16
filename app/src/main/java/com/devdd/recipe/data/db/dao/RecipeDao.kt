@@ -15,8 +15,8 @@ interface RecipeDao {
     @Query("SELECT * FROM recipes WHERE category_name = :category")
     fun recipesByPref(category: String): Flow<List<Recipe>>
 
-    @Query("SELECT * FROM recipes WHERE id = :id")
-    fun recipeById(id: Int): List<Recipe>
+    @Query("SELECT * FROM recipes WHERE id = :id LIMIT 1")
+    fun recipeById(id: Int): Recipe
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecipe(vararg recipe: Recipe)

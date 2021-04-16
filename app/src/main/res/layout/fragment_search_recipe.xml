@@ -53,13 +53,14 @@
             app:layout_constraintTop_toBottomOf="@id/search_recipe_fragment_search_result_label"
             app:spanCount="2"
             tools:itemCount="8"
-            tools:listitem="@layout/item_view_recipe" />
+            tools:listitem="@layout/item_view_search_recipe" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/home_fragment_lottie_no_recipes"
             toggleVisibility="@{viewModel.recipes.empty}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:lottie_rawRes="@raw/recipe_not_found_animation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

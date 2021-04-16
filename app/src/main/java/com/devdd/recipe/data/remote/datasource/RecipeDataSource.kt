@@ -1,6 +1,7 @@
 package com.devdd.recipe.data.remote.datasource
 
 import com.devdd.recipe.data.db.entities.Recipe
+import com.devdd.recipe.data.remote.models.request.MarkRecipeFavoriteRequest
 import com.devdd.recipe.data.remote.models.response.GuestResponse
 import com.devdd.recipe.data.remote.retrofit.RetrofitNetworkServiceApi
 import com.devdd.recipe.domain.mappers.RecipeResponseToRecipeEntity
@@ -16,6 +17,7 @@ interface RecipeDataSource {
 
     suspend fun setDeviceId(deviceId: String): Any
 
+    suspend fun markRecipeFavorite(request: MarkRecipeFavoriteRequest): Any
 }
 
 class RecipeDataSourceImpl @Inject constructor(
@@ -38,6 +40,11 @@ class RecipeDataSourceImpl @Inject constructor(
 
     override suspend fun setDeviceId(deviceId: String): Any {
         val response = networkServiceApi.devices(deviceId)
+        return response.dataOrThrowException()
+    }
+
+    override suspend fun markRecipeFavorite(request: MarkRecipeFavoriteRequest): Any {
+        val response = networkServiceApi.markRecipeFavorite(request)
         return response.dataOrThrowException()
     }
 }

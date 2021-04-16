@@ -8,8 +8,10 @@ import androidx.navigation.NavDirections
 import com.devdd.recipe.data.prefs.manager.GuestManager
 import com.devdd.recipe.data.prefs.manager.LocaleManager
 import com.devdd.recipe.data.prefs.manager.RecipeManager
+import com.devdd.recipe.data.remote.models.request.MarkRecipeFavoriteRequest
 import com.devdd.recipe.domain.executers.FetchGuestToken
 import com.devdd.recipe.domain.executers.FetchRecipes
+import com.devdd.recipe.domain.executers.MarkRecipeFavorite
 import com.devdd.recipe.domain.executers.SetDeviceIdToServer
 import com.devdd.recipe.domain.observers.ObserveRecipeByPref
 import com.devdd.recipe.domain.result.Event
@@ -29,6 +31,7 @@ class HomeViewModel @Inject constructor(
     private val observeRecipeByPref: ObserveRecipeByPref,
     private val fetchGuestToken: FetchGuestToken,
     private val setDeviceIdToServer: SetDeviceIdToServer,
+    private val markRecipeFavorite: MarkRecipeFavorite,
     private val guestManager: GuestManager,
     private val recipeManager: RecipeManager,
     private val localeManager: LocaleManager
@@ -42,6 +45,11 @@ class HomeViewModel @Inject constructor(
     private val mLoading: MutableLiveData<Boolean> = MutableLiveData()
     val loading: LiveData<Boolean>
         get() = mLoading
+
+    private val mSavingRecipe: MutableLiveData<Pair<Boolean, Int>> = MutableLiveData()
+    val savingRecipe: LiveData<Pair<Boolean, Int>>
+        get() = mSavingRecipe
+
 
     private val mNavigation: MutableLiveData<Event<NavDirections>> = MutableLiveData()
     val navigation: LiveData<Event<NavDirections>>
@@ -101,6 +109,21 @@ class HomeViewModel @Inject constructor(
                 }
 
             }
+        }
+    }
+
+    fun markRecipeFavorite(recipe: RecipeViewState) {
+        viewModelScope.launch {
+            markRecipeFavorite.invoke(
+                MarkRecipeFavoriteRequest(
+                    guestManager.deviceId(),
+                    recipe.id,
+                    recipe.saved
+                )
+            )
+                .collect {
+                    mSavingRecipe.postValue(Pair(it is InvokeSuccess, recipe.id))
+                }
         }
     }
 
