@@ -5,6 +5,7 @@ import com.devdd.recipe.data.db.entities.Recipe
 import com.devdd.recipe.data.prefs.manager.RecipeManager.Companion.BOTH
 import com.devdd.recipe.data.remote.datasource.RecipeDataSource
 import com.devdd.recipe.data.remote.models.request.MarkRecipeFavoriteRequest
+import com.devdd.recipe.data.remote.models.request.SavedRecipesRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
@@ -18,6 +19,8 @@ interface RecipeRepository {
     suspend fun setDeviceId(deviceId: String)
 
     suspend fun markRecipeFavorite(request: MarkRecipeFavoriteRequest)
+
+    suspend fun getSavedRecipes(request: SavedRecipesRequest)
 
     fun observeRecipes(): Flow<List<Recipe>>
 
@@ -57,6 +60,17 @@ class RecipeRepositoryImpl @Inject constructor(
         val recipe = recipeDao.recipeById(request.recipeId)
         recipe.apply { saved = !saved }
         recipeDao.insertRecipe(recipe)
+    }
+
+    override suspend fun getSavedRecipes(request: SavedRecipesRequest) {
+        val recipes = dataSource.fetchSavedRecipes(request)
+        val localRecipes = recipeDao.allRecipes().first()
+        val insertIntoDB = recipes.isNotEmpty() && recipes != localRecipes
+        if (insertIntoDB) {
+            if (localRecipes.isNotEmpty())
+                recipeDao.dropRecipes()
+            recipeDao.insertRecipe(*recipes.toTypedArray())
+        }
     }
 
     override fun observeRecipes(): Flow<List<Recipe>> {

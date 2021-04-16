@@ -1,33 +1,33 @@
-package com.devdd.recipe.ui.home.adapter
+package com.devdd.recipe.ui.favorite.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devdd.recipe.R
-import com.devdd.recipe.databinding.ItemViewSearchRecipeBinding
+import com.devdd.recipe.databinding.ItemViewSavedRecipeBinding
 import com.devdd.recipe.domain.viewstate.RecipeViewState
-import com.devdd.recipe.ui.search.SearchRecipeViewModel
+import com.devdd.recipe.ui.favorite.FavoriteViewModel
 import com.devdd.recipe.utils.extensions.bindWithLayout
 
-class SearchRecipeAdapter(private val viewModel: SearchRecipeViewModel) :
-    ListAdapter<RecipeViewState, SearchRecipeAdapter.SearchRecipeViewHolder>(
+class SavedRecipeAdapter(private val viewModel: FavoriteViewModel) :
+    ListAdapter<RecipeViewState, SavedRecipeAdapter.SavedRecipeViewHolder>(
         RecipeDiffItemCallback
     ) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchRecipeViewHolder {
-        return SearchRecipeViewHolder.getInstance(parent, viewModel)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SavedRecipeViewHolder {
+        return SavedRecipeViewHolder.getInstance(parent, viewModel)
     }
 
-    override fun onBindViewHolder(holder: SearchRecipeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SavedRecipeViewHolder, position: Int) {
         val item = getItem(position)
         item?.let {
             holder.bind(it)
         }
     }
 
-    class SearchRecipeViewHolder private constructor(
-        private val binding: ItemViewSearchRecipeBinding,
-        private val viewModel: SearchRecipeViewModel
+    class SavedRecipeViewHolder private constructor(
+        private val binding: ItemViewSavedRecipeBinding,
+        private val viewModel: FavoriteViewModel
     ) :
         RecyclerView.ViewHolder(binding.root) {
         init {
@@ -36,7 +36,7 @@ class SearchRecipeAdapter(private val viewModel: SearchRecipeViewModel) :
 
         fun bind(item: RecipeViewState) {
             binding.recipe = item
-            binding.recipeItemViewSaveRecipe.setOnCheckedChangeListener { buttonView, isChecked ->
+            binding.savedRecipeItemViewSaveRecipe.setOnCheckedChangeListener { buttonView, isChecked ->
                 viewModel.markRecipeFavorite(item)
             }
             binding.executePendingBindings()
@@ -45,14 +45,14 @@ class SearchRecipeAdapter(private val viewModel: SearchRecipeViewModel) :
         companion object {
             fun getInstance(
                 parent: ViewGroup,
-                viewModel: SearchRecipeViewModel
-            ): SearchRecipeViewHolder {
+                viewModel: FavoriteViewModel
+            ): SavedRecipeViewHolder {
                 val binding =
-                    bindWithLayout<ItemViewSearchRecipeBinding>(
-                        R.layout.item_view_search_recipe,
+                    bindWithLayout<ItemViewSavedRecipeBinding>(
+                        R.layout.item_view_saved_recipe,
                         parent
                     )
-                return SearchRecipeViewHolder(binding, viewModel)
+                return SavedRecipeViewHolder(binding, viewModel)
             }
         }
     }

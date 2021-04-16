@@ -10,4 +10,6 @@ object EndPoints {
 
     const val FAVORITE_RECIPES = "favorite_recipes"
 
+    const val SAVED_RECIPES = "favorite_recipes/saved_recipes"
+
 }

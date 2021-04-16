@@ -48,11 +48,11 @@ class SearchRecipeViewModel @Inject constructor(
         }
     }
 
-    fun markRecipeFavorite(recipeId: Int) {
+    fun markRecipeFavorite(recipe:RecipeViewState) {
         viewModelScope.launch {
-            markRecipeFavorite.invoke(MarkRecipeFavoriteRequest(guestManager.deviceId(), recipeId))
+            markRecipeFavorite.invoke(MarkRecipeFavoriteRequest(guestManager.deviceId(), recipe.id,recipe.saved))
                 .collect {
-                    mSavingRecipe.postValue(Pair(it is InvokeSuccess, recipeId))
+                    mSavingRecipe.postValue(Pair(it is InvokeSuccess, recipe.id))
                 }
         }
     }

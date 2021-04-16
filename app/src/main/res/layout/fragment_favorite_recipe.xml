@@ -1,13 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.devdd.recipe.ui.favorite.FavoriteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/favorite_fragment_recipes"
+            hideOnEmptyList="@{viewModel.recipes}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:spanCount="2"
+            tools:visibility="visible"
+            tools:itemCount="8"
+            tools:listitem="@layout/item_view_saved_recipe" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/favorite_fragment_lottie_no_recipes"
+            toggleVisibility="@{viewModel.recipes.empty &amp;&amp; !viewModel.loading}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/recipe_not_found_animation" />
+
+        <ProgressBar
+            android:id="@+id/favorite_recipe_fragment_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            toggleVisibility="@{viewModel.recipes.empty &amp;&amp; viewModel.loading}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.4"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/favorite_fragment_loading_recipe_text"
+            toggleVisibility="@{viewModel.recipes.empty &amp;&amp; viewModel.loading}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/home_loading_recipes_text"
+            android:textAlignment="center"
+            android:textAppearance="?textAppearanceHeadline6"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
