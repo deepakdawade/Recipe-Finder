@@ -28,6 +28,8 @@ interface RecipeRepository {
 
     fun searchRecipes(query: String): Flow<List<Recipe>>
 
+    fun getRecipeById(id:Int):Flow<Recipe>
+
 }
 
 class RecipeRepositoryImpl @Inject constructor(
@@ -57,7 +59,7 @@ class RecipeRepositoryImpl @Inject constructor(
 
     override suspend fun markRecipeFavorite(request: MarkRecipeFavoriteRequest) {
         dataSource.markRecipeFavorite(request)
-        val recipe = recipeDao.recipeById(request.recipeId)
+        val recipe = recipeDao.recipeById(request.recipeId).first()
         recipe.apply { saved = !saved }
         recipeDao.insertRecipe(recipe)
     }
@@ -85,5 +87,9 @@ class RecipeRepositoryImpl @Inject constructor(
 
     override fun searchRecipes(query: String): Flow<List<Recipe>> {
         return recipeDao.searchRecipes("%$query%")
+    }
+
+    override fun getRecipeById(id: Int): Flow<Recipe> {
+        return recipeDao.recipeById(id)
     }
 }

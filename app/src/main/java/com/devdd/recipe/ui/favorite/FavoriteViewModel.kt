@@ -111,8 +111,7 @@ class FavoriteViewModel @Inject constructor(
     }
 
     fun navigateToRecipeDetails(viewState: RecipeViewState) {
-        val recipe = viewState.toJsonString()
-        val navDirection = HomeFragmentDirections.actionToRecipeDetailFragment(recipe)
+        val navDirection = HomeFragmentDirections.actionToRecipeDetailFragment(viewState.id)
         mNavigation.value = Event(navDirection)
     }
 }

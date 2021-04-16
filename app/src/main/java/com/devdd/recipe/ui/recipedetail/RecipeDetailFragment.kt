@@ -1,13 +1,12 @@
 package com.devdd.recipe.ui.recipedetail
 
 import android.os.Bundle
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentRecipeDetailBinding
-import com.devdd.recipe.domain.viewstate.RecipeViewState
-import com.devdd.recipe.utils.extensions.toDataClass
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,12 +17,12 @@ class RecipeDetailFragment :
         val TAG: String = this::class.java.simpleName
     }
 
+    private val viewModel: RecipeDetailViewModel by viewModels()
     private val args by navArgs<RecipeDetailFragmentArgs>()
 
     override fun onViewCreated(binding: FragmentRecipeDetailBinding, savedInstanceState: Bundle?) {
-        val recipe = args.recipe.toDataClass<RecipeViewState>()
-        binding.recipe = recipe
-
+        binding.viewModel = viewModel
+        viewModel.loadRecipeById(args.recipeId)
         binding.recipeDetailFragmentToolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }

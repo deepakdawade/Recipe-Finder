@@ -58,8 +58,7 @@ class SearchRecipeViewModel @Inject constructor(
     }
 
     fun navigateToRecipeDetails(viewState: RecipeViewState) {
-        val recipe = viewState.toJsonString()
-        val navDirection = SearchRecipeFragmentDirections.actionToRecipeDetailFragment(recipe)
+        val navDirection = SearchRecipeFragmentDirections.actionToRecipeDetailFragment(viewState.id)
         mNavigation.value = Event(navDirection)
     }
 }
