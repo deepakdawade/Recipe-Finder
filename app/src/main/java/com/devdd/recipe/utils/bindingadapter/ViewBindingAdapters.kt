@@ -59,9 +59,12 @@ fun Group.hideGroupWhenLoading(isLoading: Boolean?) {
 }
 
 
-@BindingAdapter("hideOnEmptyList")
-fun View.showOnData(response: List<*>?) {
-    isVisible = !response.isNullOrEmpty()
+@BindingAdapter("hideOnList", "hideOnEmpty")
+fun View.showOnData(response: List<*>?, hideOnEmptyList: Boolean) {
+    isVisible = if (hideOnEmptyList)
+        !response.isNullOrEmpty()
+    else
+        response.isNullOrEmpty()
 }
 
 

@@ -30,7 +30,8 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/search_recipe_fragment_search_result_label"
-            hideOnEmptyList="@{viewModel.recipes}"
+            hideOnEmpty="@{true}"
+            hideOnList="@{viewModel.recipes}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:padding="8dp"
@@ -42,7 +43,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_recipe_fragment_search_results"
-            hideOnEmptyList="@{viewModel.recipes}"
+            hideOnEmpty="@{true}"
+            hideOnList="@{viewModel.recipes}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
@@ -57,21 +59,23 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/home_fragment_lottie_no_recipes"
-            toggleVisibility="@{viewModel.recipes.empty}"
+            hideOnEmpty="@{false}"
+            hideOnList="@{viewModel.recipes}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:lottie_rawRes="@raw/recipe_not_found_animation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_recipe_fragment_toolbar"
             app:lottie_autoPlay="true"
-            app:lottie_loop="true" />
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/recipe_not_found_animation" />
 
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/home_fragment_no_recipe_found"
-            toggleVisibility="@{viewModel.recipes.empty}"
+            hideOnEmpty="@{false}"
+            hideOnList="@{viewModel.recipes}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/no_recipe_found"
