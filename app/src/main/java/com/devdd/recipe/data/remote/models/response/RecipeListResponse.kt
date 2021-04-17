@@ -64,6 +64,9 @@ data class RecipeListResponse(
 
         @Expose
         @SerializedName("saved")
-        var saved: Boolean? = null
+        var saved: Boolean? = null,
+        @Expose
+        @SerializedName("saved_time")
+        var savedTime: Long? = null
     )
 }

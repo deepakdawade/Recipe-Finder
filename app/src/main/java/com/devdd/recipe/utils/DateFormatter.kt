@@ -192,6 +192,10 @@ object DateFormatter {
     fun Date?.notNull(): Date = requireNotNull(this)
 
     fun Long.secondsToMilliSeconds(): Long = seconds.toLong(DurationUnit.MILLISECONDS)
+    /*
+    * @param time in milliseconds
+    */
+    fun Long.milliSecondsToSeconds(): Long = milliseconds.toLong(DurationUnit.SECONDS)
 
     fun Int.daysToMilliSeconds(): Long = days.toLong(DurationUnit.MILLISECONDS)
 

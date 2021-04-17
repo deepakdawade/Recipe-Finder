@@ -3,8 +3,8 @@ package com.devdd.recipe.ui.profile.devoption.datastoresetting
 import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.*
 import com.devdd.recipe.data.prefs.DataStorePreference
-import com.devdd.recipe.utils.extensions.isBoolean
-import com.devdd.recipe.utils.extensions.isInt
+import com.devdd.recipe.utils.extensions.premitive.isBoolean
+import com.devdd.recipe.utils.extensions.premitive.isInt
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

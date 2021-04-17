@@ -74,5 +74,6 @@
     <string name="yesDeleteDeveloperOption" translatable="false">Yes, delete</string>
     <string name="yesPutPreferenceDeveloperOption" translatable="false">Yes, put</string>
     <string name="warning" translatable="false">Warning</string>
+    <string name="empty_string_placeholder">%s</string>
 
 </resources>

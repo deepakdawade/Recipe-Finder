@@ -1,4 +1,4 @@
-package com.devdd.recipe.utils.extensions
+package com.devdd.recipe.utils.extensions.premitive
 
 
 fun String.isInRange(low: Int, high: Int, allowDecimal: Boolean): Boolean {

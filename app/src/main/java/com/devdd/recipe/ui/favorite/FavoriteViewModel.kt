@@ -13,7 +13,9 @@ import com.devdd.recipe.data.remote.models.request.SavedRecipesRequest
 import com.devdd.recipe.domain.executers.FetchSavedRecipes
 import com.devdd.recipe.domain.executers.MarkRecipeFavorite
 import com.devdd.recipe.domain.observers.ObserveRecipeByPref
-import com.devdd.recipe.domain.result.*
+import com.devdd.recipe.domain.result.Event
+import com.devdd.recipe.domain.result.InvokeStarted
+import com.devdd.recipe.domain.viewstate.HeaderDataViewState
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.ui.home.HomeFragmentDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,8 +36,8 @@ class FavoriteViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val mAllRecipes = mutableListOf<RecipeViewState>()
-    private val mRecipes: MutableLiveData<List<RecipeViewState>> = MutableLiveData()
-    val recipes: LiveData<List<RecipeViewState>>
+    private val mRecipes: MutableLiveData<List<HeaderDataViewState>> = MutableLiveData()
+    val recipes: LiveData<List<HeaderDataViewState>>
         get() = mRecipes
 
     private val mLoading: MutableLiveData<Boolean> = MutableLiveData()
@@ -98,11 +100,19 @@ class FavoriteViewModel @Inject constructor(
     private fun observeRecipes() {
         viewModelScope.launch {
             observeRecipeByPref.observe().collect {
-                val recipes = it.filter { state -> state.saved }
+                val original = it.filter { state -> state.saved }
+                val mapped: Map<String, List<RecipeViewState>> =
+                    original.groupBy { state -> state.savedTime }
+                val recipes = mutableListOf<HeaderDataViewState>()
+                mapped.forEach { entry ->
+                    val header = HeaderDataViewState.Header(string = entry.key)
+                    val data = HeaderDataViewState.Data(entry.value)
+                    recipes.add(header)
+                    recipes.add(data)
+                }
                 mAllRecipes.clear()
-                mAllRecipes.addAll(recipes)
+                mAllRecipes.addAll(original)
                 mRecipes.postValue(recipes)
-
             }
         }
     }

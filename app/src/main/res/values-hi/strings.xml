@@ -45,4 +45,5 @@
 
     <!--  Dev Option selection  -->
     <string name="data_store_preference_name">Data store preference</string>
+    <string name="empty_string_placeholder">%s</string>
 </resources>

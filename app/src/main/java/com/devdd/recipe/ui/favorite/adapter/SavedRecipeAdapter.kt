@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devdd.recipe.R
-import com.devdd.recipe.databinding.ItemViewSavedRecipeBinding
+import com.devdd.recipe.databinding.ItemViewSavedRecipeItemBinding
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.ui.favorite.FavoriteViewModel
 import com.devdd.recipe.utils.extensions.bindWithLayout
@@ -26,7 +26,7 @@ class SavedRecipeAdapter(private val viewModel: FavoriteViewModel) :
     }
 
     class SavedRecipeViewHolder private constructor(
-        private val binding: ItemViewSavedRecipeBinding,
+        private val binding: ItemViewSavedRecipeItemBinding,
         private val viewModel: FavoriteViewModel
     ) :
         RecyclerView.ViewHolder(binding.root) {
@@ -45,8 +45,8 @@ class SavedRecipeAdapter(private val viewModel: FavoriteViewModel) :
                 viewModel: FavoriteViewModel
             ): SavedRecipeViewHolder {
                 val binding =
-                    bindWithLayout<ItemViewSavedRecipeBinding>(
-                        R.layout.item_view_saved_recipe,
+                    bindWithLayout<ItemViewSavedRecipeItemBinding>(
+                        R.layout.item_view_saved_recipe_item,
                         parent
                     )
                 return SavedRecipeViewHolder(binding, viewModel)

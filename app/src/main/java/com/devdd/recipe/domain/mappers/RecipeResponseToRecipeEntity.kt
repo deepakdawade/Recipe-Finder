@@ -25,7 +25,8 @@ class RecipeResponseToRecipeEntity @Inject constructor(
             cookingTime = cookingTime ?: "",
             ingredients = ingredients ?: emptyList(),
             ingredientsHi = ingredientsHi ?: emptyList(),
-            saved = saved ?: false
+            saved = saved ?: false,
+            savedTime = savedTime ?: 0
         )
     }
 }

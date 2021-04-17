@@ -6,7 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentFavoriteRecipeBinding
-import com.devdd.recipe.ui.favorite.adapter.SavedRecipeAdapter
+import com.devdd.recipe.ui.favorite.adapter.FavoriteRecipeAdapter
 import com.devdd.recipe.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +19,7 @@ class FavoriteRecipeFragment :
 
     private val viewModel: FavoriteViewModel by viewModels()
 
-    private var recipeAdapter: SavedRecipeAdapter? = null
+    private var adapter: FavoriteRecipeAdapter? = null
     override fun onViewCreated(
         binding: FragmentFavoriteRecipeBinding,
         savedInstanceState: Bundle?
@@ -36,7 +36,7 @@ class FavoriteRecipeFragment :
 
     private fun setObserver() {
         viewModel.recipes.observe(viewLifecycleOwner) {
-            recipeAdapter?.submitList(it)
+            adapter?.submitList(it)
         }
 
         viewModel.navigation.observeEvent(viewLifecycleOwner) {
@@ -45,14 +45,14 @@ class FavoriteRecipeFragment :
     }
 
     private fun setupRecyclerViewAdapter() {
-        recipeAdapter = SavedRecipeAdapter(viewModel)
-        binding?.favoriteFragmentRecipes?.adapter = recipeAdapter
+        adapter = FavoriteRecipeAdapter(viewModel)
+        binding?.favoriteFragmentRecipes?.adapter = adapter
 
     }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
-        recipeAdapter = null
+        adapter = null
     }
 }

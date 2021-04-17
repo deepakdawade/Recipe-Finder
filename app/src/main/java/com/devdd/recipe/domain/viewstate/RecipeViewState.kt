@@ -11,7 +11,7 @@ data class RecipeViewState(
     val cookingTime: String = "",
     val preparingTime: String = "",
     val categoryName: String = "",
-    val savedDate: String = "",
+    val savedTime: String = "",
     val saved: Boolean = false
 ) {
     fun getIngredients(): String {
