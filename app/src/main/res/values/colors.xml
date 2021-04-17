@@ -10,9 +10,9 @@
     <color name="transparent">#00000000</color>
 
     <!-- Custom color   -->
-    <color name="colorDevOption1">#FF85CF32</color>
-    <color name="colorRed">#FF00</color>
-
+    <color name="colorLightGreen_500">#FF85CF32</color>
+    <color name="colorRed_700">#FFFF0000</color>
+    <color name="colorGrey_500">#999999</color>
 
     <!--Color-->
 

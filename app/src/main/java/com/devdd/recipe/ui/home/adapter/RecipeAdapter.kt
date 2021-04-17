@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.devdd.recipe.R
-import com.devdd.recipe.databinding.ItemViewRecipeBinding
+import com.devdd.recipe.databinding.ItemViewHomeRecipeBinding
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.ui.home.HomeViewModel
 import com.devdd.recipe.utils.extensions.bindWithLayout
@@ -26,7 +26,7 @@ class RecipeAdapter(private val viewModel: HomeViewModel) :
     }
 
     class RecipeViewHolder private constructor(
-        private val binding: ItemViewRecipeBinding,
+        private val binding: ItemViewHomeRecipeBinding,
         private val viewModel: HomeViewModel
     ) :
         RecyclerView.ViewHolder(binding.root) {
@@ -36,9 +36,6 @@ class RecipeAdapter(private val viewModel: HomeViewModel) :
 
         fun bind(item: RecipeViewState) {
             binding.recipe = item
-            binding.recipeItemViewSaveRecipe.setOnCheckedChangeListener { buttonView, isChecked ->
-                viewModel.markRecipeFavorite(item)
-            }
             binding.executePendingBindings()
         }
 
@@ -47,8 +44,11 @@ class RecipeAdapter(private val viewModel: HomeViewModel) :
                 parent: ViewGroup,
                 viewModel: HomeViewModel
             ): RecipeViewHolder {
-                val binding =
-                    bindWithLayout<ItemViewRecipeBinding>(R.layout.item_view_recipe, parent)
+                val binding: ItemViewHomeRecipeBinding =
+                    bindWithLayout(
+                        R.layout.item_view_home_recipe,
+                        parent
+                    )
                 return RecipeViewHolder(binding, viewModel)
             }
         }

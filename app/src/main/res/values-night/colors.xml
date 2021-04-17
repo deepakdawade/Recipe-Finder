@@ -9,9 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- Custom color   -->
-    <color name="colorDevOption1">#FF85CF32</color>
-    <color name="colorRed">#FF00</color>
-
+    <color name="colorLightGreen_500">#FF85CF32</color>
+    <color name="colorRed_700">#FF00</color>
+    <color name="colorGrey_500">#D7D7D7</color>
     <!--Color-->
 
     <!--Material uses an organized approach to applying color by providing a set of attributes -->

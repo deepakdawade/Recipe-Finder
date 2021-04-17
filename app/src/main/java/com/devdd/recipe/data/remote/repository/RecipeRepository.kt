@@ -60,7 +60,7 @@ class RecipeRepositoryImpl @Inject constructor(
     override suspend fun markRecipeFavorite(request: MarkRecipeFavoriteRequest) {
         dataSource.markRecipeFavorite(request)
         val recipe = recipeDao.recipeById(request.recipeId).first()
-        recipe.apply { saved = !saved }
+        recipe.apply { saved = request.saved }
         recipeDao.insertRecipe(recipe)
     }
 
