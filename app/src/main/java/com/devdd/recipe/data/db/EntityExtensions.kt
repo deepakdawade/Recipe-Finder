@@ -1,7 +1,6 @@
 package com.devdd.recipe.data.db
 
 import com.devdd.recipe.data.db.entities.Recipe
-import com.devdd.recipe.domain.viewstate.CategoryViewState
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 
 fun Recipe.toRecipeViewState(isEnglishLocale: Boolean): RecipeViewState {
@@ -16,6 +15,6 @@ fun Recipe.toRecipeViewState(isEnglishLocale: Boolean): RecipeViewState {
         totalTime = totalTime,
         ingredients = if (isEnglishLocale) ingredients else ingredientsHi,
         saved = saved,
-        savedDate = savedDate
+        savedTime = savedTime
     )
 }

@@ -1,4 +1,4 @@
-package com.devdd.recipe.utils.handlemultibackstack
+package com.devdd.recipe.utils.navigation
 
 import com.devdd.recipe.R
 

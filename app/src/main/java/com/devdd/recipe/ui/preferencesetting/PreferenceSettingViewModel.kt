@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.devdd.recipe.R
-import com.devdd.recipe.data.prefs.manager.GuestManager
 import com.devdd.recipe.data.prefs.manager.LocaleManager
 import com.devdd.recipe.data.prefs.manager.RecipeManager
 import com.devdd.recipe.domain.result.Event

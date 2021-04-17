@@ -6,8 +6,8 @@ import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentDashboardBinding
 import com.devdd.recipe.utils.extensions.hideToolTip
-import com.devdd.recipe.utils.handlemultibackstack.NavAnimations
-import com.devdd.recipe.utils.handlemultibackstack.setupMultipleBackStackBottomNavigation
+import com.devdd.recipe.utils.navigation.NavAnimations
+import com.devdd.recipe.utils.navigation.setupMultipleBackStackBottomNavigation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

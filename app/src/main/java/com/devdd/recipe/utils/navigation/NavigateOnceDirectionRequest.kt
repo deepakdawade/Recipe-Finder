@@ -1,4 +1,4 @@
-package com.devdd.recipe.utils.handlemultibackstack
+package com.devdd.recipe.utils.navigation
 
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions

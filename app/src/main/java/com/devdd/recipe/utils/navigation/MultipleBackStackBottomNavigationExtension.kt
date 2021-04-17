@@ -1,4 +1,4 @@
-package com.devdd.recipe.utils.handlemultibackstack
+package com.devdd.recipe.utils.navigation
 
 import android.util.SparseArray
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +14,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.utils.extensions.navigateOnce
-import com.devdd.recipe.utils.handlemultibackstack.NavAnimations
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 // global variable to store user provided navGraphids
