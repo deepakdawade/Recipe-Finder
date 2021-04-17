@@ -8,8 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
-
-    <!-- Custom color   -->
     <color name="colorLightGreen_500">#FF85CF32</color>
     <color name="colorRed_700">#FFFF0000</color>
     <color name="colorGrey_500">#999999</color>
@@ -29,23 +27,20 @@
     <!--LIGHT COLOR THEME-->
 
     <!--colorPrimary colors map to components and elements, such as app bars and buttons. -->
-    <!--colorSecondary colors are most often used as accents on components, such as FABs and -->
-    <!--selection controls.-->
+    <!--colorSecondary colors are most often used as accents on components, such as FABs and selection controls.-->
     <color name="colorPrimary">#FF6200EE</color>
     <color name="colorPrimaryVariant">#FF3700B3</color>
     <color name="colorSecondary">#FF03DAC5</color>
     <color name="colorSecondaryVariant">#FF018786</color>
 
-    <!--colorBackground appears behind scrollable content and is used for the default window-->
-    <!--background. colorSurface is mapped to the surface of components such as cards, sheets-->
-    <!--and menus. colorError is used to indicate an error state for components such as-->
-    <!--text fields.-->
+    <!--colorBackground appears behind scrollable content and is used for the default window background.-->
+    <!--colorSurface is mapped to the surface of components such as cards, sheets and menus.-->
+    <!--colorError is used to indicate an error state for components such as text fields.-->
     <color name="colorBackground">#FAFAFA</color>
     <color name="colorSurface">#ffffff</color>
     <color name="colorError">#EF4C4C</color>
 
-    <!--"On" colors define how text, icons and strokes are colored in relation to the surface-->
-    <!--on which they appear.-->
+    <!--"On" colors define how text, icons and strokes are colored in relation to the surface on which they appear.-->
     <color name="colorOnPrimary">#FF000000</color>
     <color name="colorOnSecondary">#FFFFFF</color>
     <color name="colorOnBackground">#FF000000</color>
