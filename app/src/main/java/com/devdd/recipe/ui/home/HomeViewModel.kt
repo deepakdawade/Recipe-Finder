@@ -118,7 +118,7 @@ class HomeViewModel @Inject constructor(
                 MarkRecipeFavoriteRequest(
                     guestManager.guestToken(),
                     recipe.id,
-                    recipe.saved
+                    !recipe.saved
                 )
             )
                 .collect {

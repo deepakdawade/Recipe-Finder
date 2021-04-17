@@ -65,7 +65,7 @@ class RecipeDetailViewModel @Inject constructor(
                 MarkRecipeFavoriteRequest(
                     guestManager.guestToken(),
                     recipe.value?.id ?: return@launch,
-                    recipe.value?.saved ?: return@launch
+                    recipe.value?.saved?.not() ?: return@launch
                 )
             )
                 .collect {
