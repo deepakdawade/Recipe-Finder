@@ -52,6 +52,7 @@
             android:elevation="8dp"
             android:minWidth="0dp"
             android:minHeight="0dp"
+            android:onClick="@{()->viewModel.markRecipeFavorite(recipe)}"
             app:layout_constraintBottom_toBottomOf="@id/search_recipe_item_view_image_card"
             app:layout_constraintEnd_toEndOf="@id/search_recipe_item_view_image_card"
             app:layout_constraintHorizontal_bias="0.95"

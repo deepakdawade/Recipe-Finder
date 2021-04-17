@@ -36,9 +36,6 @@ class SavedRecipeAdapter(private val viewModel: FavoriteViewModel) :
 
         fun bind(item: RecipeViewState) {
             binding.recipe = item
-            binding.savedRecipeItemViewSaveRecipe.setOnCheckedChangeListener { buttonView, isChecked ->
-                viewModel.markRecipeFavorite(item)
-            }
             binding.executePendingBindings()
         }
 

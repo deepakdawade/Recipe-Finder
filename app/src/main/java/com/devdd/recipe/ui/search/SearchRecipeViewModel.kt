@@ -7,6 +7,7 @@ import com.devdd.recipe.data.remote.models.request.MarkRecipeFavoriteRequest
 import com.devdd.recipe.domain.executers.MarkRecipeFavorite
 import com.devdd.recipe.domain.observers.SearchRecipes
 import com.devdd.recipe.domain.result.Event
+import com.devdd.recipe.domain.result.InvokeStarted
 import com.devdd.recipe.domain.result.InvokeSuccess
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.utils.extensions.toJsonString
@@ -52,7 +53,7 @@ class SearchRecipeViewModel @Inject constructor(
         viewModelScope.launch {
             markRecipeFavorite.invoke(MarkRecipeFavoriteRequest(guestManager.guestToken(), recipe.id,!recipe.saved))
                 .collect {
-                    mSavingRecipe.postValue(Pair(it is InvokeSuccess, recipe.id))
+                    mSavingRecipe.postValue(Pair(it is InvokeStarted, recipe.id))
                 }
         }
     }

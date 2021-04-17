@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
 import com.devdd.recipe.R
 import com.devdd.recipe.domain.result.Event
-import com.devdd.recipe.ui.profile.ProfileFragmentDirections
 import com.devdd.recipe.ui.profile.devoption.selectoption.adapter.DeveloperOption
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -32,7 +31,7 @@ class SelectOptionViewModel @Inject constructor() : ViewModel() {
             DeveloperOption(
                 name = R.string.dev_option_preference,
                 icon = R.drawable.shared_preference,
-                bgColor = R.color.colorDevOption1,
+                bgColor = R.color.colorLightGreen_500,
                 direction = SelectOptionFragmentDirections.actionToDataStoreSettingFragment()
             )
         )
