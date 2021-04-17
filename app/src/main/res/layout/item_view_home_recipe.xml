@@ -64,25 +64,36 @@
             android:id="@+id/home_recipe_item_view_save_recipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:background="@drawable/selector_outline_background"
             android:button="@drawable/inset_selector_favorite"
             android:checked="@{recipe.saved}"
-            android:onClick="@{()->viewModel.markRecipeFavorite(recipe)}"
             android:minWidth="0dp"
             android:minHeight="0dp"
+            android:onClick="@{()->viewModel.markRecipeFavorite(recipe)}"
+            app:layout_constraintStart_toEndOf="@id/home_recipe_item_view_est_time"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             tools:checked="true" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/home_recipe_item_view_right_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_chevron_right" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/home_recipe_item_view_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@{recipe.title}"
             android:textAppearance="?textAppearanceListItem"
             android:textColor="?colorOnPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/home_recipe_item_view_right_icon"
             app:layout_constraintStart_toStartOf="@id/home_recipe_item_view_est_time"
             app:layout_constraintTop_toBottomOf="@id/home_recipe_item_view_est_time"
             tools:text="Recipe" />
