@@ -23,29 +23,20 @@
         android:paddingHorizontal="16dp"
         android:paddingVertical="8dp">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/home_recipe_item_view_image_card"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="@{()->viewModel.navigateToRecipeDetails(recipe)}"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintDimensionRatio="w,1:1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/home_recipe_item_view_image"
-                loadImage="@{recipe.imageUrl}"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                app:loadImage="@{recipe.imageUrl}"
+                app:roundCorner="@{true}"
+                app:cornerRadius="@{8}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:scaleType="fitXY"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintDimensionRatio="w,1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/home_recipe_item_view_est_time"
@@ -60,7 +51,7 @@
             app:layout_constraintBottom_toBottomOf="@id/home_recipe_item_view_save_recipe"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/home_recipe_item_view_image_card"
+            app:layout_constraintStart_toEndOf="@id/home_recipe_item_view_image"
             app:layout_constraintTop_toTopOf="@id/home_recipe_item_view_save_recipe"
             app:layout_constraintWidth_percent="0.2"
             tools:text="30 min" />
