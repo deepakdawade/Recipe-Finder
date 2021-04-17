@@ -33,11 +33,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:checkedButton="@{viewModel.checkedRecipeButtonId}"
+            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recipe_preference_fragment_question_vegetarian_label"
             app:layout_constraintWidth_percent="0.7">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:srcCompat="@drawable/ic_veggies" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/recipe_preference_fragment_option_veg"
@@ -50,8 +57,14 @@
                 android:text="@string/recipe_pref_selection_option_veg"
                 android:textAlignment="center"
                 android:textAppearance="?textAppearanceHeadline5"
-                android:textColor="@drawable/selector_radio_text_color"
-                tools:checked="true" />
+                android:textColor="@color/selector_radio_text_color"
+                tools:checked="false" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:srcCompat="@drawable/ic_chicken_leg" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/recipe_preference_fragment_option_non_veg"
@@ -64,7 +77,9 @@
                 android:text="@string/recipe_pref_selection_option_non_veg"
                 android:textAlignment="center"
                 android:textAppearance="?textAppearanceHeadline5"
-                android:textColor="@drawable/selector_radio_text_color" />
+                android:textColor="@color/selector_radio_text_color"
+                app:useMaterialThemeColors="false"
+                tools:checked="true" />
 
             <com.google.android.material.radiobutton.MaterialRadioButton
                 android:id="@+id/recipe_preference_fragment_option_both"
@@ -77,7 +92,8 @@
                 android:text="@string/recipe_pref_selection_option_both"
                 android:textAlignment="center"
                 android:textAppearance="?textAppearanceHeadline5"
-                android:textColor="@drawable/selector_radio_text_color" />
+                android:textColor="@color/selector_radio_text_color"
+                app:useMaterialThemeColors="false" />
 
         </RadioGroup>
 

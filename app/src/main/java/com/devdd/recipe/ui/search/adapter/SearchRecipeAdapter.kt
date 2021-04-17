@@ -36,7 +36,7 @@ class SearchRecipeAdapter(private val viewModel: SearchRecipeViewModel) :
 
         fun bind(item: RecipeViewState) {
             binding.recipe = item
-            binding.recipeItemViewSaveRecipe.setOnCheckedChangeListener { buttonView, isChecked ->
+            binding.searchRecipeItemViewSaveRecipe.setOnCheckedChangeListener { buttonView, isChecked ->
                 viewModel.markRecipeFavorite(item)
             }
             binding.executePendingBindings()

@@ -8,6 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!-- Custom color   -->
+    <color name="colorDevOption1">#FF85CF32</color>
+    <color name="colorRed">#FF00</color>
 
     <!--Color-->
 

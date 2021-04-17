@@ -11,6 +11,7 @@
 
     <!-- Custom color   -->
     <color name="colorDevOption1">#FF85CF32</color>
+    <color name="colorRed">#FF00</color>
 
 
     <!--Color-->
@@ -46,7 +47,7 @@
     <!--"On" colors define how text, icons and strokes are colored in relation to the surface-->
     <!--on which they appear.-->
     <color name="colorOnPrimary">#FF000000</color>
-    <color name="colorOnSecondary">#000000</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
     <color name="colorOnBackground">#FF000000</color>
     <color name="colorOnSurface">#000000</color>
     <color name="colorOnError">#ffffff</color>
