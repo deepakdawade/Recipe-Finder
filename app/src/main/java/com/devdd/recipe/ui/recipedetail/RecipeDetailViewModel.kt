@@ -63,7 +63,7 @@ class RecipeDetailViewModel @Inject constructor(
         viewModelScope.launch {
             markRecipeFavorite.invoke(
                 MarkRecipeFavoriteRequest(
-                    guestManager.deviceId(),
+                    guestManager.guestToken(),
                     recipe.value?.id ?: return@launch,
                     recipe.value?.saved ?: return@launch
                 )

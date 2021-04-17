@@ -116,7 +116,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             markRecipeFavorite.invoke(
                 MarkRecipeFavoriteRequest(
-                    guestManager.deviceId(),
+                    guestManager.guestToken(),
                     recipe.id,
                     recipe.saved
                 )
