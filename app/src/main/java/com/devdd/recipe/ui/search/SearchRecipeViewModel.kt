@@ -1,6 +1,9 @@
 package com.devdd.recipe.ui.search
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.devdd.recipe.data.prefs.manager.GuestManager
 import com.devdd.recipe.data.remote.models.request.MarkRecipeFavoriteRequest
@@ -8,11 +11,9 @@ import com.devdd.recipe.domain.executers.MarkRecipeFavorite
 import com.devdd.recipe.domain.observers.SearchRecipes
 import com.devdd.recipe.domain.result.Event
 import com.devdd.recipe.domain.result.InvokeStarted
-import com.devdd.recipe.domain.result.InvokeSuccess
 import com.devdd.recipe.domain.viewstate.RecipeViewState
-import com.devdd.recipe.utils.extensions.toJsonString
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,7 +23,7 @@ class SearchRecipeViewModel @Inject constructor(
     private val markRecipeFavorite: MarkRecipeFavorite,
     private val guestManager: GuestManager
 ) : ViewModel() {
-    val query: MutableLiveData<String> = MutableLiveData()
+    val query: MutableStateFlow<String> = MutableStateFlow("")
 
     private val mRecipes: MutableLiveData<List<RecipeViewState>> = MutableLiveData()
     val recipes: LiveData<List<RecipeViewState>>
@@ -36,22 +37,31 @@ class SearchRecipeViewModel @Inject constructor(
     val savingRecipe: LiveData<Pair<Boolean, Int>>
         get() = mSavingRecipe
 
-    fun searchRecipes(query: String?) {
-        if (query.isNullOrBlank())
-            mRecipes.value = emptyList()
-        else {
-            viewModelScope.launch {
-                searchRecipes.invoke(query)
-                searchRecipes.observe().collect { recipes ->
-                    mRecipes.value = recipes
-                }
+    init {
+        viewModelScope.launch {
+            query.debounce(300).filter { query ->
+                if (query.isEmpty()) {
+                    mRecipes.value = emptyList()
+                    false
+                } else true
+            }.distinctUntilChanged().flatMapLatest {
+                searchRecipes.invoke(it)
+                searchRecipes.observe().catch { emit(emptyList()) }
+            }.collect {
+                mRecipes.postValue(it)
             }
         }
     }
 
-    fun markRecipeFavorite(recipe:RecipeViewState) {
+    fun markRecipeFavorite(recipe: RecipeViewState) {
         viewModelScope.launch {
-            markRecipeFavorite.invoke(MarkRecipeFavoriteRequest(guestManager.guestToken(), recipe.id,!recipe.saved))
+            markRecipeFavorite.invoke(
+                MarkRecipeFavoriteRequest(
+                    guestManager.guestToken(),
+                    recipe.id,
+                    !recipe.saved
+                )
+            )
                 .collect {
                     mSavingRecipe.postValue(Pair(it is InvokeStarted, recipe.id))
                 }

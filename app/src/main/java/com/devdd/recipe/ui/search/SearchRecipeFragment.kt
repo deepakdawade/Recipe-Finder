@@ -8,6 +8,7 @@ import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentSearchRecipeBinding
 import com.devdd.recipe.ui.home.adapter.SearchRecipeAdapter
+import com.devdd.recipe.utils.extensions.watchQueryTextChangeListener
 import com.devdd.recipe.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,18 +35,7 @@ class SearchRecipeFragment :
     private fun setViews() {
         val searchView =
             binding?.searchRecipeFragmentToolbar?.menu?.getItem(0)?.actionView as? SearchView
-        searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.searchRecipes(query)
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                viewModel.searchRecipes(newText)
-                return true
-            }
-        })
-
+        searchView?.watchQueryTextChangeListener(viewModel.query)
     }
 
     private fun setupRecyclerViewAdapter() {

@@ -19,6 +19,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.IntDef
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.SearchView
 import androidx.core.graphics.component1
 import androidx.core.graphics.component2
 import androidx.core.view.doOnLayout
@@ -26,11 +27,12 @@ import androidx.core.view.forEach
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.airbnb.lottie.LottieDrawable
-import com.devdd.recipe.utils.helper.CountDrawable
 import com.devdd.recipe.domain.result.onSuccess
+import com.devdd.recipe.utils.helper.CountDrawable
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textview.MaterialTextView
+import kotlinx.coroutines.flow.MutableStateFlow
 
 
 val MaterialToolbar.navigationIconView: View?
@@ -232,4 +234,19 @@ fun BottomNavigationView.hideToolTip() {
             it.isHapticFeedbackEnabled = false
         }
     }
+}
+
+fun SearchView.watchQueryTextChangeListener(stateFlow: MutableStateFlow<String>) {
+
+    setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            stateFlow.value = query.toString()
+            return true
+        }
+
+        override fun onQueryTextChange(newText: String): Boolean {
+            stateFlow.value = newText
+            return true
+        }
+    })
 }
