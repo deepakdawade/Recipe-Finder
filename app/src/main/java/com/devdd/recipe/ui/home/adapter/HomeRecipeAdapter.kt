@@ -10,22 +10,22 @@ import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.ui.home.HomeViewModel
 import com.devdd.recipe.utils.extensions.bindWithLayout
 
-class RecipeAdapter(private val viewModel: HomeViewModel) :
-    ListAdapter<RecipeViewState, RecipeAdapter.RecipeViewHolder>(
+class HomeRecipeAdapter(private val viewModel: HomeViewModel) :
+    ListAdapter<RecipeViewState, HomeRecipeAdapter.HomeRecipeViewHolder>(
         RecipeDiffItemCallback
     ) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
-        return RecipeViewHolder.getInstance(parent, viewModel)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRecipeViewHolder {
+        return HomeRecipeViewHolder.getInstance(parent, viewModel)
     }
 
-    override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeRecipeViewHolder, position: Int) {
         val item = getItem(position)
         item?.let {
             holder.bind(it)
         }
     }
 
-    class RecipeViewHolder private constructor(
+    class HomeRecipeViewHolder private constructor(
         private val binding: ItemViewHomeRecipeBinding,
         private val viewModel: HomeViewModel
     ) :
@@ -43,13 +43,13 @@ class RecipeAdapter(private val viewModel: HomeViewModel) :
             fun getInstance(
                 parent: ViewGroup,
                 viewModel: HomeViewModel
-            ): RecipeViewHolder {
+            ): HomeRecipeViewHolder {
                 val binding: ItemViewHomeRecipeBinding =
                     bindWithLayout(
                         R.layout.item_view_home_recipe,
                         parent
                     )
-                return RecipeViewHolder(binding, viewModel)
+                return HomeRecipeViewHolder(binding, viewModel)
             }
         }
     }

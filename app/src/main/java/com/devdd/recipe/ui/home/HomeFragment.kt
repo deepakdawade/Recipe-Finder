@@ -6,7 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentHomeBinding
-import com.devdd.recipe.ui.home.adapter.RecipeAdapter
+import com.devdd.recipe.ui.home.adapter.HomeRecipeAdapter
 import com.devdd.recipe.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,7 +15,7 @@ class HomeFragment : DevFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels()
 
-    private var recipeAdapter: RecipeAdapter? = null
+    private var recipeAdapter: HomeRecipeAdapter? = null
     override fun onViewCreated(binding: FragmentHomeBinding, savedInstanceState: Bundle?) {
         binding.homeViewModel = viewModel
         setListeners()
@@ -40,7 +40,7 @@ class HomeFragment : DevFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun setupRecyclerViewAdapter() {
-        recipeAdapter = RecipeAdapter(viewModel)
+        recipeAdapter = HomeRecipeAdapter(viewModel)
         binding?.homeFragmentRecipes?.adapter = recipeAdapter
 
     }
