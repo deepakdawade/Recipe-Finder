@@ -24,18 +24,19 @@
         android:paddingVertical="8dp">
 
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/home_recipe_item_view_image"
-                app:loadImage="@{recipe.imageUrl}"
-                app:roundCorner="@{true}"
-                app:cornerRadius="@{8}"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="fitXY"
-                android:src="@mipmap/ic_launcher"
-                app:layout_constraintDimensionRatio="w,1:1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/home_recipe_item_view_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            tools:src="@mipmap/ic_launcher"
+            app:cornerRadius="@{8}"
+            app:layout_constraintWidth_percent="0.3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImage="@{recipe.imageUrl}"
+            app:roundCorner="@{true}" />
 
 
         <com.google.android.material.textview.MaterialTextView
@@ -87,6 +88,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@{recipe.title}"
+            android:singleLine="true"
             android:textAppearance="?textAppearanceListItem"
             android:textColor="?colorOnPrimary"
             app:layout_constraintEnd_toStartOf="@id/home_recipe_item_view_right_icon"
