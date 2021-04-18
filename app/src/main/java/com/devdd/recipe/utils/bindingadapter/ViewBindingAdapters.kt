@@ -2,10 +2,13 @@ package com.devdd.recipe.utils.bindingadapter
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorRes
 import androidx.constraintlayout.widget.Group
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.transition.TransitionManager
+import com.google.android.material.card.MaterialCardView
 
 
 @BindingAdapter("toggleVisibility")
@@ -71,6 +74,11 @@ fun View.showOnData(response: List<*>?, hideOnEmptyList: Boolean) {
 fun isValid(text: String, type: String) = when (type) {
     DIGIT_ONLY -> text.isBlank()
     else -> false
+}
+
+@BindingAdapter("cardBackgroundColor")
+fun MaterialCardView.cardBackgroundColor(@ColorRes colorRes: Int) {
+    setCardBackgroundColor(ContextCompat.getColorStateList(context, colorRes))
 }
 
 private const val DIGIT_ONLY = "digitOnly"

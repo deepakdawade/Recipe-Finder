@@ -20,7 +20,10 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:onClick="@{()->listener.onOptionClick(option.direction)}"
-        app:cardBackgroundColor="@{option.bgColor}"
+        android:clipChildren="true"
+        tools:backgroundTint="@color/colorLightGreen_500"
+        cardBackgroundColor="@{option.bgColor}"
+        app:cardUseCompatPadding="true"
         app:cardCornerRadius="4dp"
         app:cardElevation="4dp">
 
@@ -28,7 +31,8 @@
             android:id="@+id/select_option_card_view_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp">
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/select_option_name"
@@ -41,18 +45,19 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Data store" />
+                tools:text="Select option" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/select_option_icon"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
+                android:padding="8dp"
+                app:srcVectorRes="@{option.icon}"
                 app:layout_constraintBottom_toBottomOf="@id/select_option_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@id/select_option_name"
                 app:layout_constraintTop_toTopOf="@id/select_option_name"
-                android:src="@{option.icon}"
                 tools:src="@mipmap/ic_launcher" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
