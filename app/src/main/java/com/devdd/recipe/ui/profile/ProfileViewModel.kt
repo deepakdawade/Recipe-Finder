@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
+import com.devdd.recipe.BuildConfig
 import com.devdd.recipe.domain.result.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -11,6 +12,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor() : ViewModel() {
 
+    val isDebugMode:Boolean
+    get() = BuildConfig.DEBUG
     private val mNavigation: MutableLiveData<Event<Pair<NavDirections, Boolean>>> =
         MutableLiveData()
     val navigation: LiveData<Event<Pair<NavDirections, Boolean>>>

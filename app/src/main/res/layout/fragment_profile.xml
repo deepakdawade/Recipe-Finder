@@ -10,72 +10,114 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/profile_fragment_root"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/profile_fragment_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/profile_fragment_heading"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profile_fragment_scroll_view_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bottom_nav_menu_label_profile"
-            android:textAlignment="center"
-            android:textAppearance="?textAppearanceHeadline5"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.1" />
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/profile_fragment_action_change_language_pref"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:onClick="@{()->viewModel.navigateToChangeLanguage()}"
-            android:padding="16dp"
-            android:text="@string/profile_option_change_language"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textAppearance="?textAppearanceButton"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_fragment_heading" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/profile_fragment_heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/bottom_nav_menu_label_profile"
+                android:textAlignment="center"
+                android:textAppearance="?textAppearanceHeadline5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.1" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/profile_fragment_action_change_recipe_pref"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:onClick="@{()->viewModel.navigateToChangeRecipePref()}"
-            android:padding="16dp"
-            android:text="@string/profile_option_change_recipe_pref"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textAppearance="?textAppearanceButton"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_fragment_action_change_language_pref" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/profile_fragment_user_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_fragment_heading"
+                app:srcCompat="@drawable/ic_profile_logo" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/profile_fragment_action_dev_options"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:onClick="@{()->viewModel.navigateToDeveloperOption()}"
-            android:padding="16dp"
-            android:text="@string/profile_option_dev_options"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textAppearance="?textAppearanceButton"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_fragment_action_change_recipe_pref" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/profile_fragment_menu_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_fragment_user_logo">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:id="@+id/profile_fragment_action_change_language_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:background="@android:color/holo_green_light" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/profile_fragment_action_change_language_pref"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_click_ripple"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:onClick="@{()->viewModel.navigateToChangeLanguage()}"
+                    android:padding="8dp"
+                    android:text="@string/profile_option_change_language"
+                    android:textAppearance="?textAppearanceSubtitle2"
+                    app:drawableStartCompat="@drawable/ic_language" />
+
+                <View
+                    android:id="@+id/profile_fragment_action_change_recipe_pref_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:background="@android:color/holo_green_light" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/profile_fragment_action_change_recipe_pref"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_click_ripple"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:onClick="@{()->viewModel.navigateToChangeRecipePref()}"
+                    android:padding="8dp"
+                    android:text="@string/profile_option_change_recipe_pref"
+                    android:textAppearance="?textAppearanceSubtitle2"
+                    app:drawableStartCompat="@drawable/ic_dish" />
+
+                <View
+                    android:id="@+id/profile_fragment_action_dev_options_divider"
+                    toggleVisibility="@{viewModel.debugMode}"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:background="@android:color/holo_green_light" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/profile_fragment_action_dev_options"
+                    toggleVisibility="@{viewModel.debugMode}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_click_ripple"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:onClick="@{()->viewModel.navigateToDeveloperOption()}"
+                    android:padding="8dp"
+                    android:text="@string/profile_option_dev_options"
+                    android:textAppearance="?textAppearanceSubtitle2"
+                    app:drawableStartCompat="@drawable/ic_dev_option" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:background="@android:color/holo_green_light" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>
