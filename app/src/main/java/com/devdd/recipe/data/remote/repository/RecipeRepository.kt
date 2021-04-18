@@ -46,11 +46,7 @@ class RecipeRepositoryImpl @Inject constructor(
         val recipes = dataSource.fetchRecipes(guestToken)
         val localRecipes = recipeDao.allRecipes().first()
         val insertIntoDB = recipes.isNotEmpty() && recipes != localRecipes
-        if (insertIntoDB) {
-            if (localRecipes.isNotEmpty())
-                recipeDao.dropRecipes()
-            recipeDao.insertRecipe(*recipes.toTypedArray())
-        }
+        if (insertIntoDB) recipeDao.insertRecipe(*recipes.toTypedArray())
     }
 
     override suspend fun setDeviceId(deviceId: String) {

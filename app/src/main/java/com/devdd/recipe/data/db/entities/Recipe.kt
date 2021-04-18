@@ -41,14 +41,14 @@ data class Recipe(
     @ColumnInfo(name = "total_time")
     val totalTime: String = "",
 
-    @ColumnInfo(name = "ingrediants")
-    var ingredients: List<String> = emptyList(),
+    @ColumnInfo(name = "ingredients")
+    val ingredients: List<String> = emptyList(),
 
-    @ColumnInfo(name = "ingrediants_hi")
-    var ingredientsHi: List<String> = emptyList(),
+    @ColumnInfo(name = "ingredients_hi")
+    val ingredientsHi: List<String> = emptyList(),
 
     @ColumnInfo(name = "saved_time")
-    var savedTime: Long = 0,
+    val savedTime: Long = 0,
 
     @ColumnInfo(name = "saved")
     var saved: Boolean = false,

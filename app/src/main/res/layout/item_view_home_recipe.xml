@@ -29,21 +29,20 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="fitXY"
-            tools:src="@mipmap/ic_launcher"
             app:cornerRadius="@{8}"
-            app:layout_constraintWidth_percent="0.3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.3"
             app:loadImage="@{recipe.imageUrl}"
-            app:roundCorner="@{true}" />
+            app:roundCorner="@{true}"
+            tools:src="@mipmap/ic_launcher" />
 
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/home_recipe_item_view_est_time"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
             android:background="@drawable/shape_outline_background"
             android:gravity="center"
             android:padding="4dp"
@@ -52,7 +51,7 @@
             app:layout_constraintBottom_toBottomOf="@id/home_recipe_item_view_save_recipe"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/home_recipe_item_view_image"
+            app:layout_constraintStart_toStartOf="@id/home_recipe_item_view_title"
             app:layout_constraintTop_toTopOf="@id/home_recipe_item_view_save_recipe"
             app:layout_constraintWidth_percent="0.2"
             tools:text="30 min" />
@@ -62,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/selector_outline_background"
             android:button="@drawable/inset_selector_favorite"
             android:checked="@{recipe.saved}"
@@ -69,7 +69,7 @@
             android:minHeight="0dp"
             android:onClick="@{()->viewModel.markRecipeFavorite(recipe)}"
             app:layout_constraintStart_toEndOf="@id/home_recipe_item_view_est_time"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_recipe_item_view_title"
             tools:checked="true" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -85,15 +85,15 @@
             android:id="@+id/home_recipe_item_view_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
-            android:text="@{recipe.title}"
             android:singleLine="true"
+            android:text="@{recipe.title}"
             android:textAppearance="?textAppearanceListItem"
             android:textColor="?colorOnPrimary"
             app:layout_constraintEnd_toStartOf="@id/home_recipe_item_view_right_icon"
-            app:layout_constraintStart_toStartOf="@id/home_recipe_item_view_est_time"
-            app:layout_constraintTop_toBottomOf="@id/home_recipe_item_view_est_time"
+            app:layout_constraintStart_toEndOf="@id/home_recipe_item_view_image"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Recipe" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -106,9 +106,9 @@
             android:textAppearance="?textAppearanceCaption"
             android:textColor="?colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/home_recipe_item_view_title"
-            app:layout_constraintStart_toStartOf="@id/home_recipe_item_view_title"
-            app:layout_constraintTop_toBottomOf="@id/home_recipe_item_view_title"
+            app:layout_constraintEnd_toStartOf="@id/home_recipe_item_view_right_icon"
+            app:layout_constraintStart_toStartOf="@id/home_recipe_item_view_est_time"
+            app:layout_constraintTop_toBottomOf="@id/home_recipe_item_view_est_time"
             tools:text="author:Deepak" />
 
         <ProgressBar
