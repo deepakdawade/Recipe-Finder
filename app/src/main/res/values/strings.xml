@@ -42,9 +42,9 @@
     <!-- Recipe Details    -->
     <string name="recipe_details_ingredients_text">Ingredients</string>
     <string name="recipe_details_author_name">Author: %1$s</string>
-    <string name="recipe_details_total_time"><![CDATA[Total time <b>%1$s</b>]]></string>
-    <string name="recipe_details_preparation_time"><![CDATA[Preparation time <b>%1$s</b>]]></string>
-    <string name="recipe_details_cooking_time"><![CDATA[Cooking time <b>%1$s</b>]]></string>
+    <string name="recipe_details_total_time"><![CDATA[<b>Total time </b>%1$s]]></string>
+    <string name="recipe_details_preparation_time"><![CDATA[<b>Preparation time </b>%1$s]]></string>
+    <string name="recipe_details_cooking_time"><![CDATA[<b>Cooking time </b>%1$s]]></string>
     <string name="recipe_details_description_label">Description</string>
 
     <!--  Dev Option selection  -->
