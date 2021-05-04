@@ -75,5 +75,6 @@
     <string name="yesPutPreferenceDeveloperOption" translatable="false">Yes, put</string>
     <string name="warning" translatable="false">Warning</string>
     <string name="empty_string_placeholder">%s</string>
+    <string name="EINTERNAL">Internal</string>
 
 </resources>

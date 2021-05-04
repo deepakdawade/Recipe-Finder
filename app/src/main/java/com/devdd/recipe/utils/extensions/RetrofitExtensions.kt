@@ -1,6 +1,6 @@
 package com.devdd.recipe.utils.extensions
 
-import com.devdd.recipe.data.remote.models.ServerResponse
+import com.devdd.recipe.data.remote.models.response.ServerResponse
 import com.devdd.recipe.domain.result.ServerException
 import com.devdd.recipe.domain.result.Result
 import kotlinx.coroutines.delay

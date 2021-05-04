@@ -16,16 +16,6 @@ fun ProgressBar.materialStyleProgress(colorResIds: IntArray) {
     indeterminateDrawable = circularProgressDrawable
 }
 
-@BindingAdapter("goneUnless")
-fun ProgressBar.goneWhenDataLoaded(response: Boolean?) {
-    isVisible = response == true
-}
-
-@BindingAdapter("showWhileFetching")
-fun ProgressBar.showWhileFetchData(response: List<*>?) {
-    isVisible = response == null
-}
-
 @BindingAdapter("tintOnIncomplete", "tintOnComplete", "determinateProgress")
 fun ProgressBar.changeWhenComplete(
     tintOnIncomplete: Int,

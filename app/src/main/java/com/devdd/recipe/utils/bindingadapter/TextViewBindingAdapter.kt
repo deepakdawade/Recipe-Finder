@@ -19,11 +19,6 @@ fun MaterialTextView.spannedText(htmlFormattedText: String?) {
     text = spannedString
 }
 
-@BindingAdapter("android:textSize")
-fun MaterialTextView.bindTextSize(size: Int) {
-    setTextSize(TypedValue.COMPLEX_UNIT_SP, size.toFloat())
-}
-
 @BindingAdapter("drawableTop")
 fun MaterialTextView.drawableTop(drawable: Int) {
     setCompoundDrawablesWithIntrinsicBounds(drawable, 0, 0, 0)
@@ -39,32 +34,6 @@ fun MaterialTextView.setCountDownTimer(remainingTime: Long?) {
         val minText: String = (if (min < 10) "0" else "") + min
         text = "${minText}:${secsText}"
     }
-}
-
-@BindingAdapter("stringId", "stringValue")
-fun MaterialTextView.formatString(@StringRes stringId: Int?, stringValue: String) {
-    isVisible = if (stringId == null) {
-        text = ""
-        false
-    } else {
-        text = String.format(stringValue, context.getString(stringId))
-        true
-    }
-}
-
-@BindingAdapter("textColorTint")
-fun MaterialTextView.textColor(@ColorRes color: Int) {
-    setTextColor(ContextCompat.getColor(context, color))
-}
-
-@BindingAdapter("textValue")
-fun MaterialTextView.textValue(text: Int) {
-    setText(resources.getString(text))
-}
-
-@BindingAdapter("stringSrc", "args")
-fun MaterialTextView.stringValue(stringSrc: Int, args: Any) {
-    text = context.getString(stringSrc, args)
 }
 
 @BindingAdapter("textValue", "textDefault")

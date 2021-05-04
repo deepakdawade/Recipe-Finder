@@ -1,6 +1,6 @@
 package com.devdd.recipe.data.remote.retrofit
 
-import com.devdd.recipe.data.remote.models.ServerResponse
+import com.devdd.recipe.data.remote.models.response.ServerResponse
 import com.devdd.recipe.data.remote.models.request.MarkRecipeFavoriteRequest
 import com.devdd.recipe.data.remote.models.request.SavedRecipesRequest
 import com.devdd.recipe.data.remote.models.response.GuestResponse
