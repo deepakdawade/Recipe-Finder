@@ -1,20 +1,14 @@
 package com.devdd.recipe.data.db
 
 import androidx.room.TypeConverter
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import java.lang.reflect.Type
+import com.devdd.recipe.utils.extensions.toDataClass
+import com.devdd.recipe.utils.extensions.toJsonString
 
 
 object RoomConverters {
     @TypeConverter
-    fun fromString(value: String): List<String> {
-        val listType: Type = object : TypeToken<List<String>>() {}.type
-        return Gson().fromJson(value, listType)
-    }
+    fun fromString(value: String): List<String> = value.toDataClass()
 
     @TypeConverter
-    fun fromList(list: List<String>): String {
-        return Gson().toJson(list)
-    }
+    fun fromList(list: List<String>): String = list.toJsonString()
 }
