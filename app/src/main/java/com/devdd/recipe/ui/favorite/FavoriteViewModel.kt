@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
+import com.devdd.recipe.data.db.entities.Recipe
 import com.devdd.recipe.data.prefs.manager.GuestManager
 import com.devdd.recipe.data.prefs.manager.LocaleManager
 import com.devdd.recipe.data.prefs.manager.RecipeManager
@@ -72,7 +73,7 @@ class FavoriteViewModel @Inject constructor(
         }
     }
 
-    fun markRecipeFavorite(recipe: RecipeViewState) {
+    fun markRecipeFavorite(recipe: Recipe) {
         viewModelScope.launch {
             markRecipeFavorite.invoke(
                 MarkRecipeFavoriteRequest(
@@ -100,9 +101,9 @@ class FavoriteViewModel @Inject constructor(
     private fun observeRecipes() {
         viewModelScope.launch {
             observeRecipeByPref.observe().collect {
-                val original = it.filter { state -> state.saved }
+                val original = it.filter { recipe -> recipe.entity.saved }
                 val mapped: Map<String, List<RecipeViewState>> =
-                    original.groupBy { state -> state.savedTime }
+                    original.groupBy { state -> state.savedDate() }
                 val recipes = mutableListOf<HeaderDataViewState>()
                 mapped.forEach { entry ->
                     val header = HeaderDataViewState.Header(string = entry.key)
@@ -117,8 +118,8 @@ class FavoriteViewModel @Inject constructor(
         }
     }
 
-    fun navigateToRecipeDetails(viewState: RecipeViewState) {
-        val navDirection = HomeFragmentDirections.actionToRecipeDetailFragment(viewState.id)
+    fun navigateToRecipeDetails(recipeId: Int) {
+        val navDirection = HomeFragmentDirections.actionToRecipeDetailFragment(recipeId)
         mNavigation.value = Event(navDirection)
     }
 }

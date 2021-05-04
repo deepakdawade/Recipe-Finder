@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_arrow_back"
             app:navigationIconTint="?colorOnPrimary"
-            app:title="@{viewModel.recipe.title}"
+            app:title="@{viewModel.recipe.entity.title}"
             app:titleTextColor="?colorOnPrimary"
             tools:title="Recipe detail" />
 
@@ -46,7 +46,7 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/recipe_detail_fragment_image"
-                    loadImage="@{viewModel.recipe.imageUrl}"
+                    loadImage="@{viewModel.recipe.entity.imageUrl}"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
@@ -61,7 +61,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="@{viewModel.recipe.title}"
+                    android:text="@{viewModel.recipe.title(context)}"
                     android:textAlignment="center"
                     android:textAppearance="?textAppearanceHeadline6"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +86,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginStart="16dp"
                     android:button="@drawable/selector_favorite"
-                    android:checked="@{viewModel.recipe.saved}"
+                    android:checked="@{viewModel.recipe.entity.saved}"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     android:onClick="@{()->viewModel.markRecipeFavorite()}"
@@ -97,7 +97,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/recipe_detail_fragment_total_time"
-                    spannedText="@{@string/recipe_details_total_time(viewModel.recipe.totalTime)}"
+                    spannedText="@{@string/recipe_details_total_time(viewModel.recipe.entity.totalTime)}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
@@ -109,7 +109,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/recipe_detail_fragment_preparation_time"
-                    spannedText="@{@string/recipe_details_preparation_time(viewModel.recipe.preparingTime)}"
+                    spannedText="@{@string/recipe_details_preparation_time(viewModel.recipe.entity.preparingTime)}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
@@ -121,7 +121,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/recipe_detail_fragment_cooking_time"
-                    spannedText="@{@string/recipe_details_cooking_time(viewModel.recipe.cookingTime)}"
+                    spannedText="@{@string/recipe_details_cooking_time(viewModel.recipe.entity.cookingTime)}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
@@ -148,7 +148,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
-                    android:text="@{viewModel.recipe.description}"
+                    android:text="@{viewModel.recipe.description(context)}"
                     android:textAppearance="?textAppearanceBody2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -171,7 +171,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
-                    android:text="@{viewModel.recipe.getIngredients()}"
+                    android:text="@{viewModel.recipe.ingredients(context)}"
                     android:textAppearance="?textAppearanceBody2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -180,11 +180,11 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/recipe_detail_fragment_author"
-                    stringVisibility="@{viewModel.recipe.authorName}"
+                    stringVisibility="@{viewModel.recipe.entity.authorName}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="@{@string/recipe_details_author_name(viewModel.recipe.authorName)}"
+                    android:text="@{@string/recipe_details_author_name(viewModel.recipe.entity.authorName)}"
                     android:textAppearance="?textAppearanceCaption"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

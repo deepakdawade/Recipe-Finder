@@ -56,7 +56,7 @@ class SavedRecipeAdapter(private val viewModel: FavoriteViewModel) :
 
     private object RecipeDiffItemCallback : DiffUtil.ItemCallback<RecipeViewState>() {
         override fun areItemsTheSame(oldItem: RecipeViewState, newItem: RecipeViewState): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.entity.id == newItem.entity.id
         }
 
         override fun areContentsTheSame(

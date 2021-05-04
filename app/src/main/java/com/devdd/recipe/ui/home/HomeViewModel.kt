@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
+import com.devdd.recipe.data.db.entities.Recipe
 import com.devdd.recipe.data.prefs.manager.GuestManager
 import com.devdd.recipe.data.prefs.manager.LocaleManager
 import com.devdd.recipe.data.prefs.manager.RecipeManager
@@ -109,7 +110,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun markRecipeFavorite(recipe: RecipeViewState) {
+    fun markRecipeFavorite(recipe: Recipe) {
         viewModelScope.launch {
             markRecipeFavorite.invoke(
                 MarkRecipeFavoriteRequest(
@@ -145,8 +146,8 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun navigateToRecipeDetails(viewState: RecipeViewState) {
-        val navDirection = HomeFragmentDirections.actionToRecipeDetailFragment(viewState.id)
+    fun navigateToRecipeDetails(recipeId: Int) {
+        val navDirection = HomeFragmentDirections.actionToRecipeDetailFragment(recipeId)
         mNavigation.value = Event(navDirection)
     }
 }

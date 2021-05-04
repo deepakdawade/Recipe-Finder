@@ -13,7 +13,7 @@ class ObserveRecipeByPref @Inject constructor(
 ) : SubjectUseCase<ObserveRecipeByPref.Params, List<RecipeViewState>>() {
     override fun createObservable(params: Params): Flow<List<RecipeViewState>> {
         return repository.observeRecipesByPref(params.pref).map { recipes ->
-            recipes.map { recipe -> recipe.toRecipeViewState(isEnglishLocale = params.isEnglish) }
+            recipes.map { recipe -> recipe.toRecipeViewState() }
         }
     }
 

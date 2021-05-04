@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
         android:layout_marginTop="8dp"
-        android:onClick="@{()->viewModel.navigateToRecipeDetails(recipe)}">
+        android:onClick="@{()->viewModel.navigateToRecipeDetails(recipe.entity.id)}">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/saved_recipe_item_view_image_card"
@@ -35,7 +35,7 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/saved_recipe_item_view_image"
-                loadImage="@{recipe.imageUrl}"
+                loadImage="@{recipe.entity.imageUrl}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
@@ -49,11 +49,11 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:button="@drawable/selector_favorite"
-            android:checked="@{recipe.saved}"
+            android:checked="@{recipe.entity.saved}"
             android:elevation="8dp"
             android:minWidth="0dp"
             android:minHeight="0dp"
-            android:onClick="@{()->viewModel.markRecipeFavorite(recipe)}"
+            android:onClick="@{()->viewModel.markRecipeFavorite(recipe.entity)}"
             app:layout_constraintBottom_toBottomOf="@id/saved_recipe_item_view_image_card"
             app:layout_constraintEnd_toEndOf="@id/saved_recipe_item_view_image_card"
             app:layout_constraintHorizontal_bias="0.95"
@@ -66,7 +66,7 @@
             android:id="@+id/saved_recipe_item_view_author_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{recipe.title}"
+            android:text="@{recipe.title(context)}"
             android:singleLine="true"
             android:textAppearance="?textAppearanceHeadline5"
             android:textColor="?colorOnPrimary"
@@ -79,7 +79,7 @@
 
         <ProgressBar
             android:id="@+id/saved_recipe_item_view_progress"
-            toggleVisibility="@{viewModel.savingRecipe.first &amp;&amp; viewModel.savingRecipe.second == recipe.id}"
+            toggleVisibility="@{viewModel.savingRecipe.first &amp;&amp; viewModel.savingRecipe.second == recipe.entity.id}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

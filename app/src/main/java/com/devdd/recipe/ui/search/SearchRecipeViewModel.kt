@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
+import com.devdd.recipe.data.db.entities.Recipe
 import com.devdd.recipe.data.prefs.manager.GuestManager
 import com.devdd.recipe.data.remote.models.request.MarkRecipeFavoriteRequest
 import com.devdd.recipe.domain.executers.MarkRecipeFavorite
@@ -53,7 +54,7 @@ class SearchRecipeViewModel @Inject constructor(
         }
     }
 
-    fun markRecipeFavorite(recipe: RecipeViewState) {
+    fun markRecipeFavorite(recipe: Recipe) {
         viewModelScope.launch {
             markRecipeFavorite.invoke(
                 MarkRecipeFavoriteRequest(
@@ -68,8 +69,8 @@ class SearchRecipeViewModel @Inject constructor(
         }
     }
 
-    fun navigateToRecipeDetails(viewState: RecipeViewState) {
-        val navDirection = SearchRecipeFragmentDirections.actionToRecipeDetailFragment(viewState.id)
+    fun navigateToRecipeDetails(recipeId: Int) {
+        val navDirection = SearchRecipeFragmentDirections.actionToRecipeDetailFragment(recipeId)
         mNavigation.value = Event(navDirection)
     }
 }

@@ -21,7 +21,7 @@ class GetRecipeById @Inject constructor(
 ) : SubjectUseCase<Int, RecipeViewState>() {
     override fun createObservable(params: Int): Flow<RecipeViewState> {
         return repository.getRecipeById(params).map {
-            it.toRecipeViewState(isEnglishLocale = localeManager.isEnglishLocale())
+            it.toRecipeViewState()
         }
     }
 }

@@ -60,12 +60,13 @@ class RecipeDetailViewModel @Inject constructor(
 
     fun markRecipeFavorite() {
         mSavingRecipe.value = true
+        val localRecipe = recipe.value?.entity
         viewModelScope.launch {
             markRecipeFavorite.invoke(
                 MarkRecipeFavoriteRequest(
                     guestManager.guestToken(),
-                    recipe.value?.id ?: return@launch,
-                    recipe.value?.saved?.not() ?: return@launch
+                    localRecipe?.id ?: return@launch,
+                    localRecipe.saved.not()
                 )
             )
                 .collect {
