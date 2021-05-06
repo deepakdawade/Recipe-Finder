@@ -23,10 +23,6 @@ dependencies {
     // Co-Routines
     api(Libraries.Coroutines.coroutineCore)
 
-    // Dagger
-    api(Libraries.Google.DaggerHilt.daggerHilt)
-    kapt(Libraries.Google.DaggerHilt.hiltKapt)
-
     // Retrofit
     api(Libraries.Retrofit.retrofit)
 }

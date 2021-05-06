@@ -3,7 +3,7 @@ object Dependencies {
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:4.1.2"
 
-    object BuildConfig {
+    object Recipe {
         const val applicationId = "com.devdd.recipe"
         const val compileSdkVersion = 30
         const val minSdkVersion = 23

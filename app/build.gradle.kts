@@ -1,4 +1,4 @@
-import com.devdd.recipe.buildsrc.Dependencies.BuildConfig
+import com.devdd.recipe.buildsrc.Dependencies.Recipe
 import com.devdd.recipe.buildsrc.Dependencies.VersionInfo
 import com.devdd.recipe.buildsrc.Dependencies.Libraries
 
@@ -15,12 +15,12 @@ kapt {
 }
 
 android {
-    compileSdkVersion(BuildConfig.compileSdkVersion)
+    compileSdkVersion(Recipe.compileSdkVersion)
     buildToolsVersion("30.0.3")
     defaultConfig {
-        applicationId(BuildConfig.applicationId)
-        minSdkVersion(BuildConfig.minSdkVersion)
-        targetSdkVersion(BuildConfig.targetSdk)
+        applicationId(Recipe.applicationId)
+        minSdkVersion(Recipe.minSdkVersion)
+        targetSdkVersion(Recipe.targetSdk)
         versionCode = VersionInfo.versionCode
         versionName = VersionInfo.versionName
 
