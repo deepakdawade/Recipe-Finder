@@ -7,9 +7,9 @@ import androidx.annotation.Px
 import androidx.core.view.marginLeft
 import androidx.core.view.marginRight
 import androidx.recyclerview.widget.RecyclerView
-import com.devdd.recipe.utils.extensions.isFirstItem
-import com.devdd.recipe.utils.extensions.isLastItem
-import com.devdd.recipe.utils.extensions.getDisplaySize
+import com.devdd.recipe.base_android.utils.extensions.getDisplaySize
+import com.devdd.recipe.ui.utils.extensions.isFirstItem
+import com.devdd.recipe.ui.utils.extensions.isLastItem
 
 class RecyclerViewItemCountDecoration(
     private val context: Context,

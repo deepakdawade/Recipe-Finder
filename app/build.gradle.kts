@@ -7,9 +7,12 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     kotlin("android.extensions")
+    id("dagger.hilt.android.plugin")
 }
+
 kapt {
     correctErrorTypes = true
+    useBuildCache = true
 }
 
 android {
@@ -42,6 +45,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
+    }
+    sourceSets {
+        getByName("debug").res.srcDirs("$rootDir/navigation/src/main/sharedRes")
     }
 
     compileOptions {
@@ -81,12 +87,18 @@ android {
 
 dependencies {
 
+    implementation(project(":feature-home"))
+    implementation(project(":feature-search"))
+    implementation(project(":feature-favorite"))
+    implementation(project(":feature-profile"))
     implementation(project(":ui"))
 
     // Lifecycle
     implementation(Libraries.AndroidX.Lifecycle.process)
 
     // Dagger
+    // Dagger
+    implementation(Libraries.Google.DaggerHilt.daggerHilt)
     kapt(Libraries.Google.DaggerHilt.hiltKapt)
 
 

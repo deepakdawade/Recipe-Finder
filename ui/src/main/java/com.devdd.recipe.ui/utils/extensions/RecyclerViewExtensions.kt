@@ -1,4 +1,4 @@
-package com.devdd.recipe.utils.extensions
+package com.devdd.recipe.ui.utils.extensions
 
 import android.util.DisplayMetrics
 import android.view.View
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.devdd.recipe.utils.snappositionlistener.SnapOnScrollListener
-import com.devdd.recipe.utils.helper.snappositionlistener.OnSnapPositionChangeListener
+import com.devdd.recipe.ui.utils.helper.snappositionlistener.OnSnapPositionChangeListener
 import kotlin.math.abs
 import kotlin.math.max
 

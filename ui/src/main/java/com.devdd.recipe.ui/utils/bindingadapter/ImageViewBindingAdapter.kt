@@ -9,8 +9,8 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
 import com.devdd.recipe.ui.R
-import com.devdd.recipe.utils.extensions.animateAVD
-import com.devdd.recipe.utils.extensions.px
+import com.devdd.recipe.ui.utils.extensions.animateAVD
+import com.devdd.recipe.base_android.utils.extensions.px
 
 @BindingAdapter(
     "loadImage",
@@ -26,12 +26,12 @@ fun AppCompatImageView.loadImage(
     cornerRadius: Int? = 0
 ) {
     load(imageUrl) {
-        placeholder(R.drawable.ic_launcher_foreground)
+//        placeholder(R.drawable.ic_launcher_foreground)
         if (circleCrop == true)
             transformations(CircleCropTransformation())
         else if (roundCorner == true)
             transformations(RoundedCornersTransformation(radius = (cornerRadius ?: 0).px(context)))
-        error(R.drawable.ic_launcher_foreground)
+//        error(R.drawable.ic_launcher_foreground)
     }
 }
 

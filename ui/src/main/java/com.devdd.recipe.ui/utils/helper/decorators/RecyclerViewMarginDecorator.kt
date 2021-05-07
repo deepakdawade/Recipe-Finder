@@ -3,8 +3,8 @@ package com.devdd.exampleapp.commonui.utils.helpers.decorators
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.devdd.recipe.utils.extensions.isFirstItem
-import com.devdd.recipe.utils.extensions.isLastItem
+import com.devdd.recipe.ui.utils.extensions.isFirstItem
+import com.devdd.recipe.ui.utils.extensions.isLastItem
 
 class RecyclerViewMarginDecorator(
     private val marginTop: Int = NO_MARGIN_APPLIED,

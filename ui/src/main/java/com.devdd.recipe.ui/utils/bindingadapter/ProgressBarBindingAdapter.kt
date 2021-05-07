@@ -5,7 +5,7 @@ import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.devdd.recipe.utils.extensions.animateProgress
+import com.devdd.recipe.ui.utils.extensions.animateProgress
 
 @BindingAdapter("materialStyleProgress")
 fun ProgressBar.materialStyleProgress(colorResIds: IntArray) {

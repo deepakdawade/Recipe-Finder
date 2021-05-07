@@ -1,4 +1,4 @@
-package com.devdd.recipe.utils.extensions
+package com.devdd.recipe.ui.utils.extensions
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
@@ -27,8 +27,9 @@ import androidx.core.view.forEach
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.airbnb.lottie.LottieDrawable
-import com.devdd.recipe.domain.result.onSuccess
-import com.devdd.recipe.utils.helper.CountDrawable
+import com.devdd.recipe.base.result.onSuccess
+import com.devdd.recipe.ui.utils.helper.CountDrawable
+import com.devdd.recipe.utils.extensions.loadLottieFromUrl
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textview.MaterialTextView

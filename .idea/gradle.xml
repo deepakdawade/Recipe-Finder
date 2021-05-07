@@ -17,6 +17,10 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/feature-favorite" />
+            <option value="$PROJECT_DIR$/feature-home" />
+            <option value="$PROJECT_DIR$/feature-profile" />
+            <option value="$PROJECT_DIR$/feature-search" />
             <option value="$PROJECT_DIR$/navigation" />
             <option value="$PROJECT_DIR$/ui" />
           </set>

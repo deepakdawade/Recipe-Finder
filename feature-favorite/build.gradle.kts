@@ -5,7 +5,6 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
-    id("androidx.navigation.safeargs.kotlin")
 }
 
 kapt {
@@ -19,6 +18,8 @@ android {
     defaultConfig {
         minSdkVersion(Recipe.minSdkVersion)
 
+        vectorDrawables.useSupportLibrary = true
+
         testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
     }
 
@@ -27,18 +28,15 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    sourceSets {
-        getByName("main").res.srcDirs("$rootDir/navigation/src/main/sharedRes")
+    buildFeatures {
+        dataBinding = true
     }
 }
 
 dependencies {
-    // Local Projects
-    implementation(project(":base"))
 
-    // Navigation
-    api(Libraries.AndroidX.Navigation.navigationFragment)
-    implementation(Libraries.AndroidX.Navigation.navigationUI)
+    // Local projects
+    implementation(project(":ui"))
 
     //Testing
     testImplementation(Libraries.Junit.jUnit)

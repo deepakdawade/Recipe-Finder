@@ -5,7 +5,6 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 kapt {
@@ -53,7 +52,6 @@ dependencies {
 
     // Dagger
     api(Libraries.Google.DaggerHilt.daggerHilt)
-    api(Libraries.Google.DaggerHilt.daggerHiltViewModel)
     kapt(Libraries.Google.DaggerHilt.hiltKapt)
 
     // Testing

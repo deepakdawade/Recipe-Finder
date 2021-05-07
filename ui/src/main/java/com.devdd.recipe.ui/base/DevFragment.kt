@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.devdd.recipe.utils.extensions.bindingWithLifecycleOwner
+import com.devdd.recipe.ui.utils.extensions.bindingWithLifecycleOwner
 import com.google.android.material.snackbar.Snackbar
 
 abstract class DevFragment<V : ViewDataBinding>(@LayoutRes private val layoutId: Int) : Fragment(layoutId) {

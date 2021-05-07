@@ -131,13 +131,13 @@ class PreferenceSettingViewModel @Inject constructor(
     }
 
     private object RecipeOptionId {
-        const val VEG = R.id.recipe_preference_fragment_option_veg
-        const val NON_VEG = R.id.recipe_preference_fragment_option_non_veg
-        const val BOTH_VEG_NON_VEG = R.id.recipe_preference_fragment_option_both
+        val VEG = R.id.recipe_preference_fragment_option_veg
+        val NON_VEG = R.id.recipe_preference_fragment_option_non_veg
+        val BOTH_VEG_NON_VEG = R.id.recipe_preference_fragment_option_both
     }
 
     private object LanguageOptionId {
-        const val ENGLISH = R.id.language_preference_fragment_option_english
-        const val HINDI = R.id.language_preference_fragment_option_hindi
+        val ENGLISH = R.id.language_preference_fragment_option_english
+        val HINDI = R.id.language_preference_fragment_option_hindi
     }
 }

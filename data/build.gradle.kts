@@ -62,8 +62,8 @@ dependencies {
     kapt(Libraries.Google.DaggerHilt.hiltKapt)
 
     //Room
-    implementation(Libraries.AndroidX.Room.room)
-    implementation(Libraries.AndroidX.Room.roomRunTime)
+    api(Libraries.AndroidX.Room.room)
+    api(Libraries.AndroidX.Room.roomRunTime)
     kapt(Libraries.AndroidX.Room.roomKapt)
 
     //DataStore
@@ -71,7 +71,7 @@ dependencies {
 
     // Ok-Http
     api(Libraries.OkHttp.okhttp)
-    implementation(Libraries.OkHttp.loggingInterceptor)
+    api(Libraries.OkHttp.loggingInterceptor)
     implementation(Libraries.OkHttp.urlConnection)
 
     // Retrofit Converters

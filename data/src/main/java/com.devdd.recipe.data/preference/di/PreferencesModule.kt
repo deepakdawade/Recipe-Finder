@@ -3,6 +3,8 @@ package com.devdd.recipe.data.preference.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.devdd.recipe.base.constants.SHARED_PREF_NAME
+import com.devdd.recipe.data.preference.DataStorePreference
+import com.devdd.recipe.data.preference.DataStorePreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +15,12 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object SharedPreferencesModule{
+object PreferencesModule{
+
+    @Singleton
+    @Provides
+    fun providesRecipeDataStore(dataStore: DataStorePreferences): DataStorePreference = dataStore
+
     @Provides
     @Singleton
     fun provideSharedPreferences(

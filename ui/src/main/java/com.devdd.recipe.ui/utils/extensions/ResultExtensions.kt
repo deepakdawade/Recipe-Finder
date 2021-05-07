@@ -1,8 +1,8 @@
-package com.devdd.recipe.utils.extensions
+package com.devdd.recipe.ui.utils.extensions
 
 import androidx.lifecycle.MutableLiveData
-import com.devdd.recipe.domain.result.Result
-import com.devdd.recipe.domain.result.data
+import com.devdd.recipe.base.result.Result
+import com.devdd.recipe.base.result.data
 
 /**
  * Transform and Updates value of [liveData] if [Result] is of type [Success]

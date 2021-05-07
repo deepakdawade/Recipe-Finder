@@ -1,6 +1,6 @@
-package com.devdd.recipe.utils.navigation
+package com.devdd.recipe.ui.utils.navigation
 
-import com.devdd.recipe.R
+import com.devdd.recipe.ui.R
 
 data class NavAnimations(
     val enterAnimation: Int = R.anim.fragment_close_enter,

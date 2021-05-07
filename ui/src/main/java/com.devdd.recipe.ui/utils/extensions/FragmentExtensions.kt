@@ -1,4 +1,4 @@
-package com.devdd.recipe.utils.extensions
+package com.devdd.recipe.ui.utils.extensions
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.devdd.recipe.utils.NavigationResult
+import com.devdd.recipe.base_android.utils.NavigationResult
+import com.devdd.recipe.utils.extensions.hideSoftInput
 import kotlin.properties.Delegates
 
 inline fun <reified T : AppCompatActivity> Fragment.launch(

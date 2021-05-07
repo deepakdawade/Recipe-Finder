@@ -1,7 +1,7 @@
-package com.devdd.recipe.utils.extensions
+package com.devdd.recipe.ui.utils.extensions
 
 import android.os.Build
-import com.devdd.recipe.BuildConfig
+import com.devdd.recipe.ui.BuildConfig
 import com.devdd.recipe.utils.extensions.BuildType
 
 fun isAtLeastVersion(version: Int): Boolean {

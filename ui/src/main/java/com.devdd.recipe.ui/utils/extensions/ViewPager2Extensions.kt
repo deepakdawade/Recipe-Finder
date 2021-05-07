@@ -1,9 +1,9 @@
-package com.devdd.recipe.utils.extensions
+package com.devdd.recipe.ui.utils.extensions
 
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
-import com.devdd.recipe.utils.helper.decorators.HorizontalMarginItemDecoration
-import com.devdd.recipe.R
+import com.devdd.recipe.ui.R
+import com.devdd.recipe.ui.utils.helper.decorators.HorizontalMarginItemDecoration
 import kotlin.math.abs
 
 

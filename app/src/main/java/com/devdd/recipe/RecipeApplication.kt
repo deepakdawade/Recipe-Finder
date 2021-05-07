@@ -3,8 +3,8 @@ package com.devdd.recipe
 import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
-import com.devdd.recipe.utils.AppBuildConfig
-import com.devdd.recipe.utils.localemanager.LocaleManagerUtils
+import com.devdd.recipe.base.utils.AppBuildConfig
+import com.devdd.recipe.base_android.utils.localemanager.LocaleManagerUtils
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 import javax.inject.Inject

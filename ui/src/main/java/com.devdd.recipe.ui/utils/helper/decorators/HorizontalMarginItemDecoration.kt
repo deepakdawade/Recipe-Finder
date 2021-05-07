@@ -5,8 +5,8 @@ import android.graphics.Rect
 import android.view.View
 import androidx.annotation.DimenRes
 import androidx.recyclerview.widget.RecyclerView
-import com.devdd.recipe.utils.extensions.isFirstItem
-import com.devdd.recipe.utils.extensions.isLastItem
+import com.devdd.recipe.ui.utils.extensions.isFirstItem
+import com.devdd.recipe.ui.utils.extensions.isLastItem
 
 /**
  * Adds margin to the left and right sides of the RecyclerView item.

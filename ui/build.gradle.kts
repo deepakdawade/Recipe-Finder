@@ -5,6 +5,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 kapt {
@@ -53,11 +54,6 @@ dependencies {
     api(Libraries.AndroidX.Paging3.paging)
 
 
-    // Navigation
-    implementation(Libraries.AndroidX.Navigation.navigationFragment)
-    implementation(Libraries.AndroidX.Navigation.navigationUI)
-
-
     // Material Design
     api(Libraries.Google.materialDesign)
 
@@ -80,6 +76,7 @@ dependencies {
 
     // Dagger
     api(Libraries.Google.DaggerHilt.daggerHilt)
+    api(Libraries.Google.DaggerHilt.daggerHiltViewModel)
     kapt(Libraries.Google.DaggerHilt.hiltKapt)
 
     //Testing
