@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.devdd.recipe.ui.recipedetail.RecipeDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/recipe_detail_fragment_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/recipe_detail_fragment_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            android:background="?android:colorBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="?colorOnPrimary"
+            app:title="@{viewModel.recipe.entity.title}"
+            app:titleTextColor="?colorOnPrimary"
+            tools:title="Recipe detail" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/recipe_detail_fragment_nested_scroll_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recipe_detail_fragment_toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/recipe_detail_fragment_nested_scroll_view_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/recipe_detail_fragment_image"
+                    loadImage="@{viewModel.recipe.entity.imageUrl}"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="2:1.1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@mipmap/ic_launcher" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/recipe_detail_fragment_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@{viewModel.recipe.title(context)}"
+                    android:textAlignment="center"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipe_detail_fragment_image"
+                    tools:text="title" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/recipe_detail_fragment_share_whatsapp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_whatsapp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipe_detail_fragment_title"
+                    />
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/recipe_detail_fragment_save_recipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:button="@drawable/selector_favorite"
+                    android:checked="@{viewModel.recipe.entity.saved}"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:onClick="@{()->viewModel.markRecipeFavorite()}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/recipe_detail_fragment_share_whatsapp"
+                    app:layout_constraintTop_toTopOf="@id/recipe_detail_fragment_share_whatsapp"
+                    tools:checked="true" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/recipe_detail_fragment_total_time"
+                    spannedText="@{@string/recipe_details_total_time(viewModel.recipe.entity.totalTime)}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textAppearance="?textAppearanceBody2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipe_detail_fragment_save_recipe"
+                    tools:text="@string/recipe_details_total_time" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/recipe_detail_fragment_preparation_time"
+                    spannedText="@{@string/recipe_details_preparation_time(viewModel.recipe.entity.preparingTime)}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textAppearance="?textAppearanceBody2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipe_detail_fragment_total_time"
+                    tools:text="@string/recipe_details_preparation_time" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/recipe_detail_fragment_cooking_time"
+                    spannedText="@{@string/recipe_details_cooking_time(viewModel.recipe.entity.cookingTime)}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textAppearance="?textAppearanceBody2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipe_detail_fragment_preparation_time"
+                    tools:text="@string/recipe_details_cooking_time" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/recipe_detail_fragment_description_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@string/recipe_details_description_label"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipe_detail_fragment_cooking_time" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/recipe_detail_fragment_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@{viewModel.recipe.description(context)}"
+                    android:textAppearance="?textAppearanceBody2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipe_detail_fragment_description_label"
+                    tools:text="Description" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/recipe_detail_fragment_ingredients_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@string/recipe_details_ingredients_text"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipe_detail_fragment_description" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/recipe_detail_fragment_ingredients"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@{viewModel.recipe.ingredients(context)}"
+                    android:textAppearance="?textAppearanceBody2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipe_detail_fragment_ingredients_label"
+                    tools:text="Garam Masala 1 Table Spoon" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/recipe_detail_fragment_author"
+                    stringVisibility="@{viewModel.recipe.entity.authorName}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@{@string/recipe_details_author_name(viewModel.recipe.entity.authorName)}"
+                    android:textAppearance="?textAppearanceCaption"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipe_detail_fragment_ingredients"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:text="Author:Deepak" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/recipe_detail_fragment_saving"
+            toggleVisibility="@{viewModel.savingRecipe}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

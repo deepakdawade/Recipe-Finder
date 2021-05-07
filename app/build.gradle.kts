@@ -1,6 +1,6 @@
+import com.devdd.recipe.buildsrc.Dependencies.Libraries
 import com.devdd.recipe.buildsrc.Dependencies.Recipe
 import com.devdd.recipe.buildsrc.Dependencies.VersionInfo
-import com.devdd.recipe.buildsrc.Dependencies.Libraries
 
 plugins {
     id("com.android.application")
@@ -35,26 +35,14 @@ android {
             applicationIdSuffix = ".debug"
             isMinifyEnabled = false
             isShrinkResources = false
-            buildConfigField(
-                    type = "String",
-                    name = "BASE_URL",
-                    value = formatUrl(url = "https://receipe-bool.herokuapp.com/api/v1/")
-            )
 
         }
         getByName("release") {
             isMinifyEnabled = false
             isShrinkResources = false
             proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
-
-            buildConfigField(
-                    type = "String",
-                    name = "BASE_URL",
-                value = formatUrl(url = "https://receipe-bool.herokuapp.com/api/v1/")
-            )
-
         }
     }
 
@@ -95,70 +83,11 @@ android {
 
 dependencies {
 
-    implementation(Libraries.Kotlin.kotlinStdLib)
-    implementation(Libraries.AndroidX.appCompat)
-    implementation(Libraries.Google.materialDesign)
-    implementation(Libraries.AndroidX.ConstraintLayout.constraintLayout)
-    implementation(Libraries.AndroidX.SwipeRefreshLayout.swiperefreshlayout)
-
-    // Navigation
-    implementation(Libraries.AndroidX.Navigation.navigationFragment)
-    implementation(Libraries.AndroidX.Navigation.navigationUI)
-
-    // Co-Routines
-    implementation(Libraries.Coroutines.coroutineAndroid)
-    implementation(Libraries.Coroutines.coroutineCore)
-
-    //Lottie
-    implementation(Libraries.AirBnb.lottie)
+    implementation(project(":ui"))
 
     // Dagger
-    implementation(Libraries.Google.DaggerHilt.daggerHilt)
-    implementation(Libraries.Google.DaggerHilt.daggerHiltViewModel)
     kapt(Libraries.Google.DaggerHilt.hiltKapt)
 
-    // Retrofit
-    implementation(Libraries.Retrofit.retrofit)
 
-    // Retrofit Converters
-    implementation(Libraries.Retrofit.gsonConverter)
-    implementation(Libraries.Retrofit.kotlinConverter)
-
-    // Gson
-    implementation(Libraries.Google.gson)
-
-    // Ok-Http
-    implementation(Libraries.OkHttp.okhttp)
-    implementation(Libraries.OkHttp.loggingInterceptor)
-    implementation(Libraries.OkHttp.urlConnection)
-
-    // Timber
-    implementation(Libraries.Timber.timber)
-
-    //Room
-    implementation(Libraries.AndroidX.Room.room)
-    implementation(Libraries.AndroidX.Room.roomRunTime)
-    kapt(Libraries.AndroidX.Room.roomKapt)
-
-    //DataStore
-    implementation(Libraries.AndroidX.DataStore.dataStore)
-
-    // LiveData
-    implementation(Libraries.AndroidX.Lifecycle.livedataKtx)
-
-    // viewModel
-    implementation(Libraries.AndroidX.Lifecycle.viewmodelKtx)
-
-    // Fragment
-    implementation(Libraries.AndroidX.FragmentKTX.fragmentKtx)
-
-    // Coil
-    implementation(Libraries.Coil.coil)
-    implementation(Libraries.Coil.svgCoil)
-
-    //Testing
-    testImplementation(Libraries.Junit.jUnit)
-    androidTestImplementation(Libraries.AndroidX.Testing.jUnitTest)
-    androidTestImplementation(Libraries.AndroidX.Testing.espresso)
 }
 fun formatUrl(url: String): String = "\"$url\""

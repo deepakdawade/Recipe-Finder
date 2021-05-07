@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="option"
+            type="com.devdd.recipe.ui.profile.devoption.selectoption.adapter.DeveloperOption" />
+
+        <variable
+            name="listener"
+            type="com.devdd.recipe.ui.profile.devoption.selectoption.adapter.SelectOptionAdapter.OnOptionSelectListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/select_option_root_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:onClick="@{()->listener.onOptionClick(option.direction)}"
+        android:clipChildren="true"
+        tools:backgroundTint="@color/colorLightGreen_500"
+        cardBackgroundColor="@{option.bgColor}"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/select_option_card_view_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/select_option_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{option.name}"
+                android:textAppearance="?textAppearanceHeadline5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/select_option_icon"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Select option" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/select_option_icon"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:padding="8dp"
+                app:srcVectorRes="@{option.icon}"
+                app:layout_constraintBottom_toBottomOf="@id/select_option_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@id/select_option_name"
+                app:layout_constraintTop_toTopOf="@id/select_option_name"
+                tools:src="@mipmap/ic_launcher" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

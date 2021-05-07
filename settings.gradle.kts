@@ -2,6 +2,7 @@ include(
     ":app",
     "base",
     "base-android",
-    "data"
+    "data",
+    "ui"
 )
 rootProject.name = "Recipe"

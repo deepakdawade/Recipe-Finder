@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.devdd.recipe.ui.preferencesetting.PreferenceSettingViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/language_preference_fragment_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/language_preference_fragment_choose_language_english_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/language_preference_choose_language_english"
+            android:textAlignment="center"
+            android:textAppearance="?textAppearanceHeadline5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.05" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/language_preference_fragment_choose_language_hindi_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/language_preference_choose_language_hindi"
+            android:textAlignment="center"
+            android:textAppearance="?textAppearanceHeadline5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/language_preference_fragment_choose_language_english_label"
+            app:layout_constraintVertical_bias="0.05" />
+
+        <RadioGroup
+            android:id="@+id/language_preference_fragment_option_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:checkedButton="@{viewModel.checkedLanguageButtonId}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/language_preference_fragment_choose_language_hindi_label"
+            app:layout_constraintWidth_percent="0.7">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/language_preference_fragment_option_english"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/selector_radio_button"
+                android:button="@null"
+                android:onClick="@{()->viewModel.english()}"
+                android:text="@string/language_preference_english"
+                android:textAlignment="center"
+                android:textAppearance="?textAppearanceHeadline5"
+                android:textColor="@color/selector_radio_text_color"
+                tools:checked="true" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/language_preference_fragment_option_hindi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/selector_radio_button"
+                android:button="@null"
+                android:onClick="@{()->viewModel.hindi()}"
+                android:text="@string/language_preference_hindi"
+                android:textAlignment="center"
+                android:textAppearance="?textAppearanceHeadline5"
+                android:textColor="@color/selector_radio_text_color" />
+        </RadioGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

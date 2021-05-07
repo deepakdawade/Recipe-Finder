@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_developer_option.xml"
+    app:startDestination="@id/selectOptionFragment">
+
+    <fragment
+        android:id="@+id/selectOptionFragment"
+        android:name="com.devdd.recipe.ui.profile.devoption.selectoption.SelectOptionFragment"
+        android:label="SelectOptionFragment"
+        tools:layout="@layout/fragment_select_option">
+        <action
+            android:id="@+id/action_to_dataStoreSettingFragment"
+            app:destination="@id/dataStoreSettingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dataStoreSettingFragment"
+        android:name="com.devdd.recipe.ui.profile.devoption.datastoresetting.DataStoreSettingFragment"
+        android:label="DataStoreSettingFragment"
+        tools:layout="@layout/fragment_data_store_setting" />
+</navigation>

@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name" translatable="false">Recipe</string>
+
+    <string name="empty_string" />
+    <string name="no_internet_connection">No connection</string>
+    <string name="no_internet_connection_action_retry">retry</string>
+
+    <!--  RecipePreference  -->
+    <string name="recipe_pref_selection_are_you_vegetarian">Are you Vegetarian?</string>
+    <string name="recipe_pref_selection_option_veg">Veg</string>
+    <string name="recipe_pref_selection_option_both">Both</string>
+    <string name="recipe_pref_selection_option_non_veg">Non veg</string>
+
+    <!-- Language selection   -->
+    <string name="language_preference_choose_language_english" translatable="false">Choose language</string>
+    <string name="language_preference_choose_language_hindi" translatable="false">भाषा चुनें</string>
+    <string name="language_preference_hindi" translatable="false">हिंदी</string>
+    <string name="language_preference_english" translatable="false">English</string>
+
+    <!-- Bottom navigation menu   -->
+    <string name="bottom_nav_menu_label_home">Home</string>
+    <string name="bottom_nav_menu_label_search">Search</string>
+    <string name="bottom_nav_menu_label_favorite">Favorite</string>
+    <string name="bottom_nav_menu_label_profile">Profile</string>
+
+    <!--  Home  -->
+    <string name="home_loading_recipes_text">Loading recipes</string>
+    <string name="recipes">Recipes</string>
+    <string name="no_recipe_found">No recipe found</string>
+
+    <!-- Search -->
+    <string name="search_recipe_toolbar_title">Search recipes</string>
+    <string name="search_menu_label_search">Search</string>
+    <string name="search_recipe_hint">Search recipes</string>
+    <string name="search_recipe_result">Search results</string>
+
+    <!-- Profile   -->
+    <string name="profile_option_change_language">Change language</string>
+    <string name="profile_option_change_recipe_pref">Change recipe preference</string>
+    <string name="profile_option_dev_options">Dev options</string>
+
+    <!-- Recipe Details    -->
+    <string name="recipe_details_ingredients_text">Ingredients</string>
+    <string name="recipe_details_author_name">Author: %1$s</string>
+    <string name="recipe_details_total_time"><![CDATA[<b>Total time </b>%1$s]]></string>
+    <string name="recipe_details_preparation_time"><![CDATA[<b>Preparation time </b>%1$s]]></string>
+    <string name="recipe_details_cooking_time"><![CDATA[<b>Cooking time </b>%1$s]]></string>
+    <string name="recipe_details_description_label">Description</string>
+
+    <!--  Dev Option selection  -->
+    <string name="dev_option_preference" translatable="false">Data store</string>
+
+    <!-- Dev Option Data store   -->
+    <string name="data_store_preference_name">Data store preference</string>
+    <string name="data_store_setting_value_field_hint" translatable="false">value</string>
+    <string name="data_store_setting_action_put" translatable="false">put</string>
+    <string name="data_store_setting_action_remove" translatable="false">remove</string>
+
+    <string name="instructions_developer_options" translatable="false">Instructions</string>
+    <string name="database_value_instruction_message_first" translatable="false">To view database table or find ob_id use \"Open DataBase\".</string>
+    <string name="database_value_instruction_message_second" translatable="false">In open database, filters are provided to search data in entire DB.</string>
+    <string name="database_value_instruction_message_third" translatable="false">To delete single entry in table, select table then insert ob_id.</string>
+    <string name="database_value_instruction_message_fourth" translatable="false">To remove entire db use \"remove all\"</string>
+    <string name="database_value_warning_message_first" translatable="false">Deleting entries and table might lead to unexpected crash, in that case clear data.</string>
+    <string name="database_value_warning_message_second" translatable="false">Do not delete family member or family detail data in any case.</string>
+    <string name="preference_value_instruction_message_first" translatable="false">\u2022 To view preference value, select key from spinner.</string>
+    <string name="preference_value_instruction_message_second" translatable="false">To delete single key in table, select table then remove.</string>
+    <string name="preference_value_instruction_message_third" translatable="false">To edit single key, select key then put value in value box.</string>
+    <string name="preference_value_warning_message_first" translatable="false">Deleting keys might lead to unexpected crash, in that case default value will be used.</string>
+    <string name="preference_value_warning_message_second" translatable="false">Do not delete firebase token and data server url.</string>
+    <string name="doYouWantToProceedDeveloperOption" translatable="false">Do you want to proceed?</string>
+    <string name="doYouWantToDeleteDeveloperOption" translatable="false">If you proceed data will be removed. \nIs that OK?</string>
+    <string name="doYouWantToPutPreferenceDeveloperOption" translatable="false">If you proceed value will be changed. \nIs that OK?</string>
+    <string name="yesDeleteDeveloperOption" translatable="false">Yes, delete</string>
+    <string name="yesPutPreferenceDeveloperOption" translatable="false">Yes, put</string>
+    <string name="warning" translatable="false">Warning</string>
+    <string name="empty_string_placeholder">%s</string>
+    <string name="EINTERNAL">Internal</string>
+
+</resources>

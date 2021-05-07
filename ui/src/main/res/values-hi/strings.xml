@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="empty_string" />
+    <string name="no_internet_connection">कोई कनेक्शन नहीं</string>
+    <string name="no_internet_connection_action_retry">पुन: प्रयास करें</string>
+
+    <!--  RecipePreference  -->
+    <string name="recipe_pref_selection_are_you_vegetarian">क्या आप शाकाहारी हैं?</string>
+    <string name="recipe_pref_selection_option_veg">शाकाहारी</string>
+    <string name="recipe_pref_selection_option_both">दोनों</string>
+    <string name="recipe_pref_selection_option_non_veg">मांसाहारी</string>
+
+    <!-- Language selection   -->
+
+    <!-- Bottom navigation menu   -->
+    <string name="bottom_nav_menu_label_home">होम</string>
+    <string name="bottom_nav_menu_label_search">खोजें</string>
+    <string name="bottom_nav_menu_label_favorite">पसंदीदा</string>
+    <string name="bottom_nav_menu_label_profile">प्रोफ़ाइल</string>
+
+
+    <!--  Home  -->
+    <string name="home_loading_recipes_text">रेसिपीस लोड हो रहा है</string>
+    <string name="recipes">रेसिपीस</string>
+    <string name="no_recipe_found">कोई रेसिपी नहीं मिली</string>
+
+    <!-- Search -->
+    <string name="search_recipe_toolbar_title">रेसिपीस की खोज करें</string>
+    <string name="search_menu_label_search">खोज</string>
+    <string name="search_recipe_hint">रेसिपीस खोजें</string>
+    <string name="search_recipe_result">खोज परिणाम</string>
+
+    <!-- Profile   -->
+    <string name="profile_option_change_recipe_pref">रेसिपी प्राथमिकता बदलें</string>
+    <string name="profile_option_change_language">भाषा बदलें</string>
+    <string name="profile_option_dev_options">Dev options</string>
+
+    <!-- Recipe Details    -->
+    <string name="recipe_details_author_name">लेखक: %1$s</string>
+    <string name="recipe_details_ingredients_text">सामग्री</string>
+    <string name="recipe_details_total_time"><![CDATA[<b>कुल समय </b>%1$s]]></string>
+    <string name="recipe_details_preparation_time"><![CDATA[<b>तैयारी का समय </b>%1$s]]></string>
+    <string name="recipe_details_cooking_time"><![CDATA[<b>पकाने का समय </b>%1$s]]></string>
+    <string name="recipe_details_description_label">विवरण</string>
+
+    <!--  Dev Option selection  -->
+    <string name="data_store_preference_name">Data store preference</string>
+    <string name="empty_string_placeholder">%s</string>
+    <string name="EINTERNAL">Internal</string>
+</resources>

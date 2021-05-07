@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="recipe"
+            type="com.devdd.recipe.domain.viewstate.RecipeViewState" />
+
+        <variable
+            name="viewModel"
+            type="com.devdd.recipe.ui.search.SearchRecipeViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="@{()->viewModel.navigateToRecipeDetails(recipe.entity.id)}">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/search_recipe_item_view_image_card"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintDimensionRatio="2:2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/search_recipe_item_view_image"
+                loadImage="@{recipe.entity.imageUrl}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/search_recipe_item_view_save_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:button="@drawable/selector_favorite"
+            android:checked="@{recipe.entity.saved}"
+            android:elevation="8dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:onClick="@{()->viewModel.markRecipeFavorite(recipe.entity)}"
+            app:layout_constraintBottom_toBottomOf="@id/search_recipe_item_view_image_card"
+            app:layout_constraintEnd_toEndOf="@id/search_recipe_item_view_image_card"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="@id/search_recipe_item_view_image_card"
+            app:layout_constraintTop_toTopOf="@id/search_recipe_item_view_image_card"
+            app:layout_constraintVertical_bias="0.05"
+            tools:checked="true" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/search_recipe_item_view_author_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{recipe.title(context)}"
+            android:textAppearance="?textAppearanceHeadline5"
+            android:textColor="?colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_recipe_item_view_image_card"
+            tools:text="Recipe" />
+
+        <ProgressBar
+            android:id="@+id/search_recipe_item_view_progress"
+            toggleVisibility="@{viewModel.savingRecipe.first &amp;&amp; viewModel.savingRecipe.second == recipe.entity.id}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
