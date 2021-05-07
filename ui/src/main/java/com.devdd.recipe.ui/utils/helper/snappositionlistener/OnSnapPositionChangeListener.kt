@@ -1,4 +1,4 @@
-package com.devdd.recipe.base_android.utils.helper.snappositionlistener
+package com.devdd.recipe.ui.utils.helper.snappositionlistener
 
 interface OnSnapPositionChangeListener {
 

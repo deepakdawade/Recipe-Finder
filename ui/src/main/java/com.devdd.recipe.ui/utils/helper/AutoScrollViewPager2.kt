@@ -1,4 +1,4 @@
-package com.devdd.recipe.base_android.utils.helper
+package com.devdd.recipe.ui.utils.helper
 
 import android.animation.ValueAnimator
 import android.view.animation.AnimationUtils

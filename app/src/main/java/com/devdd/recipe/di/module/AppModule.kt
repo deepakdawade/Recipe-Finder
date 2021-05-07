@@ -1,6 +1,7 @@
 package com.devdd.recipe.di.module
 
 import com.devdd.recipe.BuildConfig
+import com.devdd.recipe.base.utils.AppCoroutineDispatchers
 import com.devdd.recipe.data.BuildConfig as UrlConfig
 import com.devdd.recipe.data.preference.DataStorePreference
 import com.devdd.recipe.data.preference.DataStorePreferences

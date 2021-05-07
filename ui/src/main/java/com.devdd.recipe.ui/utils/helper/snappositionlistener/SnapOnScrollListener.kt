@@ -3,7 +3,7 @@ package com.devdd.recipe.utils.snappositionlistener
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.devdd.recipe.utils.extensions.getSnapPosition
-import com.devdd.recipe.base_android.utils.helper.snappositionlistener.OnSnapPositionChangeListener
+import com.devdd.recipe.ui.utils.helper.snappositionlistener.OnSnapPositionChangeListener
 
 class SnapOnScrollListener(
     private val snapHelper: SnapHelper,

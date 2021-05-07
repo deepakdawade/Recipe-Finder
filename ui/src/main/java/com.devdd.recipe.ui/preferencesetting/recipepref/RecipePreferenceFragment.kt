@@ -2,9 +2,9 @@ package com.devdd.recipe.ui.preferencesetting.recipepref
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
-import com.devdd.recipe.R
+import com.devdd.recipe.ui.R
 import com.devdd.recipe.ui.base.DevFragment
-import com.devdd.recipe.databinding.FragmentRecipePreferenceBinding
+import com.devdd.recipe.ui.databinding.FragmentRecipePreferenceBinding
 import com.devdd.recipe.ui.preferencesetting.PreferenceSettingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

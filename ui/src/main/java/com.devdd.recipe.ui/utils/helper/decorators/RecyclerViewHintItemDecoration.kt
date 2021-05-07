@@ -1,4 +1,4 @@
-package com.devdd.recipe.base_android.utils.helper.decorators
+package com.devdd.recipe.ui.utils.helper.decorators
 
 import android.content.Context
 import android.graphics.Rect

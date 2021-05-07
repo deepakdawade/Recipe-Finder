@@ -1,9 +1,10 @@
-package com.devdd.recipe.base_android.utils.helper
+package com.devdd.recipe.ui.utils.helper
 
 import android.os.SystemClock
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.devdd.recipe.utils.extensions.cancelIfActive
+import com.devdd.recipe.base.utils.AppCoroutineDispatchers
+import com.devdd.recipe.base.utils.extensions.cancelIfActive
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
