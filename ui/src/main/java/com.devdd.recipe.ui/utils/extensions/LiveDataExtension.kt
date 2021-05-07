@@ -1,13 +1,13 @@
-package com.devdd.recipe.utils.extensions
+package com.devdd.recipe.ui.utils.extensions
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.devdd.recipe.domain.result.Event
-import com.devdd.recipe.domain.result.Result
-import com.devdd.recipe.utils.EventObserver
+import com.devdd.recipe.base.result.Event
+import com.devdd.recipe.base_android.utils.EventObserver
+import com.devdd.recipe.base.result.Result
 
 fun <T> MutableLiveData<T>.postValueIfNew(newValue: T) {
     if (value != newValue)

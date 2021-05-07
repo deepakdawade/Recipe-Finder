@@ -8,23 +8,15 @@ import androidx.navigation.NavDirections
 import com.devdd.recipe.base.constants.SelectedLocale.LOCALE_ENGLISH
 import com.devdd.recipe.base.result.Event
 import com.devdd.recipe.base.result.InvokeStarted
-import com.devdd.recipe.data.db.entities.Recipe
 import com.devdd.recipe.data.models.entity.Recipe
 import com.devdd.recipe.data.models.request.MarkRecipeFavoriteRequest
 import com.devdd.recipe.data.models.request.SavedRecipesRequest
 import com.devdd.recipe.data.preference.manager.GuestManager
 import com.devdd.recipe.data.preference.manager.LocaleManager
 import com.devdd.recipe.data.preference.manager.RecipeManager
-import com.devdd.recipe.data.prefs.manager.GuestManager
-import com.devdd.recipe.data.prefs.manager.LocaleManager
-import com.devdd.recipe.data.prefs.manager.RecipeManager
-import com.devdd.recipe.data.remote.models.request.MarkRecipeFavoriteRequest
-import com.devdd.recipe.data.remote.models.request.SavedRecipesRequest
 import com.devdd.recipe.domain.executers.FetchSavedRecipes
 import com.devdd.recipe.domain.executers.MarkRecipeFavorite
 import com.devdd.recipe.domain.observers.ObserveRecipeByPref
-import com.devdd.recipe.domain.result.Event
-import com.devdd.recipe.domain.result.InvokeStarted
 import com.devdd.recipe.domain.viewstate.HeaderDataViewState
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.ui.home.HomeFragmentDirections
@@ -32,7 +24,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combineTransform
 import kotlinx.coroutines.launch
-import java.util.Locale.filter
 import javax.inject.Inject
 
 

@@ -5,10 +5,10 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.devdd.recipe.R
+import com.devdd.recipe.ui.R
 import com.devdd.recipe.ui.base.DevFragment
-import com.devdd.recipe.databinding.FragmentSplashBinding
-import com.devdd.recipe.utils.extensions.observeEvent
+import com.devdd.recipe.ui.databinding.FragmentSplashBinding
+import com.devdd.recipe.ui.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.devdd.recipe.R
+import com.devdd.recipe.ui.R
 import com.devdd.recipe.ui.base.DevFragment
-import com.devdd.recipe.databinding.FragmentPreferenceSettingBinding
+import com.devdd.recipe.ui.databinding.FragmentPreferenceSettingBinding
 import com.devdd.recipe.ui.preferencesetting.adapter.PreferenceSettingAdapter
-import com.devdd.recipe.utils.extensions.observeEvent
+import com.devdd.recipe.ui.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

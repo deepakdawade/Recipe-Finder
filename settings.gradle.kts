@@ -3,6 +3,7 @@ include(
     "base",
     "base-android",
     "data",
-    "ui"
+    "ui",
+    "domain"
 )
 rootProject.name = "Recipe"

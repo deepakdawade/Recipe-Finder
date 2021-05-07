@@ -5,17 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
-import com.devdd.recipe.data.db.entities.Recipe
-import com.devdd.recipe.data.prefs.manager.GuestManager
-import com.devdd.recipe.data.prefs.manager.LocaleManager
-import com.devdd.recipe.data.prefs.manager.RecipeManager
-import com.devdd.recipe.data.remote.models.request.MarkRecipeFavoriteRequest
+import com.devdd.recipe.base.constants.SelectedLocale.LOCALE_ENGLISH
+import com.devdd.recipe.base.result.Event
+import com.devdd.recipe.base.result.InvokeStarted
+import com.devdd.recipe.base.result.InvokeSuccess
+import com.devdd.recipe.data.preference.manager.GuestManager
+import com.devdd.recipe.data.preference.manager.LocaleManager
+import com.devdd.recipe.data.preference.manager.RecipeManager
 import com.devdd.recipe.domain.executers.FetchGuestToken
 import com.devdd.recipe.domain.executers.FetchRecipes
 import com.devdd.recipe.domain.executers.MarkRecipeFavorite
 import com.devdd.recipe.domain.executers.SetDeviceIdToServer
 import com.devdd.recipe.domain.observers.ObserveRecipeByPref
-import com.devdd.recipe.domain.result.*
+import com.devdd.recipe.data.models.entity.Recipe
+import com.devdd.recipe.data.models.request.MarkRecipeFavoriteRequest
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -128,7 +131,7 @@ class HomeViewModel @Inject constructor(
     private fun createObservers() {
         viewModelScope.launch {
             localeManager.selectedLanguage.combineTransform(recipeManager.recipePreference) { lang: String, pref: String ->
-                emit(ObserveRecipeByPref.Params(lang == LocaleManager.LOCALE_ENGLISH, pref))
+                emit(ObserveRecipeByPref.Params(lang == LOCALE_ENGLISH, pref))
             }.collect {
                 observeRecipeByPref(it)
             }

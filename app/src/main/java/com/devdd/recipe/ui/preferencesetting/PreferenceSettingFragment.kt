@@ -8,7 +8,6 @@ import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentPreferenceSettingBinding
 import com.devdd.recipe.ui.preferencesetting.adapter.PreferenceSettingAdapter
-import com.devdd.recipe.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

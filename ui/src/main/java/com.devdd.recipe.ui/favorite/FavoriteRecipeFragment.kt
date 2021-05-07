@@ -7,7 +7,8 @@ import com.devdd.recipe.ui.base.DevFragment
 import com.devdd.recipe.ui.R
 import com.devdd.recipe.ui.databinding.FragmentFavoriteRecipeBinding
 import com.devdd.recipe.ui.favorite.adapter.FavoriteRecipeAdapter
-import com.devdd.recipe.utils.extensions.observeEvent
+import com.devdd.recipe.utils.extensions.navigateOnce
+import com.devdd.recipe.ui.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,7 +41,7 @@ class FavoriteRecipeFragment :
         }
 
         viewModel.navigation.observeEvent(viewLifecycleOwner) {
-            findNavController().navigate(it)
+            findNavController().navigateOnce(it)
         }
     }
 

@@ -9,7 +9,6 @@ import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentSearchRecipeBinding
 import com.devdd.recipe.ui.home.adapter.SearchRecipeAdapter
 import com.devdd.recipe.utils.extensions.watchQueryTextChangeListener
-import com.devdd.recipe.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

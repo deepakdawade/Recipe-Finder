@@ -8,8 +8,8 @@ import android.text.TextPaint
 import android.text.style.*
 import android.view.View
 import androidx.annotation.ColorInt
-import com.devdd.recipe.utils.CustomFontTypefaceSpan
-import com.devdd.recipe.utils.DisplayUtils
+import com.devdd.recipe.ui.utils.CustomFontTypefaceSpan
+import com.devdd.recipe.ui.utils.DisplayUtils
 import java.util.*
 import java.util.regex.Pattern
 

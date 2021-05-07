@@ -5,10 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
-import com.devdd.recipe.R
-import com.devdd.recipe.data.prefs.manager.LocaleManager
-import com.devdd.recipe.data.prefs.manager.RecipeManager
-import com.devdd.recipe.domain.result.Event
+import com.devdd.recipe.base.constants.SelectedLocale.LOCALE_ENGLISH
+import com.devdd.recipe.base.constants.SelectedLocale.LOCALE_HINDI
+import com.devdd.recipe.base.constants.SelectedRecipePref.BOTH
+import com.devdd.recipe.base.constants.SelectedRecipePref.NON_VEG
+import com.devdd.recipe.base.constants.SelectedRecipePref.VEG
+import com.devdd.recipe.base.result.Event
+import com.devdd.recipe.data.preference.manager.LocaleManager
+import com.devdd.recipe.data.preference.manager.RecipeManager
+import com.devdd.recipe.ui.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -70,36 +75,36 @@ class PreferenceSettingViewModel @Inject constructor(
 
     fun english() {
         checkedLanguageButtonId.value = LanguageOptionId.ENGLISH
-        updateLanguagePref(LocaleManager.LOCALE_ENGLISH)
+        updateLanguagePref(LOCALE_ENGLISH)
     }
 
     fun hindi() {
         checkedLanguageButtonId.value = LanguageOptionId.HINDI
-        updateLanguagePref(LocaleManager.LOCALE_HINDI)
+        updateLanguagePref(LOCALE_HINDI)
     }
 
     fun vegetarian() {
         checkedRecipeButtonId.value = RecipeOptionId.VEG
-        updateRecipePref(RecipeManager.VEG)
+        updateRecipePref(VEG)
     }
 
     fun nonVegetarian() {
         checkedRecipeButtonId.value = RecipeOptionId.NON_VEG
-        updateRecipePref(RecipeManager.NON_VEG)
+        updateRecipePref(NON_VEG)
 
     }
 
     fun bothVegNonVeg() {
         checkedRecipeButtonId.value = RecipeOptionId.BOTH_VEG_NON_VEG
-        updateRecipePref(RecipeManager.BOTH)
+        updateRecipePref(BOTH)
     }
 
     private fun updateLanguagePref(language: String) {
         viewModelScope.launch {
             val previouslySelected = localeManager.isLanguageSelected()
             val newSelection =
-                localeManager.isEnglishLocale() && language == LocaleManager.LOCALE_HINDI ||
-                        localeManager.isHindiLocale() && language == LocaleManager.LOCALE_ENGLISH
+                localeManager.isEnglishLocale() && language == LOCALE_HINDI ||
+                        localeManager.isHindiLocale() && language == LOCALE_ENGLISH
             val updateLanguage = !previouslySelected || newSelection
             if (updateLanguage) localeManager.updateLanguage(language)
             if (recipeManager.isRecipeSelected() && updateLanguage) {

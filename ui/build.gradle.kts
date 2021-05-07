@@ -39,7 +39,7 @@ dependencies {
     api(project(":base"))
     api(project(":base-android"))
     api(project(":data"))
-//    api(project(":domain"))
+    api(project(":domain"))
 //    api(project(":navigation"))
 
     // Don't import this project anywhere else

@@ -1,9 +1,9 @@
 package com.devdd.recipe.ui.profile.devoption
 
 import android.os.Bundle
-import com.devdd.recipe.R
+import com.devdd.recipe.ui.R
 import com.devdd.recipe.ui.base.DevFragment
-import com.devdd.recipe.databinding.FragmentDevOptionBinding
+import com.devdd.recipe.ui.databinding.FragmentDevOptionBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 

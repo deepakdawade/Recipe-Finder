@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
-import com.devdd.recipe.R
-import com.devdd.recipe.domain.result.Event
+import com.devdd.recipe.ui.R
+import com.devdd.recipe.base.result.Event
 import com.devdd.recipe.ui.profile.devoption.selectoption.adapter.DeveloperOption
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

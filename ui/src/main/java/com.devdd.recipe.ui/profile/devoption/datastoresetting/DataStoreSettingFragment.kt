@@ -5,9 +5,9 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
-import com.devdd.recipe.R
 import com.devdd.recipe.ui.base.DevFragment
-import com.devdd.recipe.databinding.FragmentDataStoreSettingBinding
+import com.devdd.recipe.ui.R
+import com.devdd.recipe.ui.databinding.FragmentDataStoreSettingBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 

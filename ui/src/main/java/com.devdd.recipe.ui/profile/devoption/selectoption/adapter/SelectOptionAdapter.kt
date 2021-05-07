@@ -5,8 +5,8 @@ import androidx.navigation.NavDirections
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.devdd.recipe.R
-import com.devdd.recipe.databinding.ItemViewSelectOptionBinding
+import com.devdd.recipe.ui.R
+import com.devdd.recipe.ui.databinding.ItemViewSelectOptionBinding
 import com.devdd.recipe.utils.extensions.bindWithLayout
 
 class SelectOptionAdapter(private val listener: OnOptionSelectListener) :

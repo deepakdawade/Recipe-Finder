@@ -7,8 +7,7 @@ import com.devdd.recipe.R
 import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentSelectOptionBinding
 import com.devdd.recipe.ui.profile.devoption.selectoption.adapter.SelectOptionAdapter
-import com.devdd.recipe.utils.extensions.navigateOnce
-import com.devdd.recipe.utils.extensions.observeEvent
+import com.devdd.recipe.ui.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

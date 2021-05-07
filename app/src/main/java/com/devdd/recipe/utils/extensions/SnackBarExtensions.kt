@@ -13,7 +13,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.devdd.recipe.domain.result.Result
 import com.devdd.recipe.domain.result.ServerException
-import com.devdd.recipe.utils.extensions.observeEvent
+import com.devdd.recipe.ui.utils.extensions.observeEvent
 import com.devdd.recipe.utils.widgets.FadingSnackBar
 
 fun Fragment.setUpSnackbar(

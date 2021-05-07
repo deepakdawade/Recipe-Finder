@@ -67,7 +67,7 @@ dependencies {
     kapt(Libraries.AndroidX.Room.roomKapt)
 
     //DataStore
-    implementation(Libraries.AndroidX.DataStore.dataStore)
+    api(Libraries.AndroidX.DataStore.dataStore)
 
     // Ok-Http
     api(Libraries.OkHttp.okhttp)
