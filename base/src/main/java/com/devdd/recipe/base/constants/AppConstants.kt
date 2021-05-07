@@ -9,8 +9,15 @@ const val SHARED_PREF_NAME = "shared_prefs"
 
 const val DB_NAME = "recipe-db"
 
-object SelectedLocale{
+object SelectedLocale {
     const val SELECTED_LOCALE = "selected_locale"
     const val LOCALE_ENGLISH: String = "en"
     const val LOCALE_HINDI: String = "hi"
+}
+
+object SelectedRecipePref {
+    const val VEG = "Veg"
+    const val NON_VEG = "Non Veg"
+    const val BOTH = "Both"
+
 }
