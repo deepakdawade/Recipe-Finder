@@ -7,7 +7,6 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     kotlin("android.extensions")
-    id("androidx.navigation.safeargs.kotlin")
 }
 kapt {
     correctErrorTypes = true
@@ -83,6 +82,9 @@ android {
 dependencies {
 
     implementation(project(":ui"))
+
+    // Lifecycle
+    implementation(Libraries.AndroidX.Lifecycle.process)
 
     // Dagger
     kapt(Libraries.Google.DaggerHilt.hiltKapt)

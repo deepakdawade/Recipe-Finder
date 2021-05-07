@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
-import com.devdd.recipe.data.prefs.manager.LocaleManager
-import com.devdd.recipe.data.prefs.manager.RecipeManager
-import com.devdd.recipe.domain.result.Event
+import com.devdd.recipe.base.result.Event
+import com.devdd.recipe.data.preference.manager.LocaleManager
+import com.devdd.recipe.data.preference.manager.RecipeManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -1,10 +1,10 @@
 package com.devdd.recipe.di.module
 
 import com.devdd.recipe.BuildConfig
-import com.devdd.recipe.data.prefs.DataStorePreference
-import com.devdd.recipe.data.prefs.DataStorePreferences
+import com.devdd.recipe.data.BuildConfig as UrlConfig
+import com.devdd.recipe.data.preference.DataStorePreference
+import com.devdd.recipe.data.preference.DataStorePreferences
 import com.devdd.recipe.utils.AppBuildConfig
-import com.devdd.recipe.utils.AppCoroutineDispatchers
 import com.devdd.recipe.utils.extensions.buildType
 import dagger.Module
 import dagger.Provides
@@ -28,7 +28,7 @@ object AppModule {
         APPLICATION_ID = BuildConfig.APPLICATION_ID,
         VERSION_CODE = BuildConfig.VERSION_CODE,
         VERSION_NAME = BuildConfig.VERSION_NAME,
-        BASE_URL = BuildConfig.BASE_URL,
+        BASE_URL = UrlConfig.BASE_URL,
         BUILD_TYPE = buildType
     )
 

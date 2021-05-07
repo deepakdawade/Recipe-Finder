@@ -3,11 +3,11 @@ package com.devdd.recipe.ui.dashboard
 import android.os.Bundle
 import androidx.core.view.isVisible
 import com.devdd.recipe.R
-import com.devdd.recipe.base.DevFragment
 import com.devdd.recipe.databinding.FragmentDashboardBinding
+import com.devdd.recipe.ui.base.DevFragment
+import com.devdd.recipe.ui.utils.navigation.setupMultipleBackStackBottomNavigation
 import com.devdd.recipe.utils.extensions.hideToolTip
 import com.devdd.recipe.utils.navigation.NavAnimations
-import com.devdd.recipe.utils.navigation.setupMultipleBackStackBottomNavigation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

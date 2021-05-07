@@ -40,7 +40,7 @@ dependencies {
     api(project(":base-android"))
     api(project(":data"))
     api(project(":domain"))
-//    api(project(":navigation"))
+    api(project(":navigation"))
 
     // Don't import this project anywhere else
 //    implementation(project(":theme"))
@@ -69,7 +69,7 @@ dependencies {
     implementation(Libraries.Coil.svgCoil)
 
     // Lottie
-    implementation(Libraries.AirBnb.lottie)
+    api(Libraries.AirBnb.lottie)
 
     // Lifecycle
     api(Libraries.AndroidX.Lifecycle.viewmodelKtx)

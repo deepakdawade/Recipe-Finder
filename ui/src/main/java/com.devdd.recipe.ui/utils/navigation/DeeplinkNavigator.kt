@@ -1,11 +1,11 @@
-package com.devdd.recipe.utils.navigation
+package com.devdd.recipe.ui.utils.navigation
 
 import android.content.Intent
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
-import com.devdd.recipe.domain.result.toSingleEvent
 import com.devdd.recipe.utils.extensions.navigateOnce
+import com.devdd.recipe.utils.navigation.NavigateOnceDeeplinkRequest
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 /**

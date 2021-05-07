@@ -6,8 +6,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.devdd.recipe.R
 import com.devdd.recipe.databinding.ActivityMainBinding
+import com.devdd.recipe.ui.utils.navigation.setUpDeeplinkNavigationBehavior
 import com.devdd.recipe.utils.extensions.bindingWithLifecycleOwner
-import com.devdd.recipe.utils.localemanager.LocaleManagerUtils
+import com.devdd.recipe.base_android.utils.localemanager.LocaleManagerUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -22,7 +23,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindingWithLifecycleOwner<ActivityMainBinding>(R.layout.activity_main)
+        val binding = bindingWithLifecycleOwner<ActivityMainBinding>(R.layout.activity_main)
+        // to handle recreate of activity
+        setUpDeeplinkNavigationBehavior(
+            navHostFragmentId = binding.mainActivityContainer.id,
+            graphId = R.navigation.navigation_main_graph
+        )
+
     }
 
     override fun attachBaseContext(base: Context) {

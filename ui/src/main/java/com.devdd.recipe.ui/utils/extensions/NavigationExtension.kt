@@ -2,7 +2,7 @@ package com.devdd.recipe.utils.extensions
 
 import com.devdd.recipe.utils.navigation.NavigateOnceDeeplinkRequest
 import com.devdd.recipe.utils.navigation.NavigateOnceDirectionRequest
-import com.devdd.recipe.utils.navigation.mNavAnimations
+import com.devdd.recipe.ui.utils.navigation.mNavAnimations
 import android.net.Uri
 import androidx.navigation.*
 import androidx.navigation.fragment.FragmentNavigator
