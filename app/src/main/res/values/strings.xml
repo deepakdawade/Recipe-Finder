@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bottom navigation menu   -->
+    <string name="bottom_nav_menu_label_home">Home</string>
+    <string name="bottom_nav_menu_label_search">Search</string>
+    <string name="bottom_nav_menu_label_favorite">Favorite</string>
+    <string name="bottom_nav_menu_label_profile">Profile</string>
+
+</resources>

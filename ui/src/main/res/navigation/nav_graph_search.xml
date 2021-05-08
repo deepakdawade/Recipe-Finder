@@ -6,7 +6,7 @@
     app:startDestination="@id/searchRecipeFragment">
     <fragment
         android:id="@+id/searchRecipeFragment"
-        android:name="com.devdd.recipe.ui.search.SearchRecipeFragment"
+        android:name="com.devdd.recipe.feature_search.ui.search.SearchRecipeFragment"
         android:label="SearchRecipeFragment"
         tools:layout="@layout/fragment_search_recipe">
         <action

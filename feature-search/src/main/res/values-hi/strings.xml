@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Search -->
+    <string name="search_recipe_toolbar_title">रेसिपीस की खोज करें</string>
+    <string name="search_menu_label_search">खोज</string>
+    <string name="search_recipe_hint">रेसिपीस खोजें</string>
+    <string name="search_recipe_result">खोज परिणाम</string>
+
+    <string name="no_recipe_found">कोई रेसिपी नहीं मिली</string>
+
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Search -->
+    <string name="search_recipe_toolbar_title">Search recipes</string>
+    <string name="search_menu_label_search">Search</string>
+    <string name="search_recipe_hint">Search recipes</string>
+    <string name="search_recipe_result">Search results</string>
+
+    <string name="no_recipe_found">No recipe found</string>
+
+</resources>

@@ -17,17 +17,6 @@
     <string name="language_preference_hindi" translatable="false">हिंदी</string>
     <string name="language_preference_english" translatable="false">English</string>
 
-    <!-- Bottom navigation menu   -->
-    <string name="bottom_nav_menu_label_home">Home</string>
-    <string name="bottom_nav_menu_label_search">Search</string>
-    <string name="bottom_nav_menu_label_favorite">Favorite</string>
-    <string name="bottom_nav_menu_label_profile">Profile</string>
-
-    <!-- Search -->
-    <string name="search_recipe_toolbar_title">Search recipes</string>
-    <string name="search_menu_label_search">Search</string>
-    <string name="search_recipe_hint">Search recipes</string>
-    <string name="search_recipe_result">Search results</string>
 
     <!-- Profile   -->
     <string name="profile_option_change_language">Change language</string>

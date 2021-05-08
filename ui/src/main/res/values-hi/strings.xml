@@ -12,18 +12,6 @@
 
     <!-- Language selection   -->
 
-    <!-- Bottom navigation menu   -->
-    <string name="bottom_nav_menu_label_home">होम</string>
-    <string name="bottom_nav_menu_label_search">खोजें</string>
-    <string name="bottom_nav_menu_label_favorite">पसंदीदा</string>
-    <string name="bottom_nav_menu_label_profile">प्रोफ़ाइल</string>
-
-    <!-- Search -->
-    <string name="search_recipe_toolbar_title">रेसिपीस की खोज करें</string>
-    <string name="search_menu_label_search">खोज</string>
-    <string name="search_recipe_hint">रेसिपीस खोजें</string>
-    <string name="search_recipe_result">खोज परिणाम</string>
-
     <!-- Profile   -->
     <string name="profile_option_change_recipe_pref">रेसिपी प्राथमिकता बदलें</string>
     <string name="profile_option_change_language">भाषा बदलें</string>
