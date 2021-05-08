@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.devdd.recipe.feature_profile.ui.profile.appinfo.AppInfoViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/app_info_fragment_guideline_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="32dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/app_info_fragment_guideline_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="32dp" />
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/app_info_fragment_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:title="@string/app_info_toolbar_title" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/app_info_fragment_nested_scroll_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/app_info_fragment_terms_and_condition"
+            app:layout_constraintEnd_toEndOf="@id/app_info_fragment_guideline_end"
+            app:layout_constraintStart_toStartOf="@id/app_info_fragment_guideline_start"
+            app:layout_constraintTop_toBottomOf="@id/app_info_fragment_toolbar">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/app_info_fragment_scroll_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/app_info_fragment_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/app_info_desc"
+                    android:textAppearance="?textAppearanceHeadline4" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/app_info_fragment_version_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/app_info_version"
+                    android:textAppearance="?textAppearanceBody1" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/app_info_fragment_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{viewModel.appVersion}"
+                    android:textAppearance="?textAppearanceBody1" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/app_info_fragment_device_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/app_info_device_info"
+                    android:textAppearance="?textAppearanceBody1" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/app_info_fragment_device_model"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{String.format(@string/app_info_model,viewModel.deviceModel)}"
+                    android:textAppearance="?textAppearanceBody1" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/app_info_fragment_os"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{String.format(@string/app_info_os_version,viewModel.osVersion)}"
+                    android:textAppearance="?textAppearanceBody1" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/app_info_fragment_user_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/app_info_user_info"
+                    android:textAppearance="?textAppearanceBody1" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/app_info_fragment_guest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/app_info_guest_token"
+                    android:textAppearance="?textAppearanceBody1" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/app_info_fragment_deviceid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{@string/app_info_device_id(viewModel.deviceId)}"
+                    android:textAppearance="?textAppearanceBody1" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/app_info_fragment_terms_and_condition"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAppearance="?textAppearanceBody1"
+            app:layout_constraintBottom_toBottomOf="@id/app_info_fragment_guideline_bottom"
+            app:layout_constraintEnd_toEndOf="@id/app_info_fragment_guideline_end"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/app_info_fragment_guideline_start"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="@string/user_terms_and_conditions" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/app_info_fragment_guideline_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="32dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/app_info_fragment_guideline_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="32dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -21,7 +21,7 @@
         android:layout_margin="16dp"
         android:onClick="@{()->listener.onOptionClick(option.direction)}"
         android:clipChildren="true"
-        tools:backgroundTint="@color/colorLightGreen_500"
+        tools:backgroundTint="@color/light_green_500_alpha_100"
         cardBackgroundColor="@{option.bgColor}"
         app:cardUseCompatPadding="true"
         app:cardCornerRadius="4dp"

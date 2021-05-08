@@ -24,8 +24,8 @@
                 android:id="@+id/profile_fragment_heading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="@string/profile_heading"
-                android:textAlignment="center"
                 android:textAppearance="?textAppearanceHeadline5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -57,7 +57,7 @@
                     android:id="@+id/profile_fragment_action_change_language_divider"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    android:background="@android:color/holo_green_light" />
+                    android:background="@color/grey_400" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/profile_fragment_action_change_language_pref"
@@ -76,7 +76,7 @@
                     android:id="@+id/profile_fragment_action_change_recipe_pref_divider"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    android:background="@android:color/holo_green_light" />
+                    android:background="@color/grey_400" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/profile_fragment_action_change_recipe_pref"
@@ -92,11 +92,30 @@
                     app:drawableStartCompat="@drawable/ic_dish" />
 
                 <View
+                    android:id="@+id/profile_fragment_action_app_info_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:background="@color/grey_400" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/profile_fragment_action_app_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_click_ripple"
+                    android:drawablePadding="16dp"
+                    android:gravity="center_vertical"
+                    android:onClick="@{()->viewModel.navigateToAppInfo()}"
+                    android:padding="8dp"
+                    android:text="@string/profile_option_app_info"
+                    android:textAppearance="?textAppearanceSubtitle2"
+                    app:drawableStartCompat="@drawable/ic_info" />
+
+                <View
                     android:id="@+id/profile_fragment_action_dev_options_divider"
                     toggleVisibility="@{viewModel.debugMode}"
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    android:background="@android:color/holo_green_light" />
+                    android:background="@color/grey_400" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/profile_fragment_action_dev_options"
@@ -115,7 +134,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    android:background="@android:color/holo_green_light" />
+                    android:background="@color/grey_400" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

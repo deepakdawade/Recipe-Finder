@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_to_developerOptionFragment"
             app:destination="@id/devOptionFragment" />
+        <action
+            android:id="@+id/action_to_appInfoFragment"
+            app:destination="@id/appInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/preferenceSettingFragment"
@@ -35,5 +38,9 @@
         android:name="com.devdd.recipe.feature_profile.ui.profile.devoption.DevOptionFragment"
         android:label="DevOptionFragment"
         tools:layout="@layout/fragment_dev_option" />
+    <fragment
+        android:id="@+id/appInfoFragment"
+        android:name="com.devdd.recipe.feature_profile.ui.profile.appinfo.AppInfoFragment"
+        android:label="AppInfoFragment" />
 
 </navigation>

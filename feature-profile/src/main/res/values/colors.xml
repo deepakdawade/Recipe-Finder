@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorLightGreen_500">#FF85CF32</color>
+    <color name="light_green_500_alpha_100">#FF85CF32</color>
+    <color name="grey_400">#CCCCCC</color>
 </resources>

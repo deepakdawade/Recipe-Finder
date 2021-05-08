@@ -26,12 +26,12 @@ fun AppCompatImageView.loadImage(
     cornerRadius: Int? = 0
 ) {
     load(imageUrl) {
-//        placeholder(R.drawable.ic_launcher_foreground)
+        placeholder(R.drawable.ic_cloud_download)
         if (circleCrop == true)
             transformations(CircleCropTransformation())
         else if (roundCorner == true)
             transformations(RoundedCornersTransformation(radius = (cornerRadius ?: 0).px(context)))
-//        error(R.drawable.ic_launcher_foreground)
+        error(R.drawable.ic_cloud_download)
     }
 }
 

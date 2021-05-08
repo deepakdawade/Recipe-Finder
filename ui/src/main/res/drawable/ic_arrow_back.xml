@@ -6,7 +6,7 @@
   <path
       android:pathData="M20,11L7.8,11 13.4,5.4 12,4 4,12 12,20 13.4,18.6 7.8,13 20,13z"
       android:strokeAlpha="0.54"
-      android:fillColor="#000"
+      android:fillColor="?colorOnPrimary"
       android:fillType="evenOdd"
       android:fillAlpha="0.54"/>
 </vector>

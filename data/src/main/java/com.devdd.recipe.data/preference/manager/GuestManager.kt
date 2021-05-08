@@ -18,7 +18,7 @@ class GuestManager @Inject constructor(
     val guestToken: Flow<String>
         get() = storePreference.guestToken.catch { emit("") }
 
-    private val deviceId: Flow<String>
+    val deviceId: Flow<String>
         get() = storePreference.deviceId.catch { emit("") }
 
     val shouldUploadDeviceIdToServer: Flow<Boolean>

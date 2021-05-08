@@ -4,7 +4,22 @@
     <string name="profile_heading">Profile</string>
     <string name="profile_option_change_language">Change language</string>
     <string name="profile_option_change_recipe_pref">Change recipe preference</string>
+    <string name="profile_option_app_info">App info</string>
     <string name="profile_option_dev_options">Dev options</string>
+
+
+    <!--    About Fragment-->
+    <string name="app_info_toolbar_title">App info</string>
+    <string name="app_info_desc">Recipe App for\nAndroid</string>
+    <string name="app_info_version">Version</string>
+    <string name="app_info_recipe_info">Recipe Info</string>
+    <string name="app_info_device_info">Device Info</string>
+    <string name="app_info_model">Model :- %s</string>
+    <string name="app_info_os_version">OS Version :- %s</string>
+    <string name="app_info_user_info">User Info</string>
+    <string name="app_info_guest_token">Guest token :- copy to clipboard</string>
+    <string name="app_info_device_id">Registered Id :- %s</string>
+    <string name="user_terms_and_conditions">Terms and condition</string>
 
     <!--  Dev Option selection  -->
     <string name="dev_option_preference" translatable="false">Data store</string>
