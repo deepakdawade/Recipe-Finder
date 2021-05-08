@@ -28,8 +28,9 @@ import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.airbnb.lottie.LottieDrawable
 import com.devdd.recipe.base.result.onSuccess
+import com.devdd.recipe.base_android.utils.extensions.isAtLeastVersion
 import com.devdd.recipe.ui.utils.helper.CountDrawable
-import com.devdd.recipe.utils.extensions.loadLottieFromUrl
+import com.devdd.recipe.ui.utils.extensions.loadLottieFromUrl
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textview.MaterialTextView

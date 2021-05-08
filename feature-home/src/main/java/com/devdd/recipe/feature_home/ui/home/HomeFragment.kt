@@ -7,7 +7,7 @@ import com.devdd.recipe.feature_home.databinding.FragmentHomeBinding
 import com.devdd.recipe.feature_home.R
 import com.devdd.recipe.ui.base.DevFragment
 import com.devdd.recipe.feature_home.ui.home.adapter.HomeRecipeAdapter
-import com.devdd.recipe.ui.utils.extensions.observeEvent
+import com.devdd.recipe.base_android.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

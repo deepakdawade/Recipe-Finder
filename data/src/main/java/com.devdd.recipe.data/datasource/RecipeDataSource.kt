@@ -1,6 +1,6 @@
 package com.devdd.recipe.data.datasource
 
-import com.devdd.recipe.data.mapper.RecipeResponseToRecipeEntity
+import com.devdd.recipe.data.mappers.RecipeResponseToRecipeEntity
 import com.devdd.recipe.data.models.entity.Recipe
 import com.devdd.recipe.data.models.request.MarkRecipeFavoriteRequest
 import com.devdd.recipe.data.models.request.SavedRecipesRequest

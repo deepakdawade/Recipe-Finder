@@ -1,4 +1,4 @@
-package com.devdd.recipe.utils.extensions
+package com.devdd.recipe.ui.utils.extensions
 
 import android.app.Activity
 import android.content.Intent

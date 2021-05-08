@@ -1,4 +1,4 @@
-package com.devdd.recipe.utils.navigation
+package com.devdd.recipe.ui.utils.navigation
 
 import android.net.Uri
 

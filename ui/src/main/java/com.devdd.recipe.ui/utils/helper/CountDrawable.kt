@@ -5,7 +5,7 @@ import android.graphics.*
 import android.graphics.drawable.Drawable
 import com.devdd.recipe.base_android.utils.extensions.toDimensions
 import com.devdd.recipe.ui.R
-import com.devdd.recipe.utils.extensions.themedColor
+import com.devdd.recipe.ui.utils.extensions.themedColor
 import kotlin.math.max
 
 

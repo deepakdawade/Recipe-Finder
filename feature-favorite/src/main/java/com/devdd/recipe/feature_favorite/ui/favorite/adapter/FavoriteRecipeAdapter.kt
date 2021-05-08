@@ -11,8 +11,7 @@ import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.feature_favorite.databinding.ItemViewSavedRecipesBinding
 import com.devdd.recipe.feature_favorite.databinding.ItemViewSectionHeaderBinding
 import com.devdd.recipe.feature_favorite.ui.favorite.FavoriteViewModel
-import com.devdd.recipe.ui.favorite.adapter.SavedRecipeAdapter
-import com.devdd.recipe.utils.extensions.bindWithLayout
+import com.devdd.recipe.ui.utils.extensions.bindWithLayout
 
 
 /**

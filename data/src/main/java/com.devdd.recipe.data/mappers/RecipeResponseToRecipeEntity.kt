@@ -1,6 +1,5 @@
-package com.devdd.recipe.domain.mappers
+package com.devdd.recipe.data.mappers
 
-import com.devdd.recipe.data.mapper.Mapper
 import com.devdd.recipe.data.models.entity.Recipe
 import com.devdd.recipe.data.models.response.RecipeListResponse
 import javax.inject.Inject

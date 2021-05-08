@@ -1,7 +1,6 @@
-package com.devdd.recipe.domain.mappers
+package com.devdd.recipe.domain.viewstate
 
 import com.devdd.recipe.data.models.entity.Recipe
-import com.devdd.recipe.domain.viewstate.RecipeViewState
 
 fun Recipe.toRecipeViewState(): RecipeViewState {
     return RecipeViewState(

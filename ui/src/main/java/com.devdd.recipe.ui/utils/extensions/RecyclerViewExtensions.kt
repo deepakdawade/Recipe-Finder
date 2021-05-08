@@ -5,7 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
-import com.devdd.recipe.utils.snappositionlistener.SnapOnScrollListener
+import com.devdd.recipe.ui.utils.helper.snappositionlistener.SnapOnScrollListener
 import com.devdd.recipe.ui.utils.helper.snappositionlistener.OnSnapPositionChangeListener
 import kotlin.math.abs
 import kotlin.math.max

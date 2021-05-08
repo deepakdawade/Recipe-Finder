@@ -1,4 +1,4 @@
-package com.devdd.recipe.utils.navigation
+package com.devdd.recipe.ui.utils.navigation
 
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions

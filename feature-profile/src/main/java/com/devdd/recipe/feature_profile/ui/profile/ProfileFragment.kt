@@ -6,7 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.feature_profile.R
 import com.devdd.recipe.ui.base.DevFragment
 import com.devdd.recipe.feature_profile.databinding.FragmentProfileBinding
-import com.devdd.recipe.ui.utils.extensions.observeEvent
+import com.devdd.recipe.base_android.utils.extensions.observeEvent
 import com.devdd.recipe.utils.extensions.navigateOnce
 import dagger.hilt.android.AndroidEntryPoint
 

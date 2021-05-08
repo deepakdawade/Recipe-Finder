@@ -2,5 +2,6 @@
 <resources>
     <!--  Favorite  -->
     <string name="no_recipe_found">No recipe found</string>
+    <string name="favorite_recipe_loading_text">Loading recipes</string>
 
 </resources>

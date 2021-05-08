@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.base_android.utils.NavigationResult
-import com.devdd.recipe.utils.extensions.hideSoftInput
+import com.devdd.recipe.base_android.utils.extensions.CallerFragmentType
 import kotlin.properties.Delegates
 
 inline fun <reified T : AppCompatActivity> Fragment.launch(

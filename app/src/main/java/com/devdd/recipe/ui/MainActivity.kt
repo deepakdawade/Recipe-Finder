@@ -8,7 +8,7 @@ import com.devdd.recipe.R
 import com.devdd.recipe.databinding.ActivityMainBinding
 import com.devdd.recipe.ui.utils.navigation.setUpDeeplinkNavigationBehavior
 import com.devdd.recipe.base_android.utils.localemanager.LocaleManagerUtils
-import com.devdd.recipe.utils.extensions.bindingWithLifecycleOwner
+import com.devdd.recipe.ui.utils.extensions.bindingWithLifecycleOwner
 import dagger.hilt.android.AndroidEntryPoint
 
 

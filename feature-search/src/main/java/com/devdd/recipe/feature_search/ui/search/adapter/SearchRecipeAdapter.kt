@@ -8,7 +8,7 @@ import com.devdd.recipe.feature_search.R
 import com.devdd.recipe.feature_search.databinding.ItemViewSearchRecipeBinding
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.feature_search.ui.search.SearchRecipeViewModel
-import com.devdd.recipe.utils.extensions.bindWithLayout
+import com.devdd.recipe.ui.utils.extensions.bindWithLayout
 
 class SearchRecipeAdapter(private val viewModel: SearchRecipeViewModel) :
     ListAdapter<RecipeViewState, SearchRecipeAdapter.SearchRecipeViewHolder>(

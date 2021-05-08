@@ -8,7 +8,7 @@ import com.devdd.recipe.feature_home.R
 import com.devdd.recipe.feature_home.databinding.ItemViewHomeRecipeBinding
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 import com.devdd.recipe.feature_home.ui.home.HomeViewModel
-import com.devdd.recipe.utils.extensions.bindWithLayout
+import com.devdd.recipe.ui.utils.extensions.bindWithLayout
 
 class HomeRecipeAdapter(private val viewModel: HomeViewModel) :
     ListAdapter<RecipeViewState, HomeRecipeAdapter.HomeRecipeViewHolder>(

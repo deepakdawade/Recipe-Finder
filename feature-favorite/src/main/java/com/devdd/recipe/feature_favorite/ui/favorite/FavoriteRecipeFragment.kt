@@ -8,7 +8,7 @@ import com.devdd.recipe.feature_favorite.R
 import com.devdd.recipe.feature_favorite.databinding.FragmentFavoriteRecipeBinding
 import com.devdd.recipe.feature_favorite.ui.favorite.adapter.FavoriteRecipeAdapter
 import com.devdd.recipe.utils.extensions.navigateOnce
-import com.devdd.recipe.ui.utils.extensions.observeEvent
+import com.devdd.recipe.base_android.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

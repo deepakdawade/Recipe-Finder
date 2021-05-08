@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.devdd.recipe.base_android.utils.extensions.observeEvent
 import com.devdd.recipe.feature_search.R
 import com.devdd.recipe.ui.base.DevFragment
 import com.devdd.recipe.feature_search.databinding.FragmentSearchRecipeBinding
 import com.devdd.recipe.feature_search.ui.search.adapter.SearchRecipeAdapter
 import com.devdd.recipe.ui.utils.extensions.watchQueryTextChangeListener
-import com.devdd.recipe.ui.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

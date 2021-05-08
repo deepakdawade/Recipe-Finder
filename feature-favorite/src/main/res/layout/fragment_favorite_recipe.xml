@@ -57,7 +57,7 @@
             toggleVisibility="@{viewModel.recipes.empty &amp;&amp; viewModel.loading}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/home_loading_recipes_text"
+            android:text="@string/favorite_recipe_loading_text"
             android:textAlignment="center"
             android:textAppearance="?textAppearanceHeadline6"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -2,7 +2,7 @@ package com.devdd.recipe.domain.observers
 
 import com.devdd.recipe.data.repository.RecipeRepository
 import com.devdd.recipe.domain.SubjectUseCase
-import com.devdd.recipe.domain.mappers.toRecipeViewState
+import com.devdd.recipe.domain.viewstate.toRecipeViewState
 import com.devdd.recipe.domain.viewstate.RecipeViewState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
