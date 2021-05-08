@@ -55,7 +55,7 @@
                 android:button="@null"
                 android:onClick="@{()->viewModel.vegetarian()}"
                 android:text="@string/recipe_pref_selection_option_veg"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textAppearance="?textAppearanceHeadline5"
                 android:textColor="@color/selector_radio_text_color"
                 tools:checked="false" />
@@ -75,7 +75,7 @@
                 android:button="@null"
                 android:onClick="@{()->viewModel.nonVegetarian()}"
                 android:text="@string/recipe_pref_selection_option_non_veg"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textAppearance="?textAppearanceHeadline5"
                 android:textColor="@color/selector_radio_text_color"
                 app:useMaterialThemeColors="false"
@@ -90,7 +90,7 @@
                 android:button="@null"
                 android:onClick="@{()->viewModel.bothVegNonVeg()}"
                 android:text="@string/recipe_pref_selection_option_both"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textAppearance="?textAppearanceHeadline5"
                 android:textColor="@color/selector_radio_text_color"
                 app:useMaterialThemeColors="false" />
