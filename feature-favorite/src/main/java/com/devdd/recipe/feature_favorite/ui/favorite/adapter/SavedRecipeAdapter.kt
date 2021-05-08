@@ -4,10 +4,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.devdd.recipe.ui.R
+import com.devdd.recipe.feature_favorite.R
 import com.devdd.recipe.domain.viewstate.RecipeViewState
-import com.devdd.recipe.ui.databinding.ItemViewSavedRecipeItemBinding
-import com.devdd.recipe.ui.favorite.FavoriteViewModel
+import com.devdd.recipe.feature_favorite.databinding.ItemViewSavedRecipeItemBinding
+import com.devdd.recipe.feature_favorite.ui.favorite.FavoriteViewModel
 import com.devdd.recipe.utils.extensions.bindWithLayout
 
 class SavedRecipeAdapter(private val viewModel: FavoriteViewModel) :

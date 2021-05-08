@@ -1,16 +1,17 @@
-package com.devdd.recipe.ui.favorite.adapter
+package com.devdd.recipe.feature_favorite.ui.favorite.adapter
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.devdd.recipe.ui.R
+import com.devdd.recipe.feature_favorite.R
 import com.devdd.recipe.domain.viewstate.HeaderDataViewState
 import com.devdd.recipe.domain.viewstate.RecipeViewState
-import com.devdd.recipe.ui.databinding.ItemViewSavedRecipesBinding
-import com.devdd.recipe.ui.databinding.ItemViewSectionHeaderBinding
-import com.devdd.recipe.ui.favorite.FavoriteViewModel
+import com.devdd.recipe.feature_favorite.databinding.ItemViewSavedRecipesBinding
+import com.devdd.recipe.feature_favorite.databinding.ItemViewSectionHeaderBinding
+import com.devdd.recipe.feature_favorite.ui.favorite.FavoriteViewModel
+import com.devdd.recipe.ui.favorite.adapter.SavedRecipeAdapter
 import com.devdd.recipe.utils.extensions.bindWithLayout
 
 

@@ -6,7 +6,7 @@
     app:startDestination="@id/favoriteRecipeFragment">
     <fragment
         android:id="@+id/favoriteRecipeFragment"
-        android:name="com.devdd.recipe.ui.favorite.FavoriteRecipeFragment"
+        android:name="com.devdd.recipe.feature_favorite.ui.favorite.FavoriteRecipeFragment"
         android:label="FavoriteRecipeFragment"
         tools:layout="@layout/fragment_favorite_recipe">
         <action

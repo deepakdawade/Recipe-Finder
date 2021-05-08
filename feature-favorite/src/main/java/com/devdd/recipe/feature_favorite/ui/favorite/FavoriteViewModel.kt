@@ -1,4 +1,4 @@
-package com.devdd.recipe.ui.favorite
+package com.devdd.recipe.feature_favorite.ui.favorite
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,6 +19,7 @@ import com.devdd.recipe.domain.executers.MarkRecipeFavorite
 import com.devdd.recipe.domain.observers.ObserveRecipeByPref
 import com.devdd.recipe.domain.viewstate.HeaderDataViewState
 import com.devdd.recipe.domain.viewstate.RecipeViewState
+import com.devdd.recipe.ui.favorite.FavoriteRecipeFragmentDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combineTransform

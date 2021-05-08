@@ -1,12 +1,12 @@
-package com.devdd.recipe.ui.favorite
+package com.devdd.recipe.feature_favorite.ui.favorite
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.ui.base.DevFragment
-import com.devdd.recipe.ui.R
-import com.devdd.recipe.ui.databinding.FragmentFavoriteRecipeBinding
-import com.devdd.recipe.ui.favorite.adapter.FavoriteRecipeAdapter
+import com.devdd.recipe.feature_favorite.R
+import com.devdd.recipe.feature_favorite.databinding.FragmentFavoriteRecipeBinding
+import com.devdd.recipe.feature_favorite.ui.favorite.adapter.FavoriteRecipeAdapter
 import com.devdd.recipe.utils.extensions.navigateOnce
 import com.devdd.recipe.ui.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint

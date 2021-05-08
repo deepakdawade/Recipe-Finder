@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.devdd.recipe.ui.favorite.FavoriteViewModel" />
+            type="com.devdd.recipe.feature_favorite.ui.favorite.FavoriteViewModel" />
 
     </data>
 
