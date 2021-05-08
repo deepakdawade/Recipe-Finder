@@ -1,12 +1,13 @@
-package com.devdd.recipe.ui.profile
+package com.devdd.recipe.feature_profile.ui.profile
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.devdd.recipe.ui.R
+import com.devdd.recipe.feature_profile.R
 import com.devdd.recipe.ui.base.DevFragment
-import com.devdd.recipe.ui.databinding.FragmentProfileBinding
+import com.devdd.recipe.feature_profile.databinding.FragmentProfileBinding
 import com.devdd.recipe.ui.utils.extensions.observeEvent
+import com.devdd.recipe.utils.extensions.navigateOnce
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,7 +27,7 @@ class ProfileFragment : DevFragment<FragmentProfileBinding>(R.layout.fragment_pr
         viewModel.navigation.observeEvent(viewLifecycleOwner) {
             if (it.second)
                 findNavController().navigateUp()
-            else findNavController().navigate(it.first)
+            else findNavController().navigateOnce(it.first)
         }
     }
 }

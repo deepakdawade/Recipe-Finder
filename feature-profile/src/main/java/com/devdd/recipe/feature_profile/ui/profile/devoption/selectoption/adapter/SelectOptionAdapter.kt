@@ -1,12 +1,12 @@
-package com.devdd.recipe.ui.profile.devoption.selectoption.adapter
+package com.devdd.recipe.feature_profile.ui.profile.devoption.selectoption.adapter
 
 import android.view.ViewGroup
 import androidx.navigation.NavDirections
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.devdd.recipe.ui.R
-import com.devdd.recipe.ui.databinding.ItemViewSelectOptionBinding
+import com.devdd.recipe.feature_profile.R
+import com.devdd.recipe.feature_profile.databinding.ItemViewSelectOptionBinding
 import com.devdd.recipe.utils.extensions.bindWithLayout
 
 class SelectOptionAdapter(private val listener: OnOptionSelectListener) :

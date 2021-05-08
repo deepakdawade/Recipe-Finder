@@ -9,6 +9,7 @@ import com.devdd.recipe.R
 import com.devdd.recipe.ui.base.DevFragment
 import com.devdd.recipe.databinding.FragmentSplashBinding
 import com.devdd.recipe.ui.utils.extensions.observeEvent
+import com.devdd.recipe.utils.extensions.navigateOnce
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -37,7 +38,7 @@ class SplashFragment : DevFragment<FragmentSplashBinding>(R.layout.fragment_spla
         })
 
         viewModel.navigation.observeEvent(viewLifecycleOwner) {
-            findNavController().navigate(it)
+            findNavController().navigateOnce(it)
         }
     }
 }

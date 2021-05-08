@@ -7,11 +7,11 @@
 
         <variable
             name="option"
-            type="com.devdd.recipe.ui.profile.devoption.selectoption.adapter.DeveloperOption" />
+            type="com.devdd.recipe.feature_profile.ui.profile.devoption.selectoption.adapter.DeveloperOption" />
 
         <variable
             name="listener"
-            type="com.devdd.recipe.ui.profile.devoption.selectoption.adapter.SelectOptionAdapter.OnOptionSelectListener" />
+            type="com.devdd.recipe.feature_profile.ui.profile.devoption.selectoption.adapter.SelectOptionAdapter.OnOptionSelectListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

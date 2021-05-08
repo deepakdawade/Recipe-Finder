@@ -1,12 +1,12 @@
-package com.devdd.recipe.ui.profile.devoption.selectoption
+package com.devdd.recipe.feature_profile.ui.profile.devoption.selectoption
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.devdd.recipe.ui.R
+import com.devdd.recipe.feature_profile.R
 import com.devdd.recipe.ui.base.DevFragment
-import com.devdd.recipe.ui.databinding.FragmentSelectOptionBinding
-import com.devdd.recipe.ui.profile.devoption.selectoption.adapter.SelectOptionAdapter
+import com.devdd.recipe.feature_profile.databinding.FragmentSelectOptionBinding
+import com.devdd.recipe.feature_profile.ui.profile.devoption.selectoption.adapter.SelectOptionAdapter
 import com.devdd.recipe.utils.extensions.navigateOnce
 import com.devdd.recipe.ui.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint

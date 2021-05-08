@@ -12,11 +12,6 @@
 
     <!-- Language selection   -->
 
-    <!-- Profile   -->
-    <string name="profile_option_change_recipe_pref">रेसिपी प्राथमिकता बदलें</string>
-    <string name="profile_option_change_language">भाषा बदलें</string>
-    <string name="profile_option_dev_options">Dev options</string>
-
     <!-- Recipe Details    -->
     <string name="recipe_details_author_name">लेखक: %1$s</string>
     <string name="recipe_details_ingredients_text">सामग्री</string>
@@ -25,8 +20,5 @@
     <string name="recipe_details_cooking_time"><![CDATA[<b>पकाने का समय </b>%1$s]]></string>
     <string name="recipe_details_description_label">विवरण</string>
 
-    <!--  Dev Option selection  -->
-    <string name="data_store_preference_name">Data store preference</string>
-    <string name="empty_string_placeholder">%s</string>
-    <string name="EINTERNAL">Internal</string>
+
 </resources>

@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.devdd.recipe.ui.profile.ProfileViewModel" />
+            type="com.devdd.recipe.feature_profile.ui.profile.ProfileViewModel" />
 
     </data>
 
@@ -24,7 +24,7 @@
                 android:id="@+id/profile_fragment_heading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/bottom_nav_menu_label_profile"
+                android:text="@string/profile_heading"
                 android:textAlignment="center"
                 android:textAppearance="?textAppearanceHeadline5"
                 app:layout_constraintBottom_toBottomOf="parent"

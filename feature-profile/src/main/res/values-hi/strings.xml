@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Profile   -->
+    <string name="profile_heading">प्रोफ़ाइल</string>
+    <string name="profile_option_change_recipe_pref">रेसिपी प्राथमिकता बदलें</string>
+    <string name="profile_option_change_language">भाषा बदलें</string>
+    <string name="profile_option_dev_options">Dev options</string>
+
+    <!--  Dev Option selection  -->
+    <string name="data_store_preference_name">Data store preference</string>
+    <string name="empty_string_placeholder">%s</string>
+    <string name="EINTERNAL">Internal</string>
+
+</resources>

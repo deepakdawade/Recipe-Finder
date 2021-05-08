@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/selectOptionFragment"
-        android:name="com.devdd.recipe.ui.profile.devoption.selectoption.SelectOptionFragment"
+        android:name="com.devdd.recipe.feature_profile.ui.profile.devoption.selectoption.SelectOptionFragment"
         android:label="SelectOptionFragment"
         tools:layout="@layout/fragment_select_option">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/dataStoreSettingFragment"
-        android:name="com.devdd.recipe.ui.profile.devoption.datastoresetting.DataStoreSettingFragment"
+        android:name="com.devdd.recipe.feature_profile.ui.profile.devoption.datastoresetting.DataStoreSettingFragment"
         android:label="DataStoreSettingFragment"
         tools:layout="@layout/fragment_data_store_setting" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.devdd.recipe.ui.profile.devoption.selectoption.adapter
+package com.devdd.recipe.feature_profile.ui.profile.devoption.selectoption.adapter
 
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes

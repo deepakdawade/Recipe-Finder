@@ -1,4 +1,4 @@
-package com.devdd.recipe.ui.profile.devoption.datastoresetting
+package com.devdd.recipe.feature_profile.ui.profile.devoption.datastoresetting
 
 import android.os.Bundle
 import android.view.View
@@ -6,8 +6,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import com.devdd.recipe.ui.base.DevFragment
-import com.devdd.recipe.ui.R
-import com.devdd.recipe.ui.databinding.FragmentDataStoreSettingBinding
+import com.devdd.recipe.feature_profile.R
+import com.devdd.recipe.feature_profile.databinding.FragmentDataStoreSettingBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 

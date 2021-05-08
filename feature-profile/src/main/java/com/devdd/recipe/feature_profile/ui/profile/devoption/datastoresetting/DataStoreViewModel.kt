@@ -1,4 +1,4 @@
-package com.devdd.recipe.ui.profile.devoption.datastoresetting
+package com.devdd.recipe.feature_profile.ui.profile.devoption.datastoresetting
 
 import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.*

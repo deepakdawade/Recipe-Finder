@@ -1,4 +1,4 @@
-package com.devdd.recipe.ui.profile.devoption
+package com.devdd.recipe.feature_profile.ui.profile.devoption
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

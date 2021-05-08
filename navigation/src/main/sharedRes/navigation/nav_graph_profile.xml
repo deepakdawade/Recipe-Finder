@@ -6,7 +6,7 @@
     app:startDestination="@id/profileFragment">
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.devdd.recipe.ui.profile.ProfileFragment"
+        android:name="com.devdd.recipe.feature_profile.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/devOptionFragment"
-        android:name="com.devdd.recipe.ui.profile.devoption.DevOptionFragment"
+        android:name="com.devdd.recipe.feature_profile.ui.profile.devoption.DevOptionFragment"
         android:label="DevOptionFragment"
         tools:layout="@layout/fragment_dev_option" />
 

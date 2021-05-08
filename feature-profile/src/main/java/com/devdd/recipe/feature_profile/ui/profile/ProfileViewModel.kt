@@ -1,10 +1,10 @@
-package com.devdd.recipe.ui.profile
+package com.devdd.recipe.feature_profile.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
-import com.devdd.recipe.ui.BuildConfig
+import com.devdd.recipe.feature_profile.BuildConfig
 import com.devdd.recipe.base.result.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
