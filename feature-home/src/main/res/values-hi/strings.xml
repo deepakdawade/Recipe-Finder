@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  Home  -->
+    <string name="home_loading_recipes_text">रेसिपीस लोड हो रहा है</string>
+    <string name="recipes">रेसिपीस</string>
+    <string name="no_recipe_found">कोई रेसिपी नहीं मिली</string>
+
+</resources>

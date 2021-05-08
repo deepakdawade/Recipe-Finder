@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  Home  -->
+    <string name="home_loading_recipes_text">Loading recipes</string>
+    <string name="recipes">Recipes</string>
+    <string name="no_recipe_found">No recipe found</string>
+
+</resources>

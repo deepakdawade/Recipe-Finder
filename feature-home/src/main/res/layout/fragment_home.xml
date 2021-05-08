@@ -7,7 +7,7 @@
 
         <variable
             name="homeViewModel"
-            type="com.devdd.recipe.ui.home.HomeViewModel" />
+            type="com.devdd.recipe.feature_home.ui.home.HomeViewModel" />
 
     </data>
 

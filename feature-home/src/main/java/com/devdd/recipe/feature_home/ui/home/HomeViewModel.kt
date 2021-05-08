@@ -1,4 +1,4 @@
-package com.devdd.recipe.ui.home
+package com.devdd.recipe.feature_home.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

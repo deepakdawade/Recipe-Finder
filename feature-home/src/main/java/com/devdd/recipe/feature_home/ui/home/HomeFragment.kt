@@ -1,12 +1,12 @@
-package com.devdd.recipe.ui.home
+package com.devdd.recipe.feature_home.ui.home
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.devdd.recipe.ui.R
+import com.devdd.recipe.feature_home.databinding.FragmentHomeBinding
+import com.devdd.recipe.feature_home.R
 import com.devdd.recipe.ui.base.DevFragment
-import com.devdd.recipe.ui.databinding.FragmentHomeBinding
-import com.devdd.recipe.ui.home.adapter.HomeRecipeAdapter
+import com.devdd.recipe.feature_home.ui.home.adapter.HomeRecipeAdapter
 import com.devdd.recipe.ui.utils.extensions.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
