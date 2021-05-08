@@ -13,7 +13,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DashboardFragment : DevFragment<FragmentDashboardBinding>(R.layout.fragment_dashboard) {
     override fun onViewCreated(binding: FragmentDashboardBinding, savedInstanceState: Bundle?) {
-        binding.dashboardFragmentBottomNavigation.hideToolTip()
+        binding.dashboardFragmentBottomNavigation.apply {
+            hideToolTip()
+            itemIconTintList = null
+        }
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
