@@ -23,11 +23,6 @@
     <string name="bottom_nav_menu_label_favorite">Favorite</string>
     <string name="bottom_nav_menu_label_profile">Profile</string>
 
-    <!--  Home  -->
-    <string name="home_loading_recipes_text">Loading recipes</string>
-    <string name="recipes">Recipes</string>
-    <string name="no_recipe_found">No recipe found</string>
-
     <!-- Search -->
     <string name="search_recipe_toolbar_title">Search recipes</string>
     <string name="search_menu_label_search">Search</string>

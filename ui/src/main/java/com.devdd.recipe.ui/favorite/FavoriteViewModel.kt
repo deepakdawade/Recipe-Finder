@@ -19,7 +19,6 @@ import com.devdd.recipe.domain.executers.MarkRecipeFavorite
 import com.devdd.recipe.domain.observers.ObserveRecipeByPref
 import com.devdd.recipe.domain.viewstate.HeaderDataViewState
 import com.devdd.recipe.domain.viewstate.RecipeViewState
-import com.devdd.recipe.ui.home.HomeFragmentDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combineTransform
@@ -120,7 +119,7 @@ class FavoriteViewModel @Inject constructor(
     }
 
     fun navigateToRecipeDetails(recipeId: Int) {
-        val navDirection = HomeFragmentDirections.actionToRecipeDetailFragment(recipeId)
+        val navDirection = FavoriteRecipeFragmentDirections.actionToRecipeDetailFragment(recipeId)
         mNavigation.value = Event(navDirection)
     }
 }

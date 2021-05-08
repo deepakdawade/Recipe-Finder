@@ -8,6 +8,7 @@ include(
     "feature-favorite",
     "feature-profile",
     "ui",
+    "theme",
     "domain",
     "navigation"
 )

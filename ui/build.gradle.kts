@@ -44,7 +44,7 @@ dependencies {
     api(project(":navigation"))
 
     // Don't import this project anywhere else
-//    implementation(project(":theme"))
+    implementation(project(":theme"))
 
     // AndroidX
     api(Libraries.AndroidX.appCompat)

@@ -18,12 +18,6 @@
     <string name="bottom_nav_menu_label_favorite">पसंदीदा</string>
     <string name="bottom_nav_menu_label_profile">प्रोफ़ाइल</string>
 
-
-    <!--  Home  -->
-    <string name="home_loading_recipes_text">रेसिपीस लोड हो रहा है</string>
-    <string name="recipes">रेसिपीस</string>
-    <string name="no_recipe_found">कोई रेसिपी नहीं मिली</string>
-
     <!-- Search -->
     <string name="search_recipe_toolbar_title">रेसिपीस की खोज करें</string>
     <string name="search_menu_label_search">खोज</string>
