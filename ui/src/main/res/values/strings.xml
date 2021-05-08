@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">Recipe</string>
 
     <string name="empty_string" />
     <string name="no_internet_connection">No connection</string>
