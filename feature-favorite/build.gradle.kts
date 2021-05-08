@@ -5,6 +5,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 kapt {
@@ -37,6 +38,10 @@ dependencies {
 
     // Local projects
     implementation(project(":ui"))
+
+    // Dagger
+    implementation(Libraries.Google.DaggerHilt.daggerHilt)
+    kapt(Libraries.Google.DaggerHilt.hiltKapt)
 
     //Testing
     testImplementation(Libraries.Junit.jUnit)

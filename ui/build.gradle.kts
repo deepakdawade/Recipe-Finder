@@ -75,7 +75,7 @@ dependencies {
     implementation(Libraries.Facebook.shimmerDrawable)
 
     // Dagger
-    api(Libraries.Google.DaggerHilt.daggerHilt)
+    implementation(Libraries.Google.DaggerHilt.daggerHilt)
     api(Libraries.Google.DaggerHilt.daggerHiltViewModel)
     kapt(Libraries.Google.DaggerHilt.hiltKapt)
 
