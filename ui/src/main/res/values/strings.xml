@@ -28,4 +28,6 @@
 
     <string name="notification_title" translatable="false">Recipe Notification</string>
     <string name="notification_channel_id" translatable="false">Recipe channel</string>
+    <string name="notification_channel_name">Recipe name</string>
+    <string name="notifications_channel_description">Channel description</string>
 </resources>
