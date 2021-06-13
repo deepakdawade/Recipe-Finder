@@ -69,6 +69,9 @@ dependencies {
     //DataStore
     api(Libraries.AndroidX.DataStore.dataStore)
 
+    //Firebase
+    implementation(Libraries.Google.Firebase.messageKtx)
+
     // Ok-Http
     api(Libraries.OkHttp.okhttp)
     api(Libraries.OkHttp.loggingInterceptor)

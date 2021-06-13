@@ -10,6 +10,7 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
+
 kapt {
     correctErrorTypes = true
     useBuildCache = true
@@ -92,6 +93,7 @@ dependencies {
     implementation(project(":feature-favorite"))
     implementation(project(":feature-profile"))
     implementation(project(":ui"))
+    implementation(project(":firebase"))
 
     // Lifecycle
     implementation(Libraries.AndroidX.Lifecycle.process)
@@ -100,6 +102,10 @@ dependencies {
     implementation(Libraries.Google.DaggerHilt.daggerHilt)
     kapt(Libraries.Google.DaggerHilt.hiltKapt)
 
+    //Firebase
+    implementation(Libraries.Google.Firebase.messageKtx)
+
 
 }
 fun formatUrl(url: String): String = "\"$url\""
+apply(plugin = Libraries.Google.PlayServices.plugin)
