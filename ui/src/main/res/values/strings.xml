@@ -26,5 +26,6 @@
     <string name="recipe_details_cooking_time"><![CDATA[<b>Cooking time </b>%1$s]]></string>
     <string name="recipe_details_description_label">Description</string>
 
-
+    <string name="notification_title" translatable="false">Recipe Notification</string>
+    <string name="notification_channel_id" translatable="false">Recipe channel</string>
 </resources>
