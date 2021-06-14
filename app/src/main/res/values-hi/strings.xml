@@ -5,5 +5,6 @@
     <string name="bottom_nav_menu_label_search">खोजें</string>
     <string name="bottom_nav_menu_label_favorite">पसंदीदा</string>
     <string name="bottom_nav_menu_label_profile">प्रोफ़ाइल</string>
+    <string name="splash_screen_text">Shahi khana</string>
 
 </resources>
