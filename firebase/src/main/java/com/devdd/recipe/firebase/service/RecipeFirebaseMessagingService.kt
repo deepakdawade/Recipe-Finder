@@ -8,18 +8,17 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import com.devdd.recipe.data.utils.toDataClass
 import com.devdd.recipe.data.utils.toJsonString
 import com.devdd.recipe.firebase.R
+import com.devdd.recipe.firebase.constant.NotificationPayload
+import com.devdd.recipe.firebase.constant.toNotificationPayload
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.google.gson.Gson
-import com.google.gson.JsonElement
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import kotlin.random.Random
 
+@AndroidEntryPoint
 class RecipeFirebaseMessagingService : FirebaseMessagingService() {
     companion object {
         val TAG: String = this::class.java.simpleName
@@ -41,6 +40,7 @@ class RecipeFirebaseMessagingService : FirebaseMessagingService() {
         Timber.d("OnMessageReceived NotificationPayload: ${payload.toJsonString()}")
         Timber.d("OnMessageReceived Notification Body: ${remoteMessage.notification?.body}")
         payload?.let { sendNotification(it) }
+//        parseNotification.parseFcmPayload(remoteMessage)
     }
 
     private fun sendNotification(payload: NotificationPayload) {
@@ -77,35 +77,17 @@ class RecipeFirebaseMessagingService : FirebaseMessagingService() {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private fun setupNotificationChannels(): NotificationChannel {
         val adminChannelName = getString(R.string.notification_channel_name)
-        val adminChannelDescription = getString(R.string.notifications_channel_description)
+        val channelDescription = getString(R.string.notifications_channel_description)
 
         val notificationChannel = NotificationChannel(
             getString(R.string.notification_channel_id),
             adminChannelName,
             NotificationManager.IMPORTANCE_LOW
         )
-        notificationChannel.description = adminChannelDescription
+        notificationChannel.description = channelDescription
         notificationChannel.enableLights(true)
         notificationChannel.lightColor = Color.RED
         notificationChannel.enableVibration(true)
         return notificationChannel
-    }
-}
-
-data class NotificationPayload(
-    @SerializedName(value = "title", alternate = ["gcm_title"])
-    @Expose
-    val title: String?,
-    @SerializedName(value = "message", alternate = ["gcm_alert"])
-    @Expose
-    val message: String?
-)
-
-fun RemoteMessage.toNotificationPayload(): NotificationPayload? {
-    return try {
-        val remoteMessageTree: JsonElement = Gson().toJsonTree(data)
-        return remoteMessageTree.toJsonString().toDataClass()
-    } catch (e: Exception) {
-        null
     }
 }
