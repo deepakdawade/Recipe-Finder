@@ -18,6 +18,9 @@ class GuestManager @Inject constructor(
     val guestToken: Flow<String>
         get() = storePreference.guestToken.catch { emit("") }
 
+    val fcmToken: Flow<String>
+        get() = storePreference.fcmToken.catch { emit("") }
+
     val deviceId: Flow<String>
         get() = storePreference.deviceId.catch { emit("") }
 
@@ -28,7 +31,13 @@ class GuestManager @Inject constructor(
         storePreference.setGuestToken(token)
     }
 
+    suspend fun updateFcmToken(token: String) {
+        storePreference.setFcmToken(token)
+    }
+
     suspend fun guestToken(): String = guestToken.first()
+
+    suspend fun fcmToken(): String = fcmToken.first()
 
     suspend fun deviceId(): String = deviceId.first()
 

@@ -41,6 +41,9 @@ interface DataStorePreference {
     suspend fun setGuestToken(token: String)
     val guestToken: Flow<String>
 
+    suspend fun setFcmToken(token: String)
+    val fcmToken: Flow<String>
+
     suspend fun setRecipePreference(pref: String)
     val recipePreference: Flow<String>
 
@@ -119,6 +122,12 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
     override val guestToken: Flow<String>
         get() = dataStore.getValueAsFlow(PREF_KEY_GUEST_TOKEN, "")
 
+    override suspend fun setFcmToken(token: String) {
+        dataStore.setValue(PREF_KEY_FCM_TOKEN, token)
+    }
+
+    override val fcmToken: Flow<String>
+        get() = dataStore.getValueAsFlow(PREF_KEY_FCM_TOKEN,"")
 
     override suspend fun setRecipePreference(pref: String) {
         dataStore.setValue(PREF_KEY_SELECTED_RECIPE_PREF, pref)
@@ -143,6 +152,7 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
     private companion object {
         private object PreferencesName {
             const val GUEST_TOKEN = "guest_token"
+            const val FCM_TOKEN = "fcm_token"
             const val SELECTED_RECIPE = "selected_recipe_pref"
             const val SELECTED_LANGUAGE = "selected_language"
             const val DEVICE_ID = "device_id"
@@ -151,6 +161,9 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
 
         val PREF_KEY_GUEST_TOKEN: Preferences.Key<String> =
             stringPreferencesKey(PreferencesName.GUEST_TOKEN)
+
+        val PREF_KEY_FCM_TOKEN: Preferences.Key<String> =
+            stringPreferencesKey(PreferencesName.FCM_TOKEN)
 
         val PREF_KEY_SELECTED_RECIPE_PREF: Preferences.Key<String> =
             stringPreferencesKey(PreferencesName.SELECTED_RECIPE)

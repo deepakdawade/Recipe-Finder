@@ -1,5 +1,7 @@
 package com.devdd.recipe.data.repository.di
 
+import com.devdd.recipe.data.repository.FirebaseRepository
+import com.devdd.recipe.data.repository.FirebaseRepositoryImpl
 import com.devdd.recipe.data.repository.RecipeRepository
 import com.devdd.recipe.data.repository.RecipeRepositoryImpl
 import dagger.Module
@@ -14,4 +16,8 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideRecipeRepository(repository: RecipeRepositoryImpl): RecipeRepository = repository
+
+    @Provides
+    @Singleton
+    fun provideFirebaseRepository(repository: FirebaseRepositoryImpl): FirebaseRepository = repository
 }
