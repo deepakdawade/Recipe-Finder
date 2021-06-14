@@ -23,7 +23,7 @@ class RecipeDetailFragment :
     override fun onViewCreated(binding: FragmentRecipeDetailBinding, savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
         viewModel.loadRecipeById(args.recipeId)
-        binding.recipeDetailFragmentToolbar.setNavigationOnClickListener {
+        binding.recipeDetailFragmentBack.setOnClickListener {
             findNavController().navigateUp()
         }
     }
