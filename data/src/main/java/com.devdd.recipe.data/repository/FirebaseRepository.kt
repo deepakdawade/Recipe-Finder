@@ -33,6 +33,7 @@ class FirebaseRepositoryImpl @Inject constructor(
                     GlobalScope.launch(dispatchers.io) {
                         try {
                             sendTokenToServer(token)
+                            Timber.e("Fcm Token: $token")
                         } catch (e: Exception) {
                             Timber.e(e)
                         }
