@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.devdd.recipe.data.utils.toJsonString
+import com.devdd.recipe.domain.executers.firebase.SendFcmTokenToServer
 import com.devdd.recipe.firebase.R
 import com.devdd.recipe.firebase.constant.NotificationPayload
 import com.devdd.recipe.firebase.constant.toNotificationPayload
@@ -16,6 +17,8 @@ import com.devdd.recipe.firebase.parse.ParseNotification
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import timber.log.Timber
 import javax.inject.Inject
 import kotlin.random.Random
@@ -29,10 +32,13 @@ class RecipeFirebaseMessagingService : FirebaseMessagingService() {
     @Inject
     lateinit var parseNotification: ParseNotification
 
+    @Inject
+    lateinit var sendFcmTokenToServer: SendFcmTokenToServer
+
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         Timber.d("Firebase New Token:$token")
-        //sendNotificationTOServer()
+        sendNotificationToServer(token)
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
@@ -47,6 +53,14 @@ class RecipeFirebaseMessagingService : FirebaseMessagingService() {
 //        sendNotification(payload)
         parseNotification.parseFcmPayload(remoteMessage)
     }
+
+
+    private fun sendNotificationToServer(token: String) {
+        GlobalScope.launch {
+            sendFcmTokenToServer.invoke(token).collect()
+        }
+    }
+
 
     private fun sendNotification(payload: NotificationPayload) {
         val notificationManager =
