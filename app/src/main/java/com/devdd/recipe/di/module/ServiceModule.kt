@@ -11,5 +11,5 @@ import dagger.hilt.android.components.ServiceComponent
 abstract class ServiceModule {
 
     @Binds
-    abstract fun fcmService() : RecipeFirebaseMessagingService
+    abstract fun fcmService(service: RecipeFirebaseMessagingService) : RecipeFirebaseMessagingService
 }

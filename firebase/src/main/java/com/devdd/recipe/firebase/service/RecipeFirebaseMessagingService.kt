@@ -12,10 +12,12 @@ import com.devdd.recipe.data.utils.toJsonString
 import com.devdd.recipe.firebase.R
 import com.devdd.recipe.firebase.constant.NotificationPayload
 import com.devdd.recipe.firebase.constant.toNotificationPayload
+import com.devdd.recipe.firebase.parse.ParseNotification
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import javax.inject.Inject
 import kotlin.random.Random
 
 @AndroidEntryPoint
@@ -23,6 +25,9 @@ class RecipeFirebaseMessagingService : FirebaseMessagingService() {
     companion object {
         val TAG: String = this::class.java.simpleName
     }
+
+    @Inject
+    lateinit var parseNotification: ParseNotification
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
@@ -35,12 +40,12 @@ class RecipeFirebaseMessagingService : FirebaseMessagingService() {
         Timber.d("OnMessageReceived:${remoteMessage.toJsonString()}")
         Timber.d("OnMessageReceived MessageData ${remoteMessage.data}")
 
-        val payload: NotificationPayload? = remoteMessage.toNotificationPayload()
+        val payload: NotificationPayload = remoteMessage.toNotificationPayload()
 
         Timber.d("OnMessageReceived NotificationPayload: ${payload.toJsonString()}")
         Timber.d("OnMessageReceived Notification Body: ${remoteMessage.notification?.body}")
-        payload?.let { sendNotification(it) }
-//        parseNotification.parseFcmPayload(remoteMessage)
+//        sendNotification(payload)
+        parseNotification.parseFcmPayload(remoteMessage)
     }
 
     private fun sendNotification(payload: NotificationPayload) {
