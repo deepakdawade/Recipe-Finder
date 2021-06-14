@@ -1,5 +1,7 @@
 package com.devdd.recipe.di.module
 
+import android.content.Context
+import androidx.core.app.NotificationManagerCompat
 import com.devdd.recipe.BuildConfig
 import com.devdd.recipe.base.utils.AppBuildConfig
 import com.devdd.recipe.base.utils.AppCoroutineDispatchers
@@ -7,6 +9,7 @@ import com.devdd.recipe.base_android.utils.extensions.buildType
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
@@ -26,6 +29,12 @@ object AppModule {
         BASE_URL = UrlConfig.BASE_URL,
         BUILD_TYPE = buildType
     )
+
+    @Provides
+    @Singleton
+    fun provideNotificationManager(@ApplicationContext context: Context): NotificationManagerCompat =
+        NotificationManagerCompat.from(context)
+
 
     @Singleton
     @Provides

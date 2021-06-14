@@ -8,14 +8,18 @@ import androidx.navigation.NavDirections
 import com.devdd.recipe.base.result.Event
 import com.devdd.recipe.data.preference.manager.LocaleManager
 import com.devdd.recipe.data.preference.manager.RecipeManager
+import com.devdd.recipe.domain.executers.firebase.FetchFcmToken
+import com.devdd.recipe.domain.invoke
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val recipeManager: RecipeManager,
-    private val localeManager: LocaleManager
+    private val localeManager: LocaleManager,
+    private val fetchFcmToken: FetchFcmToken
 ) : ViewModel() {
 
     private val mNavigation: MutableLiveData<Event<NavDirections>> = MutableLiveData()
@@ -27,7 +31,9 @@ class SplashViewModel @Inject constructor(
             when {
                 !localeManager.isLanguageSelected() -> navigateToPreferenceSetting()
                 !recipeManager.isRecipeSelected() -> navigateToPreferenceSetting(1)
-                else -> navigateToDashboard()
+                else -> navigateToDashboard().also {
+                    fetchFcmToken.invoke().collect()
+                }
             }
         }
     }

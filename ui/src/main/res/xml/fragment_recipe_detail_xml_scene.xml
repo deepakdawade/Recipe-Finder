@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:onTouchUp="autoComplete"
+            motion:touchAnchorId="@id/recipe_detail_fragment_image"
+            motion:touchAnchorSide="middle" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@id/recipe_detail_fragment_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintDimensionRatio="1.5:1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@id/recipe_detail_fragment_saving"
+            motion:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@id/recipe_detail_fragment_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            motion:layout_constraintBottom_toBottomOf="@id/recipe_detail_fragment_image"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@id/recipe_detail_fragment_saving"
+            motion:visibilityMode="ignore" />
+        <Constraint
+            android:id="@id/recipe_detail_fragment_image"
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/vehicle_profile_fragment_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintBottom_toBottomOf="@id/recipe_detail_fragment_image"
+            motion:layout_constraintStart_toStartOf="@id/recipe_detail_fragment_image"
+            motion:layout_constraintTop_toTopOf="@id/recipe_detail_fragment_image" />
+        <Constraint
+            android:id="@id/recipe_detail_fragment_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            motion:layout_constraintBottom_toBottomOf="@id/recipe_detail_fragment_image"
+            motion:layout_constraintEnd_toStartOf="@id/recipe_detail_fragment_save_recipe"
+            motion:layout_constraintStart_toEndOf="@id/recipe_detail_fragment_back"
+            motion:layout_constraintTop_toTopOf="@id/recipe_detail_fragment_image" />
+        <Constraint
+            android:id="@id/recipe_detail_fragment_save_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            motion:layout_constraintBottom_toBottomOf="@id/recipe_detail_fragment_image"
+            motion:layout_constraintEnd_toStartOf="@id/recipe_detail_fragment_share_whatsapp"
+            motion:layout_constraintTop_toTopOf="@id/recipe_detail_fragment_image" />
+        <Constraint
+            android:id="@id/recipe_detail_fragment_share_whatsapp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            motion:layout_constraintBottom_toBottomOf="@id/recipe_detail_fragment_image"
+            motion:layout_constraintEnd_toEndOf="@id/recipe_detail_fragment_image"
+            motion:layout_constraintTop_toTopOf="@id/recipe_detail_fragment_image" />
+    </ConstraintSet>
+</MotionScene>

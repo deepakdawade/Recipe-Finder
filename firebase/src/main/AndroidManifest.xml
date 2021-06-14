@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.devdd.recipe.firebase">
+
+    <application>
+
+        <service
+            android:name="com.devdd.recipe.firebase.service.RecipeFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- This meta tag will ensure that Firebase notification [without payload] will show correct icon-->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/common_google_signin_btn_icon_dark" />
+
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+         notification message. -->
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimary" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/notification_channel_id" />
+    </application>
+
+</manifest>

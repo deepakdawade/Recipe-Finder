@@ -126,6 +126,50 @@ object Dependencies {
                 const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
             }
 
+            object PlayServices {
+                const val coreKtx: String = "com.google.android.play:core-ktx:1.8.1"
+
+                const val location: String = "com.google.android.gms:play-services-location:17.1.0"
+                const val maps: String = "com.google.android.gms:play-services-maps:17.0.0"
+                const val places: String = "com.google.android.libraries.places:places:2.4.0"
+
+                const val authPhoneApi: String =
+                    "com.google.android.gms:play-services-auth-api-phone:17.5.0"
+                const val authApi: String = "com.google.android.gms:play-services-auth:19.0.0"
+
+                const val plugin: String = "com.google.gms.google-services"
+                const val gradlePlugin: String = "com.google.gms:google-services:4.3.4"
+            }
+
+            object Firebase {
+                // Import the BoM for the Firebase platform
+                const val bom: String = "com.google.firebase:firebase-bom:25.13.0"
+
+                const val analyticsKtx: String = "com.google.firebase:firebase-analytics-ktx"
+
+                const val authKtx: String = "com.google.firebase:firebase-auth-ktx"
+
+                const val crashlytics: String = "com.google.firebase:firebase-crashlytics"
+
+                const val crashlyticsPlugin: String =
+                    "com.google.firebase:firebase-crashlytics-gradle:2.2.0"
+
+                const val configKtx: String = "com.google.firebase:firebase-config-ktx"
+
+                const val dynamicLinkKtx: String = "com.google.firebase:firebase-dynamic-links-ktx"
+
+                const val inAppMessagingDisplayKtx: String =
+                    "com.google.firebase:firebase-inappmessaging-display-ktx"
+
+                const val firestoreKtx: String = "com.google.firebase:firebase-firestore-ktx"
+
+                const val messageKtx: String = "com.google.firebase:firebase-messaging-ktx"
+
+                const val performance: String = "com.google.firebase:firebase-perf-ktx"
+                const val performancePlugin: String = "com.google.firebase:perf-plugin:1.3.1"
+
+                const val storage: String = "com.google.firebase:firebase-storage-ktx"
+            }
 
         }
 

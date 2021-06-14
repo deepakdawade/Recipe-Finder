@@ -10,6 +10,8 @@ buildscript {
         classpath(com.devdd.recipe.buildsrc.Dependencies.Libraries.Google.DaggerHilt.hiltGradlePlugin)
         classpath(com.devdd.recipe.buildsrc.Dependencies.Libraries.AndroidX.Navigation.safeArgsGradlePlugin)
 
+        //play service
+        classpath(com.devdd.recipe.buildsrc.Dependencies.Libraries.Google.PlayServices.gradlePlugin)
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

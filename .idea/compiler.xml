@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="Recipe.app" target="11" />
+      <module name="Recipe.base-android" target="11" />
+      <module name="Recipe.buildSrc" target="11" />
+      <module name="Recipe.data" target="11" />
+      <module name="Recipe.domain" target="11" />
+      <module name="Recipe.feature-favorite" target="11" />
+      <module name="Recipe.feature-home" target="11" />
+      <module name="Recipe.feature-profile" target="11" />
+      <module name="Recipe.feature-search" target="11" />
+      <module name="Recipe.firebase" target="11" />
+      <module name="Recipe.navigation" target="11" />
+      <module name="Recipe.theme" target="11" />
+      <module name="Recipe.ui" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
