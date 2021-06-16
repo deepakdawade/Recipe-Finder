@@ -47,6 +47,13 @@ dependencies {
     // Timber
     api(Libraries.Timber.timber)
 
+    // Firebase Storage
+//    implementation(Libraries.Google.Firebase.crashlytics)
+//    implementation(Libraries.Google.Firebase.analyticsKtx)
+
+    // In-App Update Manager
+//    implementation(Libraries.Google.PlayServices.coreKtx)
+
     // Coil
     implementation(Libraries.Coil.coil)
 

@@ -79,6 +79,16 @@ dependencies {
     api(Libraries.Google.DaggerHilt.daggerHiltViewModel)
     kapt(Libraries.Google.DaggerHilt.hiltKapt)
 
+    // Firebase Storage
+//    api(Libraries.Google.Firebase.analyticsKtx)
+//    api(Libraries.Google.Firebase.storage)
+
+    // Gms
+//    implementation(Libraries.Google.PlayServices.location)
+//    implementation(Libraries.Google.PlayServices.maps)
+//    implementation(Libraries.Google.PlayServices.places)
+
+
     //Testing
     testImplementation(Libraries.Junit.jUnit)
     androidTestImplementation(Libraries.AndroidX.Testing.jUnitTest)

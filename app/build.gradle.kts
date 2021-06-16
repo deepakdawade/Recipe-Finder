@@ -103,7 +103,18 @@ dependencies {
     kapt(Libraries.Google.DaggerHilt.hiltKapt)
 
     //Firebase
+    implementation(Libraries.Google.Firebase.authKtx)
+//    implementation(Libraries.Google.Firebase.crashlytics)
+//    implementation(Libraries.Google.Firebase.dynamicLinkKtx)
+//    implementation(Libraries.Google.Firebase.firestoreKtx)
+//    implementation(Libraries.Google.Firebase.inAppMessagingDisplayKtx)
+//    implementation(Libraries.Google.Firebase.performance)
     implementation(Libraries.Google.Firebase.messageKtx)
+
+    // Play Core:
+    implementation(Libraries.Google.PlayServices.coreKtx)
+    implementation(Libraries.Google.PlayServices.authApi)
+//    implementation(Libraries.Google.PlayServices.authPhoneApi)
 
 
 }

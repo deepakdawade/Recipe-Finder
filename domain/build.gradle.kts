@@ -37,6 +37,8 @@ dependencies {
     // AndroidX
     implementation(Libraries.AndroidX.Paging3.paging)
 
+    // Google
+//    implementation(Libraries.Google.PlayServices.places)
 
     // Dagger
     kapt(Libraries.Google.DaggerHilt.hiltKapt)
