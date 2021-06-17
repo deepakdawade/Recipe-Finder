@@ -26,9 +26,6 @@ dependencies {
     // Retrofit
     api(Libraries.Retrofit.retrofit)
 
-    //Firebase analytics
-    implementation(Libraries.Google.Firebase.analyticsKtx)
-
     // Firebase BOM
     api(platform(Libraries.Google.Firebase.bom))
 }

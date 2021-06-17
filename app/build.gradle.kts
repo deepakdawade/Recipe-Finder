@@ -104,7 +104,7 @@ dependencies {
 
     //Firebase
     implementation(Libraries.Google.Firebase.authKtx)
-//    implementation(Libraries.Google.Firebase.crashlytics)
+    implementation(Libraries.Google.Firebase.crashlytics)
 //    implementation(Libraries.Google.Firebase.dynamicLinkKtx)
 //    implementation(Libraries.Google.Firebase.firestoreKtx)
 //    implementation(Libraries.Google.Firebase.inAppMessagingDisplayKtx)
