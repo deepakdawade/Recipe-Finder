@@ -8,6 +8,7 @@ plugins {
     kotlin("kapt")
     kotlin("android.extensions")
     id("dagger.hilt.android.plugin")
+    id("com.google.firebase.crashlytics")
 }
 
 
@@ -105,16 +106,16 @@ dependencies {
     //Firebase
     implementation(Libraries.Google.Firebase.authKtx)
     implementation(Libraries.Google.Firebase.crashlytics)
-//    implementation(Libraries.Google.Firebase.dynamicLinkKtx)
-//    implementation(Libraries.Google.Firebase.firestoreKtx)
-//    implementation(Libraries.Google.Firebase.inAppMessagingDisplayKtx)
-//    implementation(Libraries.Google.Firebase.performance)
+    implementation(Libraries.Google.Firebase.dynamicLinkKtx)
+    implementation(Libraries.Google.Firebase.firestoreKtx)
+    implementation(Libraries.Google.Firebase.inAppMessagingDisplayKtx)
+    implementation(Libraries.Google.Firebase.performance)
     implementation(Libraries.Google.Firebase.messageKtx)
 
     // Play Core:
     implementation(Libraries.Google.PlayServices.coreKtx)
     implementation(Libraries.Google.PlayServices.authApi)
-//    implementation(Libraries.Google.PlayServices.authPhoneApi)
+    implementation(Libraries.Google.PlayServices.authPhoneApi)
 
 
 }

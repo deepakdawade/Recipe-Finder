@@ -72,7 +72,7 @@ dependencies {
     // Firebase
     implementation(Libraries.Google.Firebase.authKtx)
     api(Libraries.Google.Firebase.configKtx)
-//    implementation(Libraries.Google.Firebase.firestoreKtx)
+    implementation(Libraries.Google.Firebase.firestoreKtx)
     implementation(Libraries.Google.Firebase.messageKtx)
 
     // Google

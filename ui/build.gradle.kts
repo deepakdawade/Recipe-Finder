@@ -80,13 +80,8 @@ dependencies {
     kapt(Libraries.Google.DaggerHilt.hiltKapt)
 
     // Firebase Storage
-//    api(Libraries.Google.Firebase.analyticsKtx)
-//    api(Libraries.Google.Firebase.storage)
-
-    // Gms
-//    implementation(Libraries.Google.PlayServices.location)
-//    implementation(Libraries.Google.PlayServices.maps)
-//    implementation(Libraries.Google.PlayServices.places)
+    api(Libraries.Google.Firebase.analyticsKtx)
+    api(Libraries.Google.Firebase.storage)
 
 
     //Testing

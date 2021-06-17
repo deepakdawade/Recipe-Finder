@@ -49,7 +49,7 @@ dependencies {
 
     // Firebase
     implementation(Libraries.Google.Firebase.crashlytics)
-//    implementation(Libraries.Google.Firebase.analyticsKtx)
+    implementation(Libraries.Google.Firebase.analyticsKtx)
 
     // In-App Update Manager
 //    implementation(Libraries.Google.PlayServices.coreKtx)
