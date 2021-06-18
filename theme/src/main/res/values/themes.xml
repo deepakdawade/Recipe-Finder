@@ -43,13 +43,6 @@
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.MyTheme.LargeComponent
         </item>
 
-        <!--Component styles-->
-        <item name="android:textViewStyle">@style/MyWidget.Base.MaterialTextView</item>
-        <item name="materialButtonStyle">@style/MyWidget.Base.MaterialButton</item>
-        <item name="materialAlertDialogTheme">@style/AlertDialog.Theme</item>
-        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.MyTheme.BottomSheetDialog</item>
-        <item name="toolbarStyle">@style/MyWidget.Base.MaterialToolbar</item>
-        <item name="android:listDivider">@drawable/shape_item_divider</item>
     </style>
 
     <style name="Base.MaterialThemeBuilder" parent="Theme.MaterialComponents.DayNight.NoActionBar">
