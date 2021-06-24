@@ -12,14 +12,11 @@ etc. - and allows the user to filter these recipes by preference
 types (Veg, noveg, etc.). Users can see details about
 recipes, and they can favorite recipe that liked.
 
-<div>
-  <img align="center" src="home.png" alt="Recipe List" height="640" width="320">
-</div>
-
-<div>
-  <img align="center" src="recipe-detail.png" alt="Recipe Details" height="640" width="320">
-</div>
-
+<p align="center">
+  <img align="center" src="screenshot/recipe-pref.png" alt="Recipe Preference" height="640" width="320">
+  <img align="center" src="screenshot/home.png" alt="Recipe List" height="640" width="320">
+  <img align="center" src="screenshot/recipe-details.png" alt="Recipe Details" height="640" width="320">
+</p>
 # Development Environment
 
 The app is written entirely in Kotlin and uses the Gradle build system.
