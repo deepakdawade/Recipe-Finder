@@ -2,6 +2,7 @@
 <resources>
     <!-- Profile   -->
     <string name="profile_heading">Profile</string>
+    <string name="profile_login_cta_text">Login</string>
     <string name="profile_option_change_language">Change language</string>
     <string name="profile_option_change_recipe_pref">Change recipe preference</string>
     <string name="profile_option_app_info">App info</string>
@@ -27,8 +28,8 @@
     <!-- Dev Option Data store   -->
     <string name="data_store_preference_name">Data store preference</string>
     <string name="data_store_setting_value_field_hint" translatable="false">value</string>
-    <string name="data_store_setting_action_put" translatable="false">put</string>
-    <string name="data_store_setting_action_remove" translatable="false">remove</string>
+    <string name="data_store_setting_action_put" translatable="false">Put</string>
+    <string name="data_store_setting_action_remove" translatable="false">Remove</string>
 
     <string name="instructions_developer_options" translatable="false">Instructions</string>
     <string name="database_value_instruction_message_first" translatable="false">To view database table or find ob_id use \"Open DataBase\".</string>

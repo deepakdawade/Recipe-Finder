@@ -59,7 +59,7 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/home_fragment_lottie_no_recipes"
-            hideOnEmpty="@{false}"
+            hideOnEmpty="@{viewModel.queryLiveData.empty}"
             hideOnList="@{viewModel.recipes}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/home_fragment_no_recipe_found"
-            hideOnEmpty="@{false}"
+            hideOnEmpty="@{viewModel.queryLiveData.empty}"
             hideOnList="@{viewModel.recipes}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

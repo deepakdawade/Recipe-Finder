@@ -20,6 +20,11 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
         get() = mNavigation
 
 
+    fun navigateToLogin() {
+        val directions = ProfileFragmentDirections.actionToLoginFragment()
+        navigate(directions = directions)
+    }
+
     fun navigateToChangeLanguage() {
         val directions = ProfileFragmentDirections.actionToPreferenceSettingFragment()
         navigate(directions = directions)

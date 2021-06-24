@@ -69,8 +69,14 @@ dependencies {
     //DataStore
     api(Libraries.AndroidX.DataStore.dataStore)
 
-    //Firebase
+    // Firebase
+    implementation(Libraries.Google.Firebase.authKtx)
+    api(Libraries.Google.Firebase.configKtx)
+    implementation(Libraries.Google.Firebase.firestoreKtx)
     implementation(Libraries.Google.Firebase.messageKtx)
+
+    // Google
+//    implementation(Libraries.Google.PlayServices.places)
 
     // Ok-Http
     api(Libraries.OkHttp.okhttp)

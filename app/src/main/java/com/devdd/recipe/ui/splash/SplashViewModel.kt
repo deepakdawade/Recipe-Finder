@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
+import com.devdd.recipe.base.firebase.TopicSubscriber
 import com.devdd.recipe.base.result.Event
 import com.devdd.recipe.data.preference.manager.LocaleManager
 import com.devdd.recipe.data.preference.manager.RecipeManager
@@ -17,6 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
+    private val fcmTopicSubscriber: TopicSubscriber,
     private val recipeManager: RecipeManager,
     private val localeManager: LocaleManager,
     private val fetchFcmToken: FetchFcmToken
@@ -32,6 +34,7 @@ class SplashViewModel @Inject constructor(
                 !localeManager.isLanguageSelected() -> navigateToPreferenceSetting()
                 !recipeManager.isRecipeSelected() -> navigateToPreferenceSetting(1)
                 else -> navigateToDashboard().also {
+                    fcmTopicSubscriber.subscribeToLoggedInUpdates()
                     fetchFcmToken.invoke().collect()
                 }
             }

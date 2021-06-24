@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.devdd.recipe.feature_profile.ui.profile.devoption.datastoresetting.DataStoreViewModel" />
@@ -69,10 +70,9 @@
                         android:layout_height="wrap_content"
                         android:padding="16dp"
                         android:spinnerMode="dialog"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/data_store_setting_value_input_field"
@@ -83,9 +83,9 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
                         android:hint="@string/data_store_setting_value_field_hint"
-                        android:text="@={viewModel.selectedValue}"
                         android:padding="16dp"
                         android:singleLine="false"
+                        android:text="@={viewModel.selectedValue}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -94,13 +94,14 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/data_store_setting_fragment_action_put_key"
+                        style="@style/Widget.MaterialComponents.Button.NoInsets"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
-                        android:text="@string/data_store_setting_action_put"
                         android:onClick="@{()->viewModel.putKey()}"
-                        android:textColor="@color/colorPrimary"
+                        android:text="@string/data_store_setting_action_put"
+                        android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/data_store_setting_fragment_action_remove_key"
                         app:layout_constraintHorizontal_bias="0.5"
@@ -109,20 +110,22 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/data_store_setting_fragment_action_remove_key"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.NoInsets"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
-                        android:text="@string/data_store_setting_action_remove"
                         android:onClick="@{()->viewModel.removeKey()}"
+                        android:text="@string/data_store_setting_action_remove"
                         android:textColor="?colorError"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/data_store_setting_fragment_action_put_key"
-                        app:layout_constraintTop_toBottomOf="@+id/data_store_setting_value_input_field" />
+                        app:layout_constraintTop_toBottomOf="@+id/data_store_setting_value_input_field"
+                        app:strokeColor="?colorError" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>

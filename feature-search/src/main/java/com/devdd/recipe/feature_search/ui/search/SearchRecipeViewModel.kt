@@ -1,9 +1,6 @@
 package com.devdd.recipe.feature_search.ui.search
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.navigation.NavDirections
 import com.devdd.recipe.data.models.entity.Recipe
 import com.devdd.recipe.data.preference.manager.GuestManager
@@ -25,6 +22,7 @@ class SearchRecipeViewModel @Inject constructor(
     private val guestManager: GuestManager
 ) : ViewModel() {
     val query: MutableStateFlow<String> = MutableStateFlow("")
+    val queryLiveData:LiveData<String> = query.asLiveData()
 
     private val mRecipes: MutableLiveData<List<RecipeViewState>> = MutableLiveData()
     val recipes: LiveData<List<RecipeViewState>>

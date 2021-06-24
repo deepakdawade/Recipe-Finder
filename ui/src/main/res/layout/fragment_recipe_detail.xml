@@ -73,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@{viewModel.recipe.title(context)}"
+            android:textColor="@color/white"
             android:textAppearance="?textAppearanceHeadline5"
             app:layout_constraintBottom_toBottomOf="@id/recipe_detail_fragment_image"
             app:layout_constraintEnd_toEndOf="@id/recipe_detail_fragment_image"

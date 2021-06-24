@@ -79,6 +79,11 @@ dependencies {
     api(Libraries.Google.DaggerHilt.daggerHiltViewModel)
     kapt(Libraries.Google.DaggerHilt.hiltKapt)
 
+    // Firebase Storage
+    api(Libraries.Google.Firebase.analyticsKtx)
+    api(Libraries.Google.Firebase.storage)
+
+
     //Testing
     testImplementation(Libraries.Junit.jUnit)
     androidTestImplementation(Libraries.AndroidX.Testing.jUnitTest)

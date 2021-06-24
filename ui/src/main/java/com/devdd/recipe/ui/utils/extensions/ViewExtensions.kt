@@ -2,6 +2,8 @@ package com.devdd.recipe.ui.utils.extensions
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
 import android.graphics.Point
 import android.graphics.drawable.Animatable2
 import android.graphics.drawable.AnimatedVectorDrawable
@@ -12,14 +14,17 @@ import android.text.TextUtils
 import android.view.*
 import android.view.View.*
 import android.view.animation.DecelerateInterpolator
+import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import android.widget.PopupWindow
 import android.widget.ProgressBar
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntDef
 import androidx.appcompat.view.menu.ActionMenuItemView
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.getSystemService
 import androidx.core.graphics.component1
 import androidx.core.graphics.component2
 import androidx.core.view.doOnLayout
@@ -251,4 +256,17 @@ fun SearchView.watchQueryTextChangeListener(stateFlow: MutableStateFlow<String>)
             return true
         }
     })
+}
+
+fun AppCompatEditText.showSoftInput() {
+    requestFocus()
+    setSelection(text?.length ?: 0)
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+}
+
+fun View.showSoftInput() {
+    requestFocus()
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
 }

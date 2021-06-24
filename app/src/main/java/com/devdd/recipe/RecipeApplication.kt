@@ -14,6 +14,7 @@ import javax.inject.Inject
 
 @HiltAndroidApp
 class RecipeApplication : Application() {
+
     @Inject
     lateinit var buildConfig: AppBuildConfig
 
@@ -22,7 +23,6 @@ class RecipeApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        if (buildConfig.DEBUG) Timber.plant(Timber.DebugTree())
         initializers.init(this)
 
         RecipeAppConfig.appBuildConfig = buildConfig

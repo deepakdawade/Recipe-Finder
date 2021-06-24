@@ -129,10 +129,6 @@ object Dependencies {
             object PlayServices {
                 const val coreKtx: String = "com.google.android.play:core-ktx:1.8.1"
 
-                const val location: String = "com.google.android.gms:play-services-location:17.1.0"
-                const val maps: String = "com.google.android.gms:play-services-maps:17.0.0"
-                const val places: String = "com.google.android.libraries.places:places:2.4.0"
-
                 const val authPhoneApi: String =
                     "com.google.android.gms:play-services-auth-api-phone:17.5.0"
                 const val authApi: String = "com.google.android.gms:play-services-auth:19.0.0"

@@ -79,4 +79,6 @@ fun FragmentManager.primaryFragment(position: Int = 0): Fragment? = fragments.ge
 
 fun Fragment.hideSoftInput(): Unit = requireActivity().hideSoftInput()
 
+fun Fragment.showSoftInput(): Unit = requireActivity().showSoftInput()
+
 
