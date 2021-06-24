@@ -9,6 +9,7 @@ import com.devdd.recipe.feature_search.R
 import com.devdd.recipe.ui.base.DevFragment
 import com.devdd.recipe.feature_search.databinding.FragmentSearchRecipeBinding
 import com.devdd.recipe.feature_search.ui.search.adapter.SearchRecipeAdapter
+import com.devdd.recipe.ui.utils.extensions.showSoftInput
 import com.devdd.recipe.ui.utils.extensions.watchQueryTextChangeListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,7 +36,9 @@ class SearchRecipeFragment :
     private fun setViews() {
         val searchView =
             binding?.searchRecipeFragmentToolbar?.menu?.getItem(0)?.actionView as? SearchView
+        searchView?.onActionViewExpanded()
         searchView?.watchQueryTextChangeListener(viewModel.query)
+        searchView?.showSoftInput()
     }
 
     private fun setupRecyclerViewAdapter() {
