@@ -13,11 +13,11 @@ types (Veg, noveg, etc.). Users can see details about
 recipes, and they can favorite recipe that liked.
 
 <div>
-  <img align="center" src="recipe_list.png" alt="Recipe List" height="640" width="320">
+  <img align="center" src="home.png" alt="Recipe List" height="640" width="320">
 </div>
 
 <div>
-  <img align="center" src="recipe_detail.png" alt="Recipe Details" height="640" width="320">
+  <img align="center" src="recipe-detail.png" alt="Recipe Details" height="640" width="320">
 </div>
 
 # Development Environment
