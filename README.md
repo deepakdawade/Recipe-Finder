@@ -3,7 +3,7 @@ Recipe-Finder Android App
 
 # Description
 
-This project is the Android app for Displayinh and Searching the recipes.
+This project is the Android app for Displaying and Searching the recipes.
 
 # Features
 
@@ -47,8 +47,7 @@ from the rest of the app.
 
 A lightweight domain layer sits between the data layer
 and the presentation layer, and handles discrete pieces of business logic off
-the UI thread. See the `.\*UseCase.kt` files under `shared/domain` for
-[examples](https://github.com/google/iosched/search?q=UseCase&unscoped_q=UseCase).
+the UI thread. See the `.\*InvokeUseCase.kt` files under `domain`.
 
 The [Navigation component](https://developer.android.com/guide/navigation) is used
 to implement navigation in the app, handling Fragment transactions and providing a consistent
@@ -80,23 +79,10 @@ For more details on migrating from ViewPager to ViewPager2, please see this
 
 The app makes considerable use of the following Firebase components:
 
-- [Cloud Firestore](https://firebase.google.com/docs/firestore/) is our source
-for all user data (events starred or reserved by a user). Firestore gave us
-automatic sync  and also seamlessly managed offline functionality
-for us.
-- [Firebase Cloud Functions](https://firebase.google.com/docs/functions/)
-allowed us to run backend code. The reservations feature heavily depended on Cloud
-Functions working in conjuction with Firestore.
 - [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/concept-options)
-let us inform the app about changes to conference data on our server.
+let us inform the app about changes to data on our server.
 - [Remote Config](https://firebase.google.com/docs/remote-config/) helped us
 manage in-app constants.
-
-For 2020, the implementation was migrated to the Firebase Kotlin extension (KTX) libraries to
-write more idiomatic Kotlin code when calling Firebase APIs. To learn more,
-read this
-[Firebase blog article](https://firebase.googleblog.com/2020/03/firebase-kotlin-ga.html)
-on the Firebase KTX libraries.
 
 ## Kotlin
 
