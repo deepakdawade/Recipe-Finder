@@ -10,6 +10,10 @@
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
         <action
+            android:id="@+id/action_to_loginFragment"
+            app:destination="@id/loginFragment" />
+
+        <action
             android:id="@+id/action_to_preferenceSettingFragment"
             app:destination="@id/preferenceSettingFragment" />
         <action
@@ -38,9 +42,23 @@
         android:name="com.devdd.recipe.feature_profile.ui.profile.devoption.DevOptionFragment"
         android:label="DevOptionFragment"
         tools:layout="@layout/fragment_dev_option" />
+
     <fragment
         android:id="@+id/appInfoFragment"
         android:name="com.devdd.recipe.feature_profile.ui.profile.appinfo.AppInfoFragment"
         android:label="AppInfoFragment" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.devdd.recipe.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

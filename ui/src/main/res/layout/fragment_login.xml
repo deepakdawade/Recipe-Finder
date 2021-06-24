@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/login_fragment_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login_fragment_signin_email_button"
+            style="@style/Widget.MaterialComponents.Button.NoInsets"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:backgroundTint="#F44336"
+            android:text="@string/login_signin_with_email_cta_text"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_email_24"
+            app:iconGravity="textStart"
+            app:iconPadding="16dp"
+            app:iconTint="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/login_fragment_signin_google_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login_fragment_signin_google_button"
+            style="@style/Widget.MaterialComponents.Button.NoInsets"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/login_signin_with_google_cta_text"
+            android:backgroundTint="?colorOnSecondary"
+            android:textColor="?colorOnPrimary"
+            app:icon="@drawable/googleg_standard_color_18"
+            app:iconGravity="textStart"
+            app:iconPadding="16dp"
+            app:iconTint="@null"
+            app:layout_constraintBottom_toTopOf="@id/login_fragment_signin_later"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/login_fragment_signin_later"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="center"
+            android:text="@string/login_later_text"
+            android:textAppearance="?textAppearanceSubtitle1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

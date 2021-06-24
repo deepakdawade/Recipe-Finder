@@ -17,7 +17,6 @@
     <string name="language_preference_english" translatable="false">English</string>
 
 
-
     <!-- Recipe Details    -->
     <string name="recipe_details_ingredients_text">Ingredients</string>
     <string name="recipe_details_author_name">Author: %1$s</string>
@@ -28,6 +27,12 @@
 
     <string name="notification_title" translatable="false">Recipe Notification</string>
     <string name="notification_channel_id" translatable="false">Recipe channel</string>
-    <string name="notification_channel_name">Recipe name</string>
-    <string name="notifications_channel_description">Channel description</string>
+
+    <string name="notification_channel_name" translatable="false">Recipe name</string>
+    <string name="notifications_channel_description" translatable="false">Channel description</string>
+
+    <!--    Login-->
+    <string name="login_later_text"><u>later</u></string>
+    <string name="login_signin_with_email_cta_text">Email</string>
+    <string name="login_signin_with_google_cta_text">Google</string>
 </resources>
