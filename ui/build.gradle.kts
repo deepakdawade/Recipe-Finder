@@ -83,6 +83,10 @@ dependencies {
     api(Libraries.Google.Firebase.analyticsKtx)
     api(Libraries.Google.Firebase.storage)
 
+    //Play Services
+    implementation(Libraries.Google.PlayServices.authApi)
+
+
 
     //Testing
     testImplementation(Libraries.Junit.jUnit)
