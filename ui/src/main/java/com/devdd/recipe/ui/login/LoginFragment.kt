@@ -10,9 +10,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.devdd.recipe.base.utils.Logger
+import com.devdd.recipe.base_android.utils.extensions.observeEvent
 import com.devdd.recipe.ui.R
 import com.devdd.recipe.ui.base.DevFragment
 import com.devdd.recipe.ui.databinding.FragmentLoginBinding
+import com.devdd.recipe.utils.extensions.navigateOnce
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -53,6 +55,13 @@ class LoginFragment : DevFragment<FragmentLoginBinding>(R.layout.fragment_login)
     override fun onViewCreated(binding: FragmentLoginBinding, savedInstanceState: Bundle?) {
         binding.viewModel = viewModel
         setListeners(binding)
+        setObservers()
+    }
+
+    private fun setObservers() {
+        viewModel.navigator.observeEvent(viewLifecycleOwner) {
+            findNavController().navigateOnce(it)
+        }
     }
 
     private fun setListeners(binding: FragmentLoginBinding) {
