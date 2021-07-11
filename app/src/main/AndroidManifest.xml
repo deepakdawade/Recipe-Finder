@@ -3,6 +3,9 @@
     package="com.devdd.recipe">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <queries>
+        <package android:name="com.whatsapp" />
+    </queries>
 
     <application
         android:name=".RecipeApplication"
@@ -12,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Recipe">
-        <activity android:name=".ui.MainActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".ui.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

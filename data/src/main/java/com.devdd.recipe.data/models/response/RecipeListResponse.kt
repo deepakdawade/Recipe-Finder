@@ -1,5 +1,6 @@
 package com.devdd.recipe.data.models.response
 
+import androidx.room.ColumnInfo
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -67,6 +68,14 @@ data class RecipeListResponse(
         var saved: Boolean? = null,
         @Expose
         @SerializedName("saved_time")
-        var savedTime: Long? = null
+        var savedTime: Long? = null,
+
+        @Expose
+        @SerializedName("message")
+        val message: String? = null,
+
+        @Expose
+        @SerializedName("message_hi")
+        val messageHi: String? = null
     )
 }
