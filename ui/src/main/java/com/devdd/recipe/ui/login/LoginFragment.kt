@@ -59,8 +59,8 @@ class LoginFragment : DevFragment<FragmentLoginBinding>(R.layout.fragment_login)
     }
 
     private fun setObservers() {
-        viewModel.navigator.observeEvent(viewLifecycleOwner) {
-            findNavController().navigateOnce(it)
+        viewModel.loginSuccess.observeEvent(viewLifecycleOwner) {
+            findNavController().navigateUp()
         }
     }
 

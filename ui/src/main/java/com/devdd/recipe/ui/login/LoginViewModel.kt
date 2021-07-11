@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavDirections
 import com.devdd.recipe.base.result.Event
 import com.devdd.recipe.base.result.InvokeStarted
 import com.devdd.recipe.base.result.onSuccess
@@ -19,8 +18,8 @@ class LoginViewModel @Inject constructor(
     private val googleLogin: GoogleLogin
 ) : ViewModel() {
 
-    private val mNavigator: MutableLiveData<Event<NavDirections>> = MutableLiveData()
-    val navigator: LiveData<Event<NavDirections>> = mNavigator
+    private val mLoginSuccess: MutableLiveData<Event<Unit>> = MutableLiveData()
+    val loginSuccess: LiveData<Event<Unit>> = mLoginSuccess
 
     private val mLoading: MutableLiveData<Boolean> = MutableLiveData()
     val loading: LiveData<Boolean> = mLoading
@@ -31,18 +30,13 @@ class LoginViewModel @Inject constructor(
             googleLogin.observe().collect {
                     mLoading.postValue(it is InvokeStarted)
                     it.onSuccess { success ->
-                        if (success) navigateToDashboard()
+                        if (success) loginSuccess()
                     }
                 }
         }
     }
 
-    private fun navigateToDashboard() {
-        val directions = LoginFragmentDirections.actionToDashboardFragment()
-        navigate(directions)
-    }
-
-    fun navigate(directions: NavDirections) {
-        mNavigator.value = Event(directions)
+    private fun loginSuccess() {
+        mLoginSuccess.value = Event(Unit)
     }
 }
