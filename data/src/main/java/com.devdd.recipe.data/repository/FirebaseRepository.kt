@@ -34,6 +34,8 @@ interface FirebaseRepository {
 
     suspend fun login(emailId: String, password: String)
 
+    suspend fun registerUser(emailId: String, password: String)
+
     suspend fun logout()
 
     suspend fun fetchFcmToken()
@@ -74,6 +76,22 @@ class FirebaseRepositoryImpl @Inject constructor(
     override suspend fun login(emailId: String, password: String) {
         mLoginStatus.value = InvokeStarted
         auth.signInWithEmailAndPassword(emailId, password).addOnCompleteListener { task ->
+            try {
+                if (task.isSuccessful) {
+                    setUserLoggedIn()
+                    mLoginStatus.value = InvokeSuccess(true)
+                } else
+                    mLoginStatus.value = InvokeError(task.exception ?: Exception("Error Occurred"))
+            } catch (e: ClosedSendChannelException) {
+                logger.e(e)
+                mLoginStatus.value = InvokeError(e)
+            }
+        }
+    }
+
+    override suspend fun registerUser(emailId: String, password: String) {
+        mLoginStatus.value = InvokeStarted
+        auth.createUserWithEmailAndPassword(emailId, password).addOnCompleteListener { task ->
             try {
                 if (task.isSuccessful) {
                     setUserLoggedIn()

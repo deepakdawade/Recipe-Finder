@@ -9,6 +9,7 @@ import com.devdd.recipe.base.result.InvokeStarted
 import com.devdd.recipe.base.result.onError
 import com.devdd.recipe.base.result.onSuccess
 import com.devdd.recipe.base_android.utils.extensions.combine
+import com.devdd.recipe.domain.executers.firebase.RegistrationUsingEmailPassword
 import com.devdd.recipe.domain.executers.firebase.LoginViaEmail
 import com.devdd.recipe.domain.executers.firebase.LoginViaGoogle
 import com.devdd.recipe.utils.extensions.premitive.isEmailAddress
@@ -20,7 +21,8 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginViaGoogle: LoginViaGoogle,
-    private val loginViaEmail: LoginViaEmail
+    private val loginViaEmail: LoginViaEmail,
+    private val registrationUsingEmailPassword: RegistrationUsingEmailPassword
 ) : ViewModel() {
 
     val emailField: MutableLiveData<String> = MutableLiveData()
@@ -64,7 +66,7 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun login() {
+    private fun login() {
         val email = emailField.value.toString()
         val password = passwordField.value.toString()
         viewModelScope.launch {
@@ -89,8 +91,39 @@ class LoginViewModel @Inject constructor(
         }
     }
 
+    private fun registration() {
+        val email = emailField.value.toString()
+        val password = passwordField.value.toString()
+        viewModelScope.launch {
+            registrationUsingEmailPassword.invoke(
+                RegistrationUsingEmailPassword.Params(
+                    email = email,
+                    password = password
+                )
+            )
+            registrationUsingEmailPassword.observe().collect {
+                mLoading.postValue(it is InvokeStarted)
+                it.onSuccess { success ->
+                    if (success) {
+                        mEmailLoginSuccess.postValue(Event(Unit))
+                        loginSuccess()
+                    }
+                }
+                it.onError {
+                    mError.postValue(it.localizedMessage)
+                }
+            }
+        }
+    }
+
     private fun loginSuccess() {
         mLoginSuccess.value = Event(Unit)
+    }
+
+    fun handleCtaClick(login: Boolean) {
+        if (login)
+            login()
+        else registration()
     }
 
     fun clearFields() {

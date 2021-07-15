@@ -117,7 +117,6 @@
             android:layout_height="?actionBarSize"
             android:layout_margin="16dp"
             android:enabled="@{viewModel.fieldValidator}"
-            android:onClick="@{()->viewModel.login()}"
             android:text="@string/login_via_email_cta_login"
             android:textAllCaps="false"
             android:textColor="@color/white"

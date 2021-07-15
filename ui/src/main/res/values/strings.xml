@@ -33,6 +33,7 @@
 
     <!--    Login-->
     <string name="login_later_text"><u>later</u></string>
+    <string name="login_register_cta_text">Register</string>
     <string name="login_signin_with_email_cta_text">Email</string>
     <string name="login_signin_with_google_cta_text">Google</string>
 

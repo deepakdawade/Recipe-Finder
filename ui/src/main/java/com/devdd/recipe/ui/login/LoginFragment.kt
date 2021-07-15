@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -65,10 +64,6 @@ class LoginFragment : DevFragment<FragmentLoginBinding>(R.layout.fragment_login)
         viewModel.loginSuccess.observeEvent(viewLifecycleOwner) {
             findNavController().navigateUp()
         }
-
-        viewModel.error.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun setListeners(binding: FragmentLoginBinding) {
@@ -78,7 +73,11 @@ class LoginFragment : DevFragment<FragmentLoginBinding>(R.layout.fragment_login)
         }
 
         binding.loginFragmentSigninEmailButton.setOnClickListener {
-            loginViaEmailAndPassWord()
+            loginViaEmailAndPassWord(true)
+        }
+
+        binding.loginFragmentRegisterButton.setOnClickListener {
+            loginViaEmailAndPassWord(false)
         }
 
         binding.loginFragmentSigninLater.setOnClickListener {
@@ -86,7 +85,7 @@ class LoginFragment : DevFragment<FragmentLoginBinding>(R.layout.fragment_login)
         }
     }
 
-    private fun loginViaEmailAndPassWord() {
+    private fun loginViaEmailAndPassWord(login: Boolean) {
         val dialogBinding = bindWithLayout<DialogLoginViaEmailBinding>(
             R.layout.dialog_login_via_email,
             layoutInflater
@@ -103,6 +102,11 @@ class LoginFragment : DevFragment<FragmentLoginBinding>(R.layout.fragment_login)
             it.setOnDismissListener {
                 viewModel.clearFields()
             }
+        }
+
+        dialogBinding.dialogLoginViaEmailLoginButton.setOnClickListener {
+            viewModel.handleCtaClick(login)
+            dialog.dismiss()
         }
 
         dialogBinding.dialogLoginViaEmailClose.setOnClickListener {
