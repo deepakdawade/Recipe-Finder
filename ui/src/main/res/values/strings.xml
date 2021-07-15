@@ -35,4 +35,11 @@
     <string name="login_later_text"><u>later</u></string>
     <string name="login_signin_with_email_cta_text">Email</string>
     <string name="login_signin_with_google_cta_text">Google</string>
+
+    <!--Login via email-->
+    <string name="login_via_email_hint_email">Email</string>
+    <string name="login_via_email_hint_password">Password</string>
+    <string name="login_via_email_cta_login">Login</string>
+    <string name="login_via_email_forgot_password">Forgot password</string>
+
 </resources>

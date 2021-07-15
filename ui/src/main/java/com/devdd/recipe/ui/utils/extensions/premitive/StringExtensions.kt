@@ -1,11 +1,17 @@
 package com.devdd.recipe.utils.extensions.premitive
 
+import android.util.Patterns
+import java.util.regex.Pattern
+
 
 /**
  * Created by @author Deepak Dawade on 4/16/2021 at 12:34 AM.
  * Copyright (c) 2021 deepak.dawade.dd1@gmail.com All rights reserved.
  *
  */
+
+fun String.isEmailAddress(): Boolean = Patterns.EMAIL_ADDRESS.matcher(this).matches()
+
 /**
  * Returns `true` if this string is not `null` and its content is numeric, ignoring case, and `false` otherwise.
  * */

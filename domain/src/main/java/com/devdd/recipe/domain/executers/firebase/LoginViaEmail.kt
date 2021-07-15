@@ -12,13 +12,18 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class GoogleLogin @Inject constructor(
+class LoginViaEmail @Inject constructor(
     private val repository: FirebaseRepository
-) : SubjectUseCase<String, InvokeStatus<Boolean>>() {
-    override fun createObservable(params: String): Flow<InvokeStatus<Boolean>> {
+) : SubjectUseCase<LoginViaEmail.Params, InvokeStatus<Boolean>>() {
+    override fun createObservable(params: Params): Flow<InvokeStatus<Boolean>> {
         GlobalScope.launch {
-            repository.loggedIn(params)
+            repository.login(emailId = params.email, password = params.password)
         }
         return repository.loginStatus
     }
+
+    data class Params(
+        val email: String,
+        val password: String
+    )
 }

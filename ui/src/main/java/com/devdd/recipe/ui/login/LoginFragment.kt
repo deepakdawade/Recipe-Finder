@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -13,8 +14,10 @@ import com.devdd.recipe.base.utils.Logger
 import com.devdd.recipe.base_android.utils.extensions.observeEvent
 import com.devdd.recipe.ui.R
 import com.devdd.recipe.ui.base.DevFragment
+import com.devdd.recipe.ui.databinding.DialogLoginViaEmailBinding
 import com.devdd.recipe.ui.databinding.FragmentLoginBinding
-import com.devdd.recipe.utils.extensions.navigateOnce
+import com.devdd.recipe.ui.utils.extensions.bindWithLayout
+import com.devdd.recipe.ui.utils.extensions.createMaterialAlertDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -32,7 +35,7 @@ class LoginFragment : DevFragment<FragmentLoginBinding>(R.layout.fragment_login)
     lateinit var googleSignClient: GoogleSignInClient
     private val viewModel: LoginViewModel by viewModels()
 
-    var resultLauncher: ActivityResultLauncher<Intent>? = null
+    private var resultLauncher: ActivityResultLauncher<Intent>? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -62,6 +65,10 @@ class LoginFragment : DevFragment<FragmentLoginBinding>(R.layout.fragment_login)
         viewModel.loginSuccess.observeEvent(viewLifecycleOwner) {
             findNavController().navigateUp()
         }
+
+        viewModel.error.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setListeners(binding: FragmentLoginBinding) {
@@ -70,8 +77,40 @@ class LoginFragment : DevFragment<FragmentLoginBinding>(R.layout.fragment_login)
             resultLauncher?.launch(signInIntent)
         }
 
+        binding.loginFragmentSigninEmailButton.setOnClickListener {
+            loginViaEmailAndPassWord()
+        }
+
         binding.loginFragmentSigninLater.setOnClickListener {
             findNavController().navigateUp()
+        }
+    }
+
+    private fun loginViaEmailAndPassWord() {
+        val dialogBinding = bindWithLayout<DialogLoginViaEmailBinding>(
+            R.layout.dialog_login_via_email,
+            layoutInflater
+        ) {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = this@LoginFragment.viewModel
+        }
+
+        val dialog = requireContext().createMaterialAlertDialog(
+            viewBinding = dialogBinding,
+            cancelable = false
+        ).also {
+            it.show()
+            it.setOnDismissListener {
+                viewModel.clearFields()
+            }
+        }
+
+        dialogBinding.dialogLoginViaEmailClose.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        viewModel.emailLoginSuccess.observeEvent(viewLifecycleOwner) {
+            dialog.dismiss()
         }
     }
 
