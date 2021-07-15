@@ -1,33 +1,26 @@
 package com.devdd.recipe.data.repository
 
-import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.devdd.recipe.base.result.InvokeError
 import com.devdd.recipe.base.result.InvokeStarted
 import com.devdd.recipe.base.result.InvokeStatus
 import com.devdd.recipe.base.result.InvokeSuccess
-import com.devdd.recipe.base.utils.AppBuildConfig
 import com.devdd.recipe.base.utils.AppCoroutineDispatchers
 import com.devdd.recipe.base.utils.Logger
 import com.devdd.recipe.data.models.response.toUserInfo
 import com.devdd.recipe.data.preference.manager.GuestManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.messaging.FirebaseMessaging
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.ClosedSendChannelException
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withTimeout
 import timber.log.Timber
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-import kotlin.Exception
 
 interface FirebaseRepository {
+
     val loginStatus: Flow<InvokeStatus<Boolean>>
 
     suspend fun loggedIn(token: String)
@@ -44,13 +37,11 @@ interface FirebaseRepository {
 }
 
 class FirebaseRepositoryImpl @Inject constructor(
-    @ApplicationContext private val context: Context,
     private val logger: Logger,
     private val guestManager: GuestManager,
     private val auth: FirebaseAuth,
     private val firebaseMessaging: FirebaseMessaging,
-    private val dispatchers: AppCoroutineDispatchers,
-    private val appBuildConfig: AppBuildConfig
+    private val dispatchers: AppCoroutineDispatchers
 ) : FirebaseRepository {
     private val mLoginStatus: MutableStateFlow<InvokeStatus<Boolean>> =
         MutableStateFlow(InvokeStarted)
