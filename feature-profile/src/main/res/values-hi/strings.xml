@@ -7,6 +7,7 @@
     <string name="profile_option_change_recipe_pref">रेसिपी प्राथमिकता बदलें</string>
     <string name="profile_option_app_info">ऐप की जानकारी</string>
     <string name="profile_option_dev_options">Dev options</string>
+    <string name="profile_option_logout">Logout</string>
 
     <!-- App Info -->
     <string name="app_info_toolbar_title">ऐप की जानकारी</string>
@@ -25,5 +26,11 @@
     <string name="data_store_preference_name">Data store preference</string>
     <string name="empty_string_placeholder">%s</string>
     <string name="EINTERNAL">Internal</string>
+
+    <!--   Logout confirmation -->
+    <string name="logout_dialog_confirmation_title">Confirmation</string>
+    <string name="logout_dialog_confirmation_message">Are you sure you want to logout?</string>
+    <string name="logout_dialog_confirmation_positive">Yes</string>
+    <string name="logout_dialog_confirmation_negative">No</string>
 
 </resources>
