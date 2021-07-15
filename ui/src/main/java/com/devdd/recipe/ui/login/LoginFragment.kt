@@ -86,6 +86,7 @@ class LoginFragment : DevFragment<FragmentLoginBinding>(R.layout.fragment_login)
     }
 
     private fun loginViaEmailAndPassWord(login: Boolean) {
+        viewModel.clearFields()
         val dialogBinding = bindWithLayout<DialogLoginViaEmailBinding>(
             R.layout.dialog_login_via_email,
             layoutInflater
@@ -99,9 +100,6 @@ class LoginFragment : DevFragment<FragmentLoginBinding>(R.layout.fragment_login)
             cancelable = false
         ).also {
             it.show()
-            it.setOnDismissListener {
-                viewModel.clearFields()
-            }
         }
 
         dialogBinding.dialogLoginViaEmailLoginButton.setOnClickListener {
