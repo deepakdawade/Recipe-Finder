@@ -94,6 +94,9 @@ class LoginFragment : DevFragment<FragmentLoginBinding>(R.layout.fragment_login)
             lifecycleOwner = viewLifecycleOwner
             viewModel = this@LoginFragment.viewModel
         }
+        val resId =
+            if (login) R.string.login_via_email_cta_login else R.string.login_via_email_cta_register
+        dialogBinding.dialogLoginViaEmailLoginButton.text = getString(resId)
 
         val dialog = requireContext().createMaterialAlertDialog(
             viewBinding = dialogBinding,
