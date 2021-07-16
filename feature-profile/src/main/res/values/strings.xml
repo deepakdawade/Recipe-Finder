@@ -7,6 +7,7 @@
     <string name="profile_option_change_recipe_pref">Change recipe preference</string>
     <string name="profile_option_app_info">App info</string>
     <string name="profile_option_dev_options">Dev options</string>
+    <string name="profile_option_logout">Logout</string>
 
 
     <!--    About Fragment-->
@@ -51,4 +52,10 @@
     <string name="warning" translatable="false">Warning</string>
     <string name="empty_string_placeholder">%s</string>
     <string name="EINTERNAL">Internal</string>
+
+    <!--   Logout confirmation -->
+    <string name="logout_dialog_confirmation_title">Confirmation</string>
+    <string name="logout_dialog_confirmation_message">Are you sure you want to logout?</string>
+    <string name="logout_dialog_confirmation_positive">Yes</string>
+    <string name="logout_dialog_confirmation_negative">No</string>
 </resources>

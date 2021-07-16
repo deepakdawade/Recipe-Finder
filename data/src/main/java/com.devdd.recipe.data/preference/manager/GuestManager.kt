@@ -1,6 +1,8 @@
 package com.devdd.recipe.data.preference.manager
 
+import com.devdd.recipe.data.models.response.UserInfo
 import com.devdd.recipe.data.preference.DataStorePreference
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -26,6 +28,20 @@ class GuestManager @Inject constructor(
 
     val shouldUploadDeviceIdToServer: Flow<Boolean>
         get() = storePreference.shouldUploadDeviceIdToServer
+
+    val userLoggedIn: Flow<Boolean>
+        get() = storePreference.userLoggedIn
+
+    suspend fun setUserLogin(login: Boolean) {
+        storePreference.setUserLoggedIn(login)
+    }
+
+    suspend fun setUserInfo(info: UserInfo?) {
+        storePreference.setUserInfo(info)
+    }
+
+    val userInfo: Flow<UserInfo?>
+        get() = storePreference.userInfo
 
     suspend fun updateGuestToken(token: String) {
         storePreference.setGuestToken(token)

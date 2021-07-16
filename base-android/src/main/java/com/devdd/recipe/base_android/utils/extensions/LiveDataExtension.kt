@@ -1,10 +1,7 @@
 package com.devdd.recipe.base_android.utils.extensions
 
 import androidx.annotation.MainThread
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.*
 import com.devdd.recipe.base.result.Event
 import com.devdd.recipe.base_android.utils.EventObserver
 import com.devdd.recipe.base.result.Result
@@ -44,4 +41,33 @@ inline fun <T> LiveData<Event<T>>.observeEventForever(
     crossinline onEventUnhandledContent: (T) -> Unit,
 ) {
     observeForever(EventObserver { onEventUnhandledContent(it) })
+}
+
+// region LiveData
+/** Uses `Transformations.switchMap` on a LiveData */
+fun <X, Y> LiveData<X>.switchMap(body: (X) -> LiveData<Y>): LiveData<Y> {
+    return Transformations.switchMap(this, body)
+}
+/**
+ * Combines this [LiveData] with another [LiveData] using the specified [combiner] and returns the
+ * oldResult as a [LiveData].
+ */
+fun <A, B, Result> LiveData<A>.combine(
+    other: LiveData<B>,
+    combiner: (A, B) -> Result
+): LiveData<Result> {
+    val result = MediatorLiveData<Result>()
+    result.addSource(this) { a ->
+        val b = other.value
+        if (b != null) {
+            result.postValue(combiner(a, b))
+        }
+    }
+    result.addSource(other) { b ->
+        val a = this@combine.value
+        if (a != null) {
+            result.postValue(combiner(a, b))
+        }
+    }
+    return result
 }

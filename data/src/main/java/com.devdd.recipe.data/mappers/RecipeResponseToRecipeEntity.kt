@@ -12,21 +12,23 @@ class RecipeResponseToRecipeEntity @Inject constructor(
 
     private fun RecipeListResponse.RecipeResponse.toRecipeEntity(): Recipe {
         return Recipe(
-            title = title ?: "",
-            titleHi = titleHi ?: "",
-            authorName = authorName ?: "",
-            description = description ?: "",
-            descriptionHi = descriptionHi ?: "",
+            title = title.orEmpty(),
+            titleHi = titleHi.orEmpty(),
+            authorName = authorName.orEmpty(),
+            description = description.orEmpty(),
+            descriptionHi = descriptionHi.orEmpty(),
             id = id ?: 0,
-            imageUrl = imageUrl ?: "",
-            categoryName = categoryName ?: "",
-            preparingTime = preparingTime ?: "",
-            totalTime = totalTime ?: "",
-            cookingTime = cookingTime ?: "",
-            ingredients = ingredients ?: emptyList(),
-            ingredientsHi = ingredientsHi ?: emptyList(),
+            imageUrl = imageUrl.orEmpty(),
+            categoryName = categoryName.orEmpty(),
+            preparingTime = preparingTime.orEmpty(),
+            totalTime = totalTime.orEmpty() ?: "",
+            cookingTime = cookingTime.orEmpty(),
+            ingredients = ingredients.orEmpty(),
+            ingredientsHi = ingredientsHi.orEmpty(),
             saved = saved ?: false,
-            savedTime = savedTime ?: 0
+            savedTime = savedTime ?: 0,
+            message = message.orEmpty(),
+            messageHi = messageHi.orEmpty()
         )
     }
 }

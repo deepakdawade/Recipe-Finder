@@ -1,10 +1,14 @@
 package com.devdd.recipe.di.module
 
 import android.content.Context
+import com.devdd.recipe.R
 import com.devdd.recipe.base.firebase.TopicSubscriber
 import com.devdd.recipe.base.utils.Logger
 import com.devdd.recipe.base_android.utils.logger.RecipeLogger
 import com.devdd.recipe.firebase.FcmTopicSubscriber
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.crashlytics.FirebaseCrashlytics
@@ -23,6 +27,23 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 object FirebaseModule {
+
+    @Provides
+    @Singleton
+    fun provideGoogleSignInOptions(
+        @ApplicationContext context: Context
+    ): GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        .requestIdToken(context.getString(R.string.default_web_client_id))
+        .requestEmail()
+        .build()
+
+    @Provides
+    @Singleton
+    fun provideGoogleSignInClient(
+        @ApplicationContext context: Context,
+        googleSignInOptions: GoogleSignInOptions
+    ): GoogleSignInClient = GoogleSignIn.getClient(context, googleSignInOptions)
+
     @Provides
     @Singleton
     fun provideFirebaseMessaging(): FirebaseMessaging = FirebaseMessaging.getInstance()

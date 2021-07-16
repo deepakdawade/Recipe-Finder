@@ -8,13 +8,14 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.devdd.recipe.data.utils.dataStore
-import com.devdd.recipe.data.utils.getValueAsFlow
-import com.devdd.recipe.data.utils.setValue
+import com.devdd.recipe.data.models.response.UserInfo
+import com.devdd.recipe.data.utils.*
+import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 import java.util.UUID.randomUUID
@@ -31,6 +32,12 @@ interface DataStorePreference {
     fun <T> getValue(key: Preferences.Key<T>, default: T): Flow<T>
 
     suspend fun <T> remove(key: Preferences.Key<T>)
+
+    suspend fun setUserLoggedIn(loggedIn: Boolean)
+    val userLoggedIn: Flow<Boolean>
+
+    suspend fun setUserInfo(info: UserInfo?)
+    val userInfo: Flow<UserInfo?>
 
     fun generateDeviceId()
     val deviceId: Flow<String>
@@ -92,6 +99,24 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
         }
     }
 
+    override suspend fun setUserLoggedIn(loggedIn: Boolean) {
+        dataStore.setValue(PREF_KEY_USER_LOGIN, loggedIn)
+    }
+
+    override val userLoggedIn: Flow<Boolean>
+        get() = dataStore.getValueAsFlow(PREF_KEY_USER_LOGIN, false)
+
+    override suspend fun setUserInfo(info: UserInfo?) {
+        dataStore.setValue(PREF_KEY_USER_INFO, info?.toJsonString() ?: "")
+    }
+
+    override val userInfo: Flow<UserInfo?>
+        get() = dataStore.getValueAsFlow(PREF_KEY_USER_INFO, "").map {
+            if (it.isNullOrBlank()) null
+            else
+                it.toDataClass()
+        }
+
     @SuppressLint("HardwareIds")
     override fun generateDeviceId() = runBlocking {
         val existingId: String = deviceId.catch { emit("") }.first()
@@ -127,7 +152,7 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
     }
 
     override val fcmToken: Flow<String>
-        get() = dataStore.getValueAsFlow(PREF_KEY_FCM_TOKEN,"")
+        get() = dataStore.getValueAsFlow(PREF_KEY_FCM_TOKEN, "")
 
     override suspend fun setRecipePreference(pref: String) {
         dataStore.setValue(PREF_KEY_SELECTED_RECIPE_PREF, pref)
@@ -151,6 +176,8 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
 
     private companion object {
         private object PreferencesName {
+            const val USER_LOGIN = "user_login"
+            const val USER_INFO = "user_info"
             const val GUEST_TOKEN = "guest_token"
             const val FCM_TOKEN = "fcm_token"
             const val SELECTED_RECIPE = "selected_recipe_pref"
@@ -158,6 +185,12 @@ class DataStorePreferences @Inject constructor(@ApplicationContext private val c
             const val DEVICE_ID = "device_id"
             const val SHOULD_UPLOAD_DEVICE_ID = "should_upload_device_id"
         }
+
+        val PREF_KEY_USER_LOGIN: Preferences.Key<Boolean> =
+            booleanPreferencesKey(PreferencesName.USER_LOGIN)
+
+        val PREF_KEY_USER_INFO: Preferences.Key<String> =
+            stringPreferencesKey(PreferencesName.USER_INFO)
 
         val PREF_KEY_GUEST_TOKEN: Preferences.Key<String> =
             stringPreferencesKey(PreferencesName.GUEST_TOKEN)

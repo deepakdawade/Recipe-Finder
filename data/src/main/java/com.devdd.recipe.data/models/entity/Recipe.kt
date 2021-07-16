@@ -53,4 +53,10 @@ data class Recipe(
     @ColumnInfo(name = "saved")
     var saved: Boolean = false,
 
-    )
+    @ColumnInfo(name = "message")
+    val message: String = "",
+
+    @ColumnInfo(name = "message_hi")
+    val messageHi: String = ""
+
+)
