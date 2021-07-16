@@ -22,6 +22,11 @@
         <action
             android:id="@+id/action_to_appInfoFragment"
             app:destination="@id/appInfoFragment" />
+
+        <action
+            android:id="@+id/action_to_recipeWebViewFragment"
+            app:destination="@id/recipeWebViewFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/preferenceSettingFragment"
@@ -53,5 +58,15 @@
         android:name="com.devdd.recipe.ui.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/recipeWebViewFragment"
+        android:name="com.devdd.recipe.ui.webview.RecipeWebViewFragment"
+        android:label="RecipeWebViewFragment"
+        tools:layout="@layout/fragment_recipe_web_view">
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
