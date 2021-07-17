@@ -2,6 +2,7 @@ package com.devdd.recipe.feature_profile.ui.profile
 
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
+import com.devdd.recipe.base.constants.CONTACT_US_URL
 import com.devdd.recipe.base.result.Event
 import com.devdd.recipe.data.models.response.UserInfo
 import com.devdd.recipe.data.preference.manager.GuestManager
@@ -49,6 +50,11 @@ class ProfileViewModel @Inject constructor(
 
     fun navigateToAppInfo() {
         val directions = ProfileFragmentDirections.actionToAppInfoFragment()
+        navigate(directions = directions)
+    }
+
+    fun navigateToRecipeWebView() {
+        val directions = ProfileFragmentDirections.actionToRecipeWebViewFragment(CONTACT_US_URL)
         navigate(directions = directions)
     }
 
