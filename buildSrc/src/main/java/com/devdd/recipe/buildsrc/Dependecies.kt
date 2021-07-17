@@ -13,7 +13,7 @@ object Dependencies {
     object VersionInfo {
         const val versionCode = 1
         const val versionName = "1.0"
-        const val debugVersion = 1
+        const val debugVersion = 2
     }
 
     object Libraries {
