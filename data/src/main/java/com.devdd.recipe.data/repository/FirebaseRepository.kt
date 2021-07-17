@@ -57,7 +57,7 @@ class FirebaseRepositoryImpl @Inject constructor(
                     mLoginStatus.value = InvokeSuccess(true)
                 } else
                     mLoginStatus.value = InvokeError(task.exception ?: Exception("Error Occurred"))
-            } catch (e: ClosedSendChannelException) {
+            } catch (e: Exception) {
                 logger.e(e)
                 mLoginStatus.value = InvokeError(e)
             }
@@ -73,7 +73,7 @@ class FirebaseRepositoryImpl @Inject constructor(
                     mLoginStatus.value = InvokeSuccess(true)
                 } else
                     mLoginStatus.value = InvokeError(task.exception ?: Exception("Error Occurred"))
-            } catch (e: ClosedSendChannelException) {
+            } catch (e: Exception) {
                 logger.e(e)
                 mLoginStatus.value = InvokeError(e)
             }
@@ -89,7 +89,7 @@ class FirebaseRepositoryImpl @Inject constructor(
                     mLoginStatus.value = InvokeSuccess(true)
                 } else
                     mLoginStatus.value = InvokeError(task.exception ?: Exception("Error Occurred"))
-            } catch (e: ClosedSendChannelException) {
+            } catch (e: Exception) {
                 logger.e(e)
                 mLoginStatus.value = InvokeError(e)
             }
