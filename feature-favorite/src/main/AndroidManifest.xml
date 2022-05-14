@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.devdd.recipe.feature_favorite">
-
-    <application android:theme="@style/Theme.Recipe">
-
-    </application>
-
-</manifest>

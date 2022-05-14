@@ -1,21 +1,23 @@
 package com.devdd.recipe.ui
 
-import android.content.Context
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import com.devdd.recipe.R
-import com.devdd.recipe.databinding.ActivityMainBinding
-import com.devdd.recipe.ui.utils.navigation.setUpDeeplinkNavigationBehavior
-import com.devdd.recipe.base_android.utils.localemanager.LocaleManagerUtils
-import com.devdd.recipe.ui.utils.extensions.bindingWithLifecycleOwner
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.rememberNavController
+import com.devdd.recipe.ui.theme.YellowTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
-    private val viewModel by viewModels<MainViewModel>()
 
     companion object {
         private val TAG: String = this::class.java.simpleName
@@ -23,16 +25,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = bindingWithLifecycleOwner<ActivityMainBinding>(R.layout.activity_main)
-        // to handle recreate of activity
-        setUpDeeplinkNavigationBehavior(
-            navHostFragmentId = binding.mainActivityContainer.id,
-            graphId = R.navigation.navigation_main_graph
-        )
-
-    }
-
-    override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(LocaleManagerUtils.setLocale(base))
+        setContent {
+            YellowTheme {
+                RecipeApp()
+            }
+        }
     }
 }

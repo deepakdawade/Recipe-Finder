@@ -1,221 +1,109 @@
 package com.devdd.recipe.buildsrc
+
+object Versions {
+    const val ktLint = "0.45.2"
+}
 object Dependencies {
 
-    const val androidGradlePlugin = "com.android.tools.build:gradle:4.1.2"
-
-    object Recipe {
-        const val applicationId = "com.devdd.recipe"
-        const val compileSdkVersion = 30
-        const val minSdkVersion = 23
-        const val targetSdk = 30
-    }
-
-    object VersionInfo {
-        const val versionCode = 1
-        const val versionName = "1.0"
-        const val debugVersion = 2
-    }
-
     object Libraries {
+        const val androidGradlePlugin = "com.android.tools.build:gradle:7.2.0"
+        const val ktLint = "com.pinterest:ktlint:${Versions.ktLint}"
 
-        private object Plugins {
-            const val androidApplication = "com.android.application"
-            const val android = "android"
-            const val kapt = "kapt"
-            const val androidExtention = "android.extensions"
-            const val daggerHilt = "dagger.hilt.android.plugin"
-            const val safeArgs = "androidx.navigation.safeargs.kotlin"
-        }
+        const val coreLibraryDesugar = "com.android.tools:desugar_jdk_libs:1.1.5"
+
+        const val exoplayer = "com.google.android.exoplayer:exoplayer:2.11.8"
 
         object Kotlin {
-            private const val kotlinVersion = "1.4.21"
-            const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-            const val kotlinGradlePlugin =
-                "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+            private const val version = "1.6.21"
+            const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
+            const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
+            const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:$version"
+
+            object Coroutines {
+                private const val version = "1.6.0"
+                const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
+                const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
+            }
         }
 
         object AndroidX {
-            const val appCompat = "androidx.appcompat:appcompat:1.2.0"
-            const val coreKtx = "androidx.core:core-ktx:1.3.2"
-
-            object SwipeRefreshLayout{
-                const val version = "1.2.0-alpha01"
-                const val swiperefreshlayout: String =
-                    "androidx.swiperefreshlayout:swiperefreshlayout:$version"
+            object Activity {
+                const val activityCompose = "androidx.activity:activity-compose:1.4.0"
             }
 
-            object Browser{
-                private const val version = "1.3.0"
-                const val browser: String = "androidx.browser:browser:$version"
-            }
-            object FragmentKTX {
-                private const val version = "1.3.1"
-                const val fragmentKtx: String = "androidx.fragment:fragment-ktx:$version"
-            }
-            object ActivityKTX {
-                private const val version = "1.2.2"
-                const val activityKtx: String = "androidx.activity:activity-ktx:$version"
+            const val appcompat = "androidx.appcompat:appcompat:1.4.1"
+
+            object Compose {
+                const val snapshot = ""
+                const val version = "1.2.0-beta01"
+
+                const val runtime = "androidx.compose.runtime:runtime:$version"
+                const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:$version"
+                const val materialWindow =
+                    "androidx.compose.material3:material3-window-size-class:1.0.0-alpha10"
+
+                const val material = "androidx.compose.material:material:$version"
+                const val foundation = "androidx.compose.foundation:foundation:$version"
+                const val layout = "androidx.compose.foundation:foundation-layout:$version"
+                const val tooling = "androidx.compose.ui:ui-tooling:$version"
+                const val toolingPreview = "androidx.compose.ui:ui-tooling-preview:$version"
+                const val animation = "androidx.compose.animation:animation:$version"
+                const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
+                const val uiTestManifest = "androidx.compose.ui:ui-test-manifest:$version"
+
             }
 
-            object ConstraintLayout {
-                private const val version = "2.0.4"
-                const val constraintLayout =
-                    "androidx.constraintlayout:constraintlayout:$version"
+            object Lifecycle {
+                private const val version = "2.4.1"
+                const val viewModelCompose =
+                    "androidx.lifecycle:lifecycle-viewmodel-compose:$version"
+                const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
+                const val navigation = "androidx.navigation:navigation-compose:$version"
             }
 
-            object RecyclerView {
-                private const val version = "1.1.0"
-                const val recyclerView = "androidx.recyclerview:recyclerview:$version"
+            object Test {
+                private const val version = "1.4.0"
+                const val core = "androidx.test:core:$version"
+                const val runner = "androidx.test:runner:$version"
+                const val rules = "androidx.test:rules:$version"
+
+                object Ext {
+                    private const val version = "1.1.2"
+                    const val junit = "androidx.test.ext:junit-ktx:$version"
+                }
+
+                const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
+                const val uiAutomator = "androidx.test.uiautomator:uiautomator:2.2.0"
             }
 
-            object Lifecycle{
-                private const val version = "2.3.0"
-                const val viewmodelKtx: String = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
-                const val livedataKtx: String = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
-                const val process: String = "androidx.lifecycle:lifecycle-process:$version"
-            }
-
-            object Navigation {
-                private const val version = "2.2.2"
-                const val navigationFragment =
-                    "androidx.navigation:navigation-fragment-ktx:$version"
-                const val navigationUI = "androidx.navigation:navigation-ui-ktx:$version"
-                const val safeArgsGradlePlugin =
-                    "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
-            }
-
-            object Room {
-                private const val version = "2.3.0-beta03"
-                const val room = "androidx.room:room-ktx:$version"
-                const val roomRunTime = "androidx.room:room-runtime:$version"
-                const val roomKapt = "androidx.room:room-compiler:$version"
-            }
-
-            object DataStore{
-                private const val version = "1.0.0-alpha08"
-                const val dataStore = "androidx.datastore:datastore-preferences:$version"
-            }
-
-            object Paging3 {
-                private const val version = "2.1.2"
-                const val paging: String = "androidx.paging:paging-runtime-ktx:$version"
-            }
-
-            object Work {
-                private const val version = "2.4.0"
-                const val runtimeKtx: String = "androidx.work:work-runtime-ktx:$version"
-            }
-
-            object Testing {
-                const val jUnitTest = "androidx.test.ext:junit:1.1.2"
-                const val espresso = "androidx.test.espresso:espresso-core:3.3.0"
+            object Benchmark {
+                const val macrobenchmark = "androidx.benchmark:benchmark-macro-junit4:1.1.0-beta04"
             }
         }
 
-        object Google {
-            private const val version = "1.3.0"
-            private const val gSonVersion = "2.8.6"
-            const val materialDesign = "com.google.android.material:material:$version"
-            const val gson: String = "com.google.code.gson:gson:$gSonVersion"
+        object Hilt {
+            private const val version = "2.42"
 
-            object DaggerHilt {
-                private const val version = "2.33-beta"
-                const val daggerHilt = "com.google.dagger:hilt-android:$version"
-                const val daggerHiltViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-                const val hiltKapt = "com.google.dagger:hilt-compiler:$version"
-                const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
-            }
-
-            object PlayServices {
-                const val coreKtx: String = "com.google.android.play:core-ktx:1.8.1"
-
-                const val authPhoneApi: String =
-                    "com.google.android.gms:play-services-auth-api-phone:17.5.0"
-                const val authApi: String = "com.google.android.gms:play-services-auth:19.0.0"
-
-                const val plugin: String = "com.google.gms.google-services"
-                const val gradlePlugin: String = "com.google.gms:google-services:4.3.4"
-            }
-
-            object Firebase {
-                // Import the BoM for the Firebase platform
-                const val bom: String = "com.google.firebase:firebase-bom:25.13.0"
-
-                const val analyticsKtx: String = "com.google.firebase:firebase-analytics-ktx"
-
-                const val authKtx: String = "com.google.firebase:firebase-auth-ktx"
-
-                const val crashlytics: String = "com.google.firebase:firebase-crashlytics"
-
-                const val crashlyticsPlugin: String =
-                    "com.google.firebase:firebase-crashlytics-gradle:2.2.0"
-
-                const val configKtx: String = "com.google.firebase:firebase-config-ktx"
-
-                const val dynamicLinkKtx: String = "com.google.firebase:firebase-dynamic-links-ktx"
-
-                const val inAppMessagingDisplayKtx: String =
-                    "com.google.firebase:firebase-inappmessaging-display-ktx"
-
-                const val firestoreKtx: String = "com.google.firebase:firebase-firestore-ktx"
-
-                const val messageKtx: String = "com.google.firebase:firebase-messaging-ktx"
-
-                const val performance: String = "com.google.firebase:firebase-perf-ktx"
-                const val performancePlugin: String = "com.google.firebase:perf-plugin:1.3.1"
-
-                const val storage: String = "com.google.firebase:firebase-storage-ktx"
-            }
-
+            const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
+            const val android = "com.google.dagger:hilt-android:$version"
+            const val compiler = "com.google.dagger:hilt-compiler:$version"
+            const val testing = "com.google.dagger:hilt-android-testing:$version"
+            const val navigation = "androidx.hilt:hilt-navigation-compose:1.0.0"
         }
 
-        object Timber {
-            private const val version = "4.7.1"
-            const val timber: String = "com.jakewharton.timber:timber:$version"
-        }
-
-
-        object Retrofit {
-            private const val version = "2.9.0"
-            const val retrofit: String = "com.squareup.retrofit2:retrofit:$version"
-            const val gsonConverter: String = "com.squareup.retrofit2:converter-gson:$version"
-            const val kotlinConverter: String =
-                "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
-        }
-
-        object OkHttp {
-            private const val version = "4.9.0"
-            const val okhttp: String = "com.squareup.okhttp3:okhttp:$version"
-            const val loggingInterceptor: String =
-                "com.squareup.okhttp3:logging-interceptor:$version"
-            const val urlConnection: String = "com.squareup.okhttp3:okhttp-urlconnection:$version"
-        }
-
-
-        object Coroutines {
-            private const val version = "1.4.3"
-            const val coroutineAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
-            const val coroutineCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
+        object JUnit {
+            private const val version = "4.13"
+            const val junit = "junit:junit:$version"
         }
 
         object Coil {
-            private const val version = "1.1.0"
-            const val coil: String = "io.coil-kt:coil:$version"
-            const val svgCoil: String = "io.coil-kt:coil-svg:$version"
-        }
-
-        object Facebook {
-            private const val version = "0.5.0"
-            const val shimmerDrawable: String = "com.facebook.shimmer:shimmer:$version"
-        }
-
-        object AirBnb {
-            private const val version = "3.6.0"
-            const val lottie: String = "com.airbnb.android:lottie:$version"
-        }
-
-        object Junit{
-            const val jUnit = "junit:junit:4.13.2"
+            const val coilCompose = "io.coil-kt:coil-compose:2.0.0"
         }
     }
+}
+
+object Urls {
+    const val mavenCentralSnapshotRepo = "https://oss.sonatype.org/content/repositories/snapshots/"
+    const val composeSnapshotRepo = "https://androidx.dev/snapshots/builds/" +
+            "${Dependencies.Libraries.AndroidX.Compose.snapshot}/artifacts/repository/"
 }

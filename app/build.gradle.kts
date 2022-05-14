@@ -1,40 +1,28 @@
 import com.devdd.recipe.buildsrc.Dependencies.Libraries
-import com.devdd.recipe.buildsrc.Dependencies.Recipe
-import com.devdd.recipe.buildsrc.Dependencies.VersionInfo
 
 plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    kotlin("android.extensions")
     id("dagger.hilt.android.plugin")
-    id("com.google.firebase.crashlytics")
 }
-
-
-kapt {
-    correctErrorTypes = true
-    useBuildCache = true
-}
-
+val buildVersion = 1
 android {
-    compileSdkVersion(Recipe.compileSdkVersion)
-    buildToolsVersion("30.0.3")
+    compileSdk = (32)
     defaultConfig {
-        applicationId(Recipe.applicationId)
-        minSdkVersion(Recipe.minSdkVersion)
-        targetSdkVersion(Recipe.targetSdk)
-        versionCode = VersionInfo.versionCode
-        versionName = VersionInfo.versionName
+        applicationId = ("com.devdd.recipe")
+        minSdk = (23)
+        targetSdk = (32)
+        versionCode = 1
+        versionName = "1.0"
 
         vectorDrawables.useSupportLibrary = true
-        resConfigs("en", "hi")
-        testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
+        resourceConfigurations.addAll(listOf("en", "hi"))
     }
 
     buildTypes {
         getByName("debug") {
-            versionNameSuffix = "-debug" + VersionInfo.debugVersion
+            versionNameSuffix = "-debug$buildVersion"
             applicationIdSuffix = ".debug"
             isMinifyEnabled = false
             isShrinkResources = false
@@ -48,9 +36,6 @@ android {
             )
         }
     }
-    sourceSets {
-        getByName("debug").res.srcDirs("$rootDir/navigation/src/main/sharedRes")
-    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -62,62 +47,59 @@ android {
     }
 
     buildFeatures {
-        dataBinding = true
+        compose = true
+        // Disable unused AGP features
+        buildConfig = false
+        aidl = false
+        renderScript = false
+        resValues = false
+        shaders = false
     }
 
-    // Do not package unnecessary files
-    packagingOptions {
-        // Exclude licenses
-        exclude("META-INF/LICENSE")
-        exclude("META-INF/LICENSE.txt")
-        exclude("META-INF/license.txt")
-        // Exclude notices
-        exclude("META-INF/NOTICE")
-        exclude("META-INF/NOTICE.txt")
-        exclude("META-INF/notice.txt")
-        // Exclude asi
-        exclude("META-INF/ASL2.0")
-        // Exclude AndroidX version files
-        exclude("META-INF/*.version")
-        // Exclude consumer proguard files
-        exclude("META-INF/proguard/*")
-        // Exclude the Firebase/Fabric/other random properties files
-        exclude("/*.properties")
-        exclude("META-INF/*.properties")
+    composeOptions {
+        kotlinCompilerExtensionVersion = Libraries.AndroidX.Compose.version
     }
+
 }
 
 dependencies {
+    implementation(Libraries.Kotlin.stdlib)
+    implementation(Libraries.Kotlin.Coroutines.android)
 
-    implementation(project(":feature-home"))
-    implementation(project(":feature-search"))
-    implementation(project(":feature-favorite"))
-    implementation(project(":feature-profile"))
-    implementation(project(":ui"))
-    implementation(project(":firebase"))
+//    coreLibraryDesugaring(Libraries.coreLibraryDesugar)
+    implementation(Libraries.AndroidX.Activity.activityCompose)
+    implementation(Libraries.AndroidX.Lifecycle.navigation)
+    implementation(Libraries.AndroidX.appcompat)
+    implementation(Libraries.AndroidX.Compose.runtime)
+    implementation(Libraries.AndroidX.Compose.runtimeLivedata)
+    implementation(Libraries.AndroidX.Compose.foundation)
+    implementation(Libraries.AndroidX.Compose.material)
+    implementation(Libraries.AndroidX.Compose.materialWindow)
+    implementation(Libraries.AndroidX.Compose.layout)
+    implementation(Libraries.AndroidX.Compose.animation)
+    implementation(Libraries.AndroidX.Compose.toolingPreview)
+    implementation(Libraries.AndroidX.Lifecycle.viewModelCompose)
+    debugImplementation(Libraries.AndroidX.Compose.tooling)
 
-    // Lifecycle
-    implementation(Libraries.AndroidX.Lifecycle.process)
+    implementation(Libraries.AndroidX.Lifecycle.viewModelKtx)
+    implementation(Libraries.Hilt.android)
+    implementation(Libraries.Hilt.navigation)
+    kapt(Libraries.Hilt.compiler)
 
-    // Dagger
-    implementation(Libraries.Google.DaggerHilt.daggerHilt)
-    kapt(Libraries.Google.DaggerHilt.hiltKapt)
+    implementation(Libraries.Coil.coilCompose)
 
-    //Firebase
-    implementation(Libraries.Google.Firebase.authKtx)
-    implementation(Libraries.Google.Firebase.crashlytics)
-    implementation(Libraries.Google.Firebase.dynamicLinkKtx)
-    implementation(Libraries.Google.Firebase.firestoreKtx)
-    implementation(Libraries.Google.Firebase.inAppMessagingDisplayKtx)
-    implementation(Libraries.Google.Firebase.performance)
-    implementation(Libraries.Google.Firebase.messageKtx)
+    debugImplementation(Libraries.AndroidX.Compose.uiTestManifest)
 
-    // Play Core:
-    implementation(Libraries.Google.PlayServices.coreKtx)
-    implementation(Libraries.Google.PlayServices.authApi)
-    implementation(Libraries.Google.PlayServices.authPhoneApi)
-
-
+    androidTestImplementation(Libraries.JUnit.junit)
+    androidTestImplementation(Libraries.AndroidX.Test.core)
+    androidTestImplementation(Libraries.AndroidX.Test.runner)
+    androidTestImplementation(Libraries.AndroidX.Test.espressoCore)
+    androidTestImplementation(Libraries.AndroidX.Test.rules)
+    androidTestImplementation(Libraries.AndroidX.Test.Ext.junit)
+    androidTestImplementation(Libraries.Kotlin.Coroutines.test)
+    androidTestImplementation(Libraries.AndroidX.Compose.uiTest)
+    androidTestImplementation(Libraries.Hilt.android)
+    androidTestImplementation(Libraries.Hilt.testing)
+    kaptAndroidTest(Libraries.Hilt.compiler)
 }
 fun formatUrl(url: String): String = "\"$url\""
-apply(plugin = Libraries.Google.PlayServices.plugin)
