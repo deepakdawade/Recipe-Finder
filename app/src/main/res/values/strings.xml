@@ -3,10 +3,10 @@
     <string name="app_name" translatable="false">Recipe</string>
 
     <!-- Bottom navigation menu   -->
-    <string name="bottom_nav_menu_label_home">Home</string>
-    <string name="bottom_nav_menu_label_search">Search</string>
-    <string name="bottom_nav_menu_label_favorite">Favorite</string>
-    <string name="bottom_nav_menu_label_profile">Profile</string>
+    <string name="bottom_nav_menu_home">Home</string>
+    <string name="bottom_nav_menu_search">Search</string>
+    <string name="bottom_nav_menu_favourite">Favorite</string>
+    <string name="bottom_nav_menu_profile">Profile</string>
     <string name="splash_screen_text">Shahi khana</string>
 
 </resources>

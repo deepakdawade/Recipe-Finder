@@ -24,7 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.devdd.recipe.R
 
-private val YellowThemeLight = lightColors(
+private val colorLight = lightColors(
     primary = yellow500,
     primaryVariant = yellow400,
     onPrimary = Color.Black,
@@ -33,78 +33,13 @@ private val YellowThemeLight = lightColors(
     onSecondary = Color.White
 )
 
-private val YellowThemeDark = darkColors(
+private val colorDark = darkColors(
     primary = yellow200,
     secondary = blue200,
     onSecondary = Color.Black,
     surface = yellowDarkPrimary
 )
 
-@Composable
-fun YellowTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
-    val colors = if (darkTheme) {
-        YellowThemeDark
-    } else {
-        YellowThemeLight
-    }
-    RecipeTheme(darkTheme, colors, content)
-}
-
-private val BlueThemeLight = lightColors(
-    primary = blue700,
-    onPrimary = Color.White,
-    primaryVariant = blue800,
-    secondary = yellow500
-)
-
-private val BlueThemeDark = darkColors(
-    primary = blue200,
-    secondary = yellow200,
-    surface = blueDarkPrimary
-)
-
-@Composable
-fun BlueTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
-    val colors = if (darkTheme) {
-        BlueThemeDark
-    } else {
-        BlueThemeLight
-    }
-    RecipeTheme(darkTheme, colors, content)
-}
-
-private val PinkThemeLight = lightColors(
-    primary = pink500,
-    secondary = pink500,
-    primaryVariant = pink600,
-    onPrimary = Color.Black,
-    onSecondary = Color.Black
-)
-
-private val PinkThemeDark = darkColors(
-    primary = pink200,
-    secondary = pink200,
-    surface = pinkDarkPrimary
-)
-
-@Composable
-fun PinkTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
-) {
-    val colors = if (darkTheme) {
-        PinkThemeDark
-    } else {
-        PinkThemeLight
-    }
-    RecipeTheme(darkTheme, colors, content)
-}
 
 private val LightElevation = Elevations()
 
@@ -115,11 +50,11 @@ private val LightImages = Images(lockupLogo = R.drawable.ic_launcher_foreground)
 private val DarkImages = Images(lockupLogo = R.drawable.ic_launcher_foreground)
 
 @Composable
-private fun RecipeTheme(
-    darkTheme: Boolean,
-    colors: Colors,
+fun RecipeTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
+    val colors = if (darkTheme) colorDark else colorLight
     val elevation = if (darkTheme) DarkElevation else LightElevation
     val images = if (darkTheme) DarkImages else LightImages
     CompositionLocalProvider(
