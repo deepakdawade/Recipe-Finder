@@ -3,6 +3,7 @@ package com.devdd.recipe.buildsrc
 object Versions {
     const val ktLint = "0.45.2"
 }
+
 object Dependencies {
 
     object Libraries {
@@ -12,6 +13,23 @@ object Dependencies {
         const val coreLibraryDesugar = "com.android.tools:desugar_jdk_libs:1.1.5"
 
         const val exoplayer = "com.google.android.exoplayer:exoplayer:2.11.8"
+        const val gson = "com.google.code.gson:gson:2.8.6"
+
+        object Retrofit {
+            private const val version = "2.9.0"
+            const val retrofit: String = "com.squareup.retrofit2:retrofit:$version"
+            const val gsonConverter: String = "com.squareup.retrofit2:converter-gson:$version"
+            const val kotlinConverter: String =
+                "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
+        }
+
+        object OkHttp {
+            private const val version = "4.9.0"
+            const val okhttp: String = "com.squareup.okhttp3:okhttp:$version"
+            const val loggingInterceptor: String =
+                "com.squareup.okhttp3:logging-interceptor:$version"
+            const val urlConnection: String = "com.squareup.okhttp3:okhttp-urlconnection:$version"
+        }
 
         object Kotlin {
             private const val version = "1.6.21"
@@ -26,11 +44,27 @@ object Dependencies {
             }
         }
 
+        object Timber {
+            private const val version = "4.7.1"
+            const val timber: String = "com.jakewharton.timber:timber:$version"
+        }
+
         object AndroidX {
             object Activity {
                 const val activityCompose = "androidx.activity:activity-compose:1.4.0"
             }
 
+            object Room {
+                private const val version = "2.2.6"
+                const val compiler = "androidx.room:room-compiler:$version"
+                const val ktx = "androidx.room:room-ktx:$version"
+                const val runtime = "androidx.room:room-runtime:$version"
+                const val ROOM_TESTING = "androidx.room:room-testing:$version"
+            }
+            object DataStore{
+                private const val version = "1.0.0-alpha08"
+                const val dataStore = "androidx.datastore:datastore-preferences:$version"
+            }
             const val appcompat = "androidx.appcompat:appcompat:1.4.1"
 
             object Compose {

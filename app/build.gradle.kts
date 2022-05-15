@@ -21,6 +21,20 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField(
+                type = "String",
+                name = "BASE_URL",
+                value = formatUrl(url = "https://receipe-bool.herokuapp.com/api/v1/")
+            )
+        }
+        release {
+            buildConfigField(
+                type = "String",
+                name = "BASE_URL",
+                value = formatUrl(url = "https://receipe-bool.herokuapp.com/api/v1/")
+            )
+        }
         getByName("debug") {
             versionNameSuffix = "-debug$buildVersion"
             applicationIdSuffix = ".debug"
@@ -49,7 +63,7 @@ android {
     buildFeatures {
         compose = true
         // Disable unused AGP features
-        buildConfig = false
+//        buildConfig = false
         aidl = false
         renderScript = false
         resValues = false
@@ -81,10 +95,31 @@ dependencies {
     implementation(Libraries.AndroidX.Lifecycle.viewModelCompose)
     debugImplementation(Libraries.AndroidX.Compose.tooling)
 
+    implementation(Libraries.gson)
+
+    // Ok-Http
+    api(Libraries.OkHttp.okhttp)
+    api(Libraries.OkHttp.loggingInterceptor)
+    implementation(Libraries.OkHttp.urlConnection)
+
+    // Retrofit Converters
+    implementation(Libraries.Retrofit.gsonConverter)
+    implementation(Libraries.Retrofit.kotlinConverter)
+
+    //Hilt
     implementation(Libraries.AndroidX.Lifecycle.viewModelKtx)
     implementation(Libraries.Hilt.android)
     implementation(Libraries.Hilt.navigation)
     kapt(Libraries.Hilt.compiler)
+
+    //Room
+    implementation(Libraries.AndroidX.Room.ktx)
+    implementation(Libraries.AndroidX.Room.runtime)
+    kapt(Libraries.AndroidX.Room.compiler)
+
+    implementation(Libraries.AndroidX.DataStore.dataStore)
+
+    implementation(Libraries.Timber.timber)
 
     implementation(Libraries.Coil.coilCompose)
 
