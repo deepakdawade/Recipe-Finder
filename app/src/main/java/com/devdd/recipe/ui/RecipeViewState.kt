@@ -4,29 +4,29 @@ import com.devdd.recipe.data.local.model.Recipe
 import com.devdd.recipe.utils.DateFormatter
 
 data class RecipeViewState(
-    val entity: Recipe
+    val entity: Recipe,
+    val isEnglish: Boolean = true
 ) {
-    fun description(isEnglish: Boolean) =
-        if (isEnglish) entity.description else entity.descriptionHi
+    val description get() = if (isEnglish) entity.description else entity.descriptionHi
 
-    fun title(isEnglish: Boolean) =
-        if (isEnglish) entity.title else entity.titleHi
+    val title get() = if (isEnglish) entity.title else entity.titleHi
 
-    fun ingredients(isEnglish: Boolean): String {
-        val ingredients = if (isEnglish)
-            entity.ingredients
-        else entity.ingredientsHi
-        val builder = StringBuilder()
-        ingredients.forEach {
-            builder
-                .append("\u25CF\t")
-                .append(it)
-                .append("\n")
+    val ingredients: String
+        get() {
+            val ingredients = if (isEnglish)
+                entity.ingredients
+            else entity.ingredientsHi
+            val builder = StringBuilder()
+            ingredients.forEach {
+                builder
+                    .append("\u25CF\t")
+                    .append(it)
+                    .append("\n")
+            }
+            return builder.toString()
         }
-        return builder.toString()
-    }
 
-    fun savedDate() = DateFormatter.timeToDayMonthDayFormatter(entity.savedTime)
+    val savedDate get() = DateFormatter.timeToDayMonthDayFormatter(entity.savedTime)
 
 
 }

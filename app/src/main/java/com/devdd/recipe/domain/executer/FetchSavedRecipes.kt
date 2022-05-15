@@ -12,7 +12,7 @@ class FetchSavedRecipes @Inject constructor(
 ) : InvokeUseCase<SavedRecipesRequest>() {
     override suspend fun doWork(params: SavedRecipesRequest) {
         return withContext(Dispatchers.IO) {
-            repository.getSavedRecipes(params)
+            repository.fetchSavedRecipes(params)
         }
     }
 }

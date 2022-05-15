@@ -1,16 +1,16 @@
 package com.devdd.recipe.ui
 
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.*
 import androidx.navigation.compose.*
 import androidx.navigation.compose.navigation
@@ -20,24 +20,27 @@ import com.devdd.recipe.ui.home.RecipeHome
 import com.devdd.recipe.ui.onboarding.Onboarding
 import com.devdd.recipe.ui.profile.RecipeProfile
 import com.devdd.recipe.ui.search.RecipeSearch
-import com.devdd.recipe.utils.MainActions
-import com.devdd.recipe.utils.DashboardDestination
-import com.devdd.recipe.utils.DashboardTabs
-import com.devdd.recipe.utils.MainDestinations
+import com.devdd.recipe.utils.*
 import java.util.*
 
 @Composable
 fun RecipeApp(
-    showOnboardingInitially: Boolean = true,
     onBackHandler: () -> Unit
 ) {
+    val viewModel: MainViewModel = hiltViewModel()
+    val viewState by rememberFlowWithLifecycle(flow = viewModel.viewState).collectAsState(initial = MainViewState.INITIAL)
+    val showOnboardingInitially = viewState.showOnBoarding
     val navController = rememberNavController()
-    // Onboarding could be read from shared preferences.
     val onboardingComplete = remember(showOnboardingInitially) {
         mutableStateOf(!showOnboardingInitially)
     }
     val actions = remember(navController) { MainActions(navController) }
     val tabs = remember { DashboardTabs.values() }
+    Toast.makeText(
+        LocalContext.current,
+        "${viewState.recipePref}:${viewState.localePref}",
+        Toast.LENGTH_SHORT
+    ).show()
     Scaffold(
         modifier = Modifier,
         bottomBar = {
@@ -58,14 +61,22 @@ fun RecipeApp(
                         // Set the flag so that onboarding is not shown next time.
                         onboardingComplete.value = true
                         actions.onboardingComplete()
-                    }
+                    },
+                    updateAppLocale = viewModel::setAppLocale,
+                    updateRecipePref = viewModel::setRecipePref
                 )
             }
             navigation(
                 route = MainDestinations.RECIPE_DASHBOARD,
                 startDestination = DashboardDestination.Home.route
             ) {
-                recipeDashboard()
+                recipeDashboard(
+                    recipes = viewState.recipes,
+                    onBoardingComplete = onboardingComplete,
+                    navController = navController,
+                    onRecipeSelected = actions.openRecipe,
+                    modifier = Modifier
+                )
             }
             composable(
                 "${MainDestinations.RECIPE_DETAIL_ROUTE}/{${MainDestinations.RECIPE_DETAIL_ID_KEY}}",
@@ -125,14 +136,39 @@ fun RecipeBottomBar(navController: NavHostController, tabs: Array<DashboardTabs>
 
 @Composable
 private fun RecipeOnboarding(
-    onboardingComplete: () -> Unit
+    onboardingComplete: () -> Unit,
+    updateRecipePref: (pref: String) -> Unit,
+    updateAppLocale: (locale: String) -> Unit
 ) {
+    LaunchedEffect(key1 = true, block = {
+        updateAppLocale(AppLocale.LOCALE_ENGLISH)
+        updateRecipePref(RecipePreference.BOTH)
+        onboardingComplete()
+    })
     Onboarding(onboardingComplete)
 }
 
-private fun NavGraphBuilder.recipeDashboard() {
-    composable(DashboardDestination.Home.route) {
-        RecipeHome()
+private fun NavGraphBuilder.recipeDashboard(
+    modifier: Modifier,
+    onRecipeSelected: (Long, NavBackStackEntry) -> Unit,
+    onBoardingComplete: State<Boolean>,
+    navController: NavHostController,
+    recipes: List<RecipeViewState>
+) {
+    composable(DashboardDestination.Home.route) { from ->
+        LaunchedEffect(onBoardingComplete) {
+            if (!onBoardingComplete.value) {
+                navController.navigate(MainDestinations.ONBOARDING_ROUTE)
+            }
+        }
+        if (onBoardingComplete.value)
+            RecipeHome(
+                recipes = recipes,
+                selectRecipes = {
+                    onRecipeSelected(it, from)
+                },
+                modifier = modifier
+            )
     }
     composable(DashboardDestination.Search.route) {
         RecipeSearch()

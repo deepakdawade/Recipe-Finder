@@ -5,6 +5,7 @@ import com.devdd.recipe.utils.RecipePreference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class RecipeManager @Inject constructor(
@@ -15,23 +16,15 @@ class RecipeManager @Inject constructor(
         preference.setRecipePreference(pref)
     }
 
-    val recipePreference: Flow<String>
-        get() = preference.recipePreference.catch { emit("") }
+    val recipePreference: Flow<String> = preference.recipePreference.catch { emit("") }
 
-    suspend fun isRecipeSelected(): Boolean = recipePreference.first().isNotBlank()
+    val preferenceSelected: Flow<Boolean> = recipePreference.map { it.isNotBlank() }
 
-    suspend fun isVegetarian(): Boolean {
-        val type = recipePreference.first()
-        return type == RecipePreference.VEG
-    }
+    fun isVegetarian(pref: String): Boolean = pref == RecipePreference.VEG
 
-    suspend fun isNonVegetarian(): Boolean {
-        val type = recipePreference.first()
-        return type == RecipePreference.NON_VEG
-    }
+    fun isNonVegetarian(pref: String): Boolean = pref == RecipePreference.NON_VEG
 
-    suspend fun isBothVegNonVeg(): Boolean {
-        val type = recipePreference.first()
-        return type == RecipePreference.BOTH
+    fun isBothVegNonVeg(pref: String): Boolean {
+        return pref == RecipePreference.BOTH
     }
 }

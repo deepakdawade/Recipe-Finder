@@ -7,10 +7,18 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.devdd.recipe.ui.RecipeViewState
 
 @Composable
-fun RecipeHome() {
+fun RecipeHome(
+    recipes: List<RecipeViewState>,
+    selectRecipes: (Long) -> Unit,
+    modifier: Modifier = Modifier
+) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = "Home coming", style = MaterialTheme.typography.body2)
+        Text(
+            text = "Home coming \nrecipes found: ${recipes.size}",
+            style = MaterialTheme.typography.body2
+        )
     }
 }

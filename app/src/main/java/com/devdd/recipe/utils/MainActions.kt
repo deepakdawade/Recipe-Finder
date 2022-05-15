@@ -40,6 +40,6 @@ private fun NavBackStackEntry.lifecycleIsResumed() =
 object MainDestinations {
     const val ONBOARDING_ROUTE = "onboarding"
     const val RECIPE_DASHBOARD = "dashboard"
-    const val RECIPE_DETAIL_ROUTE = "recipe"
+    const val RECIPE_DETAIL_ROUTE = "recipe_details"
     const val RECIPE_DETAIL_ID_KEY = "recipeId"
 }

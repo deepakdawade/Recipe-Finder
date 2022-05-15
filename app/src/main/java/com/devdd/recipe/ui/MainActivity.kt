@@ -2,6 +2,7 @@ package com.devdd.recipe.ui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.devdd.recipe.ui.theme.RecipeTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             RecipeTheme {
-                RecipeApp(showOnboardingInitially = false) {
+                RecipeApp {
                     finish()
                 }
             }

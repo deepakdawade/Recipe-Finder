@@ -7,6 +7,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import java.util.*
 import javax.inject.Inject
 
@@ -14,20 +15,15 @@ class LocaleManager @Inject constructor(
     @ApplicationContext private val context: Context,
     private val dataStore: DataStorePreference
 ) {
-    val selectedLanguage: Flow<String>
-        get() = dataStore.selectedLanguage.catch { emit("") }
+    val selectedLanguage: Flow<String> = dataStore.selectedLanguage.catch { emit("") }
 
-    suspend fun isEnglishLocale(): Boolean = selectedLanguage.first() == AppLocale.LOCALE_ENGLISH
+    fun isEnglishLocale(locale: String): Boolean = locale == AppLocale.LOCALE_ENGLISH
 
-    suspend fun isHindiLocale(): Boolean = selectedLanguage.first() == AppLocale.LOCALE_HINDI
+    fun isHindiLocale(locale: String): Boolean = locale == AppLocale.LOCALE_HINDI
 
-    suspend fun isLanguageSelected(): Boolean = selectedLanguage.first().isNotBlank()
-
-    suspend fun isLanguageChanged(): Boolean =
-        Locale.getDefault().language != selectedLanguage.first()
+    val isLanguageSelected: Flow<Boolean> = selectedLanguage.map { it.isNotBlank() }
 
     suspend fun updateLanguage(language: String) {
-//        LocaleManagerUtils.setNewLocale(context = context, language = language)
         dataStore.setSelectedLocale(language)
     }
 }

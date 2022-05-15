@@ -17,8 +17,6 @@ class GetRecipeById @Inject constructor(
     private val repository: RecipeRepository
 ) : SubjectUseCase<Int, RecipeViewState>() {
     override fun createObservable(params: Int): Flow<RecipeViewState> {
-        return repository.getRecipeById(params).map {
-            RecipeViewState(it)
-        }
+        return repository.getRecipeById(params)
     }
 }
