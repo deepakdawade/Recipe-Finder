@@ -71,30 +71,42 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Libraries.AndroidX.Compose.version
+        kotlinCompilerExtensionVersion = Libraries.Compose.version
     }
 
 }
 
 dependencies {
     implementation(Libraries.Kotlin.stdlib)
+    implementation(Libraries.Kotlin.Coroutines.core)
     implementation(Libraries.Kotlin.Coroutines.android)
+    implementation(Libraries.AndroidX.DataStore.dataStore)
 
-//    coreLibraryDesugaring(Libraries.coreLibraryDesugar)
-    implementation(Libraries.AndroidX.Activity.activityCompose)
-    implementation(Libraries.AndroidX.Lifecycle.navigation)
-    implementation(Libraries.AndroidX.appcompat)
-    implementation(Libraries.AndroidX.Compose.runtime)
-    implementation(Libraries.AndroidX.Compose.runtimeLivedata)
-    implementation(Libraries.AndroidX.Compose.foundation)
-    implementation(Libraries.AndroidX.Compose.material)
-    implementation(Libraries.AndroidX.Compose.materialWindow)
-    implementation(Libraries.AndroidX.Compose.layout)
-    implementation(Libraries.AndroidX.Compose.animation)
-    implementation(Libraries.AndroidX.Compose.toolingPreview)
-    implementation(Libraries.AndroidX.Lifecycle.viewModelCompose)
-    debugImplementation(Libraries.AndroidX.Compose.tooling)
+    // compose
+    implementation(Libraries.Compose.activityCompose)
+    implementation(Libraries.Compose.foundation)
+    implementation(Libraries.Compose.animation)
+    implementation(Libraries.Compose.runtime)
+    implementation(Libraries.Compose.material)
+    implementation(Libraries.Compose.ui)
+    implementation(Libraries.Compose.uiTooling)
+    implementation(Libraries.Compose.viewBinding)
+    implementation(Libraries.Compose.materialThemeAdapter)
+    implementation(Libraries.Compose.constraintLayout)
+    implementation(Libraries.Compose.lottie)
+    implementation(Libraries.Compose.graphics)
+    implementation(Libraries.Compose.Accompanist.placeholder)
+    implementation(Libraries.Compose.Accompanist.systemUiController)
+    implementation(Libraries.Compose.Accompanist.pager)
+    implementation(Libraries.Compose.snapper)
+    implementation(Libraries.Compose.Accompanist.accompanistPagerIndiactor)
+    implementation(Libraries.Compose.Accompanist.swipeToRefresh)
+    implementation(Libraries.Compose.Accompanist.permission)
+    implementation(Libraries.Compose.Accompanist.navigationAnimation)
+    implementation(Libraries.Compose.Accompanist.drawablePainter)
+    implementation(Libraries.Coil.compose)
 
+    //GSON
     implementation(Libraries.gson)
 
     // Ok-Http
@@ -117,24 +129,10 @@ dependencies {
     implementation(Libraries.AndroidX.Room.runtime)
     kapt(Libraries.AndroidX.Room.compiler)
 
-    implementation(Libraries.AndroidX.DataStore.dataStore)
-
+    //Timber
     implementation(Libraries.Timber.timber)
 
-    implementation(Libraries.Coil.coilCompose)
-
-    debugImplementation(Libraries.AndroidX.Compose.uiTestManifest)
-
-    androidTestImplementation(Libraries.JUnit.junit)
     androidTestImplementation(Libraries.AndroidX.Test.core)
-    androidTestImplementation(Libraries.AndroidX.Test.runner)
     androidTestImplementation(Libraries.AndroidX.Test.espressoCore)
-    androidTestImplementation(Libraries.AndroidX.Test.rules)
-    androidTestImplementation(Libraries.AndroidX.Test.Ext.junit)
-    androidTestImplementation(Libraries.Kotlin.Coroutines.test)
-    androidTestImplementation(Libraries.AndroidX.Compose.uiTest)
-    androidTestImplementation(Libraries.Hilt.android)
-    androidTestImplementation(Libraries.Hilt.testing)
-    kaptAndroidTest(Libraries.Hilt.compiler)
 }
 fun formatUrl(url: String): String = "\"$url\""

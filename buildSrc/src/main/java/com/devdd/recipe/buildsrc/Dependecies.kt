@@ -39,6 +39,7 @@ object Dependencies {
 
             object Coroutines {
                 private const val version = "1.6.0"
+                const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
                 const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
                 const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
             }
@@ -49,9 +50,67 @@ object Dependencies {
             const val timber: String = "com.jakewharton.timber:timber:$version"
         }
 
+        object Compose {
+            const val snapshot = ""
+            const val version = "1.2.0-beta01"
+            const val activityCompose = "androidx.activity:activity-compose:1.5.0-rc01"
+            const val foundation = "androidx.compose.foundation:foundation:${version}"
+            const val layout = "androidx.compose.foundation:foundation-layout:$version"
+            const val ui = "androidx.compose.ui:ui:${version}"
+            const val uiTooling = "androidx.compose.ui:ui-tooling:${version}"
+            const val toolingPreview = "androidx.compose.ui:ui-tooling-preview:$version"
+            const val runtime = "androidx.compose.runtime:runtime:${version}"
+            const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:$version"
+            const val material = "androidx.compose.material:material:${version}"
+            const val materialThemeAdapter =
+                "com.google.android.material:compose-theme-adapter:1.1.5"
+            const val materialWindow =
+                "androidx.compose.material3:material3-window-size-class:1.0.0-alpha10"
+            const val animation = "androidx.compose.animation:animation:${version}"
+            const val viewBinding = "androidx.compose.ui:ui-viewbinding:$version"
+            const val graphics = "androidx.compose.animation:animation-graphics:$version"
+            const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0"
+            const val lottie = "com.airbnb.android:lottie-compose:5.0.3"
+
+            const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
+            const val uiTestManifest = "androidx.compose.ui:ui-test-manifest:$version"
+
+            object Accompanist {
+                private const val version = "0.24.8-beta"
+                const val placeholder =
+                    "com.google.accompanist:accompanist-placeholder-material:$version"
+                const val insets = "com.google.accompanist:accompanist-insets:$version"
+                const val insetsUi = "com.google.accompanist:accompanist-insets-ui:$version"
+                const val systemUiController =
+                    "com.google.accompanist:accompanist-systemuicontroller:$version"
+                const val pager = "com.google.accompanist:accompanist-pager:$version"
+                const val accompanistPagerIndiactor =
+                    "com.google.accompanist:accompanist-pager-indicators:$version"
+                const val swipeToRefresh =
+                    "com.google.accompanist:accompanist-swiperefresh:$version"
+                const val permission = "com.google.accompanist:accompanist-permissions:$version"
+                const val navigationAnimation =
+                    "com.google.accompanist:accompanist-navigation-animation:$version"
+                const val drawablePainter =
+                    "com.google.accompanist:accompanist-drawablepainter:$version"
+            }
+
+            const val snapper = "dev.chrisbanes.snapper:snapper:0.2.0"
+
+            object ComposeDestination {
+                private const val version = "1.3.1-beta"
+                const val destination =
+                    "io.github.raamcosta.compose-destinations:animations-core:$version"
+                const val destinationKsp = "io.github.raamcosta.compose-destinations:ksp:$version"
+            }
+            const val flinger = "com.github.iamjosephmj:Flinger:1.1.1"
+        }
+
         object AndroidX {
             object Activity {
-                const val activityCompose = "androidx.activity:activity-compose:1.4.0"
+                const val coreKtx = "androidx.core:core-ktx:1.8.0-rc01"
+                const val collectionKtx = "androidx.collection:collection-ktx:1.2.0"
+                const val splash = "androidx.core:core-splashscreen:1.0.0-beta02"
             }
 
             object Room {
@@ -61,38 +120,22 @@ object Dependencies {
                 const val runtime = "androidx.room:room-runtime:$version"
                 const val ROOM_TESTING = "androidx.room:room-testing:$version"
             }
-            object DataStore{
+
+            object DataStore {
                 private const val version = "1.0.0-alpha08"
                 const val dataStore = "androidx.datastore:datastore-preferences:$version"
             }
+
             const val appcompat = "androidx.appcompat:appcompat:1.4.1"
 
-            object Compose {
-                const val snapshot = ""
-                const val version = "1.2.0-beta01"
-
-                const val runtime = "androidx.compose.runtime:runtime:$version"
-                const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:$version"
-                const val materialWindow =
-                    "androidx.compose.material3:material3-window-size-class:1.0.0-alpha10"
-
-                const val material = "androidx.compose.material:material:$version"
-                const val foundation = "androidx.compose.foundation:foundation:$version"
-                const val layout = "androidx.compose.foundation:foundation-layout:$version"
-                const val tooling = "androidx.compose.ui:ui-tooling:$version"
-                const val toolingPreview = "androidx.compose.ui:ui-tooling-preview:$version"
-                const val animation = "androidx.compose.animation:animation:$version"
-                const val uiTest = "androidx.compose.ui:ui-test-junit4:$version"
-                const val uiTestManifest = "androidx.compose.ui:ui-test-manifest:$version"
-
-            }
-
             object Lifecycle {
-                private const val version = "2.4.1"
+                private const val version = "2.5.0-rc01"
                 const val viewModelCompose =
                     "androidx.lifecycle:lifecycle-viewmodel-compose:$version"
                 const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
-                const val navigation = "androidx.navigation:navigation-compose:$version"
+                const val livedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$version"
+                const val common = "androidx.lifecycle:lifecycle-common-java8:$version"
+                const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:$version"
             }
 
             object Test {
@@ -108,10 +151,6 @@ object Dependencies {
 
                 const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
                 const val uiAutomator = "androidx.test.uiautomator:uiautomator:2.2.0"
-            }
-
-            object Benchmark {
-                const val macrobenchmark = "androidx.benchmark:benchmark-macro-junit4:1.1.0-beta04"
             }
         }
 
@@ -130,8 +169,12 @@ object Dependencies {
             const val junit = "junit:junit:$version"
         }
 
+
         object Coil {
-            const val coilCompose = "io.coil-kt:coil-compose:2.0.0"
+            private const val version = "2.0.0"
+            const val coil = "io.coil-kt:coil:$version"
+            const val compose = "io.coil-kt:coil-compose:$version"
+            const val svg = "io.coil-kt:coil-svg:$version"
         }
     }
 }
@@ -139,5 +182,5 @@ object Dependencies {
 object Urls {
     const val mavenCentralSnapshotRepo = "https://oss.sonatype.org/content/repositories/snapshots/"
     const val composeSnapshotRepo = "https://androidx.dev/snapshots/builds/" +
-            "${Dependencies.Libraries.AndroidX.Compose.snapshot}/artifacts/repository/"
+            "${Dependencies.Libraries.Compose.snapshot}/artifacts/repository/"
 }

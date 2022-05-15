@@ -37,7 +37,7 @@ subprojects {
         google()
         mavenCentral()
 
-        if (!Dependencies.Libraries.AndroidX.Compose.snapshot.isEmpty()) {
+        if (!Dependencies.Libraries.Compose.snapshot.isEmpty()) {
             maven { url Urls.composeSnapshotRepo }
         }
     }
