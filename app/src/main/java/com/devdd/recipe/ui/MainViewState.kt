@@ -1,6 +1,7 @@
 package com.devdd.recipe.ui
 
 data class MainViewState(
+    val loading:Boolean = false,
     val recipePref: String = "",
     val localePref: String = "",
     val recipes: List<RecipeViewState> = emptyList()

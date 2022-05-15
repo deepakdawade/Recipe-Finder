@@ -4,13 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devdd.recipe.domain.executer.FetchRecipes
 import com.devdd.recipe.domain.observer.*
+import com.devdd.recipe.domain.onStarted
+import com.devdd.recipe.domain.onSuccess
 import com.devdd.recipe.domain.watchStatus
+import com.devdd.recipe.utils.ObservableLoadingCounter
+import com.devdd.recipe.utils.updateLoadingState
 import com.devdd.recipe.utils.combine
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,15 +24,18 @@ class MainViewModel @Inject constructor(
     observeSelectedLocale: ObserveSelectedLocale,
     observeRecipeByPref: ObserveRecipeByPref
 ) : ViewModel() {
-    val viewState = combine(
+    private val refreshCounter = ObservableLoadingCounter()
+    val viewState: StateFlow<MainViewState> = combine(
         observeSelectedLocale.flow,
         observeSelectedRecipePref.flow,
-        observeRecipeByPref.flow
-    ) { selectedLocale, selectedPref, recipes ->
+        observeRecipeByPref.flow,
+        refreshCounter.observable
+    ) { selectedLocale, selectedPref, recipes, loading ->
         MainViewState(
             localePref = selectedLocale,
             recipePref = selectedPref,
-            recipes = recipes
+            recipes = recipes,
+            loading = loading
         )
     }.stateIn(
         viewModelScope,
@@ -53,7 +57,7 @@ class MainViewModel @Inject constructor(
     fun fetchRecipes() {
         viewModelScope.launch {
             fetchRecipes.invoke("").watchStatus {
-
+                updateLoadingState(refreshCounter)
             }
         }
     }

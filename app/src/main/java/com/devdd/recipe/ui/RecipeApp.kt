@@ -21,6 +21,8 @@ import com.devdd.recipe.ui.onboarding.Onboarding
 import com.devdd.recipe.ui.profile.RecipeProfile
 import com.devdd.recipe.ui.search.RecipeSearch
 import com.devdd.recipe.utils.*
+import com.google.accompanist.swiperefresh.SwipeRefreshState
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import java.util.*
 
 @Composable
@@ -34,13 +36,9 @@ fun RecipeApp(
     val onboardingComplete = remember(showOnboardingInitially) {
         mutableStateOf(!showOnboardingInitially)
     }
+    val refreshState = rememberSwipeRefreshState(isRefreshing = viewState.loading)
     val actions = remember(navController) { MainActions(navController) }
     val tabs = remember { DashboardTabs.values() }
-    Toast.makeText(
-        LocalContext.current,
-        "${viewState.recipePref}:${viewState.localePref}",
-        Toast.LENGTH_SHORT
-    ).show()
     Scaffold(
         modifier = Modifier,
         bottomBar = {
@@ -75,7 +73,9 @@ fun RecipeApp(
                     onBoardingComplete = onboardingComplete,
                     navController = navController,
                     onRecipeSelected = actions.openRecipe,
-                    modifier = Modifier
+                    modifier = Modifier.fillMaxSize(),
+                    refreshState = refreshState,
+                    onRefresh = viewModel::fetchRecipes
                 )
             }
             composable(
@@ -153,7 +153,9 @@ private fun NavGraphBuilder.recipeDashboard(
     onRecipeSelected: (Long, NavBackStackEntry) -> Unit,
     onBoardingComplete: State<Boolean>,
     navController: NavHostController,
-    recipes: List<RecipeViewState>
+    refreshState: SwipeRefreshState,
+    recipes: List<RecipeViewState>,
+    onRefresh: () -> Unit
 ) {
     composable(DashboardDestination.Home.route) { from ->
         LaunchedEffect(onBoardingComplete) {
@@ -163,11 +165,13 @@ private fun NavGraphBuilder.recipeDashboard(
         }
         if (onBoardingComplete.value)
             RecipeHome(
+                refreshState = refreshState,
                 recipes = recipes,
                 selectRecipes = {
                     onRecipeSelected(it, from)
                 },
-                modifier = modifier
+                modifier = modifier,
+                onRefresh = onRefresh
             )
     }
     composable(DashboardDestination.Search.route) {
