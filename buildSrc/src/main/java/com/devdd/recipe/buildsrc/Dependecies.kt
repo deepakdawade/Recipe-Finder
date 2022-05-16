@@ -126,7 +126,7 @@ object Dependencies {
                 const val dataStore = "androidx.datastore:datastore-preferences:$version"
             }
 
-            const val appcompat = "androidx.appcompat:appcompat:1.4.1"
+            const val appcompat = "androidx.appcompat:appcompat:1.6.0-alpha01"
 
             object Lifecycle {
                 private const val version = "2.5.0-rc01"

@@ -1,5 +1,7 @@
 package com.devdd.recipe.ui
 
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devdd.recipe.domain.executer.FetchRecipes
@@ -69,6 +71,8 @@ class MainViewModel @Inject constructor(
     }
 
     fun setAppLocale(locale: String) {
+        val appLocale = LocaleListCompat.forLanguageTags(locale)
+        AppCompatDelegate.setApplicationLocales(appLocale)
         viewModelScope.launch {
             setAppLocale.invoke(locale).watchStatus { }
         }

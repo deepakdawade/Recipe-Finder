@@ -1,12 +1,10 @@
 package com.devdd.recipe.ui
 
-import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -17,7 +15,7 @@ import androidx.navigation.compose.navigation
 import com.devdd.recipe.ui.activity.RecipeActivity
 import com.devdd.recipe.ui.detail.RecipeDetail
 import com.devdd.recipe.ui.home.RecipeHome
-import com.devdd.recipe.ui.onboarding.Onboarding
+import com.devdd.recipe.ui.onboarding.OnBoarding
 import com.devdd.recipe.ui.profile.RecipeProfile
 import com.devdd.recipe.ui.search.RecipeSearch
 import com.devdd.recipe.utils.*
@@ -36,6 +34,10 @@ fun RecipeApp(
     val onboardingComplete = remember(showOnboardingInitially) {
         mutableStateOf(!showOnboardingInitially)
     }
+    val startDestination = remember(showOnboardingInitially) {
+        if (showOnboardingInitially) MainDestinations.ONBOARDING_ROUTE
+        else MainDestinations.RECIPE_DASHBOARD
+    }
     val refreshState = rememberSwipeRefreshState(isRefreshing = viewState.loading)
     val actions = remember(navController) { MainActions(navController) }
     val tabs = remember { DashboardTabs.values() }
@@ -50,13 +52,16 @@ fun RecipeApp(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerContentPadding),
-            startDestination = MainDestinations.RECIPE_DASHBOARD
+            startDestination = startDestination
         ) {
             composable(MainDestinations.ONBOARDING_ROUTE) {
                 BackHandler(onBack = onBackHandler)
-                RecipeOnboarding(
-                    onboardingComplete = {
-                        // Set the flag so that onboarding is not shown next time.
+                RecipeOnBoarding(
+                    selectedLocale = viewState.localePref,
+                    selectedRecipePref = viewState.recipePref,
+                    selectedIndex = if (viewState.localePref.isBlank()) 0 else 1,
+                    onBoardingComplete = {
+                        // Set the flag so that on boarding is not shown next time.
                         onboardingComplete.value = true
                         actions.onboardingComplete()
                     },
@@ -70,8 +75,6 @@ fun RecipeApp(
             ) {
                 recipeDashboard(
                     recipes = viewState.recipes,
-                    onBoardingComplete = onboardingComplete,
-                    navController = navController,
                     onRecipeSelected = actions.openRecipe,
                     modifier = Modifier.fillMaxSize(),
                     refreshState = refreshState,
@@ -104,7 +107,7 @@ fun RecipeBottomBar(navController: NavHostController, tabs: Array<DashboardTabs>
     val routes = remember { DashboardTabs.values().map { it.route } }
     if (currentRoute in routes) {
         BottomNavigation(
-            Modifier.windowInsetsBottomHeight(
+            modifier = Modifier.windowInsetsBottomHeight(
                 WindowInsets.navigationBars.add(WindowInsets(bottom = 56.dp))
             )
         ) {
@@ -126,7 +129,7 @@ fun RecipeBottomBar(navController: NavHostController, tabs: Array<DashboardTabs>
                     },
                     alwaysShowLabel = false,
                     selectedContentColor = MaterialTheme.colors.secondary,
-                    unselectedContentColor = LocalContentColor.current,
+                    unselectedContentColor = MaterialTheme.colors.onSurface,
                     modifier = Modifier.navigationBarsPadding()
                 )
             }
@@ -135,44 +138,41 @@ fun RecipeBottomBar(navController: NavHostController, tabs: Array<DashboardTabs>
 }
 
 @Composable
-private fun RecipeOnboarding(
-    onboardingComplete: () -> Unit,
+private fun RecipeOnBoarding(
+    selectedIndex: Int = 0,
+    onBoardingComplete: () -> Unit,
     updateRecipePref: (pref: String) -> Unit,
-    updateAppLocale: (locale: String) -> Unit
+    updateAppLocale: (locale: String) -> Unit,
+    selectedRecipePref: String,
+    selectedLocale: String
 ) {
-    LaunchedEffect(key1 = true, block = {
-        updateAppLocale(AppLocale.LOCALE_ENGLISH)
-        updateRecipePref(RecipePreference.BOTH)
-        onboardingComplete()
-    })
-    Onboarding(onboardingComplete)
+    OnBoarding(
+        selectedLocale = selectedLocale,
+        selectedRecipePref = selectedRecipePref,
+        selectedIndex = selectedIndex,
+        onBoardingComplete = onBoardingComplete,
+        updateRecipePref = updateRecipePref,
+        updateAppLocale = updateAppLocale
+    )
 }
 
 private fun NavGraphBuilder.recipeDashboard(
     modifier: Modifier,
     onRecipeSelected: (Long, NavBackStackEntry) -> Unit,
-    onBoardingComplete: State<Boolean>,
-    navController: NavHostController,
     refreshState: SwipeRefreshState,
     recipes: List<RecipeViewState>,
     onRefresh: () -> Unit
 ) {
     composable(DashboardDestination.Home.route) { from ->
-        LaunchedEffect(onBoardingComplete) {
-            if (!onBoardingComplete.value) {
-                navController.navigate(MainDestinations.ONBOARDING_ROUTE)
-            }
-        }
-        if (onBoardingComplete.value)
-            RecipeHome(
-                refreshState = refreshState,
-                recipes = recipes,
-                selectRecipes = {
-                    onRecipeSelected(it, from)
-                },
-                modifier = modifier,
-                onRefresh = onRefresh
-            )
+        RecipeHome(
+            refreshState = refreshState,
+            recipes = recipes,
+            selectRecipes = {
+                onRecipeSelected(it, from)
+            },
+            modifier = modifier,
+            onRefresh = onRefresh
+        )
     }
     composable(DashboardDestination.Search.route) {
         RecipeSearch()

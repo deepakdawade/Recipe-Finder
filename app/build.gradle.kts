@@ -78,6 +78,7 @@ android {
 
 dependencies {
     implementation(Libraries.Kotlin.stdlib)
+    implementation(Libraries.AndroidX.appcompat)
     implementation(Libraries.Kotlin.Coroutines.core)
     implementation(Libraries.Kotlin.Coroutines.android)
     implementation(Libraries.AndroidX.DataStore.dataStore)

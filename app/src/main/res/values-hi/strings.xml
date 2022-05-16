@@ -6,5 +6,8 @@
     <string name="bottom_nav_menu_favourite">पसंदीदा</string>
     <string name="bottom_nav_menu_profile">प्रोफ़ाइल</string>
     <string name="splash_screen_text">Shahi khana</string>
-
+    <string name="choose_recipe_preference">पसंदीदा विधि चुनें</string>
+    <string name="veg">शाकाहारी</string>
+    <string name="nonveg">मासाहारी</string>
+    <string name="both">दोनों</string>
 </resources>

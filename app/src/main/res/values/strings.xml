@@ -8,5 +8,9 @@
     <string name="bottom_nav_menu_favourite">Favorite</string>
     <string name="bottom_nav_menu_profile">Profile</string>
     <string name="splash_screen_text">Shahi khana</string>
+    <string name="choose_recipe_preference">Choose Preferred Recipe</string>
+    <string name="veg">Veg</string>
+    <string name="nonveg">Non Veg</string>
+    <string name="both">Both</string>
 
 </resources>
