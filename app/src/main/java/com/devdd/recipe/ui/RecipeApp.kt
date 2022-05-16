@@ -1,17 +1,24 @@
 package com.devdd.recipe.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.*
-import androidx.navigation.compose.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigation
+import androidx.navigation.compose.rememberNavController
+import com.devdd.recipe.R
 import com.devdd.recipe.ui.activity.RecipeActivity
 import com.devdd.recipe.ui.detail.RecipeDetail
 import com.devdd.recipe.ui.home.RecipeHome
@@ -21,13 +28,14 @@ import com.devdd.recipe.ui.search.RecipeSearch
 import com.devdd.recipe.utils.*
 import com.google.accompanist.swiperefresh.SwipeRefreshState
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import kotlinx.coroutines.delay
 import java.util.*
 
 @Composable
 fun RecipeApp(
+    viewModel: MainViewModel,
     onBackHandler: () -> Unit
 ) {
-    val viewModel: MainViewModel = hiltViewModel()
     val viewState by rememberFlowWithLifecycle(flow = viewModel.viewState).collectAsState(initial = MainViewState.INITIAL)
     val showOnboardingInitially = viewState.showOnBoarding
     val navController = rememberNavController()
@@ -41,6 +49,33 @@ fun RecipeApp(
     val refreshState = rememberSwipeRefreshState(isRefreshing = viewState.loading)
     val actions = remember(navController) { MainActions(navController) }
     val tabs = remember { DashboardTabs.values() }
+    RecipeAppContent(
+        viewModel = viewModel,
+        navController = navController,
+        tabs = tabs,
+        refreshState = refreshState,
+        onBackHandler = onBackHandler,
+        viewState = viewState,
+        actions = actions,
+        onBoardingComplete = {
+            onboardingComplete.value = true
+        },
+        startDestination = startDestination
+    )
+}
+
+@Composable
+private fun RecipeAppContent(
+    viewModel: MainViewModel,
+    navController: NavHostController,
+    tabs: Array<DashboardTabs>,
+    refreshState: SwipeRefreshState,
+    onBackHandler: () -> Unit,
+    viewState: MainViewState,
+    actions: MainActions,
+    onBoardingComplete: (complete: Boolean) -> Unit,
+    startDestination: String
+) {
     Scaffold(
         modifier = Modifier,
         bottomBar = {
@@ -52,8 +87,20 @@ fun RecipeApp(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerContentPadding),
-            startDestination = startDestination
+            startDestination = MainDestinations.SPLASH
         ) {
+            composable(MainDestinations.SPLASH) {
+                LaunchedEffect(true) {
+                    delay(1500)
+                    actions.navigateTo(
+                        startDestination,
+                        popUpTo = MainDestinations.SPLASH,
+                        from = it,
+                        inclusive = true
+                    )
+                }
+                RecipeSplash()
+            }
             composable(MainDestinations.ONBOARDING_ROUTE) {
                 BackHandler(onBack = onBackHandler)
                 RecipeOnBoarding(
@@ -62,8 +109,8 @@ fun RecipeApp(
                     selectedIndex = if (viewState.localePref.isBlank()) 0 else 1,
                     onBoardingComplete = {
                         // Set the flag so that on boarding is not shown next time.
-                        onboardingComplete.value = true
-                        actions.onboardingComplete()
+                        onBoardingComplete(true)
+                        actions.boardingToDashboard(it)
                     },
                     updateAppLocale = viewModel::setAppLocale,
                     updateRecipePref = viewModel::setRecipePref
@@ -154,6 +201,16 @@ private fun RecipeOnBoarding(
         updateRecipePref = updateRecipePref,
         updateAppLocale = updateAppLocale
     )
+}
+
+@Composable
+private fun RecipeSplash() {
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Image(
+            imageVector = ImageVector.vectorResource(id = R.drawable.ic_launcher_foreground),
+            contentDescription = "splash"
+        )
+    }
 }
 
 private fun NavGraphBuilder.recipeDashboard(

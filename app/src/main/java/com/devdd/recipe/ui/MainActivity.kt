@@ -10,6 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private val viewModel by viewModels<MainViewModel>()
 
     companion object {
         private val TAG: String = this::class.java.simpleName
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             RecipeTheme {
-                RecipeApp {
+                RecipeApp(viewModel) {
                     finish()
                 }
             }

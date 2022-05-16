@@ -3,13 +3,33 @@ package com.devdd.recipe.utils
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
+import androidx.navigation.navOptions
 
 /**
  * Models the navigation actions in the app.
  */
-class MainActions(navController: NavHostController) {
+class MainActions(private val navController: NavHostController) {
     val onboardingComplete: () -> Unit = {
         navController.popBackStack()
+    }
+
+    val boardingToDashboard = { from: NavBackStackEntry ->
+        navigateTo(
+            MainDestinations.RECIPE_DASHBOARD,
+            from,
+            popUpTo = MainDestinations.ONBOARDING_ROUTE,
+            inclusive = true
+        )
+    }
+
+    val dashboard = { from: NavBackStackEntry ->
+        if (from.lifecycleIsResumed()) {
+            navController.navigate(MainDestinations.RECIPE_DASHBOARD, navOptions = navOptions {
+                popUpTo(MainDestinations.SPLASH, popUpToBuilder = {
+                    this.inclusive = true
+                })
+            })
+        }
     }
 
     // Used from RECIPES_ROUTE
@@ -27,6 +47,23 @@ class MainActions(navController: NavHostController) {
             navController.navigateUp()
         }
     }
+
+    fun navigateTo(
+        destination: String,
+        from: NavBackStackEntry,
+        popUpTo: String = "",
+        inclusive: Boolean = false
+    ) {
+        if (from.lifecycleIsResumed()) {
+            val option = if (popUpTo.isNotBlank()) navOptions {
+                popUpTo(popUpTo, popUpToBuilder = {
+                    this.inclusive = inclusive
+                })
+            } else null
+            navController.navigate(destination, navOptions = option)
+        }
+    }
+
 }
 
 /**
@@ -38,6 +75,7 @@ private fun NavBackStackEntry.lifecycleIsResumed() =
     this.lifecycle.currentState == Lifecycle.State.RESUMED
 
 object MainDestinations {
+    const val SPLASH = "splash"
     const val ONBOARDING_ROUTE = "onboarding"
     const val RECIPE_DASHBOARD = "dashboard"
     const val RECIPE_DETAIL_ROUTE = "recipe_details"
