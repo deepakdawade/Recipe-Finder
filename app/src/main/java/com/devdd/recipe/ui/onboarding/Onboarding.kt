@@ -14,31 +14,25 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.devdd.recipe.R
 import com.devdd.recipe.utils.AppLocale
 import com.devdd.recipe.utils.RecipePreference
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
-import  com.devdd.recipe.R
-import com.google.accompanist.pager.PagerState
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun OnBoarding(
     selectedIndex: Int,
-    selectedLocale: String,
-    selectedRecipePref: String,
-    onBoardingComplete: () -> Unit,
     updateRecipePref: (pref: String) -> Unit,
     updateAppLocale: (locale: String) -> Unit
 ) {
-    if (selectedLocale.isNotBlank() && selectedRecipePref.isNotBlank())
-        onBoardingComplete()
     val pagerState = rememberPagerState()
     val coroutineScope = rememberCoroutineScope()
     val updatePagerIndex: (index: Int) -> Unit = {
@@ -53,7 +47,6 @@ fun OnBoarding(
     }
     OnBoardingContent(
         pagerState,
-        onBoardingComplete,
         updateAppLocale,
         updateRecipePref,
         updatePagerIndex
@@ -64,7 +57,6 @@ fun OnBoarding(
 @Composable
 fun OnBoardingContent(
     pagerState: PagerState,
-    onBoardingComplete: () -> Unit,
     updateAppLocale: (locale: String) -> Unit,
     updateRecipePref: (pref: String) -> Unit,
     updatePagerIndex: (index: Int) -> Unit
@@ -83,7 +75,6 @@ fun OnBoardingContent(
             1 -> OnBoardingRecipePreference(
                 updateRecipePref = { recipePref ->
                     updateRecipePref(recipePref)
-                    onBoardingComplete()
                 },
                 modifier = Modifier
                     .fillMaxSize()

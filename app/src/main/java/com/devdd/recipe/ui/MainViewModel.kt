@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.devdd.recipe.api.toJsonString
 import com.devdd.recipe.domain.executer.FetchRecipes
 import com.devdd.recipe.domain.observer.*
 import com.devdd.recipe.domain.onStarted
@@ -15,6 +16,7 @@ import com.devdd.recipe.utils.combine
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel

@@ -6,11 +6,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import com.devdd.recipe.R
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
@@ -19,18 +16,20 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.devdd.recipe.R
 import com.devdd.recipe.ui.RecipeViewState
 import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.SwipeRefreshState
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @Composable
 fun RecipeHome(
-    refreshState: SwipeRefreshState,
+    loading: Boolean,
     recipes: List<RecipeViewState>,
     selectRecipes: (Long) -> Unit,
     modifier: Modifier = Modifier,
     onRefresh: () -> Unit
 ) {
+    val refreshState = rememberSwipeRefreshState(isRefreshing = loading)
     SwipeRefresh(state = refreshState, onRefresh = onRefresh, modifier = modifier) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
